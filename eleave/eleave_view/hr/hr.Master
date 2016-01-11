@@ -1,0 +1,63 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="hr.master.cs" Inherits="eleave_view.hr.hr" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title></title>
+    <link href="../assets/plugins/swal/sweetalert.css" rel="stylesheet" type="text/css" />
+    <script src="../assets/plugins/swal/sweetalert.min.js" type="text/javascript"></script>
+    <link href="../assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="../assets/plugins/font-awesome/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="../assets/fonts/style.css"/>
+    <link rel="stylesheet" href="../assets/css/main.css"/>
+    <link rel="stylesheet" href="../assets/css/main-responsive.css"/>
+    <link rel="stylesheet" href="../assets/plugins/iCheck/skins/all.css"/>
+    <link rel="stylesheet" href="../assets/plugins/perfect-scrollbar/src/perfect-scrollbar.css"/>
+    <link rel="stylesheet" href="../assets/css/theme_light.css" id="skin_color"/>
+    <!--[if IE 7]>
+		<link rel="stylesheet" href="../assets/plugins/font-awesome/css/font-awesome-ie7.min.css">
+		<![endif]-->
+    <!-- end: MAIN CSS -->
+    <!-- start: CSS REQUIRED FOR THIS PAGE ONLY -->
+    <link rel="stylesheet" href="../assets/plugins/fullcalendar/fullcalendar/fullcalendar.css" />
+    <link href="../assets/plugins/circliful/font-awesome.min.css" rel="stylesheet" />
+    <link href="../assets/plugins/circliful/jquery.circliful.css" rel="stylesheet" /> 
+    <link href="../assets/plugins/datepicker/css/bootstrap-datepicker3.css" rel="stylesheet" type="text/css" />
+    <!-- end: CSS REQUIRED FOR THIS PAGE ONLY -->
+    <script src="../assets/js/jquery.min.js" type="text/javascript"></script>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+    <div>
+        <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+        
+        </asp:ContentPlaceHolder>
+    </div>
+    </form>
+    <script src="../assets/js/jquery.min.js" type="text/javascript"></script>
+    <script src="../assets/plugins/jquery-ui/jquery-ui-1.10.2.custom.min.js" type="text/javascript"></script>
+    <script src="../assets/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+    <script src="../assets/plugins/blockUI/jquery.blockUI.js" type="text/javascript"></script>
+    <script src="../assets/plugins/iCheck/jquery.icheck.min.js" type="text/javascript"></script>
+    <script src="../assets/plugins/perfect-scrollbar/src/jquery.mousewheel.js" type="text/javascript"></script>
+    <script src="../assets/plugins/perfect-scrollbar/src/perfect-scrollbar.js" type="text/javascript"></script>
+    <script src="../assets/js/main.js" type="text/javascript"></script>
+    <!-- end: MAIN JAVASCRIPTS -->
+    <!-- start: JAVASCRIPTS REQUIRED FOR THIS PAGE ONLY -->
+    <script src="../assets/plugins/fullcalendar/fullcalendar/fullcalendar.js" type="text/javascript"></script>
+    <script src="../assets/plugins/autosize/jquery.autosize.min.js" type="text/javascript"></script>
+    <script src="../assets/plugins/select2/select2.min.js" type="text/javascript"></script>
+    <script src="../assets/js/form-elements.js" type="text/javascript"></script>
+    <script src="../assets/plugins/circliful/jquery.circliful.min.js" type="text/javascript"></script>
+    <script src="../assets/plugins/loader/blockui.min.js" type="text/javascript"></script>
+    <script src="../assets/plugins/loader/pace.min.js" type="text/javascript"></script>
+    <script src="../assets/plugins/loader/progressbar.min.js" type="text/javascript"></script>
+    <script src="../assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js" type="text/javascript"></script>
+    <script src="../assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js" type="text/javascript"></script>
+    <script src="../assets/plugins/jquery-validation/dist/jquery.validate.min.js" type="text/javascript"></script>
+    <script src="../assets/js/form-validation.js" type="text/javascript"></script>   
+</body>
+</html>
