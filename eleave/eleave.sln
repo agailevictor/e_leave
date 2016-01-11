@@ -1,6 +1,8 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.40629.0
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "eleave_view", "eleave_view\eleave_view.csproj", "{A1E59B44-9BAA-4765-86A7-5B634D8EF537}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "eleave_c", "eleave_c\eleave_c.csproj", "{2610C701-DE99-47FC-9CC2-A69CBC517D0F}"

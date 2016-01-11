@@ -42,6 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="data_eleave.cs" />
+    <Compile Include="data_eleave_HS.cs" />
     <Compile Include="db_connect.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
