@@ -90,6 +90,7 @@
     <Content Include="assets\images\darkgrey.png" />
     <Content Include="assets\images\double_loader.GIF" />
     <Content Include="assets\images\green.png" />
+    <Content Include="assets\images\leaves.jpg" />
     <Content Include="assets\images\lightgrey.png" />
     <Content Include="assets\images\loader_new.GIF" />
     <Content Include="assets\images\loading.gif" />
@@ -342,7 +343,7 @@
     <Content Include="assets\plugins\swal\themes\twitter\twitter.css" />
     <Content Include="hr\applyleave_hr.aspx" />
     <Content Include="hr\holidays_upload.aspx" />
-    <Content Include="hr\sample_apply.aspx" />
+    <Content Include="hr\testpage_hr.aspx" />
     <Content Include="hr\WebForm1.aspx" />
     <Content Include="Login.aspx" />
     <Content Include="Logout.aspx" />
@@ -388,12 +389,12 @@
     <Compile Include="hr\hr.Master.designer.cs">
       <DependentUpon>hr.Master</DependentUpon>
     </Compile>
-    <Compile Include="hr\sample_apply.aspx.cs">
-      <DependentUpon>sample_apply.aspx</DependentUpon>
+    <Compile Include="hr\testpage_hr.aspx.cs">
+      <DependentUpon>testpage_hr.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="hr\sample_apply.aspx.designer.cs">
-      <DependentUpon>sample_apply.aspx</DependentUpon>
+    <Compile Include="hr\testpage_hr.aspx.designer.cs">
+      <DependentUpon>testpage_hr.aspx</DependentUpon>
     </Compile>
     <Compile Include="hr\WebForm1.aspx.cs">
       <DependentUpon>WebForm1.aspx</DependentUpon>

@@ -186,13 +186,13 @@
                                 </a>
                             </li>
                             <li id="leaves2" runat="server">
-                                <a href="sample_apply.aspx"><i class="clip-minus-circle-2"></i>
+                                <a href="cancel_hr.aspx"><i class="clip-minus-circle-2"></i>
                                     <span class="title">Cancel Approved </span>
                                     <span class="selected"></span>
                                 </a>
                             </li>
                             <li id="leaves3" runat="server">
-                               <a href="cancel.aspx"><i class="icon-forward"></i>
+                               <a href="forward_hr.aspx"><i class="icon-forward"></i>
                                     <span class="title">Forward Leaves </span>
                                     <span class="selected"></span>
                                 </a>
@@ -206,7 +206,7 @@
                         </a>
                         <ul class="sub-menu">
                             <li id="settings1" runat="server">
-                                <a href="#"><i class="clip-user-2"></i>
+                                <a href="testpage_hr.aspx"><i class="clip-user-2"></i>
                                     <span class="title">User's</span>
                                     <span class="selected"></span>
                                 </a>

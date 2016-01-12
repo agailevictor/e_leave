@@ -1,17 +1,18 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="holidays_upload.aspx.cs" Inherits="eleave_view.hr.holidays_upload" MasterPageFile="~/hr/hr.Master" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="testpage_hr.aspx.cs" Inherits="eleave_view.hr.testpage_hr" MasterPageFile="~/hr/hr.Master" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="page-header">
-        <h1>Upload Holidays List</h1>
+        <h1>
+            Request Leave</h1>
     </div>
     <div class="row">
         <div class="col-md-12">
             <!-- start: Upload Holidays HR -->
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <i class="icon-external-link-sign"></i>Upload Holiday List
+                    <i class="icon-external-link-sign"></i>Request Leave
                     <div class="panel-tools">
                         <a class="btn btn-xs btn-link panel-collapse collapses" href="#"></a><a class="btn btn-xs btn-link panel-expand"
                                     href="#"><i class="icon-resize-full"></i></a><a class="btn btn-xs btn-link panel-close"
@@ -23,6 +24,7 @@
                             The columns must in the format Event Name,Event Date(yyyy-mm-dd),Event Color</h4>
                         <img src="../assets/images/leaves.jpg" height="auto" width="100%" />
                     <hr>
+                    <%--<form action="#" role="form" id="form2">--%>
                     <div class="row">
                         <div class="col-md-12">
                             <div class="errorHandler alert alert-danger no-display">
@@ -35,9 +37,9 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label class="control-label">
-                                    Holidays <span class="symbol required"></span>
+                                    Reason <span class="symbol required"></span>
                                 </label>
-                                <asp:TextBox ID="txtholidays_hr" runat="server" TextMode="MultiLine" 
+                                <asp:TextBox ID="txtreason_hr" runat="server" TextMode="MultiLine" 
                                     CssClass="form-control" ClientIDMode="Static" MaxLength="1" Rows="2"></asp:TextBox>
                             </div>
                         </div>
@@ -52,11 +54,12 @@
                     </div>
                     <div class="row">
                         <div class="col-md-8">
-                        <asp:Button ID="btnreq_hr" runat="server" Text="Upload" CssClass="btn btn-success" />   <%--OnClientClick="leavevali()" onclick="btnreq_Click"--%>
+                        <asp:Button ID="btnreq_hr" runat="server" Text="Apply" CssClass="btn btn-success" />   <%--OnClientClick="leavevali()" onclick="btnreq_Click"--%>
                         </div>
                         <div class="col-md-4">
                         </div>
                     </div>
+                    <%--</form>--%>
                 </div>
             </div>
             <!-- end: Upload Holidays HR -->
