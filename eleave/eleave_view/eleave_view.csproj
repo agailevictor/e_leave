@@ -342,6 +342,7 @@
     <Content Include="assets\plugins\swal\themes\twitter\twitter.css" />
     <Content Include="hr\applyleave_hr.aspx" />
     <Content Include="hr\holidays_upload.aspx" />
+    <Content Include="hr\testpage_hr.aspx" />
     <Content Include="hr\WebForm1.aspx" />
     <Content Include="Login.aspx" />
     <Content Include="Logout.aspx" />
@@ -386,6 +387,13 @@
     </Compile>
     <Compile Include="hr\hr.Master.designer.cs">
       <DependentUpon>hr.Master</DependentUpon>
+    </Compile>
+    <Compile Include="hr\testpage_hr.aspx.cs">
+      <DependentUpon>testpage_hr.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="hr\testpage_hr.aspx.designer.cs">
+      <DependentUpon>testpage_hr.aspx</DependentUpon>
     </Compile>
     <Compile Include="hr\WebForm1.aspx.cs">
       <DependentUpon>WebForm1.aspx</DependentUpon>

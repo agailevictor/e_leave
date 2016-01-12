@@ -10,16 +10,16 @@
 namespace eleave_view.hr {
     
     
-    public partial class holidays_upload {
+    public partial class testpage_hr {
         
         /// <summary>
-        /// txtholidays_hr control.
+        /// txtreason_hr control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtholidays_hr;
+        protected global::System.Web.UI.WebControls.TextBox txtreason_hr;
         
         /// <summary>
         /// btnreq_hr control.
