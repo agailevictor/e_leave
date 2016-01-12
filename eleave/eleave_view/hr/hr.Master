@@ -199,6 +199,26 @@
                             </li>
                         </ul>
                     </li>
+                    <li id="settings" runat="server">
+                        <a href="javascript:void(0)"><i class="clip-settings"></i>
+                            <span class="title">Settings</span><i class="icon-arrow"></i>
+                            <span class="selected"></span>
+                        </a>
+                        <ul class="sub-menu">
+                            <li id="settings1" runat="server">
+                                <a href="#"><i class="clip-user-2"></i>
+                                    <span class="title">User's</span>
+                                    <span class="selected"></span>
+                                </a>
+                            </li>
+                            <li id="settings2" runat="server">
+                                <a href="#"><i class="clip-upload-2"></i>
+                                    <span class="title">Holiday's</span>
+                                    <span class="selected"></span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
                     <li id="rpt" runat="server">
                         <a href="rpt.aspx"><i class="clip-bars"></i>
                             <span class="title">Reports </span>
