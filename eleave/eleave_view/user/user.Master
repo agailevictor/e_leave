@@ -174,7 +174,7 @@
                         </a>
                     </li>
                     <li id="leaves" runat="server">
-                        <a href="javascript:void(0)"><i class="icon-credit-card"></i>
+                        <a href="javascript:void(0)"><i class="clip-paperplane"></i>
                             <span class="title">Leaves</span><i class="icon-arrow"></i>
                             <span class="selected"></span>
                         </a>
