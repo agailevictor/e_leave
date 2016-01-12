@@ -339,6 +339,7 @@
     <Content Include="assets\plugins\swal\themes\facebook\facebook.css" />
     <Content Include="assets\plugins\swal\themes\google\google.css" />
     <Content Include="assets\plugins\swal\themes\twitter\twitter.css" />
+    <Content Include="hr\holidays_upload.aspx" />
     <Content Include="hr\WebForm1.aspx" />
     <Content Include="Login.aspx" />
     <Content Include="Logout.aspx" />
@@ -363,6 +364,13 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="hr\holidays_upload.aspx.cs">
+      <DependentUpon>holidays_upload.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="hr\holidays_upload.aspx.designer.cs">
+      <DependentUpon>holidays_upload.aspx</DependentUpon>
+    </Compile>
     <Compile Include="hr\hr.Master.cs">
       <DependentUpon>hr.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
