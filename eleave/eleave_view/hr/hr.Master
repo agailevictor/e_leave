@@ -186,7 +186,7 @@
                                 </a>
                             </li>
                             <li id="leaves2" runat="server">
-                                <a href="cancel.aspx"><i class="clip-minus-circle-2"></i>
+                                <a href="sample_apply.aspx"><i class="clip-minus-circle-2"></i>
                                     <span class="title">Cancel Approved </span>
                                     <span class="selected"></span>
                                 </a>
@@ -315,6 +315,7 @@
     <script src="../assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js" type="text/javascript"></script>
     <script src="../assets/plugins/jquery-validation/dist/jquery.validate.min.js" type="text/javascript"></script>
     <script src="../assets/js/leaveformval.js" type="text/javascript"></script>
+    <script src="../assets/js/applyleave_hr.js" type="text/javascript"></script>
     <!-- end: JAVASCRIPTS REQUIRED FOR THIS PAGE ONLY -->
     <script type="text/javascript">
         jQuery(document).ready(function () {
@@ -325,6 +326,7 @@
             //datepick();
             inputlimit();
             hidefupload();
+          //  leavevali();
         });
     </script>
     
@@ -464,7 +466,7 @@
                 type: "POST",
                 contentType: "application/json",
                 data: '{"userid":"' + userid + '"}',
-                url: "leaveapply_hr.aspx/disdates_hr",
+                url: "applyleave_hr.aspx/disdates_hr",
                 dataType: "json",
                 success: function (data) {
                     for (var i = 0; i < data.d.length; i++) {
@@ -505,21 +507,22 @@
     <script type="text/javascript">
         function leavevali() {
             //alert('im called!');
-            jQuery(document).ready(function () {
-                leaveval.init();
-            });
+             jQuery(document).ready(function () {
+          //  alert('entered validation');
+                leaveval_hr.init();
+                });
         }
     </script>
     <script type="text/javascript">
         function hidefupload() {
-            $('#fup').hide();
+            $('#fup_hr').hide();
         }
     </script>
 
     <%--To hide and show file upload when medical is selected--%>
     <script type="text/javascript">
         var chk;
-        function hideshowfup() {
+        function hideshowfup_hr() {
             //alert('im called');
             $('#txtdate_hr').val("");
             $("#fupload_hr").val("");

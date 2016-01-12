@@ -14,13 +14,18 @@ namespace eleave_view.hr
     public partial class applyleave_hr : System.Web.UI.Page
     {
         bus_eleave obj = new bus_eleave();
-        string filename_hr;
+        bus_eleave_HS obj1 = new bus_eleave_HS();
+        string filename;
         protected void Page_Load(object sender, EventArgs e)
         {
-            fill_lbl_hr();
-            fill_ltype_hr();
-            fill_period_hr();
-            fill_collegues_hr();
+            if(!IsPostBack)
+            {
+                fill_lbl_hr();
+                fill_ltype_hr();
+                fill_period_hr();
+                fill_collegues_hr();
+                txtdate_hr.Attributes.Add("readonly", "readonly");
+            }            
         }
 
         //To get dates. Called by Json
@@ -61,15 +66,104 @@ namespace eleave_view.hr
         }
         protected void btnreq_hr_Click(object sender, EventArgs e)
         {
-            obj.userid = int.Parse(Session["user_id"].ToString());
-            obj.ltype = int.Parse(ddlltype_hr.SelectedValue.ToString());
-            obj.dates = txtdate_hr.Text.Trim();
-            obj.period = int.Parse(ddlper_hr.SelectedValue.ToString());
-            obj.reason = txtreason_hr.Text.Trim();
-            obj.rdays = getcount();
-            obj.jobc = ddljobc_hr.SelectedItem.ToString();
-            obj.contact = txtphone_hr.Text.Trim();
-            obj.med_path = filename_hr;
+            if (int.Parse(ddlltype_hr.SelectedValue.ToString()) == 2)
+            {
+                if (fupload_hr.HasFile)
+                {
+                    if (fupload_hr.PostedFile.ContentLength < 3145728)
+                    {
+                        String ext = System.IO.Path.GetExtension(fupload_hr.FileName);
+                        if (ext == ".pdf")
+                        {
+                            FileInfo file = new System.IO.FileInfo(fupload_hr.PostedFile.FileName);
+                            string fname = file.Name.Remove((file.Name.Length - file.Extension.Length));
+                            fname = fname + System.DateTime.Now.ToString("_dd/MM/yy_hh;mm;ss") + file.Extension; // renaming file uploads
+                            filename = Path.Combine(Server.MapPath("~/uploads/"), fname);
+                            obj.userid = int.Parse(Session["user_id"].ToString());
+                            obj.ltype = int.Parse(ddlltype_hr.SelectedValue.ToString());
+                            obj.dates = txtdate_hr.Text.Trim();
+                            obj.period = int.Parse(ddlper_hr.SelectedValue.ToString());
+                            obj.reason = txtreason_hr.Text.Trim();
+                            obj.rdays = getcount();
+                            obj.jobc = ddljobc_hr.SelectedItem.ToString();
+                            obj.contact = txtphone_hr.Text.Trim();
+                            obj.med_path = filename;
+                            int r = obj.insert_med();
+                            if (r == 1)
+                            {
+                                fupload_hr.SaveAs(filename);
+                                clearfeilds();
+                                ScriptManager.RegisterStartupScript(this, GetType(), "displayalertmessage", "success();", true);
+                            }
+                            else if (r == 2)
+                            {
+                                clearfeilds();
+                                ScriptManager.RegisterStartupScript(this, GetType(), "displayalertmessage", "error();", true);
+                            }
+                            else
+                            {
+                                clearfeilds();
+                                ScriptManager.RegisterStartupScript(this, GetType(), "displayalertmessage", "errornotavail();", true);
+                            }
+                        }
+                        else
+                        {
+                            clearfeilds();
+                            ScriptManager.RegisterStartupScript(this, GetType(), "displayalertmessage", "errorpdf();", true);
+                        }
+                    }
+                    else
+                    {
+                        clearfeilds();
+                        ScriptManager.RegisterStartupScript(this, GetType(), "displayalertmessage", "errorpdfsize();", true);
+                    }
+                }
+                else
+                {
+                    clearfeilds();
+                    ScriptManager.RegisterStartupScript(this, GetType(), "displayalertmessage", "error();", true);
+                }
+            }
+            else
+            {
+                obj.userid = int.Parse(Session["user_id"].ToString());
+                obj.ltype = int.Parse(ddlltype_hr.SelectedValue.ToString());
+                obj.dates = txtdate_hr.Text.Trim();
+                obj.period = int.Parse(ddlper_hr.SelectedValue.ToString());
+                obj.reason = txtreason_hr.Text.Trim();
+                obj.rdays = getcount();
+                obj.jobc = ddljobc_hr.SelectedItem.ToString();
+                obj.contact = txtphone_hr.Text.Trim();
+                
+                int r1 = obj.insert_leave(); // checking and insertion is done in one procedure
+                if (r1 == 1)
+                {
+                    clearfeilds();
+                    ScriptManager.RegisterStartupScript(this, GetType(), "displayalertmessage", "success();", true);
+                }
+                else if (r1 == 3)
+                {
+                    clearfeilds();
+                    ScriptManager.RegisterStartupScript(this, GetType(), "displayalertmessage", "errornotavail();", true);
+                }
+                else
+                {
+                    clearfeilds();
+                    ScriptManager.RegisterStartupScript(this, GetType(), "displayalertmessage", "error();", true);
+                }
+            }
+        }
+
+        //To clear the feilds
+        protected void clearfeilds()
+        {
+            txtreason_hr.Text = "";
+            txtphone_hr.Text = "";
+            txtdate_hr.Text = "";
+            fill_lbl_hr();
+            fill_ltype_hr();
+            fill_period_hr();
+            fill_collegues_hr();
         }
 
         //To get the no: of days selected
@@ -156,8 +250,8 @@ namespace eleave_view.hr
         //To fill Covered By DropDownList
         protected void fill_collegues_hr()
         {
-            obj.userid = int.Parse(Session["user_id"].ToString());
-            DataTable dt1 = obj.fetch_collegues();
+            obj1.userid = int.Parse(Session["user_id"].ToString());
+            DataTable dt1 = obj1.fetch_collegues();
             if (dt1.Rows.Count > 0)
             {
                 ddljobc_hr.DataSource = dt1;

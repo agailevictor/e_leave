@@ -97,6 +97,7 @@
     <Content Include="assets\images\navy.png" />
     <Content Include="assets\images\summersoft.jpg" />
     <Content Include="assets\images\timer-piece.png" />
+    <Content Include="assets\js\applyleave_hr.js" />
     <Content Include="assets\js\charts.js" />
     <Content Include="assets\js\form-calendar.js" />
     <Content Include="assets\js\form-dropzone.js" />
@@ -341,6 +342,7 @@
     <Content Include="assets\plugins\swal\themes\twitter\twitter.css" />
     <Content Include="hr\applyleave_hr.aspx" />
     <Content Include="hr\holidays_upload.aspx" />
+    <Content Include="hr\sample_apply.aspx" />
     <Content Include="hr\WebForm1.aspx" />
     <Content Include="Login.aspx" />
     <Content Include="Logout.aspx" />
@@ -385,6 +387,13 @@
     </Compile>
     <Compile Include="hr\hr.Master.designer.cs">
       <DependentUpon>hr.Master</DependentUpon>
+    </Compile>
+    <Compile Include="hr\sample_apply.aspx.cs">
+      <DependentUpon>sample_apply.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="hr\sample_apply.aspx.designer.cs">
+      <DependentUpon>sample_apply.aspx</DependentUpon>
     </Compile>
     <Compile Include="hr\WebForm1.aspx.cs">
       <DependentUpon>WebForm1.aspx</DependentUpon>
