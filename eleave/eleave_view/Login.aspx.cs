@@ -63,9 +63,9 @@ namespace eleave_view
                 {
                     Response.Redirect("~/user/dash.aspx");
                 }
-                else if (Session["role"].ToString() == "official")
+                else if (Session["role"].ToString() == "HR")
                 {
-                    Response.Redirect("~/official/adduser.aspx");
+                    Response.Redirect("~/hr/holidays_upload.aspx");
                 }
                 else
                 {

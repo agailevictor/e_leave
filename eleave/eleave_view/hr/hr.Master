@@ -212,7 +212,7 @@
                                 </a>
                             </li>
                             <li id="settings2" runat="server">
-                                <a href="#"><i class="clip-upload-2"></i>
+                                <a href="holidays_upload.aspx"><i class="clip-upload-2"></i>
                                     <span class="title">Holiday's</span>
                                     <span class="selected"></span>
                                 </a>
