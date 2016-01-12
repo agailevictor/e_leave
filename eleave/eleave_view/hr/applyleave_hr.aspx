@@ -122,7 +122,7 @@
                     </div>
                     <div class="row">
                         <div class="col-md-8">
-                        <asp:Button ID="btnreq_hr" runat="server" Text="Apply" CssClass="btn btn-success" />   <%--OnClientClick="leavevali()" onclick="btnreq_Click"--%>
+                        <asp:Button ID="btnreq_hr" runat="server" Text="Apply" CssClass="btn btn-success" OnClick="btnreq_hr_Click" />   <%--OnClientClick="leavevali()" onclick="btnreq_Click"--%>
                         </div>
                         <div class="col-md-4">
                         </div>

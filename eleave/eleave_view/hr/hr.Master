@@ -327,6 +327,7 @@
             hidefupload();
         });
     </script>
+    
     <script type="text/javascript">
         function calendar() {
             $.ajax({
@@ -383,6 +384,7 @@
             });
         }
     </script>
+    
     <script type="text/javascript">
         function leaves() {
             //alert('leaves');
@@ -449,6 +451,8 @@
         }
         setInterval(leaves, 10000); // 10 seconds
     </script>
+
+   <%--To get dates and disable it in DatePicker--%>
     <script type="text/javascript">
         function datepick() {
             var disableddates = []; //dd/mm/yyyy
@@ -460,7 +464,7 @@
                 type: "POST",
                 contentType: "application/json",
                 data: '{"userid":"' + userid + '"}',
-                url: "leaveapply.aspx/disdates",
+                url: "leaveapply_hr.aspx/disdates_hr",
                 dataType: "json",
                 success: function (data) {
                     for (var i = 0; i < data.d.length; i++) {
@@ -468,7 +472,7 @@
                         disableddates.push(data.d[i].EventDate);
                     }
                     //$("input[id$='bootdate']").datepicker({
-                    $('#txtdate').datepicker({
+                    $('#txtdate_hr').datepicker({
                         format: "dd/mm/yyyy",
                         multidate: true,
                         multidateSeparator: ",",
@@ -486,15 +490,18 @@
             });
         }
     </script>
+
+    <%--To limit no: of characters in Reason--%>
     <script type="text/javascript">
         function inputlimit() {
-            $('#txtreason').inputlimiter({
+            $('#txtreason_hr').inputlimiter({
                 remText: 'You only have %n character%s remaining...',
                 remFullText: 'Stop typing! You\'re not allowed any more characters!',
                 limitText: 'You\'re allowed to input %n character%s into this field.'
             });
         }
     </script>
+
     <script type="text/javascript">
         function leavevali() {
             //alert('im called!');
@@ -508,29 +515,31 @@
             $('#fup').hide();
         }
     </script>
+
+    <%--To hide and show file upload when medical is selected--%>
     <script type="text/javascript">
         var chk;
         function hideshowfup() {
             //alert('im called');
-            $('#txtdate').val("");
-            $("#fupload").val("");
-            chk = $('#ddlltype option:selected').val();
+            $('#txtdate_hr').val("");
+            $("#fupload_hr").val("");
+            chk = $('#ddlltype_hr option:selected').val();
             //alert(chk);
             if (chk == 2) {
-                $('#fup').show();
-                $("#txtdate").datepicker('remove');
+                $('#fup_hr').show();
+                $("#txtdate_hr").datepicker('remove');
                 startdate = "-7d";
                 enddate = "-1d";
                 datepick();
 
             }
             else if (chk == 0) {
-                $("#txtdate").datepicker('remove');
-                $('#fup').hide();
+                $("#txtdate_hr").datepicker('remove');
+                $('#fup_hr').hide();
             }
             else {
-                $('#fup').hide();
-                $("#txtdate").datepicker('remove');
+                $('#fup_hr').hide();
+                $("#txtdate_hr").datepicker('remove');
                 startdate = "+2d";
                 var year = new Date().getFullYear() + '';
                 enddate = "31/12/" + year;
