@@ -180,7 +180,7 @@
                         </a>
                         <ul class="sub-menu">
                             <li id="leaves1" runat="server">
-                                <a href="leaves.aspx"><i class="clip-plus-circle-2"></i>
+                                <a href="applyleave_hr.aspx"><i class="clip-plus-circle-2"></i>
                                     <span class="title">Apply </span>
                                     <span class="selected"></span>
                                 </a>
