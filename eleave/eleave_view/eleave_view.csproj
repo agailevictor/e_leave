@@ -90,6 +90,7 @@
     <Content Include="assets\images\darkgrey.png" />
     <Content Include="assets\images\double_loader.GIF" />
     <Content Include="assets\images\green.png" />
+    <Content Include="assets\images\leaves.jpg" />
     <Content Include="assets\images\lightgrey.png" />
     <Content Include="assets\images\loader_new.GIF" />
     <Content Include="assets\images\loading.gif" />
