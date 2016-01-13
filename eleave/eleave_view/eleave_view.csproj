@@ -344,7 +344,6 @@
     <Content Include="assets\plugins\swal\themes\twitter\twitter.css" />
     <Content Include="hr\applyleave_hr.aspx" />
     <Content Include="hr\holidays_upload.aspx" />
-    <Content Include="hr\simply_page.aspx" />
     <Content Include="hr\status_leave_hr.aspx" />
     <Content Include="hr\testpage_hr.aspx" />
     <Content Include="hr\WebForm1.aspx" />
@@ -358,6 +357,7 @@
     <Content Include="user\dash.aspx" />
     <Content Include="user\leaveapply.aspx" />
     <Content Include="user\leaves.aspx" />
+    <Content Include="user\listleaves.aspx" />
     <Content Include="user\test.aspx" />
     <Content Include="user\WebForm1.aspx" />
     <Content Include="Web.config">
@@ -397,13 +397,6 @@
     </Compile>
     <Compile Include="hr\hr.Master.designer.cs">
       <DependentUpon>hr.Master</DependentUpon>
-    </Compile>
-    <Compile Include="hr\simply_page.aspx.cs">
-      <DependentUpon>simply_page.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="hr\simply_page.aspx.designer.cs">
-      <DependentUpon>simply_page.aspx</DependentUpon>
     </Compile>
     <Compile Include="hr\status_leave_hr.aspx.cs">
       <DependentUpon>status_leave_hr.aspx</DependentUpon>
@@ -509,6 +502,13 @@
     </Compile>
     <Compile Include="user\leaves.aspx.designer.cs">
       <DependentUpon>leaves.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="user\listleaves.aspx.cs">
+      <DependentUpon>listleaves.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="user\listleaves.aspx.designer.cs">
+      <DependentUpon>listleaves.aspx</DependentUpon>
     </Compile>
     <Compile Include="user\test.aspx.cs">
       <DependentUpon>test.aspx</DependentUpon>
