@@ -1,6 +1,24 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="holidays_upload.aspx.cs" Inherits="eleave_view.hr.holidays_upload" MasterPageFile="~/hr/hr.Master" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+     <script type="text/javascript">
+        function success() {
+            swal({
+                title: 'Success!',
+                text: 'Succesfully Uploaded Holidays!',
+                type: 'success'
+            });
+        }
+    </script>
+    <script type="text/javascript">
+        function error() {
+            swal({
+                title: 'Error!',
+                text: 'Something Went Wrong',
+                type: 'error'
+            });
+        }
+    </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="page-header">
@@ -52,7 +70,7 @@
                     </div>
                     <div class="row">
                         <div class="col-md-8">
-                        <asp:Button ID="btnreq_hr" runat="server" Text="Upload" CssClass="btn btn-success" />   <%--OnClientClick="leavevali()" onclick="btnreq_Click"--%>
+                        <asp:Button ID="btnreq_hr" runat="server" Text="Upload" CssClass="btn btn-success" OnClientClick="bulkvali()" OnClick="btnreq_hr_Click" />   <%--OnClientClick="leavevali()" onclick="btnreq_Click"--%>
                         </div>
                         <div class="col-md-4">
                         </div>

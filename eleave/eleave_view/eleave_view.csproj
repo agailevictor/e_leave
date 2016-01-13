@@ -98,6 +98,7 @@
     <Content Include="assets\images\navy.png" />
     <Content Include="assets\images\summersoft.jpg" />
     <Content Include="assets\images\timer-piece.png" />
+    <Content Include="assets\js\bulkuploadvalidation.js" />
     <Content Include="assets\js\charts.js" />
     <Content Include="assets\js\form-calendar.js" />
     <Content Include="assets\js\form-dropzone.js" />

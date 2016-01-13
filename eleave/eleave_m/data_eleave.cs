@@ -301,5 +301,26 @@ namespace eleave_m
             cmd.Dispose();
             return res;
         }
+
+        public int upload_holidays(string event_name,DateTime event_date,string event_color)
+        {
+            cmd.Parameters.Clear();
+            cmd.CommandText = "sp_upload_holidays_bulk";
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Connection = db.connect();
+            cmd.Parameters.AddWithValue("@event_name", event_name);
+            cmd.Parameters.AddWithValue("@event_date", event_date);
+            cmd.Parameters.AddWithValue("@event_color", event_color);
+            SqlParameter outparam = new SqlParameter();
+            outparam.ParameterName = "@flag";
+            outparam.Direction = ParameterDirection.InputOutput;
+            outparam.DbType = DbType.Int32;
+            outparam.Value = 0;
+            cmd.Parameters.Add(outparam);
+            cmd.ExecuteNonQuery();
+            int res = int.Parse(cmd.Parameters["@flag"].Value.ToString());
+            cmd.Dispose();
+            return res;
+        }
     }
 }
