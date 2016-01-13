@@ -23,6 +23,9 @@ namespace eleave_c
         public string reason { get; set; }
         public string jobc { get; set; }
         public string contact { get; set; }
+        public string event_name { get; set; }
+        public DateTime event_date { get; set; }
+        public string event_color { get; set; }
 
         public int check_login()
         {
@@ -106,6 +109,11 @@ namespace eleave_c
         public int initiate_cancel()
         {
             return data.initiate_cancel(lid);
+        }
+
+        public int upload_holidays()
+        {
+            return data.upload_holidays(event_name,event_date,event_color);
         }
     }
 }
