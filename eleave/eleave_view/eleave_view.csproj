@@ -343,6 +343,8 @@
     <Content Include="assets\plugins\swal\themes\twitter\twitter.css" />
     <Content Include="hr\applyleave_hr.aspx" />
     <Content Include="hr\holidays_upload.aspx" />
+    <Content Include="hr\simply_page.aspx" />
+    <Content Include="hr\status_leave_hr.aspx" />
     <Content Include="hr\testpage_hr.aspx" />
     <Content Include="hr\WebForm1.aspx" />
     <Content Include="Login.aspx" />
@@ -375,6 +377,12 @@
     <Compile Include="hr\applyleave_hr.aspx.designer.cs">
       <DependentUpon>applyleave_hr.aspx</DependentUpon>
     </Compile>
+    <Compile Include="hr\download_approved_hs.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>download_approved_hs.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="hr\holidays_upload.aspx.cs">
       <DependentUpon>holidays_upload.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -388,6 +396,20 @@
     </Compile>
     <Compile Include="hr\hr.Master.designer.cs">
       <DependentUpon>hr.Master</DependentUpon>
+    </Compile>
+    <Compile Include="hr\simply_page.aspx.cs">
+      <DependentUpon>simply_page.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="hr\simply_page.aspx.designer.cs">
+      <DependentUpon>simply_page.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="hr\status_leave_hr.aspx.cs">
+      <DependentUpon>status_leave_hr.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="hr\status_leave_hr.aspx.designer.cs">
+      <DependentUpon>status_leave_hr.aspx</DependentUpon>
     </Compile>
     <Compile Include="hr\testpage_hr.aspx.cs">
       <DependentUpon>testpage_hr.aspx</DependentUpon>
@@ -548,6 +570,10 @@
     <Service Include="{C0C07587-41A7-46C8-8FBD-3F9C8EBE2DDC}" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="hr\download_approved_hs.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>download_approved_hs.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="user\download_approved.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>download_approved.cs</LastGenOutput>
