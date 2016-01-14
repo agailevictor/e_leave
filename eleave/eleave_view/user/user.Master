@@ -194,7 +194,7 @@
                         </ul>
                     </li>
                     <li id="rpt" runat="server">
-                        <a href="rpt.aspx"><i class="clip-bars"></i>
+                        <a href="#"><i class="clip-bars"></i>
                             <span class="title">Reports </span>
                             <span class="selected"></span>
                         </a>

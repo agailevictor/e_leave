@@ -133,5 +133,9 @@ namespace eleave_c
         {
             return data.filldep();
         }
+        public int add_user()
+        {
+            return data.add_user(name,user_name,gender,doj,dep,grade,desi,region);
+        }
     }
 }
