@@ -206,7 +206,7 @@
                         </a>
                         <ul class="sub-menu">
                             <li id="settings1" runat="server">
-                                <a href="testpage_hr.aspx"><i class="clip-user-2"></i>
+                                <a href="listuser.aspx"><i class="clip-user-2"></i>
                                     <span class="title">User's</span>
                                     <span class="selected"></span>
                                 </a>

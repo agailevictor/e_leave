@@ -342,8 +342,10 @@
     <Content Include="assets\plugins\swal\themes\facebook\facebook.css" />
     <Content Include="assets\plugins\swal\themes\google\google.css" />
     <Content Include="assets\plugins\swal\themes\twitter\twitter.css" />
+    <Content Include="hr\adduser.aspx" />
     <Content Include="hr\applyleave_hr.aspx" />
     <Content Include="hr\holidays_upload.aspx" />
+    <Content Include="hr\listuser.aspx" />
     <Content Include="hr\status_leave_hr.aspx" />
     <Content Include="hr\testpage_hr.aspx" />
     <Content Include="hr\WebForm1.aspx" />
@@ -371,6 +373,13 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="hr\adduser.aspx.cs">
+      <DependentUpon>adduser.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="hr\adduser.aspx.designer.cs">
+      <DependentUpon>adduser.aspx</DependentUpon>
+    </Compile>
     <Compile Include="hr\applyleave_hr.aspx.cs">
       <DependentUpon>applyleave_hr.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -397,6 +406,13 @@
     </Compile>
     <Compile Include="hr\hr.Master.designer.cs">
       <DependentUpon>hr.Master</DependentUpon>
+    </Compile>
+    <Compile Include="hr\listuser.aspx.cs">
+      <DependentUpon>listuser.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="hr\listuser.aspx.designer.cs">
+      <DependentUpon>listuser.aspx</DependentUpon>
     </Compile>
     <Compile Include="hr\status_leave_hr.aspx.cs">
       <DependentUpon>status_leave_hr.aspx</DependentUpon>
