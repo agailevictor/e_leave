@@ -16,14 +16,14 @@ namespace eleave_view.hr {
     using CrystalDecisions.CrystalReports.Engine;
     
     
-    public class download_approved_hs : ReportClass {
+    public class download_approved_hr : ReportClass {
         
-        public download_approved_hs() {
+        public download_approved_hr() {
         }
         
         public override string ResourceName {
             get {
-                return "download_approved_hs.rpt";
+                return "download_approved_hr.rpt";
             }
             set {
                 // Do nothing
@@ -41,7 +41,7 @@ namespace eleave_view.hr {
         
         public override string FullResourceName {
             get {
-                return "eleave_view.hr.download_approved_hs.rpt";
+                return "eleave_view.hr.download_approved_hr.rpt";
             }
             set {
                 // Do nothing
@@ -87,12 +87,20 @@ namespace eleave_view.hr {
                 return this.ReportDefinition.Sections[4];
             }
         }
+        
+        [Browsable(false)]
+        [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
+        public CrystalDecisions.Shared.IParameterField Parameter_lid {
+            get {
+                return this.DataDefinition.ParameterFields[0];
+            }
+        }
     }
     
     [System.Drawing.ToolboxBitmapAttribute(typeof(CrystalDecisions.Shared.ExportOptions), "report.bmp")]
-    public class Cacheddownload_approved_hs : Component, ICachedReport {
+    public class Cacheddownload_approved_hr : Component, ICachedReport {
         
-        public Cacheddownload_approved_hs() {
+        public Cacheddownload_approved_hr() {
         }
         
         [Browsable(false)]
@@ -129,7 +137,7 @@ namespace eleave_view.hr {
         }
         
         public virtual CrystalDecisions.CrystalReports.Engine.ReportDocument CreateReport() {
-            download_approved_hs rpt = new download_approved_hs();
+            download_approved_hr rpt = new download_approved_hr();
             rpt.Site = this.Site;
             return rpt;
         }

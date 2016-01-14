@@ -77,7 +77,7 @@ namespace eleave_view.hr
                         {
                             FileInfo file = new System.IO.FileInfo(fupload_hr.PostedFile.FileName);
                             string fname = file.Name.Remove((file.Name.Length - file.Extension.Length));
-                            fname = fname + System.DateTime.Now.ToString("_dd/MM/yy_hh;mm;ss") + file.Extension; // renaming file uploads
+                            fname = fname + System.DateTime.Now.ToString("_dd-MM-yy_hh;mm;ss") + file.Extension; // renaming file uploads
                             filename = Path.Combine(Server.MapPath("~/uploads/"), fname);
                             obj.userid = int.Parse(Session["user_id"].ToString());
                             obj.ltype = int.Parse(ddlltype_hr.SelectedValue.ToString());

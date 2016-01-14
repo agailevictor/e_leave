@@ -10,7 +10,7 @@
                 type: 'success'
                 },
                 function () {
-               //     window.location = "leaves.aspx";
+                    window.location = "status_leave_hr.aspx";
             });
         }
     </script>
@@ -54,7 +54,7 @@
         function errornotavail() {
             swal({
                 title: 'Error!',
-                text: 'You Leave Count is Insufficiant ',
+                text: 'You Leave Count is over the required limit ',
                 type: 'error'
             });
         }
@@ -181,7 +181,7 @@
                         </div>
                         <div class="row">
                             <div class="col-md-8">
-                            <asp:Button ID="btnreq_hr" runat="server" Text="Button" CssClass="btn btn-success" OnClientClick="leavevali()" onclick="btnreq_hr_Click" /> 
+                            <asp:Button ID="btnreq_hr" runat="server" Text="Apply" CssClass="btn btn-success" OnClientClick="leavevali()" onclick="btnreq_hr_Click" /> 
                             </div>
                             <div class="col-md-4">
                             </div>

@@ -110,7 +110,7 @@ namespace eleave_view.hr
             DataTable dt = obj.fetch_download_leaves();
             if (dt.Rows.Count > 0)
             {
-                rd.Load(Server.MapPath(Request.ApplicationPath) + "/hr/download_approved_hs.rpt");
+                rd.Load(Server.MapPath(Request.ApplicationPath) + "/hr/download_approved_hr.rpt");
                 rd.SetDataSource(dt);
                 rd.ExportToHttpResponse(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat, Response, true, "Approved_Leave");
             }
