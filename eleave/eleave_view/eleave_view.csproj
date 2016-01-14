@@ -344,6 +344,7 @@
     <Content Include="assets\plugins\swal\themes\twitter\twitter.css" />
     <Content Include="hr\adduser.aspx" />
     <Content Include="hr\applyleave_hr.aspx" />
+    <Content Include="hr\approve_leave_hr.aspx" />
     <Content Include="hr\holidays_upload.aspx" />
     <Content Include="hr\listuser.aspx" />
     <Content Include="hr\status_leave_hr.aspx" />
@@ -387,10 +388,17 @@
     <Compile Include="hr\applyleave_hr.aspx.designer.cs">
       <DependentUpon>applyleave_hr.aspx</DependentUpon>
     </Compile>
-    <Compile Include="hr\download_approved_hs.cs">
+    <Compile Include="hr\approve_leave_hr.aspx.cs">
+      <DependentUpon>approve_leave_hr.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="hr\approve_leave_hr.aspx.designer.cs">
+      <DependentUpon>approve_leave_hr.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="hr\download_approved_hr.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>download_approved_hs.rpt</DependentUpon>
+      <DependentUpon>download_approved_hr.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="hr\holidays_upload.aspx.cs">
@@ -587,9 +595,9 @@
     <Service Include="{C0C07587-41A7-46C8-8FBD-3F9C8EBE2DDC}" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="hr\download_approved_hs.rpt">
+    <EmbeddedResource Include="hr\download_approved_hr.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
-      <LastGenOutput>download_approved_hs.cs</LastGenOutput>
+      <LastGenOutput>download_approved_hr.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="user\download_approved.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
