@@ -81,7 +81,6 @@
                     <h2>
                         <i class="icon-edit-sign teal"></i>REQUEST</h2>
                     <hr>
-                    <form action="#" role="form" id="form2">
                     <div class="row">
                         <div class="col-md-12">
                             <div class="errorHandler alert alert-danger no-display">
@@ -183,7 +182,6 @@
                         <div class="col-md-4">
                         </div>
                     </div>
-                    </form>
                 </div>
             </div>
             <!-- end: FORM VALIDATION 2 PANEL -->
