@@ -122,6 +122,7 @@
     <Content Include="assets\js\ui-nestable.js" />
     <Content Include="assets\js\ui-sliders.js" />
     <Content Include="assets\js\ui-treeview.js" />
+    <Content Include="assets\js\uservalidation.js" />
     <Content Include="assets\js\utility-coming-soon.js" />
     <Content Include="assets\js\utility-error404.js" />
     <Content Include="assets\plugins\autosize\jquery.autosize.min.js" />

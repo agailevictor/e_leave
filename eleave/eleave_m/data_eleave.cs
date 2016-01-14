@@ -322,5 +322,33 @@ namespace eleave_m
             cmd.Dispose();
             return res;
         }
+
+        public DataTable fillgender()
+        {
+            cmd.Parameters.Clear();
+            cmd.CommandText = "sp_fillgender";
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Connection = db.connect();
+            SqlDataAdapter da = new SqlDataAdapter();
+            DataTable dt = new DataTable();
+            da.SelectCommand = cmd;
+            da.Fill(dt);
+            db.disconnect();
+            return dt;
+        }
+
+        public DataTable filldep()
+        {
+            cmd.Parameters.Clear();
+            cmd.CommandText = "sp_filldepartment";
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Connection = db.connect();
+            SqlDataAdapter da = new SqlDataAdapter();
+            DataTable dt = new DataTable();
+            da.SelectCommand = cmd;
+            da.Fill(dt);
+            db.disconnect();
+            return dt;
+        }
     }
 }

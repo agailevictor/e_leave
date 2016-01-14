@@ -27,6 +27,15 @@ namespace eleave_c
         public DateTime event_date { get; set; }
         public string event_color { get; set; }
 
+        public string name { get; set; }
+        public string gender { get; set; }
+
+        public DateTime doj { get; set; }
+        public int dep { get; set; }
+        public int grade { get; set; }
+        public int desi { get; set; }
+        public int region { get; set; }
+
         public int check_login()
         {
             return data.check_login(user_name, password);
@@ -114,6 +123,15 @@ namespace eleave_c
         public int upload_holidays()
         {
             return data.upload_holidays(event_name,event_date,event_color);
+        }
+
+        public DataTable fillgender()
+        {
+            return data.fillgender();
+        }
+        public DataTable filldep()
+        {
+            return data.filldep();
         }
     }
 }
