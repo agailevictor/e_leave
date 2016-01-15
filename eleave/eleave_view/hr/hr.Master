@@ -328,7 +328,8 @@
             //datepick();
             inputlimit();
             hidefupload();
-          //  leavevali();
+            //  leavevali();
+            doj();
         });
     </script>
     
@@ -565,6 +566,39 @@
                 enddate = "31/12/" + year;
                 datepick();
             }
+        }
+    </script>
+    <%--To initiate date of join datepicker for user add --%>
+    <script type="text/javascript">
+        function doj() {
+            var disableddates = []; //dd/mm/yyyy
+            var year = new Date().getFullYear() + '';
+            edate = "31/12/" + year;
+            $.ajax({
+                type: "POST",
+                contentType: "application/json",
+                data: "{}",
+                url: "adduser.aspx/disdates",
+                dataType: "json",
+                success: function (data) {
+                    for (var i = 0; i < data.d.length; i++) {
+                        //alert(data.d[i].hday);
+                        disableddates.push(data.d[i].EventDate);
+                    }
+                    $('#txtdoj').datepicker({
+                        format: "dd/mm/yyyy",
+                        daysOfWeekDisabled: "0,6", // to disable weekends 0 - sunday, 6 - saturday
+                        startDate: "today", // to disable previous days
+                        endDate: edate, // to disable future year dates
+                        todayHighlight: true, // to highlight today
+                        datesDisabled: disableddates, // array of days to be disabled
+                        orientation: "bottom auto"
+                    });
+                },
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    //alert("error datepick");
+                }
+            });
         }
     </script>
 </body>

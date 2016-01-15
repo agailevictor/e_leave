@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data;
 using eleave_c;
+using System.Web.Services;
 
 namespace eleave_view.hr
 {
@@ -18,8 +19,24 @@ namespace eleave_view.hr
             {
                 fillgender();
                 filldep();
+                fillregion();
                 txtdoj.Attributes.Add("readonly", "readonly");
             }
+        }
+
+        [WebMethod]
+        public static List<Event> disdates()
+        {
+            List<Event> dates = new List<Event>();
+            bus_eleave bus = new bus_eleave();
+            DataTable dt = bus.fetchdisdates();
+            for (int i = 0; i < dt.Rows.Count; i++)
+            {
+                Event _holiday = new Event();
+                _holiday.EventDate = dt.Rows[i]["dates"].ToString();
+                dates.Add(_holiday);
+            }
+            return dates;
         }
 
         protected void fillgender()
@@ -38,11 +55,19 @@ namespace eleave_view.hr
             ddldep.Items.Insert(0, new ListItem("-----SELECT-----", ""));
         }
 
+        protected void fillregion()
+        {
+            DataTable reg = bus.fillregion();
+            ddlregion.DataSource = reg;
+            ddlregion.DataBind();
+            ddlregion.Items.Insert(0, new ListItem("-----SELECT-----", ""));
+        }
+
         protected void btnreq_hr_Click(object sender, EventArgs e)
         {
             bus.name = txtname.Text.Trim();
             bus.user_name = txtuname.Text.Trim();
-            bus.gender = ddlgender.Text.ToString().Trim();
+            bus.gender = ddlgender.SelectedItem.ToString().Trim();
             bus.doj = DateTime.Parse(txtdoj.Text.Trim());
             bus.dep = int.Parse(ddldep.SelectedValue.ToString());
             bus.grade = int.Parse(ddlgrade.SelectedValue.ToString());
@@ -53,6 +78,11 @@ namespace eleave_view.hr
             {
                 clearfeilds();
                 ScriptManager.RegisterStartupScript(this, GetType(), "displayalertmessage", "success();", true);
+            }
+            else if (r == 2)
+            {
+                clearfeilds();
+                ScriptManager.RegisterStartupScript(this, GetType(), "displayalertmessage", "error_dupli();", true);
             }
             else
             {
@@ -71,6 +101,24 @@ namespace eleave_view.hr
             ddlgrade.SelectedIndex = 0;
             ddldesi.SelectedIndex = 0;
             ddlregion.SelectedIndex = 0;
+        }
+
+        protected void ddldep_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            bus.lid = int.Parse(ddldep.SelectedValue.ToString());
+            DataTable des = bus.fetchdesignation();
+            ddldesi.DataSource = des;
+            ddldesi.DataBind();
+            ddldesi.Items.Insert(0, new ListItem("-----SELECT-----", ""));
+        }
+
+        protected void ddldesi_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            bus.lid = int.Parse(ddldesi.SelectedValue.ToString());
+            DataTable gd = bus.fetchgrade();
+            ddlgrade.DataSource = gd;
+            ddlgrade.DataBind();
+            txtcategory.Text = gd.Rows[0][2].ToString();
         }
     }
 }

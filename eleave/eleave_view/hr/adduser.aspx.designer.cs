@@ -58,6 +58,15 @@ namespace eleave_view.hr {
         protected global::System.Web.UI.WebControls.DropDownList ddldep;
         
         /// <summary>
+        /// ddldesi control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddldesi;
+        
+        /// <summary>
         /// ddlgrade control.
         /// </summary>
         /// <remarks>
@@ -67,13 +76,13 @@ namespace eleave_view.hr {
         protected global::System.Web.UI.WebControls.DropDownList ddlgrade;
         
         /// <summary>
-        /// ddldesi control.
+        /// txtcategory control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddldesi;
+        protected global::System.Web.UI.WebControls.TextBox txtcategory;
         
         /// <summary>
         /// ddlregion control.

@@ -12,13 +12,13 @@ namespace eleave_m
     {
         SqlCommand cmd = new SqlCommand();
         dbconnect db = new dbconnect();
-        public DataTable fetch_collegues(int uid)
+        public DataTable fetch_collegues(int userid)
         {
             cmd.Parameters.Clear();           
-            cmd.CommandText = "sp_fetch_collegues_hr";
+            cmd.CommandText = "sp_fetch_collegues";
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Connection = db.connect();
-            cmd.Parameters.AddWithValue("@uid", uid);
+            cmd.Parameters.AddWithValue("@userid", userid);
             SqlDataAdapter da = new SqlDataAdapter();
             DataTable dt = new DataTable();
             da.SelectCommand = cmd;

@@ -13,6 +13,15 @@
             });
         }
     </script>
+     <script type="text/javascript">
+         function error_dupli() {
+             swal({
+                 title: 'Error!',
+                 text: 'Username Cannot be Same!',
+                 type: 'error'
+             });
+         }
+    </script>
     <script type="text/javascript">
         function error() {
             swal({
@@ -81,25 +90,31 @@
                                 <label class="control-label">
                                    Department <span class="symbol required"></span>
                                 </label>
-                                <asp:DropDownList ID="ddldep" runat="server" CssClass="form-control" ClientIDMode="Static" DataTextField="dep_name" DataValueField="dep_id"></asp:DropDownList>
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label">
-                                   Grade <span class="symbol required"></span>
-                                </label>
-                                <asp:DropDownList ID="ddlgrade" runat="server" CssClass="form-control" ClientIDMode="Static"></asp:DropDownList>
+                                <asp:DropDownList ID="ddldep" runat="server" CssClass="form-control" ClientIDMode="Static" DataTextField="dep_name" DataValueField="dep_id" AutoPostBack="True" OnSelectedIndexChanged="ddldep_SelectedIndexChanged"></asp:DropDownList>
                             </div>
                             <div class="form-group">
                                 <label class="control-label">
                                    Designation <span class="symbol required"></span>
                                 </label>
-                                <asp:DropDownList ID="ddldesi" runat="server" CssClass="form-control" ClientIDMode="Static"></asp:DropDownList>
+                                <asp:DropDownList ID="ddldesi" runat="server" CssClass="form-control" ClientIDMode="Static" DataTextField="designation" DataValueField="dsg_id" AutoPostBack="True" OnSelectedIndexChanged="ddldesi_SelectedIndexChanged"></asp:DropDownList>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label">
+                                   Grade <span class="symbol required"></span>
+                                </label>
+                                <asp:DropDownList ID="ddlgrade" runat="server" CssClass="form-control" ClientIDMode="Static" DataTextField="grade_desc" DataValueField="grade_id"></asp:DropDownList>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label">
+                                   Category <span class="symbol required"></span>
+                                </label>
+                                <asp:TextBox ID="txtcategory" runat="server" CssClass="form-control" ClientIDMode="Static"></asp:TextBox>
                             </div>
                             <div class="form-group">
                                 <label class="control-label">
                                    Region <span class="symbol required"></span>
                                 </label>
-                                <asp:DropDownList ID="ddlregion" runat="server" CssClass="form-control" ClientIDMode="Static"></asp:DropDownList>
+                                <asp:DropDownList ID="ddlregion" runat="server" CssClass="form-control" ClientIDMode="Static" DataTextField="region" DataValueField="region_id"></asp:DropDownList>
                             </div>
                         </div>
                     </div>

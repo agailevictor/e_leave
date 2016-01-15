@@ -137,5 +137,22 @@ namespace eleave_c
         {
             return data.add_user(name,user_name,gender,doj,dep,grade,desi,region);
         }
+        public DataTable fetchdesignation()
+        {
+            return data.fetchdesignation(lid);
+        }
+        public DataTable fetchgrade()
+        {
+            return data.fetchgrade(lid);
+        }
+        public DataTable fillregion()
+        {
+            return data.fillregion();
+        }
+
+        public DataTable fetchdisdates()
+        {
+            return data.fetchdisdates();
+        }
     }
 }

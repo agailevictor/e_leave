@@ -376,5 +376,63 @@ namespace eleave_m
             cmd.Dispose();
             return res;
         }
+
+        public DataTable fetchdesignation(int id)
+        {
+            cmd.Parameters.Clear();
+            cmd.CommandText = "sp_fetchdesignation";
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Connection = db.connect();
+            cmd.Parameters.AddWithValue("@id", id);
+            SqlDataAdapter da = new SqlDataAdapter();
+            DataTable dt = new DataTable();
+            da.SelectCommand = cmd;
+            da.Fill(dt);
+            db.disconnect();
+            return dt;
+        }
+
+        public DataTable fetchgrade(int id)
+        {
+            cmd.Parameters.Clear();
+            cmd.CommandText = "sp_fetchgrade";
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Connection = db.connect();
+            cmd.Parameters.AddWithValue("@id", id);
+            SqlDataAdapter da = new SqlDataAdapter();
+            DataTable dt = new DataTable();
+            da.SelectCommand = cmd;
+            da.Fill(dt);
+            db.disconnect();
+            return dt;
+        }
+
+        public DataTable fillregion()
+        {
+            cmd.Parameters.Clear();
+            cmd.CommandText = "sp_fillregion";
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Connection = db.connect();
+            SqlDataAdapter da = new SqlDataAdapter();
+            DataTable dt = new DataTable();
+            da.SelectCommand = cmd;
+            da.Fill(dt);
+            db.disconnect();
+            return dt;
+        }
+
+        public DataTable fetchdisdates()
+        {
+            cmd.Parameters.Clear();
+            cmd.CommandText = "sp_fetchdisdates";
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Connection = db.connect();
+            SqlDataAdapter da = new SqlDataAdapter();
+            DataTable dt = new DataTable();
+            da.SelectCommand = cmd;
+            da.Fill(dt);
+            db.disconnect();
+            return dt;
+        }
     }
 }
