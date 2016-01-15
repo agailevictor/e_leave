@@ -168,7 +168,7 @@
                 <!-- start: MAIN NAVIGATION MENU -->
                 <ul class="main-navigation-menu">
                     <li id="dash" runat="server">
-                        <a href="dash.aspx"><i class="clip-home-3"></i>
+                        <a href="hrdash.aspx"><i class="clip-home-3"></i>
                             <span class="title">Dashboard </span>
                             <span class="selected"></span>
                         </a>
@@ -339,7 +339,7 @@
                 type: "POST",
                 contentType: "application/json",
                 data: "{}",
-                url: "dash.aspx/GetEvents",
+                url: "hrdash.aspx/GetEvents",
                 dataType: "json",
                 success: function (data) {
                     //alert(data.d.length);
@@ -403,7 +403,7 @@
                 type: "POST",
                 contentType: "application/json",
                 data: '{"userid":"' + userid + '"}',
-                url: "dash.aspx/fetchleave",
+                url: "hrdash.aspx/fetchleave",
                 dataType: "json",
                 success: function (data) {
                     //alert(data.d.length);
@@ -435,7 +435,7 @@
                             $('#repl').attr("data-percent", data.d[i].LeavePerc);
                             $('#repl').attr("data-text", data.d[i].LeaveCount);
                             $('#repl').attr("data-info", data.d[i].LeaveType);
-                            $('#repl').attr("data-fgcolor", "#FF8000");
+                            $('#repl').attr("data-fgcolor", "#339933");
                             $('#repl').circliful();
                         }
                         else {

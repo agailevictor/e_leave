@@ -402,7 +402,7 @@
                             $('#repl').attr("data-percent", data.d[i].LeavePerc);
                             $('#repl').attr("data-text", data.d[i].LeaveCount);
                             $('#repl').attr("data-info", data.d[i].LeaveType);
-                            $('#repl').attr("data-fgcolor", "#FF8000");
+                            $('#repl').attr("data-fgcolor", "#339933");
                             $('#repl').circliful();
                         }
                         else {

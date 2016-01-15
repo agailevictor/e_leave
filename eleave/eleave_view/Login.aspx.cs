@@ -65,7 +65,7 @@ namespace eleave_view
                 }
                 else if (Session["role"].ToString() == "HR")
                 {
-                    Response.Redirect("~/hr/holidays_upload.aspx");
+                    Response.Redirect("~/hr/hrdash.aspx");
                 }
                 else
                 {

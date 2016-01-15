@@ -347,6 +347,7 @@
     <Content Include="hr\applyleave_hr.aspx" />
     <Content Include="hr\approve_leave_hr.aspx" />
     <Content Include="hr\holidays_upload.aspx" />
+    <Content Include="hr\hrdash.aspx" />
     <Content Include="hr\listuser.aspx" />
     <Content Include="hr\status_leave_hr.aspx" />
     <Content Include="hr\testpage_hr.aspx" />
@@ -415,6 +416,13 @@
     </Compile>
     <Compile Include="hr\hr.Master.designer.cs">
       <DependentUpon>hr.Master</DependentUpon>
+    </Compile>
+    <Compile Include="hr\hrdash.aspx.cs">
+      <DependentUpon>hrdash.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="hr\hrdash.aspx.designer.cs">
+      <DependentUpon>hrdash.aspx</DependentUpon>
     </Compile>
     <Compile Include="hr\listuser.aspx.cs">
       <DependentUpon>listuser.aspx</DependentUpon>

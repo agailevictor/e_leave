@@ -24,7 +24,7 @@ namespace eleave_view.hr
 
             switch (pageName)
             {
-                case "dash.aspx":
+                case "hrdash.aspx":
                     dash.Attributes["class"] = "active";
                     break;
                 case "status_leave_hr.aspx":
