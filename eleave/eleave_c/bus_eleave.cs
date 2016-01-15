@@ -35,6 +35,7 @@ namespace eleave_c
         public int grade { get; set; }
         public int desi { get; set; }
         public int region { get; set; }
+        public int id { get; set; }
 
         public int check_login()
         {
@@ -153,6 +154,16 @@ namespace eleave_c
         public DataTable fetchdisdates()
         {
             return data.fetchdisdates();
+        }
+
+        public DataTable fillusers()
+        {
+            return data.fillusers();
+        }
+
+        public int deleteuser()
+        {
+            return data.deleteuser(id);
         }
     }
 }
