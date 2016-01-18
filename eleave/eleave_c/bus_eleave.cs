@@ -37,6 +37,9 @@ namespace eleave_c
         public int region { get; set; }
         public int id { get; set; }
 
+        public string oldp { get; set; }
+        public string newp { get; set; }
+
         public int check_login()
         {
             return data.check_login(user_name, password);
@@ -189,6 +192,11 @@ namespace eleave_c
         public int fetchalerts()
         {
             return data.fetchalerts();
+        }
+
+        public int updatepwd()
+        {
+            return data.updatepwd(userid, oldp, newp);
         }
     }
 }

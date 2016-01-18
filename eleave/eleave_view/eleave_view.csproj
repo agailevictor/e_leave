@@ -100,6 +100,7 @@
     <Content Include="assets\images\timer-piece.png" />
     <Content Include="assets\js\bulkuploadvalidation.js" />
     <Content Include="assets\js\applyleave_hr.js" />
+    <Content Include="assets\js\changepassword.js" />
     <Content Include="assets\js\charts.js" />
     <Content Include="assets\js\form-calendar.js" />
     <Content Include="assets\js\form-dropzone.js" />
