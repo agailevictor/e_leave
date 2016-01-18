@@ -26,5 +26,11 @@ namespace eleave_view.hr
             grd_userleaves.DataSource = dt;
             grd_userleaves.DataBind();
         }
+
+        protected void grd_userleaves_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            grd_userleaves.PageIndex = e.NewPageIndex;
+            fill_leaves_all();
+        }
     }
 }
