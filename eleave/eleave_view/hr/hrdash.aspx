@@ -12,7 +12,7 @@
         <div class="col-sm-12">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <i class=" clip-bookmark-2 "></i>
+                    <i class=" clip-paperplane "></i>
                     Leaves
                                 <div class="panel-tools">
                                     <a class="btn btn-xs btn-link panel-collapse collapses" href="#"></a>
