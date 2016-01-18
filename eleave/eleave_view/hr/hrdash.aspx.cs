@@ -51,5 +51,12 @@ namespace eleave_view.hr
             }
             return leaves;
         }
+        [WebMethod]
+        public static int updatealerts()
+        {
+            bus_eleave bus = new bus_eleave();
+            int r = bus.fetchalerts();
+            return r;
+        }
     }
 }

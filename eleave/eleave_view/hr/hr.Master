@@ -336,6 +336,7 @@
             hidefupload();
             //  leavevali();
             doj();
+            updateAlerts();
         });
     </script>
     
@@ -506,6 +507,7 @@
     <script type="text/javascript">
         function inputlimit() {
             $('#txtreason_hr').inputlimiter({
+                limit: 100,
                 remText: 'You only have %n character%s remaining...',
                 remFullText: 'Stop typing! You\'re not allowed any more characters!',
                 limitText: 'You\'re allowed to input %n character%s into this field.'
@@ -607,6 +609,30 @@
             });
         }
     </script>
+    <script>
+        function updateAlerts() {
+            $.ajax({
+                type: "POST",
+                contentType: "application/json",
+                data: "{}",
+                url: "hrdash.aspx/updatealerts",
+                dataType: "json",
+                success: function (data) {
+                    if(data.d > 0)
+                    {
+                        $('#info').text(data.d);
+                    }
+                    else {
+                        $('#info').text("");
+                    }
+                },
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    //alert("error notification badge");
+                }
+            });
+        }
+        setInterval(updateAlerts, 10000); // 10 seconds
+</script>
 </body>
 <!-- end: BODY -->
 </html>

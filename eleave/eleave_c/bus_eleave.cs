@@ -185,5 +185,10 @@ namespace eleave_c
         {
             return data.reject_leave(lid);
         }
+
+        public int fetchalerts()
+        {
+            return data.fetchalerts();
+        }
     }
 }

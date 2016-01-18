@@ -538,5 +538,23 @@ namespace eleave_m
             cmd.Dispose();
             return res;
         }
+
+        public int fetchalerts()
+        {
+            cmd.Parameters.Clear();
+            cmd.CommandText = "sp_fetchalerts";
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Connection = db.connect();
+            SqlParameter outparam = new SqlParameter();
+            outparam.ParameterName = "@flag";
+            outparam.Direction = ParameterDirection.InputOutput;
+            outparam.DbType = DbType.Int32;
+            outparam.Value = 0;
+            cmd.Parameters.Add(outparam);
+            cmd.ExecuteNonQuery();
+            int res = int.Parse(cmd.Parameters["@flag"].Value.ToString());
+            cmd.Dispose();
+            return res;
+        }
     }
 }
