@@ -122,6 +122,7 @@
     <Content Include="assets\js\ui-nestable.js" />
     <Content Include="assets\js\ui-sliders.js" />
     <Content Include="assets\js\ui-treeview.js" />
+    <Content Include="assets\js\uservalidation.js" />
     <Content Include="assets\js\utility-coming-soon.js" />
     <Content Include="assets\js\utility-error404.js" />
     <Content Include="assets\plugins\autosize\jquery.autosize.min.js" />
@@ -347,10 +348,13 @@
     <Content Include="hr\approve_leave_hr.aspx" />
     <Content Include="hr\cancel_hr.aspx" />
     <Content Include="hr\chg_pass_hr.aspx" />
+    <Content Include="hr\forward_hr.aspx" />
     <Content Include="hr\holidays_upload.aspx" />
+    <Content Include="hr\hrdash.aspx" />
     <Content Include="hr\listuser.aspx" />
     <Content Include="hr\status_leave_hr.aspx" />
     <Content Include="hr\testpage_hr.aspx" />
+    <Content Include="hr\userleavesall.aspx" />
     <Content Include="hr\WebForm1.aspx" />
     <Content Include="Login.aspx" />
     <Content Include="Logout.aspx" />
@@ -417,6 +421,13 @@
       <DependentUpon>download_approved_hr.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="hr\forward_hr.aspx.cs">
+      <DependentUpon>forward_hr.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="hr\forward_hr.aspx.designer.cs">
+      <DependentUpon>forward_hr.aspx</DependentUpon>
+    </Compile>
     <Compile Include="hr\holidays_upload.aspx.cs">
       <DependentUpon>holidays_upload.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -430,6 +441,13 @@
     </Compile>
     <Compile Include="hr\hr.Master.designer.cs">
       <DependentUpon>hr.Master</DependentUpon>
+    </Compile>
+    <Compile Include="hr\hrdash.aspx.cs">
+      <DependentUpon>hrdash.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="hr\hrdash.aspx.designer.cs">
+      <DependentUpon>hrdash.aspx</DependentUpon>
     </Compile>
     <Compile Include="hr\listuser.aspx.cs">
       <DependentUpon>listuser.aspx</DependentUpon>
@@ -451,6 +469,13 @@
     </Compile>
     <Compile Include="hr\testpage_hr.aspx.designer.cs">
       <DependentUpon>testpage_hr.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="hr\userleavesall.aspx.cs">
+      <DependentUpon>userleavesall.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="hr\userleavesall.aspx.designer.cs">
+      <DependentUpon>userleavesall.aspx</DependentUpon>
     </Compile>
     <Compile Include="hr\WebForm1.aspx.cs">
       <DependentUpon>WebForm1.aspx</DependentUpon>

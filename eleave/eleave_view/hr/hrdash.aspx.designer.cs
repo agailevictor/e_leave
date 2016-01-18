@@ -10,15 +10,6 @@
 namespace eleave_view.hr {
     
     
-    public partial class listuser {
-        
-        /// <summary>
-        /// grd_users control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView grd_users;
+    public partial class hrdash {
     }
 }

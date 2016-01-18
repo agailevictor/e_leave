@@ -27,6 +27,16 @@ namespace eleave_c
         public DateTime event_date { get; set; }
         public string event_color { get; set; }
 
+        public string name { get; set; }
+        public string gender { get; set; }
+
+        public DateTime doj { get; set; }
+        public int dep { get; set; }
+        public int grade { get; set; }
+        public int desi { get; set; }
+        public int region { get; set; }
+        public int id { get; set; }
+
         public int check_login()
         {
             return data.check_login(user_name, password);
@@ -114,6 +124,71 @@ namespace eleave_c
         public int upload_holidays()
         {
             return data.upload_holidays(event_name,event_date,event_color);
+        }
+
+        public DataTable fillgender()
+        {
+            return data.fillgender();
+        }
+        public DataTable filldep()
+        {
+            return data.filldep();
+        }
+        public int add_user()
+        {
+            return data.add_user(name,user_name,gender,doj,dep,grade,desi,region);
+        }
+        public DataTable fetchdesignation()
+        {
+            return data.fetchdesignation(lid);
+        }
+        public DataTable fetchgrade()
+        {
+            return data.fetchgrade(lid);
+        }
+        public DataTable fillregion()
+        {
+            return data.fillregion();
+        }
+
+        public DataTable fetchdisdates()
+        {
+            return data.fetchdisdates();
+        }
+
+        public DataTable fillusers()
+        {
+            return data.fillusers();
+        }
+
+        public int deleteuser()
+        {
+            return data.deleteuser(id);
+        }
+
+        public DataTable fillleavesfr()
+        {
+            return data.fillleavesfr();
+        }
+
+        public DataTable fill_leaves_all()
+        {
+            return data.fill_leaves_all();
+        }
+
+        public int forward_leave()
+        {
+            return data.forward_leave(lid);
+        }
+
+        public int reject_leave()
+        {
+            return data.reject_leave(lid);
+        }
+
+        public int fetchalerts()
+        {
+            return data.fetchalerts();
         }
     }
 }

@@ -1,9 +1,9 @@
 ﻿/*
 Author : Agaile
-12/01/2016
-Custom bulk upload form validation script
+14/01/2016
+Custom user addition form validation script
 */
-var bulkval = function () {
+var userval = function () {
     var runSetDefaultValidation = function () {
         $.validator.setDefaults({
             errorElement: "span", // contain the error msg in a small tag
@@ -46,15 +46,36 @@ var bulkval = function () {
             }
         });
     };
-    var runBulkFormValidator = function () {
+    var runUserFormValidator = function () {
         var form = $('#form1');
         var errorHandler = $('.errorHandler', form);
         form.validate({
             rules: {
-                ctl00$ContentPlaceHolder1$txtholidays_hr: {
+                ctl00$ContentPlaceHolder1$txtname: {
                     required: true
                 },
-                ctl00$ContentPlaceHolder1$txtname: {
+                ctl00$ContentPlaceHolder1$txtuname: {
+                    required: true
+                },
+                ctl00$ContentPlaceHolder1$ddlgender: {
+                    required: true
+                },
+                ctl00$ContentPlaceHolder1$txtdoj: {
+                    required: true
+                },
+                ctl00$ContentPlaceHolder1$ddldep: {
+                    required: true
+                },
+                ctl00$ContentPlaceHolder1$ddlgrade: {
+                    required: true
+                },
+                ctl00$ContentPlaceHolder1$ddldesi: {
+                    required: true
+                },
+                ctl00$ContentPlaceHolder1$ddlregion: {
+                    required: true
+                },
+                ctl00$ContentPlaceHolder1$txtcategory: {
                     required: true
                 }
             },
@@ -71,7 +92,7 @@ var bulkval = function () {
         //main function to initiate template pages
         init: function () {
             runSetDefaultValidation();
-            runBulkFormValidator();
+            runUserFormValidator();
         }
     };
 }();

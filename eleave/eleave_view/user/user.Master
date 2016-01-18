@@ -194,7 +194,7 @@
                         </ul>
                     </li>
                     <li id="rpt" runat="server">
-                        <a href="rpt.aspx"><i class="clip-bars"></i>
+                        <a href="#"><i class="clip-bars"></i>
                             <span class="title">Reports </span>
                             <span class="selected"></span>
                         </a>
@@ -402,7 +402,7 @@
                             $('#repl').attr("data-percent", data.d[i].LeavePerc);
                             $('#repl').attr("data-text", data.d[i].LeaveCount);
                             $('#repl').attr("data-info", data.d[i].LeaveType);
-                            $('#repl').attr("data-fgcolor", "#FF8000");
+                            $('#repl').attr("data-fgcolor", "#339933");
                             $('#repl').circliful();
                         }
                         else {

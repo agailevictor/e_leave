@@ -24,20 +24,40 @@ namespace eleave_view.hr
 
             switch (pageName)
             {
-                case "dash.aspx":
+                case "hrdash.aspx":
                     dash.Attributes["class"] = "active";
+                    break;
+                case "status_leave_hr.aspx":
+                    leaves.Attributes["class"] = "active";
+                    leaves1.Attributes["class"] = "active open";
                     break;
                 case "applyleave_hr.aspx":
                     leaves.Attributes["class"] = "active";
                     leaves1.Attributes["class"] = "active open";
                     break;
+                case "cancel_hr.aspx":
+                    leaves.Attributes["class"] = "active";
+                    leaves2.Attributes["class"] = "active open";
+                    break;
+                case "forward_hr.aspx":
+                    leaves.Attributes["class"] = "active";
+                    leaves3.Attributes["class"] = "active open";
+                    break;
+                case "listuser.aspx":
+                    settings.Attributes["class"] = "active";
+                    settings1.Attributes["class"] = "active open";
+                    break;
+                case "adduser.aspx":
+                    settings.Attributes["class"] = "active";
+                    settings1.Attributes["class"] = "active open";
+                    break;
                 case "holidays_upload.aspx":
                     settings.Attributes["class"] = "active";
                     settings2.Attributes["class"] = "active open";
                     break;
-                case "cancel.aspx":
-                    leaves.Attributes["class"] = "active";
-                    leaves2.Attributes["class"] = "active open";
+                case "userleavesall.aspx":
+                    settings.Attributes["class"] = "active";
+                    settings3.Attributes["class"] = "active open";
                     break;
             }
         }

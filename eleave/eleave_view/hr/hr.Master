@@ -109,12 +109,12 @@
 						</li>--%>
                     <!-- end: TO-DO DROPDOWN-->
                     <!-- start: NOTIFICATION DROPDOWN -->
-                    <%--						<li class="dropdown">
+                    	<li class="dropdown">
 							<a data-toggle="dropdown" data-hover="dropdown" class="dropdown-toggle" data-close-others="true" href="#">
-								<i class="clip-notification-2"></i>
-								<span class="badge"> 11</span>
+								<i class="clip-notification"></i>
+								<span class="badge" id="info"></span>
 							</a>
-						</li>--%>
+						</li>
                     <!-- end: NOTIFICATION DROPDOWN -->
                     <!-- start: MESSAGE DROPDOWN -->
                     <%--						<li class="dropdown">
@@ -168,7 +168,7 @@
                 <!-- start: MAIN NAVIGATION MENU -->
                 <ul class="main-navigation-menu">
                     <li id="dash" runat="server">
-                        <a href="dash.aspx"><i class="clip-home-3"></i>
+                        <a href="hrdash.aspx"><i class="clip-home-3"></i>
                             <span class="title">Dashboard </span>
                             <span class="selected"></span>
                         </a>
@@ -217,10 +217,16 @@
                                     <span class="selected"></span>
                                 </a>
                             </li>
+                            <li id="settings3" runat="server">
+                                <a href="userleavesall.aspx"><i class="clip-stackoverflow"></i>
+                                    <span class="title">Leave Status</span>
+                                    <span class="selected"></span>
+                                </a>
+                            </li>
                         </ul>
                     </li>
                     <li id="rpt" runat="server">
-                        <a href="rpt.aspx"><i class="clip-bars"></i>
+                        <a href="#"><i class="clip-bars"></i>
                             <span class="title">Reports </span>
                             <span class="selected"></span>
                         </a>
@@ -317,6 +323,7 @@
     <script src="../assets/js/bulkuploadvalidation.js"></script>
     <script src="../assets/js/leaveformval.js" type="text/javascript"></script>
     <script src="../assets/js/applyleave_hr.js" type="text/javascript"></script>
+    <script src="../assets/js/uservalidation.js"></script>
     <!-- end: JAVASCRIPTS REQUIRED FOR THIS PAGE ONLY -->
     <script type="text/javascript">
         jQuery(document).ready(function () {
@@ -327,7 +334,9 @@
             //datepick();
             inputlimit();
             hidefupload();
-          //  leavevali();
+            //  leavevali();
+            doj();
+            updateAlerts();
         });
     </script>
     
@@ -337,7 +346,7 @@
                 type: "POST",
                 contentType: "application/json",
                 data: "{}",
-                url: "dash.aspx/GetEvents",
+                url: "hrdash.aspx/GetEvents",
                 dataType: "json",
                 success: function (data) {
                     //alert(data.d.length);
@@ -401,7 +410,7 @@
                 type: "POST",
                 contentType: "application/json",
                 data: '{"userid":"' + userid + '"}',
-                url: "dash.aspx/fetchleave",
+                url: "hrdash.aspx/fetchleave",
                 dataType: "json",
                 success: function (data) {
                     //alert(data.d.length);
@@ -433,7 +442,7 @@
                             $('#repl').attr("data-percent", data.d[i].LeavePerc);
                             $('#repl').attr("data-text", data.d[i].LeaveCount);
                             $('#repl').attr("data-info", data.d[i].LeaveType);
-                            $('#repl').attr("data-fgcolor", "#FF8000");
+                            $('#repl').attr("data-fgcolor", "#339933");
                             $('#repl').circliful();
                         }
                         else {
@@ -498,6 +507,7 @@
     <script type="text/javascript">
         function inputlimit() {
             $('#txtreason_hr').inputlimiter({
+                limit: 100,
                 remText: 'You only have %n character%s remaining...',
                 remFullText: 'Stop typing! You\'re not allowed any more characters!',
                 limitText: 'You\'re allowed to input %n character%s into this field.'
@@ -520,6 +530,14 @@
                 leaveval_hr.init();
                 });
 			}
+    </script>
+    <script type="text/javascript">
+        function uservali() {
+            jQuery(document).ready(function () {
+               //alert('im called user');
+                userval.init();
+            });
+        }
     </script>
     <script type="text/javascript">
         function hidefupload() {
@@ -558,6 +576,63 @@
             }
         }
     </script>
+    <%--To initiate date of join datepicker for user add --%>
+    <script type="text/javascript">
+        function doj() {
+            var disableddates = []; //dd/mm/yyyy
+            var year = new Date().getFullYear() + '';
+            edate = "31/12/" + year;
+            $.ajax({
+                type: "POST",
+                contentType: "application/json",
+                data: "{}",
+                url: "adduser.aspx/disdates",
+                dataType: "json",
+                success: function (data) {
+                    for (var i = 0; i < data.d.length; i++) {
+                        //alert(data.d[i].hday);
+                        disableddates.push(data.d[i].EventDate);
+                    }
+                    $('#txtdoj').datepicker({
+                        format: "dd/mm/yyyy",
+                        daysOfWeekDisabled: "0,6", // to disable weekends 0 - sunday, 6 - saturday
+                        startDate: "today", // to disable previous days
+                        endDate: edate, // to disable future year dates
+                        todayHighlight: true, // to highlight today
+                        datesDisabled: disableddates, // array of days to be disabled
+                        orientation: "bottom auto"
+                    });
+                },
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    //alert("error datepick");
+                }
+            });
+        }
+    </script>
+    <script>
+        function updateAlerts() {
+            $.ajax({
+                type: "POST",
+                contentType: "application/json",
+                data: "{}",
+                url: "hrdash.aspx/updatealerts",
+                dataType: "json",
+                success: function (data) {
+                    if(data.d > 0)
+                    {
+                        $('#info').text(data.d);
+                    }
+                    else {
+                        $('#info').text("");
+                    }
+                },
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    //alert("error notification badge");
+                }
+            });
+        }
+        setInterval(updateAlerts, 10000); // 10 seconds
+</script>
 </body>
 <!-- end: BODY -->
 </html>
