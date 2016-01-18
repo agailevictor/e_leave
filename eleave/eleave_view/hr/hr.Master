@@ -110,7 +110,7 @@
                     <!-- end: TO-DO DROPDOWN-->
                     <!-- start: NOTIFICATION DROPDOWN -->
                     	<li class="dropdown">
-							<a data-toggle="dropdown" data-hover="dropdown" class="dropdown-toggle" data-close-others="true" href="#">
+							<a href="forward_hr.aspx" class="dropdown-toggle">
 								<i class="clip-notification"></i>
 								<span class="badge" id="info"></span>
 							</a>
