@@ -192,7 +192,7 @@
                                 </a>
                             </li>
                             <li id="leaves3" runat="server">
-                               <a href="approve_leave_hr.aspx"><i class="icon-forward"></i>
+                               <a href="forward_hr.aspx"><i class="icon-forward"></i>
                                     <span class="title">Forward Leaves </span>
                                     <span class="selected"></span>
                                 </a>
