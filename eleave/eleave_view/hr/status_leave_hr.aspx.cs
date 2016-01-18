@@ -41,7 +41,7 @@ namespace eleave_view.hr
         protected void fill_grid_hr()
         {
             obj.userid = int.Parse(Session["user_id"].ToString());
-            DataTable dt = obj.fill_grid();
+            DataTable dt = obj.fill_grid();            
             status_hr.DataSource = dt;
             status_hr.DataBind();
         }

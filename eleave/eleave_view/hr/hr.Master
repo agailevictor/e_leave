@@ -133,7 +133,7 @@
                         </a>
                         <ul class="dropdown-menu">
                             <li>
-                                <a href="test.aspx">
+                                <a href="chg_pass_hr.aspx">
                                     <i class="clip-exit"></i>
                                     &nbsp;Change Password
                                 </a>
