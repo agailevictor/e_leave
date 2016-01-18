@@ -165,5 +165,15 @@ namespace eleave_c
         {
             return data.deleteuser(id);
         }
+
+        public DataTable fillleavesfr()
+        {
+            return data.fillleavesfr();
+        }
+
+        public DataTable fill_leaves_all()
+        {
+            return data.fill_leaves_all();
+        }
     }
 }

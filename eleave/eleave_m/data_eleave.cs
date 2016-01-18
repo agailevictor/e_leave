@@ -472,5 +472,33 @@ namespace eleave_m
             cmd.Dispose();
             return res;
         }
+
+        public DataTable fillleavesfr()
+        {
+            cmd.Parameters.Clear();
+            cmd.CommandText = "sp_fillleavesfr";
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Connection = db.connect();
+            SqlDataAdapter da = new SqlDataAdapter();
+            DataTable dt = new DataTable();
+            da.SelectCommand = cmd;
+            da.Fill(dt);
+            db.disconnect();
+            return dt;
+        }
+
+        public DataTable fill_leaves_all()
+        {
+            cmd.Parameters.Clear();
+            cmd.CommandText = "sp_userleaves_all";
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Connection = db.connect();
+            SqlDataAdapter da = new SqlDataAdapter();
+            DataTable dt = new DataTable();
+            da.SelectCommand = cmd;
+            da.Fill(dt);
+            db.disconnect();
+            return dt;
+        }
     }
 }

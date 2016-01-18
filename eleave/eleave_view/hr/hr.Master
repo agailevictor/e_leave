@@ -217,6 +217,12 @@
                                     <span class="selected"></span>
                                 </a>
                             </li>
+                            <li id="settings3" runat="server">
+                                <a href="userleavesall.aspx"><i class="clip-stackoverflow"></i>
+                                    <span class="title">Leave Status</span>
+                                    <span class="selected"></span>
+                                </a>
+                            </li>
                         </ul>
                     </li>
                     <li id="rpt" runat="server">
