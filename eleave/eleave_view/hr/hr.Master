@@ -109,12 +109,12 @@
 						</li>--%>
                     <!-- end: TO-DO DROPDOWN-->
                     <!-- start: NOTIFICATION DROPDOWN -->
-                    <%--						<li class="dropdown">
+                    	<li class="dropdown">
 							<a data-toggle="dropdown" data-hover="dropdown" class="dropdown-toggle" data-close-others="true" href="#">
-								<i class="clip-notification-2"></i>
-								<span class="badge"> 11</span>
+								<i class="clip-notification"></i>
+								<span class="badge" id="info"></span>
 							</a>
-						</li>--%>
+						</li>
                     <!-- end: NOTIFICATION DROPDOWN -->
                     <!-- start: MESSAGE DROPDOWN -->
                     <%--						<li class="dropdown">

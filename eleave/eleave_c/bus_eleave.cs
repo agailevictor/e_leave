@@ -175,5 +175,15 @@ namespace eleave_c
         {
             return data.fill_leaves_all();
         }
+
+        public int forward_leave()
+        {
+            return data.forward_leave(lid);
+        }
+
+        public int reject_leave()
+        {
+            return data.reject_leave(lid);
+        }
     }
 }
