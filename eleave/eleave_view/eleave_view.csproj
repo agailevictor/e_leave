@@ -345,6 +345,8 @@
     <Content Include="hr\adduser.aspx" />
     <Content Include="hr\applyleave_hr.aspx" />
     <Content Include="hr\approve_leave_hr.aspx" />
+    <Content Include="hr\cancel_hr.aspx" />
+    <Content Include="hr\chg_pass_hr.aspx" />
     <Content Include="hr\holidays_upload.aspx" />
     <Content Include="hr\listuser.aspx" />
     <Content Include="hr\status_leave_hr.aspx" />
@@ -394,6 +396,20 @@
     </Compile>
     <Compile Include="hr\approve_leave_hr.aspx.designer.cs">
       <DependentUpon>approve_leave_hr.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="hr\cancel_hr.aspx.cs">
+      <DependentUpon>cancel_hr.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="hr\cancel_hr.aspx.designer.cs">
+      <DependentUpon>cancel_hr.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="hr\chg_pass_hr.aspx.cs">
+      <DependentUpon>chg_pass_hr.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="hr\chg_pass_hr.aspx.designer.cs">
+      <DependentUpon>chg_pass_hr.aspx</DependentUpon>
     </Compile>
     <Compile Include="hr\download_approved_hr.cs">
       <AutoGen>True</AutoGen>

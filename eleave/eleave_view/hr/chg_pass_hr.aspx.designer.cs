@@ -10,33 +10,42 @@
 namespace eleave_view.hr {
     
     
-    public partial class approve_leave_hr {
+    public partial class chg_pass_hr {
         
         /// <summary>
-        /// app_rej_hr control.
+        /// oldpwd_hr_txt control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView app_rej_hr;
+        protected global::System.Web.UI.WebControls.TextBox oldpwd_hr_txt;
         
         /// <summary>
-        /// btn_approve_hr control.
+        /// nwpwd_hr_txt control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btn_approve_hr;
+        protected global::System.Web.UI.WebControls.TextBox nwpwd_hr_txt;
         
         /// <summary>
-        /// btn_reject_hr control.
+        /// conf_nwpwd_hr_txt control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btn_reject_hr;
+        protected global::System.Web.UI.WebControls.TextBox conf_nwpwd_hr_txt;
+        
+        /// <summary>
+        /// Button1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button Button1;
     }
 }

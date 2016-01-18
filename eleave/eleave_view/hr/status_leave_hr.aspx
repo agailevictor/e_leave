@@ -31,7 +31,6 @@
         }
     </style>
 
-
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
@@ -63,7 +62,7 @@
                     <ItemTemplate>
                         <asp:LinkButton ID="dwnld_hr" runat="server" 
                             Visible='<%# Isenable((string)Eval("stat")) %>' CssClass="clip-download-2" 
-                            onclick="LinkButton1_Click"> Download</asp:LinkButton>
+                            onclick="LinkButton1_Click"></asp:LinkButton>
                     </ItemTemplate>
                 </asp:TemplateField>
             </Columns>
