@@ -58,19 +58,13 @@
 		<!-- start: FORM VALIDATION 2 PANEL -->
 			<div class="panel panel-default">
 				<div class="panel-heading">
-					<i class="icon-external-link-sign"></i>
+					<i class="icon-external-link-sign"></i>Change Password
 
 					<div class="panel-tools">
-						<a class="btn btn-xs btn-link panel-refresh" href="#">
-	    					<i class="icon-refresh"></i>
-						</a>
-						<a class="btn btn-xs btn-link panel-expand" href="#">
-							<i class="icon-resize-full"></i>
-						</a>
-						<a class="btn btn-xs btn-link panel-close" href="#">
-							<i class="icon-remove"></i>
-						</a>
-					</div>
+                        <a class="btn btn-xs btn-link panel-collapse collapses" href="#"></a>
+                        <a class="btn btn-xs btn-link panel-expand" href="#"><i class="icon-resize-full"></i></a>
+                        <a class="btn btn-xs btn-link panel-close" href="#"><i class="icon-remove"></i></a>
+                    </div>
 				</div>
 				<div class="panel-body">
                     <div class="row">							

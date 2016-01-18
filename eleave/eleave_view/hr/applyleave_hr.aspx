@@ -75,9 +75,9 @@
                 <div class="panel-heading">
                     <i class="clip-plus-circle-2"></i>Request Leave
                     <div class="panel-tools">
-                        <a class="btn btn-xs btn-link panel-collapse collapses" href="#"></a><a class="btn btn-xs btn-link panel-expand"
-                                    href="#"><i class="icon-resize-full"></i></a><a class="btn btn-xs btn-link panel-close"
-                                        href="#"><i class="icon-remove"></i></a>
+                        <a class="btn btn-xs btn-link panel-collapse collapses" href="#"></a>
+                        <a class="btn btn-xs btn-link panel-expand" href="#"><i class="icon-resize-full"></i></a>
+                        <a class="btn btn-xs btn-link panel-close" href="#"><i class="icon-remove"></i></a>
                     </div>
                 </div>
                 <div class="panel-body">
