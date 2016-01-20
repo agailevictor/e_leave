@@ -107,6 +107,11 @@ namespace eleave_c
             return data.insert_leave(userid, ltype, dates, period, reason, rdays, jobc, contact);
         }
 
+        public int insert_oleave()
+        {
+            return data.insert_oleave(userid, ltype, dates, period, reason, rdays, jobc, contact);
+        }
+
         public int cancel_leave()
         {
             return data.cancel_leave(lid);

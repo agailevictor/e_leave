@@ -130,6 +130,15 @@ namespace eleave_view.hr {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl settings3;
         
         /// <summary>
+        /// settings4 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl settings4;
+        
+        /// <summary>
         /// rpt control.
         /// </summary>
         /// <remarks>

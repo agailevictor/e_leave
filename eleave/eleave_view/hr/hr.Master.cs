@@ -59,6 +59,10 @@ namespace eleave_view.hr
                     settings.Attributes["class"] = "active";
                     settings3.Attributes["class"] = "active open";
                     break;
+                case "cf.aspx":
+                    settings.Attributes["class"] = "active";
+                    settings4.Attributes["class"] = "active open";
+                    break;
             }
         }
 

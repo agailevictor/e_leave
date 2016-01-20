@@ -229,6 +229,12 @@
                                     <span class="selected"></span>
                                 </a>
                             </li>
+                            <li id="settings4" runat="server">
+                                <a href="cf.aspx"><i class="clip-stackoverflow"></i>
+                                    <span class="title">Carry Forward</span>
+                                    <span class="selected"></span>
+                                </a>
+                            </li>
                         </ul>
                     </li>
                     <li id="rpt" runat="server">
