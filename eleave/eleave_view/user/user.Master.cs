@@ -31,6 +31,10 @@ namespace eleave_view.user
                     leaves.Attributes["class"] = "active";
                     leaves1.Attributes["class"] = "active open";
                     break;
+                case "listleaves.aspx":
+                    leaves.Attributes["class"] = "active";
+                    leaves1.Attributes["class"] = "active open";
+                    break;
                 case "leaveapply.aspx":
                     leaves.Attributes["class"] = "active";
                     leaves1.Attributes["class"] = "active open";

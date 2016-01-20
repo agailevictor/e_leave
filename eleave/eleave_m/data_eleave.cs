@@ -233,6 +233,32 @@ namespace eleave_m
             return res;
         }
 
+        public int insert_oleave(int userid, int ltype, string dates, int period, string reason, double rdays, string jobc, string contact)
+        {
+            cmd.Parameters.Clear();
+            cmd.CommandText = "sp_insert_oleaves";
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Connection = db.connect();
+            cmd.Parameters.AddWithValue("@userid", userid);
+            cmd.Parameters.AddWithValue("@ltype", ltype);
+            cmd.Parameters.AddWithValue("@dates", dates);
+            cmd.Parameters.AddWithValue("@period", period);
+            cmd.Parameters.AddWithValue("@reason", reason);
+            cmd.Parameters.AddWithValue("@rdays", rdays);
+            cmd.Parameters.AddWithValue("@jobc", jobc);
+            cmd.Parameters.AddWithValue("@contact", contact);
+            SqlParameter outparam = new SqlParameter();
+            outparam.ParameterName = "@flag";
+            outparam.Direction = ParameterDirection.InputOutput;
+            outparam.DbType = DbType.Int32;
+            outparam.Value = 0;
+            cmd.Parameters.Add(outparam);
+            cmd.ExecuteNonQuery();
+            int res = int.Parse(cmd.Parameters["@flag"].Value.ToString());
+            cmd.Dispose();
+            return res;
+        }
+
         public int cancel_leave(int lid)
         {
             cmd.Parameters.Clear();

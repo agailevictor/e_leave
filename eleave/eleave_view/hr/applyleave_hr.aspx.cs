@@ -126,6 +126,28 @@ namespace eleave_view.hr
                     ScriptManager.RegisterStartupScript(this, GetType(), "displayalertmessage", "error();", true);
                 }
             }
+            else if (int.Parse(ddlltype_hr.SelectedValue.ToString()) == 5 || int.Parse(ddlltype_hr.SelectedValue.ToString()) == 6)
+            {
+                obj.userid = int.Parse(Session["user_id"].ToString());
+                obj.ltype = int.Parse(ddlltype_hr.SelectedValue.ToString());
+                obj.dates = txtdate_hr.Text.Trim();
+                obj.period = int.Parse(ddlper_hr.SelectedValue.ToString());
+                obj.reason = txtreason_hr.Text.Trim();
+                obj.rdays = getcount();
+                obj.jobc = ddljobc_hr.SelectedItem.ToString();
+                obj.contact = txtphone_hr.Text.Trim();
+                int r1 = obj.insert_oleave();
+                if (r1 == 1)
+                {
+                    clearfeilds();
+                    ScriptManager.RegisterStartupScript(this, GetType(), "displayalertmessage", "success();", true);
+                }
+                else
+                {
+                    clearfeilds();
+                    ScriptManager.RegisterStartupScript(this, GetType(), "displayalertmessage", "error();", true);
+                }
+            }
             else
             {
                 obj.userid = int.Parse(Session["user_id"].ToString());

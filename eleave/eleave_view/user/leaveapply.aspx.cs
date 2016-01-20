@@ -140,6 +140,7 @@ namespace eleave_view.user
                             string fname = file.Name.Remove((file.Name.Length - file.Extension.Length));
                             fname = fname + System.DateTime.Now.ToString("_dd-MM-yy_hh;mm;ss") + file.Extension; // renaming file uploads
                             filename = Path.Combine(Server.MapPath("~/uploads/"), fname);
+                            string filename_vir = Path.Combine("~/uploads/", fname);
                             //fupload.SaveAs(filename);
                             bus.userid = int.Parse(Session["user_id"].ToString());
                             bus.ltype = int.Parse(ddlltype.SelectedValue.ToString());
@@ -149,7 +150,7 @@ namespace eleave_view.user
                             bus.rdays = getcount();
                             bus.jobc = ddljobc.SelectedItem.ToString();
                             bus.contact = txtphone.Text.Trim();
-                            bus.med_path = filename;
+                            bus.med_path = filename_vir;
                             // check here the applied leaves exceeds or not (here check only medical)
                             int r = bus.insert_med();
                             if (r == 1)
@@ -182,6 +183,28 @@ namespace eleave_view.user
                         clearfeilds();
                         ScriptManager.RegisterStartupScript(this, GetType(), "displayalertmessage", "errorpdfsize();", true);
                     }
+                }
+                else
+                {
+                    clearfeilds();
+                    ScriptManager.RegisterStartupScript(this, GetType(), "displayalertmessage", "error();", true);
+                }
+            }
+            else if (int.Parse(ddlltype.SelectedValue.ToString()) == 5 || int.Parse(ddlltype.SelectedValue.ToString()) == 6)
+            {
+                bus.userid = int.Parse(Session["user_id"].ToString());
+                bus.ltype = int.Parse(ddlltype.SelectedValue.ToString());
+                bus.dates = txtdate.Text.Trim();
+                bus.period = int.Parse(ddlper.SelectedValue.ToString());
+                bus.reason = txtreason.Text.Trim();
+                bus.rdays = getcount();
+                bus.jobc = ddljobc.SelectedItem.ToString();
+                bus.contact = txtphone.Text.Trim();
+                int r1 = bus.insert_oleave(); 
+                if (r1 == 1)
+                {
+                    clearfeilds();
+                    ScriptManager.RegisterStartupScript(this, GetType(), "displayalertmessage", "success();", true);
                 }
                 else
                 {
