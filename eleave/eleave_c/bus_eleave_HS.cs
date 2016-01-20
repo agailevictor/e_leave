@@ -47,6 +47,10 @@ namespace eleave_c
             return obj.updatepwd(userid, nwpwd);
         }
 
+        public string file_hr()
+        {
+            return obj.file_hr(lid);
+        }
         //public int approve_mul_hr()
         //{
         //    return obj.approve_mul_hr(lid);

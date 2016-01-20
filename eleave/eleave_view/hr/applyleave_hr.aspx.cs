@@ -8,6 +8,7 @@ using eleave_c;
 using System.Data;
 using System.IO;
 using System.Web.Services;
+using System.Text.RegularExpressions;
 
 namespace eleave_view.hr
 {
@@ -78,8 +79,9 @@ namespace eleave_view.hr
                             FileInfo file = new System.IO.FileInfo(fupload_hr.PostedFile.FileName);
                             string fname = file.Name.Remove((file.Name.Length - file.Extension.Length));
                             fname = fname + System.DateTime.Now.ToString("_dd-MM-yy_hh;mm;ss") + file.Extension; // renaming file uploads
-                            filename = Path.Combine(Server.MapPath("~/uploads/"), fname);
-                            obj.userid = int.Parse(Session["user_id"].ToString());
+                            filename = Path.Combine(Server.MapPath("/uploads/"), fname);
+                            string filename_vir = Path.Combine("~/uploads/", fname);                            
+                            obj.userid = int.Parse(Session["user_id"].ToString());                            
                             obj.ltype = int.Parse(ddlltype_hr.SelectedValue.ToString());
                             obj.dates = txtdate_hr.Text.Trim();
                             obj.period = int.Parse(ddlper_hr.SelectedValue.ToString());
@@ -87,7 +89,7 @@ namespace eleave_view.hr
                             obj.rdays = getcount();
                             obj.jobc = ddljobc_hr.SelectedItem.ToString();
                             obj.contact = txtphone_hr.Text.Trim();
-                            obj.med_path = filename;
+                            obj.med_path = filename_vir;
                             int r = obj.insert_med();
                             if (r == 1)
                             {

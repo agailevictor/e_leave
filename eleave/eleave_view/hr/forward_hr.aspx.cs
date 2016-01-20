@@ -12,6 +12,7 @@ namespace eleave_view.hr
     public partial class forward_hr : System.Web.UI.Page
     {
         bus_eleave bus = new bus_eleave();
+        bus_eleave_HS obj = new bus_eleave_HS();
         int f;
         CheckBox cbox;
         protected void Page_Load(object sender, EventArgs e)
@@ -166,6 +167,28 @@ namespace eleave_view.hr
             }
         }
 
+        protected Boolean Isenable(string ltype)
+        {            
+            if (ltype == "Medical")
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
 
+        protected void lnk_dwn_Click(object sender, EventArgs e)
+        {
+
+            LinkButton lnkbtn = sender as LinkButton;
+            GridViewRow gvrow = lnkbtn.NamingContainer as GridViewRow;
+            string filePath = gvrow.Cells[6].Text.ToString();
+            Response.ContentType = "application/pdf";
+            Response.AddHeader("Content-Disposition", "attachment;filename=\"" + filePath + "\"");
+            Response.TransmitFile(Server.MapPath(filePath));
+            Response.End();
+        }
     }
 }

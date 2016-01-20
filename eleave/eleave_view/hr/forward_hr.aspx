@@ -41,12 +41,19 @@
             });
         }
     </script>
+    <style type="text/css">
+     .hidden
+     {
+         display:none;
+     }
+</style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="page-header">
  <h1>Forward Leave</h1>
 </div>
-    <div class="table-responsive">
+    <div class="table-responsive">       
+
         <asp:GridView ID="grd_forward" runat="server" CssClass="table table-bordered table-hover" AutoGenerateColumns="False" DataKeyNames="lid">
             <Columns>
                 <asp:TemplateField>
@@ -62,6 +69,19 @@
                 <asp:BoundField DataField="dates" HeaderText="Dates Applied" />
                 <asp:BoundField DataField="period" HeaderText="Period" />
                 <asp:BoundField DataField="reason" HeaderText="Reason" />
+                <asp:BoundField DataField="med_path" HeaderText="File Path" >
+<HeaderStyle CssClass="hidden"></HeaderStyle>
+
+<ItemStyle CssClass="hidden"></ItemStyle>
+                </asp:BoundField>
+                <asp:TemplateField HeaderText="Medical Certificate">
+                    <EditItemTemplate>
+                        <asp:TextBox ID="TextBox1" runat="server"></asp:TextBox>
+                    </EditItemTemplate>
+                    <ItemTemplate>
+                        <asp:LinkButton ID="lnk_dwn" runat="server" Visible='<%# Isenable((string)Eval("ltype")) %>' CssClass="clip-download-2" OnClick="lnk_dwn_Click"></asp:LinkButton>
+                    </ItemTemplate>
+                </asp:TemplateField>
                 <asp:TemplateField HeaderText="Forward">
                     <ItemTemplate>
                         <asp:LinkButton ID="lnkforward" runat="server" CssClass="btn btn-green" OnClick="lnkforward_Click"><i class="glyphicon glyphicon-ok-sign"></i></asp:LinkButton>
