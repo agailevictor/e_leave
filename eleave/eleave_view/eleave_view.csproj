@@ -100,6 +100,7 @@
     <Content Include="assets\images\timer-piece.png" />
     <Content Include="assets\js\bulkuploadvalidation.js" />
     <Content Include="assets\js\applyleave_hr.js" />
+    <Content Include="assets\js\changepassword.js" />
     <Content Include="assets\js\charts.js" />
     <Content Include="assets\js\form-calendar.js" />
     <Content Include="assets\js\form-dropzone.js" />
@@ -122,6 +123,7 @@
     <Content Include="assets\js\ui-nestable.js" />
     <Content Include="assets\js\ui-sliders.js" />
     <Content Include="assets\js\ui-treeview.js" />
+    <Content Include="assets\js\updateprofile.js" />
     <Content Include="assets\js\uservalidation.js" />
     <Content Include="assets\js\utility-coming-soon.js" />
     <Content Include="assets\js\utility-error404.js" />
@@ -354,6 +356,7 @@
     <Content Include="hr\listuser.aspx" />
     <Content Include="hr\status_leave_hr.aspx" />
     <Content Include="hr\testpage_hr.aspx" />
+    <Content Include="hr\update_profile.aspx" />
     <Content Include="hr\userleavesall.aspx" />
     <Content Include="hr\WebForm1.aspx" />
     <Content Include="Login.aspx" />
@@ -469,6 +472,13 @@
     </Compile>
     <Compile Include="hr\testpage_hr.aspx.designer.cs">
       <DependentUpon>testpage_hr.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="hr\update_profile.aspx.cs">
+      <DependentUpon>update_profile.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="hr\update_profile.aspx.designer.cs">
+      <DependentUpon>update_profile.aspx</DependentUpon>
     </Compile>
     <Compile Include="hr\userleavesall.aspx.cs">
       <DependentUpon>userleavesall.aspx</DependentUpon>

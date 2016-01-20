@@ -44,7 +44,7 @@ namespace eleave_c
 
         public int updatepwd()
         {
-            return obj.updatepwd(userid, nwpwd);
+            return obj.updatepwd(userid, nwpwd, cnf_nwpwd);
         }
 
         public string file_hr()

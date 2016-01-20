@@ -11,7 +11,7 @@ namespace eleave_view.hr
 {
     public partial class chg_pass_hr : System.Web.UI.Page
     {
-        bus_eleave_HS obj = new bus_eleave_HS();
+        bus_eleave bus = new bus_eleave();
         protected void Page_Load(object sender, EventArgs e)
         {
 
@@ -19,40 +19,30 @@ namespace eleave_view.hr
 
         protected void Button1_Click(object sender, EventArgs e)
         {
-            int res;
-            int old = checkold();
-            if(old==1)
+
+            if(oldpwd_hr_txt.Text !="" && nwpwd_hr_txt.Text !="" && conf_nwpwd_hr_txt.Text !="")
             {
-                if (nwpwd_hr_txt.Text == conf_nwpwd_hr_txt.Text)
+                bus.userid = int.Parse(Session["user_id"].ToString());
+                bus.oldp = oldpwd_hr_txt.Text;
+                bus.newp = conf_nwpwd_hr_txt.Text;
+                int r = bus.updatepwd();
+                if (r == 1)
                 {
-                    obj.userid = int.Parse(Session["user_id"].ToString());
-                    obj.nwpwd = nwpwd_hr_txt.Text;
-                    res=obj.updatepwd();
-                    if(res==1)
-                    {
-                        ScriptManager.RegisterStartupScript(this, GetType(), "displayalertmessage", "success_pwd();", true);                      
-                    }
-                    else
-                    {
-                        ScriptManager.RegisterStartupScript(this, GetType(), "displayalertmessage", "error_pwd();", true);                      
-                    }
+                    clear();
+                    ScriptManager.RegisterStartupScript(this, GetType(), "displayalertmessage", "success_pwd();", true);
+                }
+                else if (r == 2)
+                {
+                    clear();
+                    ScriptManager.RegisterStartupScript(this, GetType(), "displayalertmessage", "error_pwd();", true);
                 }
                 else
                 {
-                    ScriptManager.RegisterStartupScript(this, GetType(), "displayalertmessage", "pwd_match_fail();", true);                      
+                    clear();
+                    ScriptManager.RegisterStartupScript(this, GetType(), "displayalertmessage", "error_old();", true);
                 }
             }
-            else
-            {
-                ScriptManager.RegisterStartupScript(this, GetType(), "displayalertmessage", "error();", true);                      
-            }
-        }
 
-        public int checkold()
-        {
-            obj.userid = int.Parse(Session["user_id"].ToString());
-            int res=obj.checkold();
-            return res;   
         }
 
         public void clear()

@@ -73,7 +73,7 @@
             <!-- start: Apply Leave HR -->
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <i class="icon-external-link-sign"></i>Request Leave
+                    <i class="clip-plus-circle-2"></i>Request Leave
                     <div class="panel-tools">
                         <a class="btn btn-xs btn-link panel-collapse collapses" href="#"></a>
                         <a class="btn btn-xs btn-link panel-expand" href="#"><i class="icon-resize-full"></i></a>

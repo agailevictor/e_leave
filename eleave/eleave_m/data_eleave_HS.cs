@@ -95,7 +95,7 @@ namespace eleave_m
             return res;
         }
 
-        public int updatepwd(int uid, string nwpwd)
+        public int updatepwd(int uid, string nwpwd, string cnf_nwpwd)
         {
             cmd.Parameters.Clear();
             cmd.CommandText = "sp_update_pwd_hr";
