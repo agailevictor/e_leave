@@ -39,6 +39,9 @@ namespace eleave_c
 
         public string oldp { get; set; }
         public string newp { get; set; }
+        public string add1 { get; set; }
+        public string add2 { get; set; }
+        public int mob { get; set; }
 
         public int check_login()
         {
@@ -197,6 +200,16 @@ namespace eleave_c
         public int updatepwd()
         {
             return data.updatepwd(userid, oldp, newp);
+        }
+
+        public DataTable fill_details_user()
+        {
+            return data.fill_details_user(userid);
+        }
+
+        public int update_profile()
+        {
+            return data.update_profile(userid,add1,add2,mob);
         }
     }
 }
