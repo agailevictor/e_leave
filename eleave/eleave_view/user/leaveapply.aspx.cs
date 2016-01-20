@@ -279,7 +279,7 @@ namespace eleave_view.user
             }
             else
             {
-                ct = 0; 
+                ct = 0;
             }
 
             return ct;
