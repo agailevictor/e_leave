@@ -59,7 +59,7 @@ namespace eleave_view.user
             for (int i = 0; i < values.Length; i++)
             {
                 a1 = values[i].ToString();
-                DateTime dt1 = DateTime.Parse(a1);
+                DateTime dt1 = DateTime.ParseExact(a1,"dd/MM/yyyy",null);
                 DateTime dt2 = DateTime.Now;
 
                 if (dt1 > dt2)
