@@ -7,7 +7,7 @@
         <h1>Leave Status - All User's</h1>
     </div>
     <div class="table-responsive">
-        <asp:GridView ID="grd_userleaves" runat="server" CssClass="table table-bordered table-hover" AutoGenerateColumns="False" AllowPaging="True" OnPageIndexChanging="grd_userleaves_PageIndexChanging">
+        <asp:GridView ID="grd_userleaves" runat="server" CssClass="table table-bordered table-hover" AutoGenerateColumns="False" AllowPaging="True" OnPageIndexChanging="grd_userleaves_PageIndexChanging" ClientIDMode="Static" OnPreRender="grd_userleaves_PreRender">
             <Columns>
                 <asp:TemplateField HeaderText="No.">
                     <ItemTemplate><%# Container.DataItemIndex + 1 %></ItemTemplate>

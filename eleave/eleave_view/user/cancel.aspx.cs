@@ -15,7 +15,7 @@ namespace eleave_view.user
         string a, a1;
         DateTime dt1, dt2;
         int chk;
-        Boolean ret; 
+        Boolean ret;
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -69,7 +69,16 @@ namespace eleave_view.user
 
             }
 
-            return ret;            
+            return ret;
+        }
+
+        protected void grd_cancel_PreRender(object sender, EventArgs e)
+        {
+            if(grd_cancel.Rows.Count > 0)
+            {
+            grd_cancel.UseAccessibleHeader = true;
+            grd_cancel.HeaderRow.TableSection = TableRowSection.TableHeader;
+            }
         }
     }
 }

@@ -96,10 +96,13 @@ namespace eleave_view.user
             }
         }
 
-        protected void grd_leaves_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        protected void grd_leaves_PreRender(object sender, EventArgs e)
         {
-            grd_leaves.PageIndex = e.NewPageIndex;
-            fill_grid();
+            if (grd_leaves.Rows.Count > 0)
+            {
+                grd_leaves.UseAccessibleHeader = true;
+                grd_leaves.HeaderRow.TableSection = TableRowSection.TableHeader;
+            }
         }
     }
 }

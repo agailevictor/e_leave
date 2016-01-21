@@ -102,6 +102,8 @@
     <Content Include="assets\js\applyleave_hr.js" />
     <Content Include="assets\js\changepassword.js" />
     <Content Include="assets\js\charts.js" />
+    <Content Include="assets\js\datatables.js" />
+    <Content Include="assets\js\datatablesuser.js" />
     <Content Include="assets\js\form-calendar.js" />
     <Content Include="assets\js\form-dropzone.js" />
     <Content Include="assets\js\form-elements.js" />
@@ -368,6 +370,7 @@
     <Content Include="user\applyleave.aspx" />
     <Content Include="user\cancel.aspx" />
     <Content Include="user\dash.aspx" />
+    <Content Include="user\dtabletest.aspx" />
     <Content Include="user\leaveapply.aspx" />
     <Content Include="user\leaves.aspx" />
     <Content Include="user\listleaves.aspx" />
@@ -571,6 +574,13 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>download_approved.rpt</DependentUpon>
       <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="user\dtabletest.aspx.cs">
+      <DependentUpon>dtabletest.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="user\dtabletest.aspx.designer.cs">
+      <DependentUpon>dtabletest.aspx</DependentUpon>
     </Compile>
     <Compile Include="user\leaveapply.aspx.cs">
       <DependentUpon>leaveapply.aspx</DependentUpon>

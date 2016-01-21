@@ -32,5 +32,14 @@ namespace eleave_view.hr
             grd_userleaves.PageIndex = e.NewPageIndex;
             fill_leaves_all();
         }
+
+        protected void grd_userleaves_PreRender(object sender, EventArgs e)
+        {
+            if (grd_userleaves.Rows.Count > 0)
+            {
+                grd_userleaves.UseAccessibleHeader = true;
+                grd_userleaves.HeaderRow.TableSection = TableRowSection.TableHeader;
+            }
+        }
     }
 }

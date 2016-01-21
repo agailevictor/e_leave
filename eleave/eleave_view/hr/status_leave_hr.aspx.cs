@@ -115,5 +115,14 @@ namespace eleave_view.hr
                 rd.ExportToHttpResponse(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat, Response, true, "Approved_Leave");
             }
         }
+
+        protected void status_hr_PreRender(object sender, EventArgs e)
+        {
+            if (status_hr.Rows.Count > 0)
+            {
+                status_hr.UseAccessibleHeader = true;
+                status_hr.HeaderRow.TableSection = TableRowSection.TableHeader;
+            }
+        }
     }
 }

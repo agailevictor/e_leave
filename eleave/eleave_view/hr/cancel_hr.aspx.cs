@@ -68,5 +68,11 @@ namespace eleave_view.hr
             }
             return ret;
         }
+
+        protected void grd_cancel_hr_PreRender(object sender, EventArgs e)
+        {
+            grd_cancel_hr.UseAccessibleHeader = true;
+            grd_cancel_hr.HeaderRow.TableSection = TableRowSection.TableHeader;
+        }
     }
 }

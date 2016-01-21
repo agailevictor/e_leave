@@ -25,7 +25,7 @@
 <h1>Leaves<small><a href="leaveapply.aspx"> Request Leave</a></small></h1>                                 
 </div>
     <div class="table-responsive">
-        <asp:GridView ID="grd_leaves" runat="server" AutoGenerateColumns="False" CssClass="table table-bordered table-hover" DataKeyNames="lid" AllowPaging="True" OnPageIndexChanging="grd_leaves_PageIndexChanging" PageSize="5">
+        <asp:GridView ID="grd_leaves" runat="server" AutoGenerateColumns="False" CssClass="table table-bordered table-hover" DataKeyNames="lid" ClientIDMode="Static" OnPreRender="grd_leaves_PreRender">
             <Columns>
                 <asp:TemplateField HeaderText="No.">
                     <ItemTemplate><%# Container.DataItemIndex + 1 %></ItemTemplate>

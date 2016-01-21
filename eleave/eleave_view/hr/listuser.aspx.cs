@@ -50,5 +50,14 @@ namespace eleave_view.hr
                 ScriptManager.RegisterStartupScript(this, GetType(), "displayalertmessage", "error();", true);
             }
         }
+
+        protected void grd_users_PreRender(object sender, EventArgs e)
+        {
+            if (grd_users.Rows.Count > 0)
+            {
+                grd_users.UseAccessibleHeader = true;
+                grd_users.HeaderRow.TableSection = TableRowSection.TableHeader;
+            }
+        }
     }
 }

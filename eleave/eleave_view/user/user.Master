@@ -48,6 +48,7 @@
     <link href="../assets/plugins/circliful/font-awesome.min.css" rel="stylesheet" />
     <link href="../assets/plugins/circliful/jquery.circliful.css" rel="stylesheet" /> 
     <link href="../assets/plugins/datepicker/css/bootstrap-datepicker3.css" rel="stylesheet" type="text/css" />
+    <link href="../assets/plugins/DataTables/media/css/DT_bootstrap.css" rel="stylesheet" />
     <!-- end: CSS REQUIRED FOR THIS PAGE ONLY -->
     <script src="../assets/js/jquery.min.js" type="text/javascript"></script>
    
@@ -133,7 +134,7 @@
                         </a>
                         <ul class="dropdown-menu">
                             <li>
-                                <a href="test.aspx">
+                                <a href="#">
                                     <i class="clip-exit"></i>
                                     &nbsp;Change Password
                                 </a>
@@ -193,12 +194,12 @@
                             </li>
                         </ul>
                     </li>
-                    <li id="rpt" runat="server">
+<%--                    <li id="rpt" runat="server">
                         <a href="#"><i class="clip-bars"></i>
                             <span class="title">Reports </span>
                             <span class="selected"></span>
                         </a>
-                    </li>
+                    </li>--%>
                 </ul>
                 <!-- end: MAIN NAVIGATION MENU -->
             </div>
@@ -289,6 +290,9 @@
     <script src="../assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js" type="text/javascript"></script>
     <script src="../assets/plugins/jquery-validation/dist/jquery.validate.min.js" type="text/javascript"></script>
     <script src="../assets/js/leaveformval.js" type="text/javascript"></script>
+    <script src="../assets/plugins/DataTables/media/js/jquery.dataTables.min.js"></script>
+    <script src="../assets/plugins/DataTables/media/js/DT_bootstrap.js"></script>
+    <script src="../assets/js/datatablesuser.js"></script>
     <!-- end: JAVASCRIPTS REQUIRED FOR THIS PAGE ONLY -->
     <script type="text/javascript">
         jQuery(document).ready(function () {
@@ -299,6 +303,7 @@
             //datepick();
             inputlimit();
             hidefupload();
+            TableData.init();
         });
     </script>
     <script type="text/javascript">

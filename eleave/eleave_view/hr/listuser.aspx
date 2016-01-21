@@ -30,11 +30,11 @@
     </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-<div class="page-header">                            
+    <div class="page-header">                            
 <h1>Users<small><a href="adduser.aspx"> Add New User</a></small></h1>                                 
 </div>
     <div class="table-responsive">
-        <asp:GridView ID="grd_users" runat="server" CssClass="table table-bordered table-hover" AutoGenerateColumns="False" DataKeyNames="uid">
+        <asp:GridView ID="grd_users" runat="server" CssClass="table table-bordered table-hover" AutoGenerateColumns="False" DataKeyNames="uid" ClientIDMode="Static" OnPreRender="grd_users_PreRender">
             <Columns>
                 <asp:TemplateField HeaderText="No.">
                     <ItemTemplate><%# Container.DataItemIndex + 1 %></ItemTemplate>
