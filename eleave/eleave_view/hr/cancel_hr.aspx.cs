@@ -71,8 +71,11 @@ namespace eleave_view.hr
 
         protected void grd_cancel_hr_PreRender(object sender, EventArgs e)
         {
-            grd_cancel_hr.UseAccessibleHeader = true;
-            grd_cancel_hr.HeaderRow.TableSection = TableRowSection.TableHeader;
+            if (grd_cancel_hr.Rows.Count > 0)
+            {
+                grd_cancel_hr.UseAccessibleHeader = true;
+                grd_cancel_hr.HeaderRow.TableSection = TableRowSection.TableHeader;
+            }
         }
     }
 }
