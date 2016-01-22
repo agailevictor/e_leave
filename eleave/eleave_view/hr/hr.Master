@@ -700,6 +700,70 @@
                 });
             }
     </script>
+    <script type="text/javascript">
+        function filldesi()
+        {
+            var dep;
+            var data = {};
+            dep = $('#ddldep option:selected').val();
+            if (dep == 0) {
+                $('#ddldesi').empty();
+                $('#ddlgrade').empty();
+                $("#txtcategory").val("");
+            }
+            else {
+                $.ajax({
+                    type: "POST",
+                    contentType: "application/json",
+                    data: '{"dep":"' + dep + '"}',
+                    url: "adduser.aspx/filldesi",
+                    dataType: "json",
+                    success: function (data) {
+                        $('#ddldesi').empty();
+                        $('#ddldesi').append("<option value=''>-----SELECT-----</option>");
+                        $.each(data.d, function (key, value) {
+                            $("#ddldesi").append($("<option></option>").val(value.dsg_id).html(value.designation));
+                        });
+                    },
+                    error: function (XMLHttpRequest, textStatus, errorThrown) {
+                        //alert("error datepick");
+                    }
+                });
+            }
+        }
+    </script>
+
+    <script type="text/javascript">
+        function fillgrade() {
+            var grade;
+            var data = {};
+            grade = $('#ddldesi option:selected').val();
+            if (grade == 0) {
+                $('#ddlgrade').empty();
+                $("#txtcategory").val("");
+            }
+            else {
+                $.ajax({
+                    type: "POST",
+                    contentType: "application/json",
+                    data: '{"grade":"' + grade + '"}',
+                    url: "adduser.aspx/fillgrade",
+                    dataType: "json",
+                    success: function (data) {
+                        $('#ddlgrade').empty();
+                        $('#ddlgrade').append("<option value=''>-----SELECT-----</option>");
+                        $.each(data.d, function (key, value) {
+                            $("#ddlgrade").append($("<option></option>").val(value.grade_id).html(value.grade_desc));
+                            $("#txtcategory").val(value.category);
+                        });
+                    },
+                    error: function (XMLHttpRequest, textStatus, errorThrown) {
+                        //alert("error datepick");
+                    }
+                });
+            }
+        }
+    </script>
 </body>
 <!-- end: BODY -->
 </html>

@@ -452,8 +452,8 @@
                         multidate: true,
                         multidateSeparator: ",",
                         daysOfWeekDisabled: "0,6", // to disable weekends 0 - sunday, 6 - saturday
-                        //startDate: startdate, // to disable previous days
-                       // endDate: enddate, // to disable future year dates
+                        startDate: startdate, // to disable previous days
+                        endDate: enddate, // to disable future year dates
                         todayHighlight: true, // to highlight today
                         datesDisabled: disableddates, // array of days to be disabled
                         orientation: "bottom auto"

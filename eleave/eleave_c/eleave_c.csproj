@@ -43,7 +43,9 @@
     <Compile Include="bus_eleave.cs" />
     <Compile Include="bus_eleave_HS.cs" />
     <Compile Include="datamapper.cs" />
+    <Compile Include="Desi.cs" />
     <Compile Include="Event.cs" />
+    <Compile Include="grade.cs" />
     <Compile Include="Leaves.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
