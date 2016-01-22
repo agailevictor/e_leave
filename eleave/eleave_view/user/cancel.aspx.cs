@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data;
 using eleave_c;
+using System.Globalization;
 
 namespace eleave_view.user
 {
@@ -16,6 +17,7 @@ namespace eleave_view.user
         DateTime dt1, dt2;
         int chk;
         Boolean ret;
+        CultureInfo provider = CultureInfo.InvariantCulture;
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -59,9 +61,8 @@ namespace eleave_view.user
             for (int i = 0; i < values.Length; i++)
             {
                 a1 = values[i].ToString();
-                DateTime dt1 = DateTime.ParseExact(a1,"dd/MM/yyyy",null);
+                DateTime dt1 = DateTime.Parse(a1);
                 DateTime dt2 = DateTime.Now;
-
                 if (dt1 > dt2)
                 {
                     ret = true;
