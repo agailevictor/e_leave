@@ -90,13 +90,13 @@
                                 <label class="control-label">
                                    Department <span class="symbol required"></span>
                                 </label>
-                                <asp:DropDownList ID="ddldep" runat="server" CssClass="form-control" ClientIDMode="Static" DataTextField="dep_name" DataValueField="dep_id" AutoPostBack="True" OnSelectedIndexChanged="ddldep_SelectedIndexChanged"></asp:DropDownList>
+                                <asp:DropDownList ID="ddldep" runat="server" CssClass="form-control" ClientIDMode="Static" DataTextField="dep_name" DataValueField="dep_id" onchange="filldesi()"></asp:DropDownList>
                             </div>
                             <div class="form-group">
                                 <label class="control-label">
                                    Designation <span class="symbol required"></span>
                                 </label>
-                                <asp:DropDownList ID="ddldesi" runat="server" CssClass="form-control" ClientIDMode="Static" DataTextField="designation" DataValueField="dsg_id" AutoPostBack="True" OnSelectedIndexChanged="ddldesi_SelectedIndexChanged"></asp:DropDownList>
+                                <asp:DropDownList ID="ddldesi" runat="server" CssClass="form-control" ClientIDMode="Static" DataTextField="designation" DataValueField="dsg_id" onchange="fillgrade()"></asp:DropDownList>
                             </div>
                             <div class="form-group">
                                 <label class="control-label">

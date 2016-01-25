@@ -103,22 +103,56 @@ namespace eleave_view.hr
             ddlregion.SelectedIndex = 0;
         }
 
-        protected void ddldep_SelectedIndexChanged(object sender, EventArgs e)
+        //protected void ddldep_SelectedIndexChanged(object sender, EventArgs e)
+        //{
+        //    bus.lid = int.Parse(ddldep.SelectedValue.ToString());
+        //    DataTable des = bus.fetchdesignation();
+        //    ddldesi.DataSource = des;
+        //    ddldesi.DataBind();
+        //    ddldesi.Items.Insert(0, new ListItem("-----SELECT-----", ""));
+        //}
+
+        //protected void ddldesi_SelectedIndexChanged(object sender, EventArgs e)
+        //{
+        //    bus.lid = int.Parse(ddldesi.SelectedValue.ToString());
+        //    DataTable gd = bus.fetchgrade();
+        //    ddlgrade.DataSource = gd;
+        //    ddlgrade.DataBind();
+        //    txtcategory.Text = gd.Rows[0][2].ToString();
+        //}
+        [WebMethod]
+        public static List<Desi> filldesi(int dep)
         {
-            bus.lid = int.Parse(ddldep.SelectedValue.ToString());
-            DataTable des = bus.fetchdesignation();
-            ddldesi.DataSource = des;
-            ddldesi.DataBind();
-            ddldesi.Items.Insert(0, new ListItem("-----SELECT-----", ""));
+            List<Desi> des = new List<Desi>();
+            bus_eleave bus = new bus_eleave();
+            bus.id = dep;
+            DataTable dt = bus.fetchdesignation();
+            for (int i = 0; i < dt.Rows.Count; i++)
+            {
+                Desi _Desi = new Desi();
+                _Desi.dsg_id = int.Parse(dt.Rows[i]["dsg_id"].ToString());
+                _Desi.designation = dt.Rows[i]["designation"].ToString();
+                des.Add(_Desi);
+            }
+            return des;
         }
 
-        protected void ddldesi_SelectedIndexChanged(object sender, EventArgs e)
+        [WebMethod]
+        public static List<grade> fillgrade(int grade)
         {
-            bus.lid = int.Parse(ddldesi.SelectedValue.ToString());
-            DataTable gd = bus.fetchgrade();
-            ddlgrade.DataSource = gd;
-            ddlgrade.DataBind();
-            txtcategory.Text = gd.Rows[0][2].ToString();
+            List<grade> grd = new List<grade>();
+            bus_eleave bus = new bus_eleave();
+            bus.id = grade;
+            DataTable dt = bus.fetchgrade();
+            for (int i = 0; i < dt.Rows.Count; i++)
+            {
+                grade _grade = new grade();
+                _grade.grade_id = int.Parse(dt.Rows[i]["grade_id"].ToString());
+                _grade.grade_desc = dt.Rows[i]["grade_desc"].ToString();
+                _grade.category = dt.Rows[i]["category"].ToString();
+                grd.Add(_grade);
+            }
+            return grd;
         }
     }
 }

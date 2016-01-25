@@ -27,31 +27,6 @@
             });
         }
     </script>
-
-
-
-    <%--<script type="text/javascript">
-        function reject_null()
-        {
-            swal({
-                title: 'Success!',
-                text: 'No pending Leaves to Reject',
-                type: 'warning'
-            });
-        }
-    </script>--%>
-
-    <%--<script type="text/javascript">
-        function approve_null()
-        {
-            swal({
-                title: 'Success!',
-                text: 'No pending Leaves to Approve',
-                type: 'warning'
-            });
-        }
-    </script>--%>
-    
     <script type="text/javascript">
     function success() {
         swal({
@@ -73,23 +48,6 @@
             });
         }
     </script>
-
-    <%--<script type="text/javascript">
-        function success_approve_mul()
-        {
-            swal({
-                title: 'Success!',
-                text: 'Leave Sanctioned Sucessfully',
-                type: 'success'
-            },
-                function () {
-                    window.location = "approve_leave_hr.aspx";
-                });
-        }
-    </script>--%>
-
-
-
      <script type="text/javascript" language="javascript">
          var gridViewId = '#<%= app_rej_hr.ClientID %>';
          function checkAll(selectAllCheckbox) {

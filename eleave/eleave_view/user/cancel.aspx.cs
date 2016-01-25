@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data;
 using eleave_c;
+using System.Globalization;
 
 namespace eleave_view.user
 {
@@ -15,7 +16,8 @@ namespace eleave_view.user
         string a, a1;
         DateTime dt1, dt2;
         int chk;
-        Boolean ret; 
+        Boolean ret;
+        CultureInfo provider = CultureInfo.InvariantCulture;
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -61,7 +63,6 @@ namespace eleave_view.user
                 a1 = values[i].ToString();
                 DateTime dt1 = DateTime.Parse(a1);
                 DateTime dt2 = DateTime.Now;
-
                 if (dt1 > dt2)
                 {
                     ret = true;
@@ -69,7 +70,16 @@ namespace eleave_view.user
 
             }
 
-            return ret;            
+            return ret;
+        }
+
+        protected void grd_cancel_PreRender(object sender, EventArgs e)
+        {
+            if(grd_cancel.Rows.Count > 0)
+            {
+            grd_cancel.UseAccessibleHeader = true;
+            grd_cancel.HeaderRow.TableSection = TableRowSection.TableHeader;
+            }
         }
     }
 }

@@ -29,7 +29,7 @@
     </div>
 <div class="table-responsive">
     <asp:GridView ID="grd_cancel" CssClass="table table-bordered table-hover" 
-        AutoGenerateColumns="False" runat="server" DataKeyNames="lid">
+        AutoGenerateColumns="False" runat="server" DataKeyNames="lid" ClientIDMode="Static" OnPreRender="grd_cancel_PreRender">
         <Columns>
             <asp:TemplateField HeaderText="No.">
                 <ItemTemplate>

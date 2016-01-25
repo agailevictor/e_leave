@@ -190,5 +190,14 @@ namespace eleave_view.hr
             Response.TransmitFile(Server.MapPath(filePath));
             Response.End();
         }
+
+        protected void grd_forward_PreRender(object sender, EventArgs e)
+        {
+            if (grd_forward.Rows.Count > 0)
+            {
+                grd_forward.UseAccessibleHeader = true;
+                grd_forward.HeaderRow.TableSection = TableRowSection.TableHeader;
+            }
+        }
     }
 }

@@ -151,11 +151,11 @@ namespace eleave_c
         }
         public DataTable fetchdesignation()
         {
-            return data.fetchdesignation(lid);
+            return data.fetchdesignation(id);
         }
         public DataTable fetchgrade()
         {
-            return data.fetchgrade(lid);
+            return data.fetchgrade(id);
         }
         public DataTable fillregion()
         {
