@@ -21,6 +21,7 @@ namespace eleave_view.hr
                 filldep();
                 fillregion();
                 txtdoj.Attributes.Add("readonly", "readonly");
+                txtcategory.Attributes.Add("readonly", "readonly");
             }
         }
 

@@ -751,7 +751,6 @@
                     dataType: "json",
                     success: function (data) {
                         $('#ddlgrade').empty();
-                        $('#ddlgrade').append("<option value=''>-----SELECT-----</option>");
                         $.each(data.d, function (key, value) {
                             $("#ddlgrade").append($("<option></option>").val(value.grade_id).html(value.grade_desc));
                             $("#txtcategory").val(value.category);

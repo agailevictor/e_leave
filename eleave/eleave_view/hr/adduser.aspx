@@ -108,7 +108,7 @@
                                 <label class="control-label">
                                    Category <span class="symbol required"></span>
                                 </label>
-                                <asp:TextBox ID="txtcategory" runat="server" CssClass="form-control" ClientIDMode="Static"></asp:TextBox>
+                                <asp:TextBox ID="txtcategory" runat="server" CssClass="form-control" ClientIDMode="Static" BackColor="White"></asp:TextBox>
                             </div>
                             <div class="form-group">
                                 <label class="control-label">
