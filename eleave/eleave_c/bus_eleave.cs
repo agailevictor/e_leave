@@ -216,5 +216,10 @@ namespace eleave_c
         {
             return data.update_profile(userid,add1,add2,mob);
         }
+
+        public int oldpchk()
+        {
+            return data.oldpchk(userid,password);
+        }
     }
 }

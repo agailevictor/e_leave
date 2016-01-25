@@ -342,6 +342,7 @@
    <script src="../assets/plugins/DataTables/media/js/jquery.dataTables.min.js"></script>
     <script src="../assets/plugins/DataTables/media/js/DT_bootstrap.js"></script>
     <script src="../assets/js/datatables.js"></script>
+    <script src="../assets/plugins/jquery.pulsate/jquery.pulsate.min.js"></script>
     <!-- end: JAVASCRIPTS REQUIRED FOR THIS PAGE ONLY -->
     <script type="text/javascript">
         jQuery(document).ready(function () {
@@ -356,6 +357,8 @@
             doj();
             updateAlerts();
             TableData.init();
+            $('#lblop').hide();
+
         });
     </script>
 
@@ -760,6 +763,56 @@
                         //alert("error datepick");
                     }
                 });
+            }
+        }
+    </script>
+    <script>
+        function chkoldpswd()
+        {
+            $('#pulsate-regular').pulsate("destroy");
+            //alert('im called');
+            var oldp;
+            var data = {};
+            var userid = '<%= Session["user_id"] %>';
+            //alert(userid);
+            oldp = $('#oldpwd_hr_txt').val();
+            //alert(oldp);
+            if (oldp.length > 0) {
+                $.ajax({
+                    type: "POST",
+                    contentType: "application/json",
+                    data: '{"userid":"' + userid + '","oldp":"' + oldp + '"}',
+                    url: "chg_pass_hr.aspx/oldpchk",
+                    dataType: "json",
+                    success: function (data) {
+                        //alert(data.d);
+                        if (data.d == 1) {
+                            $('#lblop').hide();
+                            $('#pulsate-regular').pulsate("destroy");
+                            $('#pulsate-regular').hide();
+                        }
+                        else {
+                            $('#pulsate-regular').show();
+                            $('#lblop').show();
+                            $('#pulsate-regular').pulsate({
+                                color: '#C43C35', // set the color of the pulse
+                                reach: 20, // how far the pulse goes in px
+                                speed: 1000, // how long one pulse takes in ms
+                                pause: 0, // how long the pause between pulses is in ms
+                                glow: true, // if the glow should be shown too
+                                repeat: true, // will repeat forever if true, if given a number will repeat for that many times
+                                onHover: false // if true only pulsate if user hovers over the element
+                            });
+                        }
+                    },
+                    error: function (XMLHttpRequest, textStatus, errorThrown) {
+                        //alert("error datepick");
+                    }
+                });
+            }
+            else {
+
+                $('#lblop').hide();
             }
         }
     </script>

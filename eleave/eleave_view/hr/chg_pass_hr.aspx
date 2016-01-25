@@ -2,9 +2,9 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <style>
-        #oldp:hover,#newp:hover,#cp:hover {
-    cursor: pointer;
-}
+        #oldp:hover, #newp:hover, #cp:hover {
+            cursor: pointer;
+        }
     </style>
     <script type="text/javascript">
         function success_pwd() {
@@ -29,16 +29,16 @@
         }
     </script>
 
-        <script type="text/javascript">
-            function error_old() {
-                swal({
-                    title: 'Error!',
-                    text: 'Old Password is Wrong',
-                    type: 'error'
-                });
-            }
+    <script type="text/javascript">
+        function error_old() {
+            swal({
+                title: 'Error!',
+                text: 'Old Password is Wrong',
+                type: 'error'
+            });
+        }
     </script>
-    
+
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="page-header">
@@ -73,7 +73,7 @@
                                     Old Password <span class="symbol required"></span>
                                 </label>
                                 <span class="input-icon input-icon-right">
-                                <asp:TextBox ID="oldpwd_hr_txt" runat="server" CssClass="form-control" ClientIDMode="Static" TextMode="Password"></asp:TextBox>
+                                    <asp:TextBox ID="oldpwd_hr_txt" runat="server" CssClass="form-control" ClientIDMode="Static" TextMode="Password" onchange="chkoldpswd()"></asp:TextBox>
                                     <i id="oldp" class="icon-eye-open"></i>
                                 </span>
                             </div>
@@ -82,8 +82,8 @@
                                     New Password <span class="symbol required"></span>
                                 </label>
                                 <span class="input-icon input-icon-right">
-                                <asp:TextBox ID="nwpwd_hr_txt" runat="server" CssClass="form-control" ClientIDMode="Static" TextMode="Password"></asp:TextBox>
-                                <i id="newp" class="icon-eye-open"></i>
+                                    <asp:TextBox ID="nwpwd_hr_txt" runat="server" CssClass="form-control" ClientIDMode="Static" TextMode="Password"></asp:TextBox>
+                                    <i id="newp" class="icon-eye-open"></i>
                                 </span>
                             </div>
                             <div class="form-group">
@@ -91,8 +91,8 @@
                                     Confirm New Password <span class="symbol required"></span>
                                 </label>
                                 <span class="input-icon input-icon-right">
-                                <asp:TextBox ID="conf_nwpwd_hr_txt" runat="server" CssClass="form-control" ClientIDMode="Static" TextMode="Password"></asp:TextBox>
-                                 <i id="cp" class="icon-eye-open"></i>
+                                    <asp:TextBox ID="conf_nwpwd_hr_txt" runat="server" CssClass="form-control" ClientIDMode="Static" TextMode="Password"></asp:TextBox>
+                                    <i id="cp" class="icon-eye-open"></i>
                                 </span>
                             </div>
                             <div class="row">
@@ -106,6 +106,17 @@
                             <div class="row">
                                 <div class="col-md-4">
                                     <asp:Button ID="Button1" runat="server" Text="Change Password" CssClass="btn btn-success" OnClick="Button1_Click" OnClientClick="cpassvali()" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label">
+                                </label>
+                            </div>
+                            <div class="form-group">
+                                <div id="pulsate-regular" style="padding: 5px; width: 202px;">
+                                <asp:Label ID="lblop" runat="server" Text="Enter Valid Password" ClientIDMode="Static" ForeColor="Black"></asp:Label>
                                 </div>
                             </div>
                         </div>

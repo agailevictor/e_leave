@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using eleave_c;
 using System.Data;
+using System.Web.Services;
 
 namespace eleave_view.hr
 {
@@ -50,6 +51,15 @@ namespace eleave_view.hr
             oldpwd_hr_txt.Text = "";
             nwpwd_hr_txt.Text = "";
             conf_nwpwd_hr_txt.Text = "";
+        }
+        [WebMethod]
+        public static int oldpchk(int userid,string oldp)
+        {
+            bus_eleave bus = new bus_eleave();
+            bus.userid = userid;
+            bus.password = oldp;
+            int r = bus.oldpchk();
+            return r;
         }
     }
 }
