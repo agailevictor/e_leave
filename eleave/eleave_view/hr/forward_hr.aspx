@@ -67,6 +67,8 @@
                     <ItemTemplate><%# Container.DataItemIndex + 1 %></ItemTemplate>
                 </asp:TemplateField>
                 <asp:BoundField DataField="name" HeaderText="Name" />
+                <asp:BoundField DataField="depname" HeaderText="Department" />
+                <asp:BoundField DataField="desig" HeaderText="Designation" />
                 <asp:BoundField DataField="ltype" HeaderText="Leave Type" />
                 <asp:BoundField DataField="dates" HeaderText="Dates Applied" />
                 <asp:BoundField DataField="period" HeaderText="Period" />
