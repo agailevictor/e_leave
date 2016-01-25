@@ -40,8 +40,7 @@
     <div class="table-responsive">
         <asp:GridView ID="status_hr" runat="server" 
             CssClass="table table-bordered table-hover" AutoGenerateColumns="False" 
-            DataKeyNames="lid" AllowPaging="True" 
-            onpageindexchanging="GridView1_PageIndexChanging" PageSize="5" ClientIDMode="Static" OnPreRender="status_hr_PreRender"  >
+            DataKeyNames="lid" ClientIDMode="Static" OnPreRender="status_hr_PreRender"  >
             <Columns>
                 <asp:TemplateField HeaderText="No.">
                 <ItemTemplate>

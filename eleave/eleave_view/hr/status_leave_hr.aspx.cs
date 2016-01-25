@@ -70,12 +70,6 @@ namespace eleave_view.hr
             }
         }
 
-        protected void GridView1_PageIndexChanging(object sender, GridViewPageEventArgs e)
-        {
-            status_hr.PageIndex = e.NewPageIndex;
-            fill_grid_hr();
-        }
-
         //Cancelling user applied leaves
         protected void btncancel_Click(object sender, EventArgs e)
         {

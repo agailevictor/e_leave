@@ -766,7 +766,7 @@
             }
         }
     </script>
-    <script>
+    <script type="text/javascript">
         function chkoldpswd()
         {
             $('#pulsate-regular').pulsate("destroy");
@@ -814,6 +814,12 @@
 
                 $('#lblop').hide();
             }
+        }
+    </script>
+    <script type="text/javascript">
+        function chkcount()
+        {
+            alert('im changed');
         }
     </script>
 </body>

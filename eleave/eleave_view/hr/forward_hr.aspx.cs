@@ -184,7 +184,7 @@ namespace eleave_view.hr
 
             LinkButton lnkbtn = sender as LinkButton;
             GridViewRow gvrow = lnkbtn.NamingContainer as GridViewRow;
-            string filePath = gvrow.Cells[6].Text.ToString();
+            string filePath = gvrow.Cells[9].Text.ToString();
             Response.ContentType = "application/pdf";
             Response.AddHeader("Content-Disposition", "attachment;filename=\"" + filePath + "\"");
             Response.TransmitFile(Server.MapPath(filePath));

@@ -139,7 +139,7 @@ namespace eleave_view.user
                             FileInfo file = new System.IO.FileInfo(fupload.PostedFile.FileName);
                             string fname = file.Name.Remove((file.Name.Length - file.Extension.Length));
                             fname = fname + System.DateTime.Now.ToString("_dd-MM-yy_hh;mm;ss") + file.Extension; // renaming file uploads
-                            filename = Path.Combine(Server.MapPath("~/uploads/"), fname);
+                            filename = Path.Combine(HttpContext.Current.Server.MapPath("~/uploads/"), fname);
                             string filename_vir = Path.Combine("~/uploads/", fname);
                             //fupload.SaveAs(filename);
                             bus.userid = int.Parse(Session["user_id"].ToString());
