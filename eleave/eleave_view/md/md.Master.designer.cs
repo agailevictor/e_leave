@@ -31,6 +31,15 @@ namespace eleave_view.md {
         protected global::System.Web.UI.WebControls.ContentPlaceHolder head;
         
         /// <summary>
+        /// Label1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label1;
+        
+        /// <summary>
         /// lbluname control.
         /// </summary>
         /// <remarks>
@@ -40,112 +49,58 @@ namespace eleave_view.md {
         protected global::System.Web.UI.WebControls.Label lbluname;
         
         /// <summary>
-        /// accnt control.
+        /// dash control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl accnt;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl dash;
         
         /// <summary>
-        /// chq control.
+        /// leaves control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl chq;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl leaves;
         
         /// <summary>
-        /// dd control.
+        /// leaves1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl dd;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl leaves1;
         
         /// <summary>
-        /// atm control.
+        /// settings control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl atm;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl settings;
         
         /// <summary>
-        /// atm1 control.
+        /// settings1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl atm1;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl settings1;
         
         /// <summary>
-        /// batm control.
+        /// settings2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl batm;
-        
-        /// <summary>
-        /// ben control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl ben;
-        
-        /// <summary>
-        /// ben1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl ben1;
-        
-        /// <summary>
-        /// trans control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl trans;
-        
-        /// <summary>
-        /// loan control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl loan;
-        
-        /// <summary>
-        /// loan1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl loan1;
-        
-        /// <summary>
-        /// loanpay control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl loanpay;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl settings2;
         
         /// <summary>
         /// form1 control.

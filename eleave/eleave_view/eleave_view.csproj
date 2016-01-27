@@ -104,6 +104,7 @@
     <Content Include="assets\js\charts.js" />
     <Content Include="assets\js\datatables.js" />
     <Content Include="assets\js\datatablesuser.js" />
+    <Content Include="assets\js\datatables_md_ed.js" />
     <Content Include="assets\js\form-calendar.js" />
     <Content Include="assets\js\form-dropzone.js" />
     <Content Include="assets\js\form-elements.js" />
@@ -365,8 +366,11 @@
     <Content Include="Login.aspx" />
     <Content Include="Logout.aspx" />
     <Content Include="MainPage.aspx" />
+    <Content Include="md\app_rej.aspx" />
+    <Content Include="md\dash.aspx" />
+    <Content Include="md\listuser.aspx" />
+    <Content Include="md\userleavesall.aspx" />
     <Content Include="md\WebForm1.aspx" />
-    <Content Include="md\WebForm2.aspx" />
     <Content Include="user\applyleave.aspx" />
     <Content Include="user\cancel.aspx" />
     <Content Include="user\dash.aspx" />
@@ -526,6 +530,27 @@
     <Compile Include="MainPage.aspx.designer.cs">
       <DependentUpon>MainPage.aspx</DependentUpon>
     </Compile>
+    <Compile Include="md\app_rej.aspx.cs">
+      <DependentUpon>app_rej.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="md\app_rej.aspx.designer.cs">
+      <DependentUpon>app_rej.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="md\dash.aspx.cs">
+      <DependentUpon>dash.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="md\dash.aspx.designer.cs">
+      <DependentUpon>dash.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="md\listuser.aspx.cs">
+      <DependentUpon>listuser.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="md\listuser.aspx.designer.cs">
+      <DependentUpon>listuser.aspx</DependentUpon>
+    </Compile>
     <Compile Include="md\md.Master.cs">
       <DependentUpon>md.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -533,19 +558,19 @@
     <Compile Include="md\md.Master.designer.cs">
       <DependentUpon>md.Master</DependentUpon>
     </Compile>
+    <Compile Include="md\userleavesall.aspx.cs">
+      <DependentUpon>userleavesall.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="md\userleavesall.aspx.designer.cs">
+      <DependentUpon>userleavesall.aspx</DependentUpon>
+    </Compile>
     <Compile Include="md\WebForm1.aspx.cs">
       <DependentUpon>WebForm1.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="md\WebForm1.aspx.designer.cs">
       <DependentUpon>WebForm1.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="md\WebForm2.aspx.cs">
-      <DependentUpon>WebForm2.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="md\WebForm2.aspx.designer.cs">
-      <DependentUpon>WebForm2.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="user\applyleave.aspx.cs">
@@ -645,11 +670,11 @@
     <None Include="assets\plugins\font-awesome\font\fontawesome-webfontf77b.ttf" />
     <None Include="assets\plugins\font-awesome\font\fontawesome-webfontf77b.woff" />
     <Content Include="user\user.Master" />
-    <Content Include="md\md.Master" />
     <None Include="assets\plugins\swal\themes\facebook\facebook.scss" />
     <None Include="assets\plugins\swal\themes\google\google.scss" />
     <None Include="assets\plugins\swal\themes\twitter\twitter.scss" />
     <Content Include="hr\hr.Master" />
+    <Content Include="md\md.Master" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="uploads\" />

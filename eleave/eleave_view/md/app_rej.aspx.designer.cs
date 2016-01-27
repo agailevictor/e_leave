@@ -10,24 +10,33 @@
 namespace eleave_view.md {
     
     
-    public partial class WebForm2 {
+    public partial class app_rej {
         
         /// <summary>
-        /// form1 control.
+        /// grd_app_rej control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlForm form1;
+        protected global::System.Web.UI.WebControls.GridView grd_app_rej;
         
         /// <summary>
-        /// Button1 control.
+        /// btnaccept control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button1;
+        protected global::System.Web.UI.WebControls.Button btnaccept;
+        
+        /// <summary>
+        /// btnreject control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnreject;
     }
 }

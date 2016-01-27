@@ -71,8 +71,10 @@ namespace eleave_view.hr
             bus.gender = ddlgender.SelectedItem.ToString().Trim();
             bus.doj = DateTime.Parse(txtdoj.Text.Trim());
             bus.dep = int.Parse(ddldep.SelectedValue.ToString());
-            bus.grade = int.Parse(ddlgrade.SelectedValue.ToString());
-            bus.desi = int.Parse(ddldesi.SelectedValue.ToString());
+            //string d = ddldesi.SelectedValue.ToString();
+            bus.desi = int.Parse(Request.Form[ddldesi.UniqueID]);
+            //string g =  Request.Form[ddlgrade.UniqueID];
+            bus.grade = int.Parse(Request.Form[ddlgrade.UniqueID]);
             bus.region = int.Parse(ddlregion.SelectedValue.ToString());
             int r = bus.add_user();
             if (r == 1)

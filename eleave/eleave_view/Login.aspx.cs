@@ -67,9 +67,9 @@ namespace eleave_view
                 {
                     Response.Redirect("~/hr/hrdash.aspx");
                 }
-                else
+                else if (Session["role"].ToString() == "Management")
                 {
-                    Response.Redirect("~/succ.aspx");
+                    Response.Redirect("~/md/dash.aspx");
                 }
             }
             else

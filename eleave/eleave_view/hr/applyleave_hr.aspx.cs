@@ -287,5 +287,12 @@ namespace eleave_view.hr
 
             }
         }
+
+        [WebMethod]
+
+        public static int countchk(int userid, int type, string dates)
+        {
+            return 1;
+        }
     }    
 }

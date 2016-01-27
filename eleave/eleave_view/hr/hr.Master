@@ -754,10 +754,17 @@
                     dataType: "json",
                     success: function (data) {
                         $('#ddlgrade').empty();
-                        $.each(data.d, function (key, value) {
-                            $("#ddlgrade").append($("<option></option>").val(value.grade_id).html(value.grade_desc));
-                            $("#txtcategory").val(value.category);
-                        });
+                        //alert(data.d.length);
+                        //alert(data.d[0].grade_id);
+                        //alert(data.d[0].grade_desc);
+                        for (var i = 0; i < data.d.length; i++) {
+                            $("#ddlgrade").append($("<option></option>").val(data.d[i].grade_id).html(data.d[i].grade_desc));
+                            $("#txtcategory").val(data.d[i].category);
+                        }
+                        //$.each(data.d, function (key, value) {
+                        //    $("#ddlgrade").append($("<option></option>").val(value.grade_id).html(value.grade_desc));
+                        //    $("#txtcategory").val(value.category);
+                        //});
                     },
                     error: function (XMLHttpRequest, textStatus, errorThrown) {
                         //alert("error datepick");
@@ -816,12 +823,48 @@
             }
         }
     </script>
-    <script type="text/javascript">
-        function chkcount()
-        {
-            alert('im changed');
-        }
-    </script>
+<%--    <script type="text/javascript">
+        $('#txtdate_hr').datepicker().on('hide', function () {
+            var userid = '<%= Session["user_id"] %>';
+            var type = $('#ddlltype_hr option:selected').val();
+            var dates = $('#txtdate_hr').val();
+            var data = {};
+            if(dates.length > 0)
+            {
+                $.ajax({
+                    type: "POST",
+                    contentType: "application/json",
+                    data: '{"userid":"' + userid + '","type":"' + type + '","dates":"' + dates + '"}',
+                    url: "applyleave_hr.aspx/countchk",
+                    dataType: "json",
+                    success: function (data) {
+                        //alert(data.d);
+                        if (data.d == 1) {
+                            $('#lblop').hide();
+                            $('#pulsate-regular').pulsate("destroy");
+                            $('#pulsate-regular').hide();
+                        }
+                        else {
+                            $('#pulsate-regular').show();
+                            $('#lblop').show();
+                            $('#pulsate-regular').pulsate({
+                                color: '#C43C35', // set the color of the pulse
+                                reach: 20, // how far the pulse goes in px
+                                speed: 1000, // how long one pulse takes in ms
+                                pause: 0, // how long the pause between pulses is in ms
+                                glow: true, // if the glow should be shown too
+                                repeat: true, // will repeat forever if true, if given a number will repeat for that many times
+                                onHover: false // if true only pulsate if user hovers over the element
+                            });
+                        }
+                    },
+                    error: function (XMLHttpRequest, textStatus, errorThrown) {
+                        //alert("error datepick");
+                    }
+                });
+            }
+    });
+    </script>--%>
 </body>
 <!-- end: BODY -->
 </html>

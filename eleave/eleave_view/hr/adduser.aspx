@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="adduser.aspx.cs" Inherits="eleave_view.hr.adduser" MasterPageFile="~/hr/hr.Master" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="adduser.aspx.cs" Inherits="eleave_view.hr.adduser" MasterPageFile="~/hr/hr.Master" EnableEventValidation="false" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <script type="text/javascript">
@@ -102,7 +102,7 @@
                                 <label class="control-label">
                                    Grade <span class="symbol required"></span>
                                 </label>
-                                <asp:DropDownList ID="ddlgrade" runat="server" CssClass="form-control" ClientIDMode="Static" DataTextField="grade_desc" DataValueField="grade_id"></asp:DropDownList>
+                                <asp:DropDownList ID="ddlgrade" runat="server" CssClass="form-control" ClientIDMode="Static"></asp:DropDownList>
                             </div>
                             <div class="form-group">
                                 <label class="control-label">

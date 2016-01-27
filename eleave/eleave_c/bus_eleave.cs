@@ -221,5 +221,19 @@ namespace eleave_c
         {
             return data.oldpchk(userid,password);
         }
+
+        public DataTable fillleavesapr()
+        {
+            return data.fillleavesapr();
+        }
+
+        public int approve_leave()
+        {
+            return data.approve_leave(lid);
+        }
+        public int reject_leave_md()
+        {
+            return data.reject_leave_md(lid);
+        }
     }
 }

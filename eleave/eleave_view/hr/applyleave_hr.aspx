@@ -137,7 +137,7 @@
                                         Dates <span class="symbol required"></span>
                                     </label>
                                     <asp:TextBox ID="txtdate_hr" runat="server" CssClass="chosen-disabled form-control" 
-                                        ClientIDMode="Static" BackColor="White"></asp:TextBox>
+                                        ClientIDMode="Static" BackColor="White" ></asp:TextBox>
                                 </div>
                                 <div class="form-group">
                                     <label class="control-label">

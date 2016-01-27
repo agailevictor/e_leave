@@ -660,5 +660,57 @@ namespace eleave_m
             cmd.Dispose();
             return res;
         }
+
+        public DataTable fillleavesapr()
+        {
+            cmd.Parameters.Clear();
+            cmd.CommandText = "sp_fill_leaves_app";
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Connection = db.connect();
+            SqlDataAdapter da = new SqlDataAdapter();
+            DataTable dt = new DataTable();
+            da.SelectCommand = cmd;
+            da.Fill(dt);
+            db.disconnect();
+            return dt;
+        }
+
+        public int approve_leave(int lid)
+        {
+            cmd.Parameters.Clear();
+            cmd.CommandText = "sp_approve_leave";
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Connection = db.connect();
+            cmd.Parameters.AddWithValue("@lid", lid);
+            SqlParameter outparam = new SqlParameter();
+            outparam.ParameterName = "@flag";
+            outparam.Direction = ParameterDirection.InputOutput;
+            outparam.DbType = DbType.Int32;
+            outparam.Value = 0;
+            cmd.Parameters.Add(outparam);
+            cmd.ExecuteNonQuery();
+            int res = int.Parse(cmd.Parameters["@flag"].Value.ToString());
+            cmd.Dispose();
+            return res;
+        }
+
+        public int reject_leave_md(int lid)
+        {
+            cmd.Parameters.Clear();
+            cmd.CommandText = "sp_reject_leave_md";
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Connection = db.connect();
+            cmd.Parameters.AddWithValue("@lid", lid);
+            SqlParameter outparam = new SqlParameter();
+            outparam.ParameterName = "@flag";
+            outparam.Direction = ParameterDirection.InputOutput;
+            outparam.DbType = DbType.Int32;
+            outparam.Value = 0;
+            cmd.Parameters.Add(outparam);
+            cmd.ExecuteNonQuery();
+            int res = int.Parse(cmd.Parameters["@flag"].Value.ToString());
+            cmd.Dispose();
+            return res;
+        }
     }
 }
