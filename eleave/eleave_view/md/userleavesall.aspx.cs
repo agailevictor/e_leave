@@ -4,14 +4,36 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Data;
+using eleave_c;
+
 
 namespace eleave_view.md
 {
     public partial class userleavesall : System.Web.UI.Page
     {
+        bus_eleave bus = new bus_eleave();
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!IsPostBack)
+            {
+                fill_leaves_all();
+            }
+        }
+        protected void fill_leaves_all()
+        {
+            DataTable dt = bus.fill_leaves_all();
+            grd_userleaves.DataSource = dt;
+            grd_userleaves.DataBind();
+        }
 
+        protected void grd_userleaves_PreRender(object sender, EventArgs e)
+        {
+            if (grd_userleaves.Rows.Count > 0)
+            {
+                grd_userleaves.UseAccessibleHeader = true;
+                grd_userleaves.HeaderRow.TableSection = TableRowSection.TableHeader;
+            }
         }
     }
 }
