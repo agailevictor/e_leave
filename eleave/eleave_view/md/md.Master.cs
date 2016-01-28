@@ -31,6 +31,10 @@ namespace eleave_view.md
                     leaves.Attributes["class"] = "active";
                     leaves1.Attributes["class"] = "active open";
                     break;
+                case "cancelappr.aspx":
+                    leaves.Attributes["class"] = "active";
+                    leaves2.Attributes["class"] = "active open";
+                    break;
                 case "listuser.aspx":
                     settings.Attributes["class"] = "active";
                     settings1.Attributes["class"] = "active open";

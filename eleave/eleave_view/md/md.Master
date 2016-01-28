@@ -192,6 +192,12 @@
                                     <span class="selected"></span>
                                 </a>
                             </li>
+                            <li id="leaves2" runat="server">
+                                <a href="cancelappr.aspx"><i class="clip-minus-circle-2"></i>
+                                    <span class="title">Cancel Approved </span>
+                                    <span class="selected"></span>
+                                </a>
+                            </li>
                         </ul>
                     </li>
                     <li id="settings" runat="server">
@@ -327,32 +333,11 @@
             TableData.init();
             $('#lblop').hide();
             highcharts();
+            calendar();
+            updateAlerts();
         });
     </script>
 
-    <script>
-        function updateAlerts() {
-            $.ajax({
-                type: "POST",
-                contentType: "application/json",
-                data: "{}",
-                url: "hrdash.aspx/updatealerts",
-                dataType: "json",
-                success: function (data) {
-                    if (data.d > 0) {
-                        $('#info').text(data.d);
-                    }
-                    else {
-                        $('#info').text("");
-                    }
-                },
-                error: function (XMLHttpRequest, textStatus, errorThrown) {
-                    //alert("error notification badge");
-                }
-            });
-        }
-        setInterval(updateAlerts, 10000); // 10 seconds
-    </script>
     <script type="text/javascript">
         function cpassvali() {
             jQuery(document).ready(function () {
@@ -462,11 +447,6 @@
                 success: function (data) {
                     var cat = [], data1 = [], data2 = [], data3 = [], data4 = [];
                     for (var i = 0; i < data.d.length; i++) {
-                        //alert(data.d[i].Name);
-                        //alert(data.d[i].aleave);
-                        //alert(data.d[i].sleave);
-                        //alert(data.d[i].mleave);
-                        //alert(data.d[i].m2leave);
                         cat.push(data.d[i].Name);
                         data1.push(data.d[i].aleave);
                         data2.push(data.d[i].sleave);
@@ -549,6 +529,86 @@
         setInterval(highcharts, 10000);
     </script>
 
+    <script type="text/javascript">
+        function calendar() {
+            $.ajax({
+                type: "POST",
+                contentType: "application/json",
+                data: "{}",
+                url: "dash.aspx/GetEvents",
+                dataType: "json",
+                success: function (data) {
+                    //alert(data.d.length);
+                    var event1 = [];
+                    for (var i = 0; i < data.d.length; i++) {
+                        //alert(data.d[i].EventName);
+                        //alert(data.d[i].EventDate);
+                        //alert(data.d[i].color);
+                        event1.push({
+                            "title": data.d[i].EventName,
+                            "start": data.d[i].EventDate,
+                            "color": data.d[i].color
+                        });
+                    }
+                    var today = new Date();
+                    var dd = today.getDate();
+                    var mm = today.getMonth() + 1; //January is 0!
+                    var yyyy = today.getFullYear();
+
+                    if (dd < 10) {
+                        dd = '0' + dd
+                    }
+
+                    if (mm < 10) {
+                        mm = '0' + mm
+                    }
+                    today = yyyy + '-' + mm + '-' + dd;
+
+                    /* initialize the calendar
+                    -----------------------------------------------------------------*/
+                    $('#calendar').fullCalendar({
+                        header: {
+                            left: 'prev,next today',
+                            center: 'title',
+                            right: 'month,basicWeek,basicDay'
+                        },
+                        defaultDate: today,
+                        editable: true,
+                        droppable: true, // this allows things to be dropped onto the calendar
+                        eventLimit: true, // allow "more" link when too many events
+                        events: event1
+                    });
+                },
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    //alert("error calender");
+                }
+            });
+        }
+    </script>
+
+    <script type="text/javascript">
+        function updateAlerts() {
+            $.ajax({
+                type: "POST",
+                contentType: "application/json",
+                data: "{}",
+                url: "dash.aspx/updatealerts",
+                dataType: "json",
+                success: function (data) {
+                    if (data.d > 0) {
+                        $('#info').text(data.d);
+                    }
+                    else {
+                        $('#info').text("");
+                    }
+                },
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    //alert("error notification badge");
+                }
+            });
+        }
+        setInterval(updateAlerts, 10000); // 10 seconds
+    </script>
 </body>
 <!-- end: BODY -->
 </html>

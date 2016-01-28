@@ -41,7 +41,7 @@ namespace eleave_c
         public string newp { get; set; }
         public string add1 { get; set; }
         public string add2 { get; set; }
-        public int mob { get; set; }
+        public string mob { get; set; }
 
         public int check_login()
         {
@@ -239,6 +239,25 @@ namespace eleave_c
         public DataTable fill_leaves_all_highcharts()
         {
             return data.fill_leaves_all_highcharts();
+        }
+
+        public int fetchalerts_md()
+        {
+            return data.fetchalerts_md();
+        }
+        public int fetchalerts_user()
+        {
+            return data.fetchalerts_user(userid);
+        }
+
+        public DataTable fillcancapprl()
+        {
+            return data.fillcancapprl();
+        }
+
+        public int reject_can_appr()
+        {
+            return data.reject_can_appr(lid);
         }
     }
 }

@@ -51,5 +51,14 @@ namespace eleave_view.user
             }
             return leaves;
         }
+
+        [WebMethod]
+        public static int updatealerts(int userid)
+        {
+            bus_eleave bus = new bus_eleave();
+            bus.userid = userid;
+            int r = bus.fetchalerts_user();
+            return r;
+        }
     }
 }

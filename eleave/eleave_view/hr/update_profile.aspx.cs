@@ -45,7 +45,7 @@ namespace eleave_view.hr
             bus.userid = int.Parse(Session["user_id"].ToString());
             bus.add1 = txtadd1.Text.Trim();
             bus.add2 = txtadd2.Text.Trim();
-            bus.mob = int.Parse(txtphone.Text);
+            bus.mob = txtphone.Text.Trim();
             int r = bus.update_profile();
             if( r==1)
             {

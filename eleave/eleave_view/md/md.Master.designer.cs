@@ -76,6 +76,15 @@ namespace eleave_view.md {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl leaves1;
         
         /// <summary>
+        /// leaves2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl leaves2;
+        
+        /// <summary>
         /// settings control.
         /// </summary>
         /// <remarks>

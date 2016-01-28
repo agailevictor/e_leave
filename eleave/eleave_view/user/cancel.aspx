@@ -9,7 +9,7 @@
             type: 'success'
         },
                 function () {
-                    window.location = "leaves.aspx";
+                    window.location = "listleaves.aspx";
                 });
     }
     </script>

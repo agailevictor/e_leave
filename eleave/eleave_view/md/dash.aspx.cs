@@ -37,5 +37,31 @@ namespace eleave_view.md
             }
             return ls;
         }
+
+        [WebMethod]
+        public static List<Event> GetEvents()
+        {
+            List<Event> events = new List<Event>();
+            bus_eleave bus = new bus_eleave();
+            DataTable dt = bus.fetch_holidays();
+            for (int i = 0; i < dt.Rows.Count; i++)
+            {
+                Event _Event = new Event();
+                _Event.EventID = int.Parse(dt.Rows[i]["event_id"].ToString());
+                _Event.EventName = dt.Rows[i]["event_name"].ToString();
+                _Event.EventDate = dt.Rows[i]["event_date"].ToString();
+                _Event.color = dt.Rows[i]["event_color"].ToString();
+                events.Add(_Event);
+            }
+            return events;
+        }
+
+        [WebMethod]
+        public static int updatealerts()
+        {
+            bus_eleave bus = new bus_eleave();
+            int r = bus.fetchalerts_md();
+            return r;
+        }
     }
 }

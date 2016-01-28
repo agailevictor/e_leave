@@ -619,7 +619,7 @@ namespace eleave_m
             return dt;
         }
 
-        public int update_profile(int uid,string add1,string add2,int mob)
+        public int update_profile(int uid,string add1,string add2,string mob)
         {
             cmd.Parameters.Clear();
             cmd.CommandText = "sp_updateProfile_hr";
@@ -725,6 +725,75 @@ namespace eleave_m
             da.Fill(dt);
             db.disconnect();
             return dt;
+        }
+
+        public int fetchalerts_md()
+        {
+            cmd.Parameters.Clear();
+            cmd.CommandText = "sp_fetchalerts_md";
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Connection = db.connect();
+            SqlParameter outparam = new SqlParameter();
+            outparam.ParameterName = "@flag";
+            outparam.Direction = ParameterDirection.InputOutput;
+            outparam.DbType = DbType.Int32;
+            outparam.Value = 0;
+            cmd.Parameters.Add(outparam);
+            cmd.ExecuteNonQuery();
+            int res = int.Parse(cmd.Parameters["@flag"].Value.ToString());
+            cmd.Dispose();
+            return res;
+        }
+        public int fetchalerts_user(int userid)
+        {
+            cmd.Parameters.Clear();
+            cmd.CommandText = "sp_fetchalerts_user";
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Connection = db.connect();
+            cmd.Parameters.AddWithValue("@userid", userid);
+            SqlParameter outparam = new SqlParameter();
+            outparam.ParameterName = "@flag";
+            outparam.Direction = ParameterDirection.InputOutput;
+            outparam.DbType = DbType.Int32;
+            outparam.Value = 0;
+            cmd.Parameters.Add(outparam);
+            cmd.ExecuteNonQuery();
+            int res = int.Parse(cmd.Parameters["@flag"].Value.ToString());
+            cmd.Dispose();
+            return res;
+        }
+
+        public DataTable fillcancapprl()
+        {
+            cmd.Parameters.Clear();
+            cmd.CommandText = "sp_fillcancapprl";
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Connection = db.connect();
+            SqlDataAdapter da = new SqlDataAdapter();
+            DataTable dt = new DataTable();
+            da.SelectCommand = cmd;
+            da.Fill(dt);
+            db.disconnect();
+            return dt;
+        }
+
+        public int reject_can_appr(int lid)
+        {
+            cmd.Parameters.Clear();
+            cmd.CommandText = "sp_reject_can_appr";
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Connection = db.connect();
+            cmd.Parameters.AddWithValue("@lid", lid);
+            SqlParameter outparam = new SqlParameter();
+            outparam.ParameterName = "@flag";
+            outparam.Direction = ParameterDirection.InputOutput;
+            outparam.DbType = DbType.Int32;
+            outparam.Value = 0;
+            cmd.Parameters.Add(outparam);
+            cmd.ExecuteNonQuery();
+            int res = int.Parse(cmd.Parameters["@flag"].Value.ToString());
+            cmd.Dispose();
+            return res;
         }
     }
 }

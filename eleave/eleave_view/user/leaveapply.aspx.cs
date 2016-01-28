@@ -166,7 +166,7 @@ namespace eleave_view.user
                             }
                             else
                             {
-                                clearfeilds();
+                                clearfeilds1();
                                 ScriptManager.RegisterStartupScript(this, GetType(), "displayalertmessage", "errornotavail();", true);
                             }
 
@@ -242,7 +242,7 @@ namespace eleave_view.user
                 }
                 else if (r1 == 3)
                 {
-                    clearfeilds();
+                    clearfeilds1();
                     ScriptManager.RegisterStartupScript(this, GetType(), "displayalertmessage", "errornotavail();", true);
                 }
                 else
@@ -294,6 +294,11 @@ namespace eleave_view.user
             fill_period();
             fill_leavetypes();
             fill_collegues();
+        }
+
+        protected void clearfeilds1()
+        {
+            txtdate.Text = "";
         }
 
         public void applyleave()

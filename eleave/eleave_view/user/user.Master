@@ -4,7 +4,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <title></title>  
+    <title></title>
     <script type="text/javascript">
 
         function preventBack() {
@@ -28,17 +28,17 @@
     <meta content="" name="author" />
     <!-- end: META -->
     <!-- start: MAIN CSS -->
-    
+
     <link href="../assets/plugins/swal/sweetalert.css" rel="stylesheet" type="text/css" />
     <script src="../assets/plugins/swal/sweetalert.min.js" type="text/javascript"></script>
-    <link href="../assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen"/>
-    <link rel="stylesheet" href="../assets/plugins/font-awesome/css/font-awesome.min.css"/>
-    <link rel="stylesheet" href="../assets/fonts/style.css"/>
-    <link rel="stylesheet" href="../assets/css/main.css"/>
-    <link rel="stylesheet" href="../assets/css/main-responsive.css"/>
-    <link rel="stylesheet" href="../assets/plugins/iCheck/skins/all.css"/>
-    <link rel="stylesheet" href="../assets/plugins/perfect-scrollbar/src/perfect-scrollbar.css"/>
-    <link rel="stylesheet" href="../assets/css/theme_light.css" id="skin_color"/>
+    <link href="../assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen" />
+    <link rel="stylesheet" href="../assets/plugins/font-awesome/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="../assets/fonts/style.css" />
+    <link rel="stylesheet" href="../assets/css/main.css" />
+    <link rel="stylesheet" href="../assets/css/main-responsive.css" />
+    <link rel="stylesheet" href="../assets/plugins/iCheck/skins/all.css" />
+    <link rel="stylesheet" href="../assets/plugins/perfect-scrollbar/src/perfect-scrollbar.css" />
+    <link rel="stylesheet" href="../assets/css/theme_light.css" id="skin_color" />
     <!--[if IE 7]>
 		<link rel="stylesheet" href="../assets/plugins/font-awesome/css/font-awesome-ie7.min.css">
 		<![endif]-->
@@ -46,12 +46,12 @@
     <!-- start: CSS REQUIRED FOR THIS PAGE ONLY -->
     <link rel="stylesheet" href="../assets/plugins/fullcalendar/fullcalendar/fullcalendar.css" />
     <link href="../assets/plugins/circliful/font-awesome.min.css" rel="stylesheet" />
-    <link href="../assets/plugins/circliful/jquery.circliful.css" rel="stylesheet" /> 
+    <link href="../assets/plugins/circliful/jquery.circliful.css" rel="stylesheet" />
     <link href="../assets/plugins/datepicker/css/bootstrap-datepicker3.css" rel="stylesheet" type="text/css" />
     <link href="../assets/plugins/DataTables/media/css/DT_bootstrap.css" rel="stylesheet" />
     <!-- end: CSS REQUIRED FOR THIS PAGE ONLY -->
     <script src="../assets/js/jquery.min.js" type="text/javascript"></script>
-   
+
     <style type="text/css">
         .loader {
             position: fixed;
@@ -78,8 +78,8 @@
     </asp:ContentPlaceHolder>
 </head>
 <body>
-<!-- Loading Container -->
-<%--    <div class="loader"></div>--%>
+    <!-- Loading Container -->
+    <%--    <div class="loader"></div>--%>
     <!--  /Loading Container -->
     <!-- start: HEADER -->
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -110,12 +110,12 @@
 						</li>--%>
                     <!-- end: TO-DO DROPDOWN-->
                     <!-- start: NOTIFICATION DROPDOWN -->
-                    <%--						<li class="dropdown">
-							<a data-toggle="dropdown" data-hover="dropdown" class="dropdown-toggle" data-close-others="true" href="#">
-								<i class="clip-notification-2"></i>
-								<span class="badge"> 11</span>
-							</a>
-						</li>--%>
+                    <li class="dropdown">
+                        <a href="listleaves.aspx" class="dropdown-toggle">
+                            <i class="clip-notification"></i>
+                            <span class="badge" id="info"></span>
+                        </a>
+                    </li>
                     <!-- end: NOTIFICATION DROPDOWN -->
                     <!-- start: MESSAGE DROPDOWN -->
                     <%--						<li class="dropdown">
@@ -194,7 +194,7 @@
                             </li>
                         </ul>
                     </li>
-<%--                    <li id="rpt" runat="server">
+                    <%--                    <li id="rpt" runat="server">
                         <a href="#"><i class="clip-bars"></i>
                             <span class="title">Reports </span>
                             <span class="selected"></span>
@@ -293,6 +293,7 @@
     <script src="../assets/plugins/DataTables/media/js/jquery.dataTables.min.js"></script>
     <script src="../assets/plugins/DataTables/media/js/DT_bootstrap.js"></script>
     <script src="../assets/js/datatablesuser.js"></script>
+    <script src="../assets/plugins/timeout/session_timeout.min.js"></script>
     <!-- end: JAVASCRIPTS REQUIRED FOR THIS PAGE ONLY -->
     <script type="text/javascript">
         jQuery(document).ready(function () {
@@ -304,6 +305,8 @@
             inputlimit();
             hidefupload();
             TableData.init();
+            updateAlerts();
+            sessiontimeout();
         });
     </script>
     <script type="text/javascript">
@@ -468,7 +471,7 @@
     <script type="text/javascript">
         function inputlimit() {
             $('#txtreason').inputlimiter({
-                limit:100,
+                limit: 100,
                 remText: 'You only have %n character%s remaining...',
                 remFullText: 'Stop typing! You\'re not allowed any more characters!',
                 limitText: 'You\'re allowed to input %n character%s into this field.'
@@ -485,7 +488,7 @@
     </script>
     <script type="text/javascript">
         function hidefupload() {
-            $('#fup').hide();  
+            $('#fup').hide();
         }
     </script>
     <script type="text/javascript">
@@ -516,6 +519,47 @@
                 enddate = "31/12/" + year;
                 datepick();
             }
+        }
+    </script>
+
+    <script type="text/javascript">
+        function updateAlerts() {
+            var data = {};
+            var userid = '<%= Session["user_id"] %>';
+            $.ajax({
+                type: "POST",
+                contentType: "application/json",
+                data: '{"userid":"' + userid + '"}',
+                url: "dash.aspx/updatealerts",
+                dataType: "json",
+                success: function (data) {
+                    if (data.d > 0) {
+                        $('#info').text(data.d);
+                    }
+                    else {
+                        $('#info').text("");
+                    }
+                },
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    //alert("error notification badge");
+                }
+            });
+        }
+        setInterval(updateAlerts, 10000); // 10 seconds
+    </script>
+    <script type="text/javascript">
+        function sessiontimeout() {
+            $.sessionTimeout({
+                heading: 'h5',
+                title: 'Session Timeout',
+                message: 'Your session is about to expire. Do you want to stay connected?',
+                ignoreUserActivity: true,
+                warnAfter: 10000,
+                redirAfter: 30000,
+                keepAliveUrl: '/',
+                redirUrl: '../Logout.aspx',
+                logoutUrl: '../Logout.aspx'
+            });
         }
     </script>
 </body>

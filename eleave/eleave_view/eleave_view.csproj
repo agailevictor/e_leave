@@ -351,6 +351,7 @@
     <Content Include="assets\plugins\swal\themes\facebook\facebook.css" />
     <Content Include="assets\plugins\swal\themes\google\google.css" />
     <Content Include="assets\plugins\swal\themes\twitter\twitter.css" />
+    <Content Include="assets\plugins\timeout\session_timeout.min.js" />
     <Content Include="hr\adduser.aspx" />
     <Content Include="hr\applyleave_hr.aspx" />
     <Content Include="hr\approve_leave_hr.aspx" />
@@ -370,12 +371,14 @@
     <Content Include="Logout.aspx" />
     <Content Include="MainPage.aspx" />
     <Content Include="md\app_rej.aspx" />
+    <Content Include="md\cancelappr.aspx" />
     <Content Include="md\chg_pass.aspx" />
     <Content Include="md\dash.aspx" />
     <Content Include="md\listuser.aspx" />
     <Content Include="md\update_profile.aspx" />
     <Content Include="md\userleavesall.aspx" />
     <Content Include="md\WebForm1.aspx" />
+    <Content Include="Test.aspx" />
     <Content Include="user\applyleave.aspx" />
     <Content Include="user\cancel.aspx" />
     <Content Include="user\dash.aspx" />
@@ -542,6 +545,13 @@
     <Compile Include="md\app_rej.aspx.designer.cs">
       <DependentUpon>app_rej.aspx</DependentUpon>
     </Compile>
+    <Compile Include="md\cancelappr.aspx.cs">
+      <DependentUpon>cancelappr.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="md\cancelappr.aspx.designer.cs">
+      <DependentUpon>cancelappr.aspx</DependentUpon>
+    </Compile>
     <Compile Include="md\chg_pass.aspx.cs">
       <DependentUpon>chg_pass.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -592,6 +602,13 @@
       <DependentUpon>WebForm1.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Test.aspx.cs">
+      <DependentUpon>Test.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Test.aspx.designer.cs">
+      <DependentUpon>Test.aspx</DependentUpon>
+    </Compile>
     <Compile Include="user\applyleave.aspx.cs">
       <DependentUpon>applyleave.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
