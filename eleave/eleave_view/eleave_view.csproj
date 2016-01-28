@@ -101,6 +101,7 @@
     <Content Include="assets\js\bulkuploadvalidation.js" />
     <Content Include="assets\js\applyleave_hr.js" />
     <Content Include="assets\js\changepassword.js" />
+    <Content Include="assets\js\changepasswordmd.js" />
     <Content Include="assets\js\charts.js" />
     <Content Include="assets\js\datatables.js" />
     <Content Include="assets\js\datatablesuser.js" />
@@ -196,6 +197,8 @@
     <Content Include="assets\plugins\gritter\images\gritter.png" />
     <Content Include="assets\plugins\gritter\images\ie-spacer.gif" />
     <Content Include="assets\plugins\gritter\js\jquery.gritter.min.js" />
+    <Content Include="assets\plugins\highcharts\exporting.js" />
+    <Content Include="assets\plugins\highcharts\highcharts.js" />
     <Content Include="assets\plugins\iCheck\jquery.icheck.min.js" />
     <Content Include="assets\plugins\iCheck\skins\all.css" />
     <Content Include="assets\plugins\iCheck\skins\flat\aero%402x.png" />
@@ -367,8 +370,10 @@
     <Content Include="Logout.aspx" />
     <Content Include="MainPage.aspx" />
     <Content Include="md\app_rej.aspx" />
+    <Content Include="md\chg_pass.aspx" />
     <Content Include="md\dash.aspx" />
     <Content Include="md\listuser.aspx" />
+    <Content Include="md\update_profile.aspx" />
     <Content Include="md\userleavesall.aspx" />
     <Content Include="md\WebForm1.aspx" />
     <Content Include="user\applyleave.aspx" />
@@ -537,6 +542,13 @@
     <Compile Include="md\app_rej.aspx.designer.cs">
       <DependentUpon>app_rej.aspx</DependentUpon>
     </Compile>
+    <Compile Include="md\chg_pass.aspx.cs">
+      <DependentUpon>chg_pass.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="md\chg_pass.aspx.designer.cs">
+      <DependentUpon>chg_pass.aspx</DependentUpon>
+    </Compile>
     <Compile Include="md\dash.aspx.cs">
       <DependentUpon>dash.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -557,6 +569,13 @@
     </Compile>
     <Compile Include="md\md.Master.designer.cs">
       <DependentUpon>md.Master</DependentUpon>
+    </Compile>
+    <Compile Include="md\update_profile.aspx.cs">
+      <DependentUpon>update_profile.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="md\update_profile.aspx.designer.cs">
+      <DependentUpon>update_profile.aspx</DependentUpon>
     </Compile>
     <Compile Include="md\userleavesall.aspx.cs">
       <DependentUpon>userleavesall.aspx</DependentUpon>

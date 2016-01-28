@@ -235,5 +235,10 @@ namespace eleave_c
         {
             return data.reject_leave_md(lid);
         }
+
+        public DataTable fill_leaves_all_highcharts()
+        {
+            return data.fill_leaves_all_highcharts();
+        }
     }
 }

@@ -51,6 +51,7 @@
     <link href="../assets/plugins/DataTables/media/css/DT_bootstrap.css" rel="stylesheet" />
     <!-- end: CSS REQUIRED FOR THIS PAGE ONLY -->
     <script src="../assets/js/jquery.min.js" type="text/javascript"></script>
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
     <style type="text/css">
         .loader {
             position: fixed;
@@ -110,7 +111,7 @@
                     <!-- end: TO-DO DROPDOWN-->
                     <!-- start: NOTIFICATION DROPDOWN -->
                     <li class="dropdown">
-                        <a href="forward_hr.aspx" class="dropdown-toggle">
+                        <a href="app_rej.aspx" class="dropdown-toggle">
                             <i class="clip-notification"></i>
                             <span class="badge" id="info"></span>
                         </a>
@@ -139,7 +140,7 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="chg_pass_hr.aspx">
+                                <a href="chg_pass.aspx">
                                     <i class="clip-key "></i>
                                     &nbsp;Change Password
                                 </a>
@@ -213,7 +214,7 @@
                             </li>
                         </ul>
                     </li>
-<%--                    <li id="rpt" runat="server">
+                    <%--                    <li id="rpt" runat="server">
                         <a href="#"><i class="clip-bars"></i>
                             <span class="title">Reports </span>
                             <span class="selected"></span>
@@ -308,17 +309,15 @@
     <script src="../assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js" type="text/javascript"></script>
     <script src="../assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js" type="text/javascript"></script>
     <script src="../assets/plugins/jquery-validation/dist/jquery.validate.min.js" type="text/javascript"></script>
-    <script src="../assets/js/bulkuploadvalidation.js"></script>
-    <script src="../assets/js/leaveformval.js" type="text/javascript"></script>
-    <script src="../assets/js/applyleave_hr.js" type="text/javascript"></script>
-    <script src="../assets/js/uservalidation.js"></script>
-    <script src="../assets/js/changepassword.js"></script>
+    <script src="../assets/js/changepasswordmd.js"></script>
     <script src="../assets/js/updateprofile.js"></script>
     <script src="../assets/plugins/select2/select2.min.js"></script>
-   <script src="../assets/plugins/DataTables/media/js/jquery.dataTables.min.js"></script>
+    <script src="../assets/plugins/DataTables/media/js/jquery.dataTables.min.js"></script>
     <script src="../assets/plugins/DataTables/media/js/DT_bootstrap.js"></script>
     <script src="../assets/js/datatables_md_ed.js"></script>
     <script src="../assets/plugins/jquery.pulsate/jquery.pulsate.min.js"></script>
+    <script src="../assets/plugins/highcharts/highcharts.js"></script>
+    <script src="../assets/plugins/highcharts/exporting.js"></script>
     <!-- end: JAVASCRIPTS REQUIRED FOR THIS PAGE ONLY -->
     <script type="text/javascript">
         jQuery(document).ready(function () {
@@ -327,7 +326,7 @@
             updateAlerts();
             TableData.init();
             $('#lblop').hide();
-
+            highcharts();
         });
     </script>
 
@@ -365,61 +364,60 @@
     <script type="text/javascript">
         $('#oldp').on('click', function () {
             //alert($('#oldpwd_hr_txt').attr('type'));
-            if ($('#oldpwd_hr_txt').attr('type')=="password") {
-                $("#oldpwd_hr_txt").attr("type", "text");
+            if ($('#txt_oldpwd').attr('type') == "password") {
+                $("#txt_oldpwd").attr("type", "text");
             }
             else {
-                $("#oldpwd_hr_txt").attr("type", "password");
+                $("#txt_oldpwd").attr("type", "password");
             }
         })
     </script>
     <script type="text/javascript">
         $('#newp').on('click', function () {
             //alert($('#oldpwd_hr_txt').attr('type'));
-            if ($('#nwpwd_hr_txt').attr('type') == "password") {
-                $("#nwpwd_hr_txt").attr("type", "text");
+            if ($('#txt_nwpwd').attr('type') == "password") {
+                $("#txt_nwpwd").attr("type", "text");
             }
             else {
-                $("#nwpwd_hr_txt").attr("type", "password");
+                $("#txt_nwpwd").attr("type", "password");
             }
         })
     </script>
     <script type="text/javascript">
         $('#cp').on('click', function () {
             //alert($('#oldpwd_hr_txt').attr('type'));
-            if ($('#conf_nwpwd_hr_txt').attr('type') == "password") {
-                $("#conf_nwpwd_hr_txt").attr("type", "text");
+            if ($('#txt_conf_nwpwd').attr('type') == "password") {
+                $("#txt_conf_nwpwd").attr("type", "text");
             }
             else {
-                $("#conf_nwpwd_hr_txt").attr("type", "password");
+                $("#txt_conf_nwpwd").attr("type", "password");
             }
         })
     </script>
-        <script type="text/javascript">
-            function uprofilevali() {
-                jQuery(document).ready(function () {
-                    //alert('im called user');
-                    uprofileval.init();
-                });
-            }
+    <script type="text/javascript">
+        function uprofilevali() {
+            jQuery(document).ready(function () {
+                //alert('im called user');
+                uprofileval.init();
+            });
+        }
     </script>
     <script type="text/javascript">
-        function chkoldpswd()
-        {
+        function chkoldpswd() {
             $('#pulsate-regular').pulsate("destroy");
             //alert('im called');
             var oldp;
             var data = {};
             var userid = '<%= Session["user_id"] %>';
             //alert(userid);
-            oldp = $('#oldpwd_hr_txt').val();
+            oldp = $('#txt_oldpwd').val();
             //alert(oldp);
             if (oldp.length > 0) {
                 $.ajax({
                     type: "POST",
                     contentType: "application/json",
                     data: '{"userid":"' + userid + '","oldp":"' + oldp + '"}',
-                    url: "chg_pass_hr.aspx/oldpchk",
+                    url: "chg_pass.aspx/oldpchk",
                     dataType: "json",
                     success: function (data) {
                         //alert(data.d);
@@ -453,48 +451,104 @@
             }
         }
     </script>
-<%--    <script type="text/javascript">
-        $('#txtdate_hr').datepicker().on('hide', function () {
-            var userid = '<%= Session["user_id"] %>';
-            var type = $('#ddlltype_hr option:selected').val();
-            var dates = $('#txtdate_hr').val();
-            var data = {};
-            if(dates.length > 0)
-            {
-                $.ajax({
-                    type: "POST",
-                    contentType: "application/json",
-                    data: '{"userid":"' + userid + '","type":"' + type + '","dates":"' + dates + '"}',
-                    url: "applyleave_hr.aspx/countchk",
-                    dataType: "json",
-                    success: function (data) {
-                        //alert(data.d);
-                        if (data.d == 1) {
-                            $('#lblop').hide();
-                            $('#pulsate-regular').pulsate("destroy");
-                            $('#pulsate-regular').hide();
-                        }
-                        else {
-                            $('#pulsate-regular').show();
-                            $('#lblop').show();
-                            $('#pulsate-regular').pulsate({
-                                color: '#C43C35', // set the color of the pulse
-                                reach: 20, // how far the pulse goes in px
-                                speed: 1000, // how long one pulse takes in ms
-                                pause: 0, // how long the pause between pulses is in ms
-                                glow: true, // if the glow should be shown too
-                                repeat: true, // will repeat forever if true, if given a number will repeat for that many times
-                                onHover: false // if true only pulsate if user hovers over the element
-                            });
-                        }
-                    },
-                    error: function (XMLHttpRequest, textStatus, errorThrown) {
-                        //alert("error datepick");
+    <script type="text/javascript">
+        function highcharts() {
+            $.ajax({
+                type: "POST",
+                contentType: "application/json",
+                data: "{}",
+                url: "dash.aspx/highcharts",
+                dataType: "json",
+                success: function (data) {
+                    var cat = [], data1 = [], data2 = [], data3 = [], data4 = [];
+                    for (var i = 0; i < data.d.length; i++) {
+                        //alert(data.d[i].Name);
+                        //alert(data.d[i].aleave);
+                        //alert(data.d[i].sleave);
+                        //alert(data.d[i].mleave);
+                        //alert(data.d[i].m2leave);
+                        cat.push(data.d[i].Name);
+                        data1.push(data.d[i].aleave);
+                        data2.push(data.d[i].sleave);
+                        data3.push(data.d[i].mleave);
+                        data4.push(data.d[i].m2leave);
                     }
-                });
-            }
-    });
-    </script>--%>
+                    $('#container').highcharts({
+                        chart: {
+                            type: 'column'
+                        },
+                        title: {
+                            text: 'Stacked leave chart'
+                        },
+                        xAxis: {
+                            categories: cat
+                        },
+                        yAxis: {
+                            min: 0,
+                            title: {
+                                text: 'Total leaves available for the current year'
+                            },
+                            stackLabels: {
+                                enabled: true,
+                                style: {
+                                    fontWeight: 'bold',
+                                    color: (Highcharts.theme && Highcharts.theme.textColor) || 'gray'
+                                }
+                            }
+                        },
+                        legend: {
+                            align: 'right',
+                            x: -30,
+                            verticalAlign: 'top',
+                            y: 25,
+                            floating: true,
+                            backgroundColor: (Highcharts.theme && Highcharts.theme.background2) || 'white',
+                            borderColor: '#CCC',
+                            borderWidth: 1,
+                            shadow: false
+                        },
+                        tooltip: {
+                            headerFormat: '<b>{point.x}</b><br/>',
+                            pointFormat: '{series.name}: {point.y}<br/>Total: {point.stackTotal}'
+                        },
+                        plotOptions: {
+                            column: {
+                                stacking: 'normal',
+                                dataLabels: {
+                                    enabled: true,
+                                    color: (Highcharts.theme && Highcharts.theme.dataLabelsColor) || 'white',
+                                    style: {
+                                        textShadow: '0 0 3px black'
+                                    }
+                                }
+                            }
+                        },
+                        series: [{
+                            name: 'Annual Leave',
+                            data: data1
+                        }, {
+                            name: 'Medical Leave',
+                            data: data2
+                        },
+                        {
+                            name: 'Marriage Leave',
+                            data: data3
+                        },
+                        {
+                            name: 'Maternity Leave',
+                            data: data4
+                        }]
+                    });
+                },
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    //alert("error notification badge");
+                }
+            });
+
+        }
+        setInterval(highcharts, 10000);
+    </script>
+
 </body>
 <!-- end: BODY -->
 </html>

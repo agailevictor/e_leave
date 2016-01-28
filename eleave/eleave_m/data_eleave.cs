@@ -712,5 +712,19 @@ namespace eleave_m
             cmd.Dispose();
             return res;
         }
+
+        public DataTable fill_leaves_all_highcharts()
+        {
+            cmd.Parameters.Clear();
+            cmd.CommandText = "sp_userleaves_all_highcharts";
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Connection = db.connect();
+            SqlDataAdapter da = new SqlDataAdapter();
+            DataTable dt = new DataTable();
+            da.SelectCommand = cmd;
+            da.Fill(dt);
+            db.disconnect();
+            return dt;
+        }
     }
 }
