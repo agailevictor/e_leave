@@ -25,7 +25,7 @@
         <h1>Cancel Approved Leaves</h1>
     </div>
     <div class="table-responsive">
-        <asp:GridView ID="grdcancelappr" runat="server" CssClass="table table-bordered table-hover" AutoGenerateColumns="False" DataKeyNames="lid">
+        <asp:GridView ID="grdcancelappr" runat="server" CssClass="table table-bordered table-hover" AutoGenerateColumns="False" DataKeyNames="lid" ClientIDMode="Static" OnPreRender="grdcancelappr_PreRender">
             <Columns>
                 <asp:TemplateField HeaderText="No.">
                     <ItemTemplate><%# Container.DataItemIndex + 1 %></ItemTemplate>
@@ -37,6 +37,11 @@
                 <asp:BoundField DataField="dates" HeaderText="Dates Applied" />
                 <asp:BoundField DataField="period" HeaderText="Period" />
                 <asp:BoundField DataField="reason" HeaderText="Reason" />
+                <asp:BoundField DataField="idate" HeaderText="idate">
+                    <HeaderStyle CssClass="hidden"></HeaderStyle>
+
+                    <ItemStyle CssClass="hidden"></ItemStyle>
+                </asp:BoundField>
                 <asp:TemplateField HeaderText="Approve">
                     <ItemTemplate>
                         <asp:LinkButton ID="lnkapprove" runat="server" CssClass="btn btn-green" OnClick="lnkapprove_Click"><i class="glyphicon glyphicon-ok-sign"></i></asp:LinkButton>

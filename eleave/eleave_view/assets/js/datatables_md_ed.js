@@ -91,6 +91,35 @@
         // modify table per page dropdown
     };
 
+    var runDataTable3 = function () {
+        var oTable = $('#grdcancelappr').dataTable({
+            "aoColumnDefs": [{
+                "aTargets": [0]
+            }],
+            "oLanguage": {
+                "sLengthMenu": "Show _MENU_ Rows",
+                "sSearch": "",
+                "oPaginate": {
+                    "sPrevious": "",
+                    "sNext": ""
+                }
+            },
+            "aaSorting": [
+                [0, 'asc']
+            ],
+            "aLengthMenu": [
+                [5, 10, 15, 20, -1],
+                [5, 10, 15, 20, "All"] // change per page values here
+            ],
+            // set the initial value
+            "iDisplayLength": 5,
+        });
+        $('#grdcancelappr_wrapper .dataTables_filter input').addClass("form-control input-sm").attr("placeholder", "Search");
+        // modify table search input
+        $('#grdcancelappr_wrapper .dataTables_length select').addClass("m-wrap small");
+        // modify table per page dropdown
+    };
+
 
     return {
         //main function to initiate template pages
@@ -98,6 +127,7 @@
             runDataTable();
             runDataTable1();
             runDataTable2();
+            runDataTable3();
         }
     };
 }();

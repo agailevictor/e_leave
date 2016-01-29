@@ -12,6 +12,8 @@ namespace eleave_view.md
     public partial class cancelappr : System.Web.UI.Page
     {
         bus_eleave bus = new bus_eleave();
+        string idate, a, a1;
+        DateTime dt1, dt2;
         protected void Page_Load(object sender, EventArgs e)
         {
             if(!IsPostBack)
@@ -29,7 +31,28 @@ namespace eleave_view.md
 
         protected void lnkapprove_Click(object sender, EventArgs e)
         {
+            LinkButton lnk = sender as LinkButton;
+            GridViewRow row = lnk.NamingContainer as GridViewRow;
+            a = row.Cells[5].Text.ToString().Trim();
+            idate = row.Cells[8].Text.ToString().Trim();
+            string[] values = a.Split(',');
+            for (int i = 0; i < values.Length; i++)
+            {
+                a1 = values[i].ToString();
+                dt1 = DateTime.Parse(a1);
+                dt2 = DateTime.Parse(idate);
+                if (dt1 > dt2)
+                {
+                    // can cancel that leave
+                    // get the count of the leaves
+                }
+                else
+                {
+                    //can't cancel that leave
+                    // get the count of the leaves, update the days requested to these days
+                }
 
+            }
         }
 
         protected void lnkreject_Click(object sender, EventArgs e)
@@ -48,6 +71,15 @@ namespace eleave_view.md
             {
                 fillcancapprl();
                 ScriptManager.RegisterStartupScript(this, GetType(), "displayalertmessage", "error();", true);
+            }
+        }
+
+        protected void grdcancelappr_PreRender(object sender, EventArgs e)
+        {
+            if (grdcancelappr.Rows.Count > 0)
+            {
+                grdcancelappr.UseAccessibleHeader = true;
+                grdcancelappr.HeaderRow.TableSection = TableRowSection.TableHeader;
             }
         }
     }

@@ -343,6 +343,7 @@
     <script src="../assets/plugins/DataTables/media/js/DT_bootstrap.js"></script>
     <script src="../assets/js/datatables.js"></script>
     <script src="../assets/plugins/jquery.pulsate/jquery.pulsate.min.js"></script>
+    <script src="../assets/plugins/timeout/session_timeout.min.js"></script>
     <!-- end: JAVASCRIPTS REQUIRED FOR THIS PAGE ONLY -->
     <script type="text/javascript">
         jQuery(document).ready(function () {
@@ -358,7 +359,7 @@
             updateAlerts();
             TableData.init();
             $('#lblop').hide();
-
+            sessiontimeout();
         });
     </script>
 
@@ -865,6 +866,21 @@
             }
     });
     </script>--%>
+        <script type="text/javascript">
+            function sessiontimeout() {
+                $.sessionTimeout({
+                    heading: 'h5',
+                    title: 'Session Timeout',
+                    message: 'Your session is about to expire. Do you want to stay connected?',
+                    ignoreUserActivity: true,
+                    warnAfter: 10000,
+                    redirAfter: 30000,
+                    keepAliveUrl: '/',
+                    redirUrl: '../Logout.aspx',
+                    logoutUrl: '../Logout.aspx'
+                });
+            }
+    </script>
 </body>
 <!-- end: BODY -->
 </html>
