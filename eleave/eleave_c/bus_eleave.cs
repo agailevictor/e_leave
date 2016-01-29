@@ -259,5 +259,15 @@ namespace eleave_c
         {
             return data.reject_can_appr(lid);
         }
+
+        public int cancel_all_approved()
+        {
+            return data.cancel_all_approved(lid);
+        }
+
+        public int cancel_av_approved()
+        {
+            return data.cancel_av_approved(lid,dates,rdays);
+        }
     }
 }

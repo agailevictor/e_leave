@@ -104,25 +104,25 @@ namespace eleave_view.hr
                             }
                             else
                             {
-                                clearfeilds();
+                                clearfeilds1();
                                 ScriptManager.RegisterStartupScript(this, GetType(), "displayalertmessage", "errornotavail();", true);
                             }
                         }
                         else
                         {
-                            clearfeilds();
+                            clearfeilds2();
                             ScriptManager.RegisterStartupScript(this, GetType(), "displayalertmessage", "errorpdf();", true);
                         }
                     }
                     else
                     {
-                        clearfeilds();
+                        clearfeilds2();
                         ScriptManager.RegisterStartupScript(this, GetType(), "displayalertmessage", "errorpdfsize();", true);
                     }
                 }
                 else
                 {
-                    clearfeilds();
+                    clearfeilds2();
                     ScriptManager.RegisterStartupScript(this, GetType(), "displayalertmessage", "error();", true);
                 }
             }
@@ -167,7 +167,7 @@ namespace eleave_view.hr
                 }
                 else if (r1 == 3)
                 {
-                    clearfeilds();
+                    clearfeilds1();
                     ScriptManager.RegisterStartupScript(this, GetType(), "displayalertmessage", "errornotavail();", true);
                 }
                 else
@@ -188,6 +188,16 @@ namespace eleave_view.hr
             fill_ltype_hr();
             fill_period_hr();
             fill_collegues_hr();
+        }
+
+        protected void clearfeilds1()
+        {
+            txtdate_hr.Text = "";
+        }
+
+        protected void clearfeilds2()
+        {
+            ddlltype_hr.SelectedIndex = 0;
         }
 
         //To get the no: of days selected
@@ -231,6 +241,7 @@ namespace eleave_view.hr
                 lblname_hr.Text = dt1.Rows[0][0].ToString();
                 lbldep_hr.Text = dt1.Rows[0][1].ToString();
                 lblpos_hr.Text = dt1.Rows[0][2].ToString();
+                txtphone_hr.Text = dt1.Rows[0][3].ToString();
             }
             else
             {

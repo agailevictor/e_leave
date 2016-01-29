@@ -619,8 +619,8 @@
                 title: 'Session Timeout',
                 message: 'Your session is about to expire. Do you want to stay connected?',
                 ignoreUserActivity: true,
-                warnAfter: 10000,
-                redirAfter: 30000,
+                warnAfter: 90000, //1.5 minutes
+                redirAfter: 100000, // 1.6 minute
                 keepAliveUrl: '/',
                 redirUrl: '../Logout.aspx',
                 logoutUrl: '../Logout.aspx'

@@ -73,6 +73,7 @@ namespace eleave_view.user
                 lblname.Text = dt1.Rows[0][0].ToString();
                 lbldep.Text = dt1.Rows[0][1].ToString();
                 lblpos.Text = dt1.Rows[0][2].ToString();
+                txtphone.Text = dt1.Rows[0][3].ToString();
             }
             else
             {
@@ -173,20 +174,20 @@ namespace eleave_view.user
                         }
                         else
                         {
-                            clearfeilds();
+                            clearfeilds2();
                             ScriptManager.RegisterStartupScript(this, GetType(), "displayalertmessage", "errorpdf();", true);
                             //ScriptManager.RegisterStartupScript(this, GetType(), "displayalertmessage", "errorpdf();window.location='" + Request.ApplicationPath + "user/leaves.aspx';", true);
                         }
                     }
                     else
                     {
-                        clearfeilds();
+                        clearfeilds2();
                         ScriptManager.RegisterStartupScript(this, GetType(), "displayalertmessage", "errorpdfsize();", true);
                     }
                 }
                 else
                 {
-                    clearfeilds();
+                    clearfeilds2();
                     ScriptManager.RegisterStartupScript(this, GetType(), "displayalertmessage", "error();", true);
                 }
             }
@@ -299,6 +300,11 @@ namespace eleave_view.user
         protected void clearfeilds1()
         {
             txtdate.Text = "";
+        }
+
+        protected void clearfeilds2()
+        {
+            ddlltype.SelectedIndex = 0;
         }
 
         public void applyleave()

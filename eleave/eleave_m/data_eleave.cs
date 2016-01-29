@@ -795,5 +795,45 @@ namespace eleave_m
             cmd.Dispose();
             return res;
         }
+
+        public int cancel_all_approved(int lid)
+        {
+            cmd.Parameters.Clear();
+            cmd.CommandText = "sp_cancel_all_approved";
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Connection = db.connect();
+            cmd.Parameters.AddWithValue("@lid", lid);
+            SqlParameter outparam = new SqlParameter();
+            outparam.ParameterName = "@flag";
+            outparam.Direction = ParameterDirection.InputOutput;
+            outparam.DbType = DbType.Int32;
+            outparam.Value = 0;
+            cmd.Parameters.Add(outparam);
+            cmd.ExecuteNonQuery();
+            int res = int.Parse(cmd.Parameters["@flag"].Value.ToString());
+            cmd.Dispose();
+            return res;
+        }
+
+        public int cancel_av_approved(int lid, string dates, double rdays)
+        {
+            cmd.Parameters.Clear();
+            cmd.CommandText = "sp_cancel_av_approved";
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Connection = db.connect();
+            cmd.Parameters.AddWithValue("@lid", lid);
+            cmd.Parameters.AddWithValue("@dates", dates);
+            cmd.Parameters.AddWithValue("@rdays", rdays);
+            SqlParameter outparam = new SqlParameter();
+            outparam.ParameterName = "@flag";
+            outparam.Direction = ParameterDirection.InputOutput;
+            outparam.DbType = DbType.Int32;
+            outparam.Value = 0;
+            cmd.Parameters.Add(outparam);
+            cmd.ExecuteNonQuery();
+            int res = int.Parse(cmd.Parameters["@flag"].Value.ToString());
+            cmd.Dispose();
+            return res;
+        }
     }
 }

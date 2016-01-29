@@ -37,7 +37,7 @@
                     </div>
                 </div>
                 <div class="panel-body">
-                                            <h4 style="text-align: justify">Format for Uploading the data,copy all the cells in the excel and paste it into the below shown box.
+                                            <h4 style="text-align: justify">Format for Uploading the data,copy all the cells in the excel including the header and paste it into the below shown box.
                             The columns must in the format Event Name,Event Date(yyyy-mm-dd),Event Color</h4>
                         <img src="../assets/images/leaves.jpg" height="auto" width="100%" />
                     <hr>

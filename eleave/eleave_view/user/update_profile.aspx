@@ -1,17 +1,15 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="leaveapply.aspx.cs" Inherits="eleave_view.user.leaveapply"
-    MasterPageFile="~/user/user.Master" %>
-
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="update_profile.aspx.cs" Inherits="eleave_view.user.update_profile" MasterPageFile="~/user/user.Master" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <script type="text/javascript">
         function success() {
             swal({
                 title: 'Success!',
-                text: 'Your request has been succesfully sent',
+                text: 'Your profile has been succesfully Updated',
                 type: 'success'
-            },
+                },
                 function () {
-                    window.location = "leaves.aspx";
-                });
+                    window.location = "dash.aspx";
+            });
         }
     </script>
     <script type="text/javascript">
@@ -32,53 +30,26 @@
             });
         }
     </script>
-    <script type="text/javascript">
-        function errorpdf() {
-            swal({
-                title: 'Error!',
-                text: 'Invalid File Extension/ Format',
-                type: 'error'
-            });
-        }
-    </script>
-    <script type="text/javascript">
-        function errorpdfsize() {
-            swal({
-                title: 'Error!',
-                text: 'Max File size is 2 MB',
-                type: 'error'
-            });
-        }
-    </script>
-    <script type="text/javascript">
-        function errornotavail() {
-            swal({
-                title: 'Error!',
-                text: 'You Leave Count is Insufficiant ',
-                type: 'error'
-            });
-        }
-    </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="page-header">
-        <h1>Request Leave</h1>
+        <h1>Update Profile</h1>
     </div>
     <div class="row">
         <div class="col-md-12">
-            <!-- start: FORM VALIDATION 2 PANEL -->
+            <!-- start: Edit Profile -->
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <i class="icon-external-link-sign"></i>Request Leave
+                    <i class="clip-user-4"></i>Update Profile
                     <div class="panel-tools">
-                        <a class="btn btn-xs btn-link panel-collapse collapses" href="#"></a><a class="btn btn-xs btn-link panel-expand"
-                            href="#"><i class="icon-resize-full"></i></a><a class="btn btn-xs btn-link panel-close"
-                                href="#"><i class="icon-remove"></i></a>
+                        <a class="btn btn-xs btn-link panel-collapse collapses" href="#"></a>
+                        <a class="btn btn-xs btn-link panel-expand" href="#"><i class="icon-resize-full"></i></a>
+                        <a class="btn btn-xs btn-link panel-close" href="#"><i class="icon-remove"></i></a>
                     </div>
                 </div>
                 <div class="panel-body">
                     <h2>
-                        <i class="icon-edit-sign teal"></i>REQUEST</h2>
+                        <i class="icon-edit-sign teal"></i>Update Profile</h2>
                     <hr>
                     <div class="row">
                         <div class="col-md-12">
@@ -99,9 +70,23 @@
                             </div>
                             <div class="form-group">
                                 <label class="control-label">
-                                    Position <span class="symbol required"></span>
+                                    UserName <span class="symbol required"></span>
                                 </label>
-                                <asp:Label ID="lblpos" runat="server" CssClass="form-control"
+                                <asp:Label ID="lbluname" runat="server" CssClass="form-control"
+                                    ClientIDMode="Static"></asp:Label>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label">
+                                    Gender <span class="symbol required"></span>
+                                </label>
+                                <asp:Label ID="lblgender" runat="server" CssClass="form-control"
+                                    ClientIDMode="Static"></asp:Label>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label">
+                                    Date Of Join <span class="symbol required"></span>
+                                </label>
+                                <asp:Label ID="lbldoj" runat="server" CssClass="form-control"
                                     ClientIDMode="Static"></asp:Label>
                             </div>
                             <div class="form-group">
@@ -113,52 +98,29 @@
                             </div>
                             <div class="form-group">
                                 <label class="control-label">
-                                    Leave Type <span class="symbol required"></span>
+                                    Designation <span class="symbol required"></span>
                                 </label>
-                                <asp:DropDownList ID="ddlltype" runat="server" CssClass="form-control"
-                                    ClientIDMode="Static" onchange="hideshowfup()" DataTextField="leave_type"
-                                    DataValueField="ltype_id">
-                                </asp:DropDownList>
-                            </div>
-                            <div class="form-group" id="fup">
-                                <label class="control-label">
-                                    Upload File <span class="symbol required"></span>
-                                </label>
-                                <asp:FileUpload ID="fupload" runat="server"
-                                    CssClass="fileupload fileupload-new" ClientIDMode="Static" />
-                                <p class="help-block">
-                                    Allowed File type is PDF. <span class="clip-file-pdf"></span>				
-                                </p>
+                                <asp:Label ID="lbldesg" runat="server" CssClass="form-control"
+                                    ClientIDMode="Static"></asp:Label>
                             </div>
                             <div class="form-group">
                                 <label class="control-label">
-                                    Dates <span class="symbol required"></span>
+                                    Grade <span class="symbol required"></span>
                                 </label>
-                                <asp:TextBox ID="txtdate" runat="server" CssClass="chosen-disabled form-control"
-                                    ClientIDMode="Static" BackColor="White"></asp:TextBox>
+                                <asp:Label ID="lblgrade" runat="server" CssClass="form-control"
+                                    ClientIDMode="Static"></asp:Label>
                             </div>
                             <div class="form-group">
                                 <label class="control-label">
-                                    Period <span class="symbol required"></span>
+                                    Address 1 <span class="symbol required"></span>
                                 </label>
-                                <asp:DropDownList ID="ddlper" runat="server" CssClass="form-control"
-                                    ClientIDMode="Static" DataTextField="period" DataValueField="period_id">
-                                </asp:DropDownList>
+                                <asp:TextBox ID="txtadd1" runat="server" CssClass="form-control" ClientIDMode="Static"></asp:TextBox>
                             </div>
                             <div class="form-group">
                                 <label class="control-label">
-                                    Reason <span class="symbol required"></span>
+                                    Address 2 <span class="symbol required"></span>
                                 </label>
-                                <asp:TextBox ID="txtreason" runat="server" TextMode="MultiLine"
-                                    CssClass="form-control" ClientIDMode="Static" MaxLength="1" Rows="2"></asp:TextBox>
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label">
-                                    Your Job Will be coverd by <span class="symbol required"></span>
-                                </label>
-                                <asp:DropDownList ID="ddljobc" runat="server" CssClass="form-control"
-                                    ClientIDMode="Static" DataTextField="Name" DataValueField="user_id">
-                                </asp:DropDownList>
+                                <asp:TextBox ID="txtadd2" runat="server" CssClass="form-control" ClientIDMode="Static"></asp:TextBox>
                             </div>
                             <div class="form-group">
                                 <label class="control-label">
@@ -167,26 +129,33 @@
                                 <asp:TextBox ID="txtphone" runat="server" CssClass="form-control"
                                     ClientIDMode="Static"></asp:TextBox>
                             </div>
+                            <div class="form-group">
+                                <label class="control-label">
+                                    Region <span class="symbol required"></span>
+                                </label>
+                                <asp:Label ID="lblregion" runat="server" CssClass="form-control"
+                                    ClientIDMode="Static"></asp:Label>
+                            </div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-12">
                             <div>
                                 <span class="symbol required"></span>Required Fields
-                                <hr>
+                                    <hr>
                             </div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-8">
-                            <asp:Button ID="btnreq" runat="server" Text="Apply" CssClass="btn btn-success" OnClientClick="leavevali()" OnClick="btnreq_Click" />
+                            <asp:Button ID="btnuprofile" runat="server" Text="Update" CssClass="btn btn-success" OnClientClick="uprofilevali()" OnClick="btnuprofile_Click"/>
                         </div>
                         <div class="col-md-4">
                         </div>
                     </div>
                 </div>
             </div>
-            <!-- end: FORM VALIDATION 2 PANEL -->
+            <!-- end: Edit Profile -->
         </div>
     </div>
 </asp:Content>
