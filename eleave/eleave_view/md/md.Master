@@ -471,7 +471,7 @@
                                 text: 'Total leaves available for the current year'
                             },
                             stackLabels: {
-                                enabled: true,
+                                enabled: false,
                                 style: {
                                     fontWeight: 'bold',
                                     color: (Highcharts.theme && Highcharts.theme.textColor) || 'gray'
@@ -491,7 +491,7 @@
                         },
                         tooltip: {
                             headerFormat: '<b>{point.x}</b><br/>',
-                            pointFormat: '{series.name}: {point.y}<br/>Total: {point.stackTotal}'
+                            pointFormat: '{series.name}: {point.y}<br/>'
                         },
                         plotOptions: {
                             column: {
