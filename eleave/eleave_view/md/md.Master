@@ -622,7 +622,7 @@
                 warnAfter: 90000, //1.5 minutes
                 redirAfter: 100000, // 1.6 minute
                 keepAliveUrl: '/',
-                redirUrl: '../Logout.aspx',
+                redirUrl: '../sessiontimeout.aspx',
                 logoutUrl: '../Logout.aspx'
             });
         }
