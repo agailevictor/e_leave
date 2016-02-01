@@ -380,6 +380,7 @@
     <Content Include="md\WebForm1.aspx" />
     <Content Include="sessiontimeout.aspx" />
     <Content Include="Test.aspx" />
+    <Content Include="unauthorised.aspx" />
     <Content Include="user\applyleave.aspx" />
     <Content Include="user\cancel.aspx" />
     <Content Include="user\chg_pass.aspx" />
@@ -618,6 +619,13 @@
     </Compile>
     <Compile Include="Test.aspx.designer.cs">
       <DependentUpon>Test.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="unauthorised.aspx.cs">
+      <DependentUpon>unauthorised.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="unauthorised.aspx.designer.cs">
+      <DependentUpon>unauthorised.aspx</DependentUpon>
     </Compile>
     <Compile Include="user\applyleave.aspx.cs">
       <DependentUpon>applyleave.aspx</DependentUpon>
