@@ -378,6 +378,7 @@
     <Content Include="md\update_profile.aspx" />
     <Content Include="md\userleavesall.aspx" />
     <Content Include="md\WebForm1.aspx" />
+    <Content Include="sessiontimeout.aspx" />
     <Content Include="Test.aspx" />
     <Content Include="user\applyleave.aspx" />
     <Content Include="user\cancel.aspx" />
@@ -604,6 +605,13 @@
       <DependentUpon>WebForm1.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="sessiontimeout.aspx.cs">
+      <DependentUpon>sessiontimeout.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="sessiontimeout.aspx.designer.cs">
+      <DependentUpon>sessiontimeout.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Test.aspx.cs">
       <DependentUpon>Test.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
