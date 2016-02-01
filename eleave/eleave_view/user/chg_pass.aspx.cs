@@ -15,7 +15,18 @@ namespace eleave_view.user
         bus_eleave bus = new bus_eleave();
         protected void Page_Load(object sender, EventArgs e)
         {
+            if(!IsPostBack)
+            {
+                checklogin();
+            }
+        }
 
+        protected void checklogin()
+        {
+            if (Session["is_login"].ToString() == "f")
+            {
+                Response.Redirect("~/unauthorised.aspx");
+            }
         }
 
         [WebMethod]

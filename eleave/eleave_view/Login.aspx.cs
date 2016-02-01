@@ -71,6 +71,10 @@ namespace eleave_view
                 {
                     Response.Redirect("~/md/dash.aspx");
                 }
+                else
+                {
+                    Response.Redirect("~/unauthorised.aspx");
+                }
             }
             else
             {

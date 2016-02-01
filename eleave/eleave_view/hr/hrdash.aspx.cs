@@ -14,8 +14,20 @@ namespace eleave_view.hr
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (!IsPostBack)
+            {
+                checklogin();
+            }
         }
+
+        protected void checklogin()
+        {
+            if (Session["is_login"].ToString() == "f")
+            {
+                Response.Redirect("~/unauthorised.aspx");
+            }
+        }
+
         [WebMethod]
         public static List<Event> GetEvents()
         {

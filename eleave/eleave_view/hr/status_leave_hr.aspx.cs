@@ -20,20 +20,19 @@ namespace eleave_view.hr
             if (!IsPostBack)
             {
                 checklogin();
-                //fill_grid();
             }           
         }
 
-        public void checklogin()
+        protected void checklogin()
         {
-            if (Session["is_login"].ToString() == "f")
+            if (Session["is_login"].ToString() == "t")
             {
-                Response.Redirect("~/MainPage.aspx");
+                fill_grid_hr();
 
             }
             else
             {
-                fill_grid_hr();
+                Response.Redirect("~/unauthorised.aspx");
             }
         }
 

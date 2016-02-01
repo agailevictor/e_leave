@@ -17,11 +17,24 @@ namespace eleave_view.hr
         {
             if (!IsPostBack)
             {
+                checklogin();
+            }
+        }
+
+        protected void checklogin()
+        {
+            if (Session["is_login"].ToString() == "t")
+            {
                 fillgender();
                 filldep();
                 fillregion();
                 txtdoj.Attributes.Add("readonly", "readonly");
                 txtcategory.Attributes.Add("readonly", "readonly");
+
+            }
+            else
+            {
+                Response.Redirect("~/unauthorised.aspx");
             }
         }
 

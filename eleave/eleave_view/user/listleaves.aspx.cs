@@ -19,8 +19,28 @@ namespace eleave_view.user
         {
             if (!IsPostBack)
             {
-                fill_grid();
+                checklogin();
             }
+        }
+
+        protected void checklogin()
+        {
+            if (Session["is_login"].ToString() == "t")
+            {
+                change_stat();
+                fill_grid();
+
+            }
+            else
+            {
+                Response.Redirect("~/unauthorised.aspx");
+            }
+        }
+
+        protected void change_stat()
+        {
+            bus.userid = int.Parse(Session["user_id"].ToString());
+            bus.change_stat();
         }
 
         protected void fill_grid()

@@ -45,16 +45,16 @@
 				<!-- start: 500 -->
 				<div class="col-sm-12 page-error">
 					<div class="error-number bricky">
-						500
+						401
 					</div>
 					<div class="error-details col-sm-6 col-sm-offset-3">
-						<h3>Oops! You are stuck at 500</h3>
+						<h3>Oops! You didn't say the magic word!</h3>
 						<p>
-							Something's wrong!
+							Unauthorized
 							<br>
-							It looks as though we've broken something on our system.
+							Access is denied due to invalid credentials.
 							<br>
-							Don't panic, we are fixing it! Please come back in a while.
+							You dont have permission to view this directory or page using the credentials that you supplied.
 						</p>
 					</div>
 				</div>

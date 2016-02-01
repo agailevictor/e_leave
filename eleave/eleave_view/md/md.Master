@@ -51,7 +51,6 @@
     <link href="../assets/plugins/DataTables/media/css/DT_bootstrap.css" rel="stylesheet" />
     <!-- end: CSS REQUIRED FOR THIS PAGE ONLY -->
     <script src="../assets/js/jquery.min.js" type="text/javascript"></script>
-    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
     <style type="text/css">
         .loader {
             position: fixed;
@@ -114,6 +113,12 @@
                         <a href="app_rej.aspx" class="dropdown-toggle">
                             <i class="clip-notification"></i>
                             <span class="badge" id="info"></span>
+                        </a>
+                    </li>
+                    <li class="dropdown">
+                        <a href="cancelappr.aspx" class="dropdown-toggle">
+                            <i class="clip-warning"></i>
+                            <span class="badge" id="info1"></span>
                         </a>
                     </li>
                     <!-- end: NOTIFICATION DROPDOWN -->
@@ -336,6 +341,7 @@
             highcharts();
             calendar();
             updateAlerts();
+            updateAlerts2();
             sessiontimeout();
         });
     </script>
@@ -626,6 +632,29 @@
                 logoutUrl: '../Logout.aspx'
             });
         }
+    </script>
+    <script type="text/javascript">
+        function updateAlerts2() {
+            $.ajax({
+                type: "POST",
+                contentType: "application/json",
+                data: "{}",
+                url: "dash.aspx/updatealerts2",
+                dataType: "json",
+                success: function (data) {
+                    if (data.d > 0) {
+                        $('#info1').text(data.d);
+                    }
+                    else {
+                        $('#info1').text("");
+                    }
+                },
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    //alert("error notification badge");
+                }
+            });
+        }
+        setInterval(updateAlerts2, 10000); // 10 seconds
     </script>
 </body>
 <!-- end: BODY -->

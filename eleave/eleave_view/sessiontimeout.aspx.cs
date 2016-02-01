@@ -16,7 +16,7 @@ namespace eleave_view
 
         protected void logout()
         {
-            Session.Abandon();
+            //Session.Abandon();
             Session.Clear();
             Session["is_login"] = "f";
         }

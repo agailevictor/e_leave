@@ -17,8 +17,20 @@ namespace eleave_view.md
         bus_eleave bus = new bus_eleave();
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (!IsPostBack)
+            {
+                checklogin();
+            }
         }
+        protected void checklogin()
+        {
+            if (Session["is_login"].ToString() == "f")
+            {
+                Response.Redirect("~/unauthorised.aspx");
+            }
+        }
+
+
         [WebMethod]
         public static List<leaveall> highcharts()
         {
@@ -61,6 +73,14 @@ namespace eleave_view.md
         {
             bus_eleave bus = new bus_eleave();
             int r = bus.fetchalerts_md();
+            return r;
+        }
+
+        [WebMethod]
+        public static int updatealerts2()
+        {
+            bus_eleave bus = new bus_eleave();
+            int r = bus.fetchalerts_md2();
             return r;
         }
     }

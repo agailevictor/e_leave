@@ -20,20 +20,19 @@ namespace eleave_view.user
             if(!IsPostBack)
             {
                 checklogin();
-                //fill_grid();
             }
         }
 
         public void checklogin()
         {
-            if (Session["is_login"].ToString() == "f")
+            if (Session["is_login"].ToString() == "t")
             {
-                Response.Redirect("~/MainPage.aspx");
-               
+                fill_grid();
+
             }
             else
             {
-                fill_grid();
+                Response.Redirect("~/unauthorised.aspx");
             }
         }
 
