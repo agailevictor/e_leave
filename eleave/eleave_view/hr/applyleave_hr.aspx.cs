@@ -21,12 +21,25 @@ namespace eleave_view.hr
         {
             if(!IsPostBack)
             {
+                checklogin();
+            }            
+        }
+
+        protected void checklogin()
+        {
+            if (Session["is_login"].ToString() == "t")
+            {
                 fill_lbl_hr();
                 fill_ltype_hr();
                 fill_period_hr();
                 fill_collegues_hr();
                 txtdate_hr.Attributes.Add("readonly", "readonly");
-            }            
+
+            }
+            else
+            {
+                Response.Redirect("~/unauthorised.aspx");
+            }
         }
 
         //To get dates. Called by Json

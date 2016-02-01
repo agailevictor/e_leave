@@ -269,5 +269,13 @@ namespace eleave_c
         {
             return data.cancel_av_approved(lid,dates,rdays);
         }
+        public int fetchalerts_md2()
+        {
+            return data.fetchalerts_md2();
+        }
+        public void change_stat()
+        {
+            data.change_stat(userid);
+        }
     }
 }

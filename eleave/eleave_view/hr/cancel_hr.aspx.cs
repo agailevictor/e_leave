@@ -13,14 +13,25 @@ namespace eleave_view.hr
     {
         bus_eleave bus = new bus_eleave();
         string a, a1;
-       // DateTime dt1, dt2;
-    //    int chk;
         Boolean ret; 
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
+                checklogin();
+            }
+        }
+
+        protected void checklogin()
+        {
+            if (Session["is_login"].ToString() == "t")
+            {
                 fill_user_approved_leaves();
+
+            }
+            else
+            {
+                Response.Redirect("~/unauthorised.aspx");
             }
         }
 

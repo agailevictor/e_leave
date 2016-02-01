@@ -20,11 +20,25 @@ namespace eleave_view.user
         {
             if (!IsPostBack)
             {
+                checklogin();
+                
+            }
+        }
+
+        protected void checklogin()
+        {
+            if (Session["is_login"].ToString() == "t")
+            {
                 fill_userdetails();
                 fill_leavetypes();
                 fill_period();
                 fill_collegues();
                 txtdate.Attributes.Add("readonly", "readonly");
+
+            }
+            else
+            {
+                Response.Redirect("~/unauthorised.aspx");
             }
         }
 

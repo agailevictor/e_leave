@@ -19,7 +19,20 @@ namespace eleave_view.hr
         {
             if (!IsPostBack)
             {
+                checklogin();
+            }
+        }
+
+        protected void checklogin()
+        {
+            if (Session["is_login"].ToString() == "t")
+            {
                 fillleavesfr();
+
+            }
+            else
+            {
+                Response.Redirect("~/unauthorised.aspx");
             }
         }
 

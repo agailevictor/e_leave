@@ -22,7 +22,20 @@ namespace eleave_view.user
         {
             if (!IsPostBack)
             {
+                checklogin();
+            }
+        }
+
+        protected void checklogin()
+        {
+            if (Session["is_login"].ToString() == "t")
+            {
                 fill_user_approved_leaves();
+                
+            }
+            else
+            {
+                Response.Redirect("~/unauthorised.aspx");
             }
         }
 

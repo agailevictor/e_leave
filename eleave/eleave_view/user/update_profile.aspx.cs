@@ -16,7 +16,20 @@ namespace eleave_view.user
         {
             if (!IsPostBack)
             {
+                checklogin();
+            }
+        }
+
+        protected void checklogin()
+        {
+            if (Session["is_login"].ToString() == "t")
+            {
                 fill_details_user();
+
+            }
+            else
+            {
+                Response.Redirect("~/unauthorised.aspx");
             }
         }
 
