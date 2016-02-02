@@ -72,5 +72,14 @@ namespace eleave_view.hr
                 grd_users.HeaderRow.TableSection = TableRowSection.TableHeader;
             }
         }
+
+        protected void lnkedit_Click(object sender, EventArgs e)
+        {
+            LinkButton lnk = sender as LinkButton;
+            GridViewRow row = lnk.NamingContainer as GridViewRow;
+            int id = int.Parse(grd_users.DataKeys[row.RowIndex].Value.ToString());
+            Session["edit_id"] = id;
+            Response.Redirect("~/hr/edituser.aspx");
+        }
     }
 }

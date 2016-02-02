@@ -51,6 +51,10 @@ namespace eleave_view.hr
                     settings.Attributes["class"] = "active";
                     settings1.Attributes["class"] = "active open";
                     break;
+                case "edituser.aspx":
+                    settings.Attributes["class"] = "active";
+                    settings1.Attributes["class"] = "active open";
+                    break;
                 case "holidays_upload.aspx":
                     settings.Attributes["class"] = "active";
                     settings2.Attributes["class"] = "active open";

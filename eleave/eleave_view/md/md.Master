@@ -497,7 +497,7 @@
                         },
                         tooltip: {
                             headerFormat: '<b>{point.x}</b><br/>',
-                            pointFormat: '{series.name}: {point.y}<br/>'
+                            pointFormat: '{series.name}: {point.y}'
                         },
                         plotOptions: {
                             column: {

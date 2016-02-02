@@ -202,7 +202,7 @@ namespace eleave_view.user
                 else
                 {
                     clearfeilds2();
-                    ScriptManager.RegisterStartupScript(this, GetType(), "displayalertmessage", "error();", true);
+                    ScriptManager.RegisterStartupScript(this, GetType(), "displayalertmessage", "errorofile();", true);
                 }
             }
             else if (int.Parse(ddlltype.SelectedValue.ToString()) == 5 || int.Parse(ddlltype.SelectedValue.ToString()) == 6)
