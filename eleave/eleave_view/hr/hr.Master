@@ -237,7 +237,7 @@
                             </li>
                         </ul>
                     </li>
-<%--                    <li id="rpt" runat="server">
+                    <%--                    <li id="rpt" runat="server">
                         <a href="#"><i class="clip-bars"></i>
                             <span class="title">Reports </span>
                             <span class="selected"></span>
@@ -339,7 +339,7 @@
     <script src="../assets/js/changepassword.js"></script>
     <script src="../assets/js/updateprofile.js"></script>
     <script src="../assets/plugins/select2/select2.min.js"></script>
-   <script src="../assets/plugins/DataTables/media/js/jquery.dataTables.min.js"></script>
+    <script src="../assets/plugins/DataTables/media/js/jquery.dataTables.min.js"></script>
     <script src="../assets/plugins/DataTables/media/js/DT_bootstrap.js"></script>
     <script src="../assets/js/datatables.js"></script>
     <script src="../assets/plugins/jquery.pulsate/jquery.pulsate.min.js"></script>
@@ -359,7 +359,8 @@
             updateAlerts();
             TableData.init();
             $('#lblop').hide();
-            sessiontimeout();
+            //sessiontimeout();
+            getdoj_euser();
         });
     </script>
 
@@ -666,7 +667,7 @@
     <script type="text/javascript">
         $('#oldp').on('click', function () {
             //alert($('#oldpwd_hr_txt').attr('type'));
-            if ($('#oldpwd_hr_txt').attr('type')=="password") {
+            if ($('#oldpwd_hr_txt').attr('type') == "password") {
                 $("#oldpwd_hr_txt").attr("type", "text");
             }
             else {
@@ -696,17 +697,16 @@
             }
         })
     </script>
-        <script type="text/javascript">
-            function uprofilevali() {
-                jQuery(document).ready(function () {
-                    //alert('im called user');
-                    uprofileval.init();
-                });
-            }
+    <script type="text/javascript">
+        function uprofilevali() {
+            jQuery(document).ready(function () {
+                //alert('im called user');
+                uprofileval.init();
+            });
+        }
     </script>
     <script type="text/javascript">
-        function filldesi()
-        {
+        function filldesi() {
             var dep;
             var data = {};
             dep = $('#ddldep option:selected').val();
@@ -716,6 +716,9 @@
                 $("#txtcategory").val("");
             }
             else {
+                $('#ddldesi').empty();
+                $('#ddlgrade').empty();
+                $("#txtcategory").val("");
                 $.ajax({
                     type: "POST",
                     contentType: "application/json",
@@ -775,8 +778,7 @@
         }
     </script>
     <script type="text/javascript">
-        function chkoldpswd()
-        {
+        function chkoldpswd() {
             $('#pulsate-regular').pulsate("destroy");
             //alert('im called');
             var oldp;
@@ -824,7 +826,7 @@
             }
         }
     </script>
-<%--    <script type="text/javascript">
+    <%--    <script type="text/javascript">
         $('#txtdate_hr').datepicker().on('hide', function () {
             var userid = '<%= Session["user_id"] %>';
             var type = $('#ddlltype_hr option:selected').val();
@@ -866,20 +868,54 @@
             }
     });
     </script>--%>
-        <script type="text/javascript">
-            function sessiontimeout() {
-                $.sessionTimeout({
-                    heading: 'h5',
-                    title: 'Session Timeout',
-                    message: 'Your session is about to expire. Do you want to stay connected?',
-                    ignoreUserActivity: true,
-                    warnAfter: 90000, //1.5 minutes
-                    redirAfter: 100000, // 1.6 minute
-                    keepAliveUrl: '/',
-                    redirUrl: '../sessiontimeout.aspx',
-                    logoutUrl: '../Logout.aspx'
-                });
-            }
+    <script type="text/javascript">
+        function sessiontimeout() {
+            $.sessionTimeout({
+                heading: 'h5',
+                title: 'Session Timeout',
+                message: 'Your session is about to expire. Do you want to stay connected?',
+                ignoreUserActivity: true,
+                warnAfter: 90000, //1.5 minutes
+                redirAfter: 100000, // 1.6 minute
+                keepAliveUrl: '/',
+                redirUrl: '../sessiontimeout.aspx',
+                logoutUrl: '../Logout.aspx'
+            });
+        }
+    </script>
+    <script type="text/javascript">
+        function getdoj_euser() {
+            var disableddates = []; //dd/mm/yyyy
+            var sdate;
+            var year = new Date().getFullYear() + '';
+            edate = "31/12/" + year;
+            sdate = "01/01/" + year;
+            $.ajax({
+                type: "POST",
+                contentType: "application/json",
+                data: "{}",
+                url: "adduser.aspx/disdates",
+                dataType: "json",
+                success: function (data) {
+                    for (var i = 0; i < data.d.length; i++) {
+                        //alert(data.d[i].hday);
+                        disableddates.push(data.d[i].EventDate);
+                    }
+                    $('#txtdoje').datepicker({
+                        format: "dd/mm/yyyy",
+                        daysOfWeekDisabled: "0,6", // to disable weekends 0 - sunday, 6 - saturday
+                        startDate: sdate, // to disable previous days
+                        endDate: edate, // to disable future year dates
+                        todayHighlight: true, // to highlight today
+                        datesDisabled: disableddates, // array of days to be disabled
+                        orientation: "bottom auto"
+                    });
+                },
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    //alert("error datepick");
+                }
+            });
+        }
     </script>
 </body>
 <!-- end: BODY -->

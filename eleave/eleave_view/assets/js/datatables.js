@@ -6,7 +6,8 @@
     var runDataTable = function () {
         var oTable = $('#grd_users').dataTable({
             "aoColumnDefs": [{
-                "aTargets": [0]
+                'bSortable': false,
+                "aTargets": [0,9,10]
             }],
             "oLanguage": {
                 "sLengthMenu": "Show _MENU_ Rows",
@@ -17,7 +18,7 @@
                 }
             },
             "aaSorting": [
-                [0, 'asc']
+                [1, 'asc']
             ],
             "aLengthMenu": [
                 [5, 10, 15, 20, -1],

@@ -59,6 +59,15 @@
             });
         }
     </script>
+    <script type="text/javascript">
+        function errornofile() {
+            swal({
+                title: 'Error!',
+                text: 'Select Medical Certificate',
+                type: 'error'
+            });
+        }
+    </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="page-header">
@@ -127,7 +136,7 @@
                                 <asp:FileUpload ID="fupload" runat="server"
                                     CssClass="fileupload fileupload-new" ClientIDMode="Static" />
                                 <p class="help-block">
-                                    Allowed File type is PDF. <span class="clip-file-pdf"></span>				
+                                    Allowed File type is PDF. <span class="clip-file-pdf"></span>
                                 </p>
                             </div>
                             <div class="form-group">

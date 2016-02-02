@@ -63,6 +63,9 @@ var userval = function () {
                 ctl00$ContentPlaceHolder1$txtdoj: {
                     required: true
                 },
+                ctl00$ContentPlaceHolder1$txtdoje: {
+                    required: true
+                },
                 ctl00$ContentPlaceHolder1$ddldep: {
                     required: true
                 },

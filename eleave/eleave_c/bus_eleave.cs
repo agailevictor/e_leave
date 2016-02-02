@@ -277,5 +277,14 @@ namespace eleave_c
         {
             data.change_stat(userid);
         }
+        public DataTable fill_details_user_edit()
+        {
+            return data.fill_details_user_edit(id);
+        }
+        public int update_user()
+        {
+            return data.update_user(id,name, user_name, gender, doj, dep, grade, desi, region);
+        }
+
     }
 }

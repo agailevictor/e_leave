@@ -136,7 +136,7 @@ namespace eleave_view.hr
                 else
                 {
                     clearfeilds2();
-                    ScriptManager.RegisterStartupScript(this, GetType(), "displayalertmessage", "error();", true);
+                    ScriptManager.RegisterStartupScript(this, GetType(), "displayalertmessage", "errornofile();", true);
                 }
             }
             else if (int.Parse(ddlltype_hr.SelectedValue.ToString()) == 5 || int.Parse(ddlltype_hr.SelectedValue.ToString()) == 6)
