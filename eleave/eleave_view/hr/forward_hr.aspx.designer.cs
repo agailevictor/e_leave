@@ -22,6 +22,15 @@ namespace eleave_view.hr {
         protected global::System.Web.UI.WebControls.GridView grd_forward;
         
         /// <summary>
+        /// txtrreasbulk control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtrreasbulk;
+        
+        /// <summary>
         /// btnaccept control.
         /// </summary>
         /// <remarks>

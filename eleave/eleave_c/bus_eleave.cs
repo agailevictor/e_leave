@@ -194,7 +194,7 @@ namespace eleave_c
 
         public int reject_leave()
         {
-            return data.reject_leave(lid);
+            return data.reject_leave(lid,reason);
         }
 
         public int fetchalerts()

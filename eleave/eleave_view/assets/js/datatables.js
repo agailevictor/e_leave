@@ -95,7 +95,7 @@
         var oTable = $('#grd_forward').dataTable({
             "aoColumnDefs": [{
                 'bSortable': false,
-                "aTargets": [0]
+                "aTargets": [0,8,9,10,11,12,13]
             }],
             "oLanguage": {
                 "sLengthMenu": "Show _MENU_ Rows",

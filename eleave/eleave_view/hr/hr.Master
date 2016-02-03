@@ -346,6 +346,7 @@
     <script src="../assets/plugins/timeout/session_timeout.min.js"></script>
     <script src="../assets/js/applyleavem_hr.js"></script>
     <script src="../assets/plugins/jquery-validation/dist/additional-methods.min.js"></script>
+    <script src="../assets/js/valrreason.js"></script>
     <!-- end: JAVASCRIPTS REQUIRED FOR THIS PAGE ONLY -->
     <script type="text/javascript">
         jQuery(document).ready(function () {

@@ -50,6 +50,7 @@ namespace eleave_view.hr
                 grd_forward.DataBind();
                 btnaccept.Visible = false;
                 btnreject.Visible = false;
+                txtrreasbulk.Visible = false;
             }
         }
 
@@ -165,18 +166,27 @@ namespace eleave_view.hr
         {
             LinkButton lnk = sender as LinkButton;
             GridViewRow row = lnk.NamingContainer as GridViewRow;
-            int id = int.Parse(grd_forward.DataKeys[row.RowIndex].Value.ToString());
-            bus.lid = id;
-            int r = bus.reject_leave();
-            if (r == 1)
+            string rej = ((TextBox)grd_forward.Rows[row.RowIndex].FindControl("txtrejreason")).Text.Trim();
+            if (rej != "")
             {
-                fillleavesfr();
-                ScriptManager.RegisterStartupScript(this, GetType(), "displayalertmessage", "success();", true);
+                int id = int.Parse(grd_forward.DataKeys[row.RowIndex].Value.ToString());
+                bus.lid = id;
+                bus.reason = rej;
+                int r = bus.reject_leave();
+                if (r == 1)
+                {
+                    fillleavesfr();
+                    ScriptManager.RegisterStartupScript(this, GetType(), "displayalertmessage", "success();", true);
+                }
+                else
+                {
+                    fillleavesfr();
+                    ScriptManager.RegisterStartupScript(this, GetType(), "displayalertmessage", "error();", true);
+                }
             }
             else
             {
-                fillleavesfr();
-                ScriptManager.RegisterStartupScript(this, GetType(), "displayalertmessage", "error();", true);
+                ScriptManager.RegisterStartupScript(this, GetType(), "displayalertmessage", "warning2();", true);
             }
         }
 

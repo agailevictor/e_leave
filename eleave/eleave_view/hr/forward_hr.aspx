@@ -46,6 +46,15 @@
             display: none;
         }
     </style>
+        <script type="text/javascript">
+            function warning2() {
+                swal({
+                    title: 'Warning!',
+                    text: 'Enter Reject Reason !',
+                    type: 'warning'
+                });
+            }
+    </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="page-header">
@@ -85,6 +94,11 @@
                         <asp:LinkButton ID="lnk_dwn" runat="server" Visible='<%# Isenable((string)Eval("ltype")) %>' CssClass="clip-download-2" OnClick="lnk_dwn_Click"></asp:LinkButton>
                     </ItemTemplate>
                 </asp:TemplateField>
+                <asp:TemplateField HeaderText="Reject Reason">
+                    <ItemTemplate>
+                        <asp:TextBox ID="txtrejreason" runat="server" CssClass="form-control" TextMode="MultiLine" ClientIDMode="Static"></asp:TextBox>
+                    </ItemTemplate>
+                </asp:TemplateField>
                 <asp:TemplateField HeaderText="Forward">
                     <ItemTemplate>
                         <asp:LinkButton ID="lnkforward" runat="server" CssClass="btn btn-green" OnClick="lnkforward_Click"><i class="glyphicon glyphicon-ok-sign"></i></asp:LinkButton>
@@ -99,8 +113,30 @@
         </asp:GridView>
     </div>
     <div class="table-responsive">
+        <table>
+            <tr>
+                <td>
+                    <asp:TextBox ID="txtrreasbulk" runat="server" CssClass="form-control" TextMode="MultiLine" ClientIDMode="Static"></asp:TextBox>
+                </td>
+            </tr>
+        </table>
         <table class="table-responsive">
             <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
                 <td>
                     <asp:Button ID="btnaccept" runat="server" Text="Forward" CssClass="btn btn-success" OnClick="btnaccept_Click" /></td>
                 <td></td>

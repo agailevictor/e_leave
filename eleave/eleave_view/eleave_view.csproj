@@ -133,6 +133,7 @@
     <Content Include="assets\js\uservalidation.js" />
     <Content Include="assets\js\utility-coming-soon.js" />
     <Content Include="assets\js\utility-error404.js" />
+    <Content Include="assets\js\valrreason.js" />
     <Content Include="assets\plugins\autosize\jquery.autosize.min.js" />
     <Content Include="assets\plugins\blockUI\jquery.blockUI.js" />
     <Content Include="assets\plugins\bootstrap-colorpicker\css\bootstrap-colorpicker.css" />

@@ -546,13 +546,14 @@ namespace eleave_m
             return res;
         }
 
-        public int reject_leave(int lid)
+        public int reject_leave(int lid, string reason)
         {
             cmd.Parameters.Clear();
             cmd.CommandText = "sp_reject_leave_hr";
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Connection = db.connect();
             cmd.Parameters.AddWithValue("@lid", lid);
+            cmd.Parameters.AddWithValue("@reason", reason);
             SqlParameter outparam = new SqlParameter();
             outparam.ParameterName = "@flag";
             outparam.Direction = ParameterDirection.InputOutput;
