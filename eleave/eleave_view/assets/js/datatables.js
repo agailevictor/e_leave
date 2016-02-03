@@ -92,7 +92,8 @@
     };
 
     var runDataTable3 = function () {
-        var oTable = $('#grd_forward').dataTable({
+        //var oTable = $('#grd_forward').dataTable({
+        var oTable = $("[id$=grd_forward]").dataTable({
             "aoColumnDefs": [{
                 'bSortable': false,
                 "aTargets": [0,8,9,10,11,12,13]

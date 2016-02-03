@@ -100,46 +100,52 @@ namespace eleave_view.hr
 
         protected void btnreject_Click(object sender, EventArgs e)
         {
+            //f = 1;
+            //foreach (GridViewRow row in grd_forward.Rows)
+            //{
+            //    cbox = (CheckBox)row.FindControl("chk"); //RowSelector is the id of checkbox in Grid View
+            //    if (cbox.Checked == true)
+            //    {
+            //        if(txtrreasbulk.Text !="")
+            //        {
+            //        // Fetch request's id
+            //        int RequestId = Convert.ToInt32(grd_forward.DataKeys[row.RowIndex].Value);
 
-            f = 1;
-            foreach (GridViewRow row in grd_forward.Rows)
-            {
-                cbox = (CheckBox)row.FindControl("chk"); //RowSelector is the id of checkbox in Grid View
-                if (cbox.Checked == true)
-                {
-                    // Fetch request's id
-                    int RequestId = Convert.ToInt32(grd_forward.DataKeys[row.RowIndex].Value);
+            //        // Write your approval logic here
+            //        bus.lid = RequestId;
+            //        bus.reason = txtrreasbulk.Text.Trim();
+            //        int r = bus.reject_leave();
+            //        if (r == 1)
+            //        {
+            //            f = 0;
+            //        }
+            //        else
+            //        {
+            //            f = 2;
+            //        }
+            //        }
+            //        else{
+            //            ScriptManager.RegisterStartupScript(this, GetType(), "displayalertmessage", "warning2();", true);
+            //        }
 
-                    // Write your approval logic here
-                    bus.lid = RequestId;
-                    int r = bus.reject_leave();
-                    if (r == 1)
-                    {
-                        f = 0;
-                    }
-                    else
-                    {
-                        f = 2;
-                    }
+            //    }
 
-                }
-
-            }
-            if (f == 0)
-            {
-                fillleavesfr();
-                ScriptManager.RegisterStartupScript(this, GetType(), "displayalertmessage", "success();", true);
-            }
-            else if (f == 2)
-            {
-                fillleavesfr();
-                ScriptManager.RegisterStartupScript(this, GetType(), "displayalertmessage", "error();", true);
-            }
-            else
-            {
-                fillleavesfr();
-                ScriptManager.RegisterStartupScript(this, GetType(), "displayalertmessage", "warning();", true);
-            }
+            //}
+            //if (f == 0)
+            //{
+            //    fillleavesfr();
+            //    ScriptManager.RegisterStartupScript(this, GetType(), "displayalertmessage", "success();", true);
+            //}
+            //else if (f == 2)
+            //{
+            //    fillleavesfr();
+            //    ScriptManager.RegisterStartupScript(this, GetType(), "displayalertmessage", "error();", true);
+            //}
+            //else
+            //{
+            //    fillleavesfr();
+            //    ScriptManager.RegisterStartupScript(this, GetType(), "displayalertmessage", "warning();", true);
+            //}
         }
 
         protected void lnkforward_Click(object sender, EventArgs e)
@@ -166,9 +172,9 @@ namespace eleave_view.hr
         {
             LinkButton lnk = sender as LinkButton;
             GridViewRow row = lnk.NamingContainer as GridViewRow;
-            string rej = ((TextBox)grd_forward.Rows[row.RowIndex].FindControl("txtrejreason")).Text.Trim();
-            if (rej != "")
-            {
+            string rej = ((TextBox)grd_forward.Rows[row.RowIndex].FindControl("TextBox1")).Text.Trim();
+            //if (rej != "")
+            //{
                 int id = int.Parse(grd_forward.DataKeys[row.RowIndex].Value.ToString());
                 bus.lid = id;
                 bus.reason = rej;
@@ -183,11 +189,11 @@ namespace eleave_view.hr
                     fillleavesfr();
                     ScriptManager.RegisterStartupScript(this, GetType(), "displayalertmessage", "error();", true);
                 }
-            }
-            else
-            {
-                ScriptManager.RegisterStartupScript(this, GetType(), "displayalertmessage", "warning2();", true);
-            }
+            //}
+            //else
+            //{
+            //    ScriptManager.RegisterStartupScript(this, GetType(), "displayalertmessage", "warning2();", true);
+            //}
         }
 
         protected Boolean Isenable(string ltype)
