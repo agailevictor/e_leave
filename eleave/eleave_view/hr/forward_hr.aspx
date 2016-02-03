@@ -130,7 +130,7 @@
         </table>
     </div>
     <!-- Modal: Start -->
-    <asp:Panel ID="Panel1" runat="server">
+    <asp:Panel ID="Panel1" runat="server" style="display:none" >
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
