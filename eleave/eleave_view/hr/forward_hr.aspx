@@ -117,36 +117,15 @@
         </asp:GridView>
     </div>
     <div class="table-responsive">
-        <table>
-            <tr>
-                <td>
-                    <asp:TextBox ID="txtrreasbulk" runat="server" CssClass="form-control" TextMode="MultiLine" Width="605px"></asp:TextBox>
-                </td>
-            </tr>
-        </table>
         <table class="table-responsive">
             <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-            <tr>
-                <td></td>
-                <td></td>
-                <td></td>
                 <td></td>
                 <td>
                     <asp:Button ID="btnaccept" runat="server" Text="Forward" CssClass="btn btn-success" OnClick="btnaccept_Click" CausesValidation="False" /></td>
                 <td></td>
                 <td></td>
                 <td>
-                    <asp:Button ID="btnreject" runat="server" Text="Reject" CssClass="btn btn-orange" OnClick="btnreject_Click" CausesValidation="False" /></td>
+                    <asp:Button ID="btnreject" runat="server" Text="Reject" CssClass="btn btn-orange" CausesValidation="False" /></td>
             </tr>
         </table>
     </div>
@@ -161,10 +140,11 @@
                 <div class="modal-body">
                     <p>
                         <asp:TextBox ID="txtbreason" runat="server" CssClass="form-control" TextMode="MultiLine"></asp:TextBox>
+                        <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="Required" ControlToValidate="txtbreason" ForeColor="Red"></asp:RequiredFieldValidator>
                     </p>
                 </div>
                 <div class="modal-footer">
-                    <asp:Button ID="btnrejc" runat="server" Text="OK" CssClass="btn btn-default" />
+                    <asp:Button ID="btnrejc" runat="server" Text="OK" CssClass="btn btn-default" OnClick="btnrejc_Click" />
                 </div>
             </div>
         </div>

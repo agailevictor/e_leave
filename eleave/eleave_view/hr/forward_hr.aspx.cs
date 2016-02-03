@@ -50,7 +50,7 @@ namespace eleave_view.hr
                 grd_forward.DataBind();
                 btnaccept.Visible = false;
                 btnreject.Visible = false;
-                txtrreasbulk.Visible = false;
+                Panel1.Visible = false;
             }
         }
 
@@ -96,56 +96,6 @@ namespace eleave_view.hr
                 ScriptManager.RegisterStartupScript(this, GetType(), "displayalertmessage", "warning();", true);
             }
 
-        }
-
-        protected void btnreject_Click(object sender, EventArgs e)
-        {
-            //f = 1;
-            //foreach (GridViewRow row in grd_forward.Rows)
-            //{
-            //    cbox = (CheckBox)row.FindControl("chk"); //RowSelector is the id of checkbox in Grid View
-            //    if (cbox.Checked == true)
-            //    {
-            //        if(txtrreasbulk.Text !="")
-            //        {
-            //        // Fetch request's id
-            //        int RequestId = Convert.ToInt32(grd_forward.DataKeys[row.RowIndex].Value);
-
-            //        // Write your approval logic here
-            //        bus.lid = RequestId;
-            //        bus.reason = txtrreasbulk.Text.Trim();
-            //        int r = bus.reject_leave();
-            //        if (r == 1)
-            //        {
-            //            f = 0;
-            //        }
-            //        else
-            //        {
-            //            f = 2;
-            //        }
-            //        }
-            //        else{
-            //            ScriptManager.RegisterStartupScript(this, GetType(), "displayalertmessage", "warning2();", true);
-            //        }
-
-            //    }
-
-            //}
-            //if (f == 0)
-            //{
-            //    fillleavesfr();
-            //    ScriptManager.RegisterStartupScript(this, GetType(), "displayalertmessage", "success();", true);
-            //}
-            //else if (f == 2)
-            //{
-            //    fillleavesfr();
-            //    ScriptManager.RegisterStartupScript(this, GetType(), "displayalertmessage", "error();", true);
-            //}
-            //else
-            //{
-            //    fillleavesfr();
-            //    ScriptManager.RegisterStartupScript(this, GetType(), "displayalertmessage", "warning();", true);
-            //}
         }
 
         protected void lnkforward_Click(object sender, EventArgs e)
@@ -226,6 +176,57 @@ namespace eleave_view.hr
             {
                 grd_forward.UseAccessibleHeader = true;
                 grd_forward.HeaderRow.TableSection = TableRowSection.TableHeader;
+            }
+        }
+
+        protected void btnrejc_Click(object sender, EventArgs e)
+        {
+            f = 1;
+            foreach (GridViewRow row in grd_forward.Rows)
+            {
+                cbox = (CheckBox)row.FindControl("chk"); //RowSelector is the id of checkbox in Grid View
+                if (cbox.Checked == true)
+                {
+                    if (txtbreason.Text != "")
+                    {
+                        // Fetch request's id
+                        int RequestId = Convert.ToInt32(grd_forward.DataKeys[row.RowIndex].Value);
+
+                        // Write your approval logic here
+                        bus.lid = RequestId;
+                        bus.reason = txtbreason.Text.Trim();
+                        int r = bus.reject_leave();
+                        if (r == 1)
+                        {
+                            f = 0;
+                        }
+                        else
+                        {
+                            f = 2;
+                        }
+                    }
+                    else
+                    {
+                        ScriptManager.RegisterStartupScript(this, GetType(), "displayalertmessage", "warning2();", true);
+                    }
+
+                }
+
+            }
+            if (f == 0)
+            {
+                fillleavesfr();
+                ScriptManager.RegisterStartupScript(this, GetType(), "displayalertmessage", "success();", true);
+            }
+            else if (f == 2)
+            {
+                fillleavesfr();
+                ScriptManager.RegisterStartupScript(this, GetType(), "displayalertmessage", "error();", true);
+            }
+            else
+            {
+                fillleavesfr();
+                ScriptManager.RegisterStartupScript(this, GetType(), "displayalertmessage", "warning();", true);
             }
         }
     }
