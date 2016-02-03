@@ -87,7 +87,7 @@
                 </div>
                 <div class="panel-body">
                     <h2>
-                        <i class="icon-edit-sign teal"></i>REQUEST</h2>
+                        <i class="icon-edit-sign teal"></i> REQUEST</h2>
                     <hr>
                     <div class="row">
                         <div class="col-md-12">

@@ -303,6 +303,8 @@
     <script src="../assets/js/updateprofile.js"></script>
     <script src="../assets/js/changepasswordmd.js"></script>
     <script src="../assets/plugins/jquery.pulsate/jquery.pulsate.min.js"></script>
+    <script src="../assets/js/leaveformmval.js"></script>
+    <script src="../assets/plugins/jquery-validation/dist/additional-methods.min.js"></script>
     <!-- end: JAVASCRIPTS REQUIRED FOR THIS PAGE ONLY -->
     <script type="text/javascript">
         jQuery(document).ready(function () {
@@ -492,7 +494,15 @@
         function leavevali() {
             //alert('im called!');
             jQuery(document).ready(function () {
-                leaveval.init();
+                var ltype = $('#ddlltype option:selected').val();
+                if (ltype == 2)
+                {
+                    leavevalm.init();
+                }
+                else {
+
+                    leaveval.init();
+                }
             });
         }
     </script>

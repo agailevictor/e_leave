@@ -98,6 +98,7 @@
     <Content Include="assets\images\navy.png" />
     <Content Include="assets\images\summersoft.jpg" />
     <Content Include="assets\images\timer-piece.png" />
+    <Content Include="assets\js\applyleavem_hr.js" />
     <Content Include="assets\js\bulkuploadvalidation.js" />
     <Content Include="assets\js\applyleave_hr.js" />
     <Content Include="assets\js\changepassword.js" />
@@ -115,6 +116,7 @@
     <Content Include="assets\js\form-wizard.js" />
     <Content Include="assets\js\index.js" />
     <Content Include="assets\js\jquery.min.js" />
+    <Content Include="assets\js\leaveformmval.js" />
     <Content Include="assets\js\leaveformval.js" />
     <Content Include="assets\js\login.js" />
     <Content Include="assets\js\login_custom.js" />
@@ -323,6 +325,7 @@
     <Content Include="assets\plugins\jquery-ui\jquery-ui-1.10.1.custom.min.css" />
     <Content Include="assets\plugins\jquery-ui\jquery-ui-1.10.1.custom.min.js" />
     <Content Include="assets\plugins\jquery-ui\jquery-ui-1.10.2.custom.min.js" />
+    <Content Include="assets\plugins\jquery-validation\dist\additional-methods.min.js" />
     <Content Include="assets\plugins\jquery-validation\dist\jquery.validate.min.js" />
     <Content Include="assets\plugins\jquery.maskedinput\src\jquery.maskedinput.js" />
     <Content Include="assets\plugins\jquery.pulsate\jquery.pulsate.min.js" />
