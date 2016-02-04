@@ -90,6 +90,7 @@ namespace eleave_view.md
             GridViewRow row = lnk.NamingContainer as GridViewRow;
             int id = int.Parse(grd_app_rej.DataKeys[row.RowIndex].Value.ToString());
             bus.lid = id;
+            bus.userid = int.Parse(Session["user_id"].ToString());
             int r = bus.approve_leave();
             if (r == 1)
             {
@@ -107,8 +108,11 @@ namespace eleave_view.md
         {
             LinkButton lnk = sender as LinkButton;
             GridViewRow row = lnk.NamingContainer as GridViewRow;
+            string rej = ((TextBox)grd_app_rej.Rows[row.RowIndex].FindControl("txtrejs")).Text.Trim();
             int id = int.Parse(grd_app_rej.DataKeys[row.RowIndex].Value.ToString());
             bus.lid = id;
+            bus.userid = int.Parse(Session["user_id"].ToString());
+            bus.reason = rej;
             int r = bus.reject_leave_md();
             if (r == 1)
             {
@@ -135,6 +139,7 @@ namespace eleave_view.md
 
                     // Write your approval logic here
                     bus.lid = RequestId;
+                    bus.userid = int.Parse(Session["user_id"].ToString());
                     int r = bus.approve_leave();
                     if (r == 1)
                     {
@@ -167,25 +172,86 @@ namespace eleave_view.md
 
         protected void btnreject_Click(object sender, EventArgs e)
         {
+            //f = 1;
+            //foreach (GridViewRow row in grd_app_rej.Rows)
+            //{
+            //    cbox = (CheckBox)row.FindControl("chk"); //RowSelector is the id of checkbox in Grid View
+            //    if (cbox.Checked == true)
+            //    {
+            //        if (txtbreason.Text != "")
+            //        {
+            //            // Fetch request's id
+            //            int RequestId = Convert.ToInt32(grd_app_rej.DataKeys[row.RowIndex].Value);
+
+            //            // Write your approval logic here
+            //            bus.lid = RequestId;
+            //            bus.reason = txtbreason.Text.Trim();
+            //            int r = bus.reject_leave_md();
+            //            if (r == 1)
+            //            {
+            //                f = 0;
+            //            }
+            //            else
+            //            {
+            //                f = 2;
+            //            }
+            //        }
+            //        else
+            //        {
+            //            ScriptManager.RegisterStartupScript(this, GetType(), "displayalertmessage", "warning2();", true);
+            //        }
+
+            //    }
+
+            //}
+            //if (f == 0)
+            //{
+            //    fillleavesapr();
+            //    ScriptManager.RegisterStartupScript(this, GetType(), "displayalertmessage", "success();", true);
+            //}
+            //else if (f == 2)
+            //{
+            //    fillleavesapr();
+            //    ScriptManager.RegisterStartupScript(this, GetType(), "displayalertmessage", "error();", true);
+            //}
+            //else
+            //{
+            //    fillleavesapr();
+            //    txtbreason.Text = "";
+            //    ScriptManager.RegisterStartupScript(this, GetType(), "displayalertmessage", "warning();", true);
+            //}
+        }
+
+        protected void btnrejc_Click(object sender, EventArgs e)
+        {
             f = 1;
             foreach (GridViewRow row in grd_app_rej.Rows)
             {
                 cbox = (CheckBox)row.FindControl("chk"); //RowSelector is the id of checkbox in Grid View
                 if (cbox.Checked == true)
                 {
-                    // Fetch request's id
-                    int RequestId = Convert.ToInt32(grd_app_rej.DataKeys[row.RowIndex].Value);
-
-                    // Write your approval logic here
-                    bus.lid = RequestId;
-                    int r = bus.reject_leave_md();
-                    if (r == 1)
+                    if (txtbreason.Text != "")
                     {
-                        f = 0;
+                        // Fetch request's id
+                        int RequestId = Convert.ToInt32(grd_app_rej.DataKeys[row.RowIndex].Value);
+
+                        // Write your approval logic here
+                        bus.lid = RequestId;
+                        bus.userid = int.Parse(Session["user_id"].ToString());
+                        bus.reason = txtbreason.Text.Trim();
+                        int r = bus.reject_leave_md();
+                        if (r == 1)
+                        {
+                            f = 0;
+                        }
+                        else
+                        {
+                            f = 2;
+                        }
                     }
                     else
                     {
-                        f = 2;
+                        ScriptManager.RegisterStartupScript(this, GetType(), "displayalertmessage", "warning2();", true);
                     }
 
                 }
@@ -204,6 +270,7 @@ namespace eleave_view.md
             else
             {
                 fillleavesapr();
+                txtbreason.Text = "";
                 ScriptManager.RegisterStartupScript(this, GetType(), "displayalertmessage", "warning();", true);
             }
         }

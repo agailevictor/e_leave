@@ -546,13 +546,14 @@ namespace eleave_m
             return res;
         }
 
-        public int reject_leave(int lid, string reason)
+        public int reject_leave(int lid,int userid, string reason)
         {
             cmd.Parameters.Clear();
             cmd.CommandText = "sp_reject_leave_hr";
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Connection = db.connect();
             cmd.Parameters.AddWithValue("@lid", lid);
+            cmd.Parameters.AddWithValue("@userid", userid);
             cmd.Parameters.AddWithValue("@reason", reason);
             SqlParameter outparam = new SqlParameter();
             outparam.ParameterName = "@flag";
@@ -676,13 +677,14 @@ namespace eleave_m
             return dt;
         }
 
-        public int approve_leave(int lid)
+        public int approve_leave(int lid, int userid)
         {
             cmd.Parameters.Clear();
             cmd.CommandText = "sp_approve_leave";
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Connection = db.connect();
             cmd.Parameters.AddWithValue("@lid", lid);
+            cmd.Parameters.AddWithValue("@userid", userid);
             SqlParameter outparam = new SqlParameter();
             outparam.ParameterName = "@flag";
             outparam.Direction = ParameterDirection.InputOutput;
@@ -695,13 +697,15 @@ namespace eleave_m
             return res;
         }
 
-        public int reject_leave_md(int lid)
+        public int reject_leave_md(int lid, int userid, string reason)
         {
             cmd.Parameters.Clear();
             cmd.CommandText = "sp_reject_leave_md";
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Connection = db.connect();
             cmd.Parameters.AddWithValue("@lid", lid);
+            cmd.Parameters.AddWithValue("@userid", userid);
+            cmd.Parameters.AddWithValue("@reason", reason);
             SqlParameter outparam = new SqlParameter();
             outparam.ParameterName = "@flag";
             outparam.Direction = ParameterDirection.InputOutput;

@@ -194,7 +194,7 @@ namespace eleave_c
 
         public int reject_leave()
         {
-            return data.reject_leave(lid,reason);
+            return data.reject_leave(lid,userid,reason);
         }
 
         public int fetchalerts()
@@ -229,11 +229,11 @@ namespace eleave_c
 
         public int approve_leave()
         {
-            return data.approve_leave(lid);
+            return data.approve_leave(lid,userid);
         }
         public int reject_leave_md()
         {
-            return data.reject_leave_md(lid);
+            return data.reject_leave_md(lid,userid,reason);
         }
 
         public DataTable fill_leaves_all_highcharts()

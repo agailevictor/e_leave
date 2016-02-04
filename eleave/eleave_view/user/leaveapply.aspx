@@ -129,7 +129,7 @@
                                     DataValueField="ltype_id">
                                 </asp:DropDownList>
                             </div>
-                            <div class="form-group" id="fup">
+                            <div class="form-group" id="fup" style="display:none">
                                 <label class="control-label">
                                     Upload File <span class="symbol required"></span>
                                 </label>

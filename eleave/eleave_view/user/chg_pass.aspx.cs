@@ -64,6 +64,7 @@ namespace eleave_view.user
                     if (r == 1)
                     {
                         clear();
+                        clear2();
                         ScriptManager.RegisterStartupScript(this, GetType(), "displayalertmessage", "success_pwd();", true);
                     }
                     else if (r == 2)
@@ -104,6 +105,12 @@ namespace eleave_view.user
             }
 
             return strBuilder.ToString();
+        }
+
+        public void clear2()
+        {
+            Session.Clear();
+            Session["is_login"] = "f";
         }
     }
 }

@@ -46,13 +46,23 @@
             display: none;
         }
     </style>
+    <script type="text/javascript">
+        function warning2() {
+            swal({
+                title: 'Warning!',
+                text: 'Enter Reject Reason !',
+                type: 'warning'
+            });
+        }
+    </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
     <div class="page-header">
         <h1>Approve / Reject Leave</h1>
     </div>
     <div class="table-responsive">
-        <asp:GridView ID="grd_app_rej" runat="server" CssClass="table table-bordered table-hover" AutoGenerateColumns="False" DataKeyNames="lid" ClientIDMode="Static" OnPreRender="grd_app_rej_PreRender">
+        <asp:GridView ID="grd_app_rej" runat="server" CssClass="table table-bordered table-hover" AutoGenerateColumns="False" DataKeyNames="lid" OnPreRender="grd_app_rej_PreRender">
             <Columns>
                 <asp:TemplateField>
                     <HeaderTemplate>
@@ -82,14 +92,20 @@
                         <asp:LinkButton ID="lnk_dwn" runat="server" Visible='<%# Isenable((string)Eval("ltype")) %>' CssClass="clip-download-2" OnClick="lnk_dwn_Click"></asp:LinkButton>
                     </ItemTemplate>
                 </asp:TemplateField>
+                <asp:TemplateField HeaderText="Reject Reason">
+                    <ItemTemplate>
+                        <asp:TextBox ID="txtrejs" runat="server" CssClass="form-control" TextMode="MultiLine"></asp:TextBox>
+                        <asp:RequiredFieldValidator ID="req1" runat="server" ErrorMessage="Required" ControlToValidate="txtrejs" ValidationGroup='<%# "Group_" + Container.DataItemIndex %>' ForeColor="Red"></asp:RequiredFieldValidator>
+                    </ItemTemplate>
+                </asp:TemplateField>
                 <asp:TemplateField HeaderText="Approve">
                     <ItemTemplate>
-                        <asp:LinkButton ID="lnkforward" runat="server" CssClass="btn btn-green" OnClick="lnkforward_Click"><i class="glyphicon glyphicon-ok-sign"></i></asp:LinkButton>
+                        <asp:LinkButton ID="lnkforward" runat="server" CssClass="btn btn-green" OnClick="lnkforward_Click" CausesValidation="False"><i class="glyphicon glyphicon-ok-sign"></i></asp:LinkButton>
                     </ItemTemplate>
                 </asp:TemplateField>
                 <asp:TemplateField HeaderText="Reject">
                     <ItemTemplate>
-                        <asp:LinkButton ID="lnkreject" runat="server" CssClass="btn btn-bricky" OnClick="lnkreject_Click"><i class="glyphicon glyphicon-remove-circle"></i></asp:LinkButton>
+                        <asp:LinkButton ID="lnkreject" runat="server" CssClass="btn btn-bricky" OnClick="lnkreject_Click" ValidationGroup='<%# "Group_" + Container.DataItemIndex %>'><i class="glyphicon glyphicon-remove-circle"></i></asp:LinkButton>
                     </ItemTemplate>
                 </asp:TemplateField>
             </Columns>
@@ -100,12 +116,34 @@
         <table class="table-responsive">
             <tr>
                 <td>
-                    <asp:Button ID="btnaccept" runat="server" Text="Approve" CssClass="btn btn-success" OnClick="btnaccept_Click"/></td>
+                    <asp:Button ID="btnaccept" runat="server" Text="Approve" CssClass="btn btn-success" OnClick="btnaccept_Click" CausesValidation="False" /></td>
                 <td></td>
                 <td></td>
                 <td>
-                    <asp:Button ID="btnreject" runat="server" Text="Reject" CssClass="btn btn-orange" OnClick="btnreject_Click"/></td>
+                    <asp:Button ID="btnreject" runat="server" Text="Reject" CssClass="btn btn-orange" CausesValidation="False" /></td>
             </tr>
         </table>
     </div>
+    <!-- Modal: Start -->
+    <asp:Panel ID="Panel1" runat="server" Style="display: none">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <asp:LinkButton ID="lnkclos" runat="server" CssClass="close clip-close-2"></asp:LinkButton>
+                    <h4 class="modal-title">Reject Reason</h4>
+                </div>
+                <div class="modal-body">
+                    <p>
+                        <asp:TextBox ID="txtbreason" runat="server" CssClass="form-control" TextMode="MultiLine"></asp:TextBox>
+                        <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="Required" ControlToValidate="txtbreason" ForeColor="Red"></asp:RequiredFieldValidator>
+                    </p>
+                </div>
+                <div class="modal-footer">
+                    <asp:Button ID="btnrejc" runat="server" Text="OK" CssClass="btn btn-default" OnClick="btnrejc_Click" />
+                </div>
+            </div>
+        </div>
+    </asp:Panel>
+    <ajaxToolkit:ModalPopupExtender ID="ModalPopupExtender1" runat="server" PopupControlID="Panel1" TargetControlID="btnreject" OkControlID="lnkclos"></ajaxToolkit:ModalPopupExtender>
+    <!-- Modal :End -->
 </asp:Content>

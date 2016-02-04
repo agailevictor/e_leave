@@ -122,11 +122,12 @@ namespace eleave_view.hr
         {
             LinkButton lnk = sender as LinkButton;
             GridViewRow row = lnk.NamingContainer as GridViewRow;
-            string rej = ((TextBox)grd_forward.Rows[row.RowIndex].FindControl("TextBox1")).Text.Trim();
+            string rej = ((TextBox)grd_forward.Rows[row.RowIndex].FindControl("txtrejs")).Text.Trim();
             //if (rej != "")
             //{
                 int id = int.Parse(grd_forward.DataKeys[row.RowIndex].Value.ToString());
                 bus.lid = id;
+                bus.userid = int.Parse(Session["user_id"].ToString());
                 bus.reason = rej;
                 int r = bus.reject_leave();
                 if (r == 1)
@@ -194,6 +195,7 @@ namespace eleave_view.hr
 
                         // Write your approval logic here
                         bus.lid = RequestId;
+                        bus.userid = int.Parse(Session["user_id"].ToString());
                         bus.reason = txtbreason.Text.Trim();
                         int r = bus.reject_leave();
                         if (r == 1)
@@ -226,6 +228,7 @@ namespace eleave_view.hr
             else
             {
                 fillleavesfr();
+                txtbreason.Text = "";
                 ScriptManager.RegisterStartupScript(this, GetType(), "displayalertmessage", "warning();", true);
             }
         }

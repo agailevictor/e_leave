@@ -4,10 +4,11 @@
     //which will add advanced interaction controls to any HTML table
     //For more information, please visit https://datatables.net/
     var runDataTable = function () {
-        var oTable = $('#grd_app_rej').dataTable({
+       // var oTable = $('#grd_app_rej').dataTable({
+        var oTable = $("[id$=grd_app_rej]").dataTable({
             "aoColumnDefs": [{
                 'bSortable': false,
-                "aTargets": [0]
+                "aTargets": [0,8,9,10,11,12,13]
             }],
             "oLanguage": {
                 "sLengthMenu": "Show _MENU_ Rows",
