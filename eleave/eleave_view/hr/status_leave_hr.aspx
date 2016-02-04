@@ -50,6 +50,7 @@
                 <asp:BoundField DataField="ltype" HeaderText="Leave Type" />
                 <asp:BoundField DataField="req_date" HeaderText="Applied On" />
                 <asp:BoundField DataField="dates" HeaderText="Dates Applied" />
+                <asp:BoundField DataField="rej_reason" HeaderText="Reject Reason" />
                 <asp:BoundField DataField="stat" HeaderText="Status" />
                 <asp:TemplateField HeaderText="Operation">
                     <ItemTemplate>
