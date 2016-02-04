@@ -114,7 +114,7 @@
                                 </label>
                             </div>
                             <div class="form-group">
-                                <div id="pulsate-regular" style="padding: 5px; width: 202px;">
+                                <div id="pulsate-regular" style="padding: 5px; width: 202px; display:none">
                                 <asp:Label ID="lblop" runat="server" Text="Enter Valid Password" ClientIDMode="Static" ForeColor="Black"></asp:Label>
                                 </div>
                             </div>
