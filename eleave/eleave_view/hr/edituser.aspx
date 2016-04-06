@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="edituser.aspx.cs" Inherits="eleave_view.hr.edituser" MasterPageFile="~/hr/hr.Master" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="edituser.aspx.cs" Inherits="eleave_view.hr.edituser" MasterPageFile="~/hr/hr.Master" EnableEventValidation="false" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <script type="text/javascript">
@@ -6,7 +6,9 @@
             swal({
                 title: 'Success!',
                 text: 'User Details Updated succesfully !',
-                type: 'success'
+                type: 'success',
+                allowEscapeKey: false,
+                allowOutsideClick: false
             },
                 function () {
                     window.location = "listuser.aspx";
@@ -18,11 +20,27 @@
             swal({
                 title: 'Error!',
                 text: 'Username Cannot be Same!',
-                type: 'error'
+                type: 'error',
+                allowEscapeKey: false,
+                allowOutsideClick: false
             },
                  function () {
-                        window.location = "listuser.aspx";
-                });
+                     window.location = "listuser.aspx";
+                 });
+        }
+    </script>
+    <script type="text/javascript">
+        function error_dupli_email() {
+            swal({
+                title: 'Error!',
+                text: 'Email Cannot be Same!',
+                type: 'error',
+                allowEscapeKey: false,
+                allowOutsideClick: false
+            },
+                 function () {
+                     window.location = "listuser.aspx";
+                 });
         }
     </script>
     <script type="text/javascript">
@@ -30,10 +48,67 @@
             swal({
                 title: 'Error!',
                 text: 'Something Went Wrong!',
-                type: 'error'
+                type: 'error',
+                allowEscapeKey: false,
+                allowOutsideClick: false
             },
-            function (){
+            function () {
                 window.location = "listuser.aspx";
+            });
+        }
+    </script>
+    <script type="text/javascript">
+        function error1() {
+            swal({
+                title: 'Error!',
+                text: 'You have some form errors!',
+                type: 'error',
+                allowEscapeKey: false,
+                allowOutsideClick: false
+            });
+        }
+    </script>
+    <script type="text/javascript">
+        function errorinvalid() {
+            swal({
+                title: 'Error!',
+                text: 'Invalid mail format!',
+                type: 'error',
+                allowEscapeKey: false,
+                allowOutsideClick: false
+            });
+        }
+    </script>
+    <script type="text/javascript">
+        function errorlength() {
+            swal({
+                title: 'Error!',
+                text: 'Email can\'t be of length more than 30 characters!',
+                type: 'error',
+                allowEscapeKey: false,
+                allowOutsideClick: false
+            });
+        }
+    </script>
+    <script type="text/javascript">
+        function errorname() {
+            swal({
+                title: 'Error!',
+                text: 'Invalid name format!',
+                type: 'error',
+                allowEscapeKey: false,
+                allowOutsideClick: false
+            });
+        }
+    </script>
+    <script type="text/javascript">
+        function erroruname() {
+            swal({
+                title: 'Error!',
+                text: 'Invalid username format!',
+                type: 'error',
+                allowEscapeKey: false,
+                allowOutsideClick: false
             });
         }
     </script>
@@ -76,9 +151,15 @@
                             </div>
                             <div class="form-group">
                                 <label class="control-label">
-                                    User Name <span class="symbol required"></span>
+                                    Username <span class="symbol required"></span>
                                 </label>
-                                <asp:TextBox ID="txtuname" runat="server" CssClass="form-control" ClientIDMode="Static"></asp:TextBox>
+                                <asp:TextBox ID="txtuname" runat="server" CssClass="form-control" ClientIDMode="Static" onchange="checkusername_edit()"></asp:TextBox>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label">
+                                    Email <span class="symbol required"></span>
+                                </label>
+                                <asp:TextBox ID="txtemail" runat="server" CssClass="form-control" ClientIDMode="Static" onchange="checkemail_edit()"></asp:TextBox>
                             </div>
                             <div class="form-group">
                                 <label class="control-label">
@@ -123,6 +204,50 @@
                                 <asp:DropDownList ID="ddlregion" runat="server" CssClass="form-control" ClientIDMode="Static" DataTextField="region" DataValueField="region_id"></asp:DropDownList>
                             </div>
                         </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label">
+                                </label>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label">
+                                </label>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label">
+                                </label>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label">
+                                </label>
+                            </div>
+                            <div class="form-group">
+                                <div id="pulsate-regularun" style="padding: 5px; width: 202px; display: none">
+                                    <asp:Label ID="lblun" runat="server" Text="Username Already Taken" ClientIDMode="Static" ForeColor="Black"></asp:Label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label">
+                                </label>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label">
+                                </label>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label">
+                                </label>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label">
+                                </label>
+                            </div>
+                            <div class="form-group">
+                                <div id="pulsate-regularem" style="padding: 5px; width: 202px; display: none">
+                                    <asp:Label ID="lblem" runat="server" Text="Email can't be same" ClientIDMode="Static" ForeColor="Black"></asp:Label>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <div class="row">
                         <div class="col-md-12">
@@ -134,7 +259,7 @@
                     </div>
                     <div class="row">
                         <div class="col-md-8">
-                            <asp:Button ID="btnupuser" runat="server" Text="Update" CssClass="btn btn-success" OnClientClick="uservali()" OnClick="btnupuser_Click" />
+                            <asp:Button ID="btnupuser" runat="server" Text="Update" ClientIDMode="Static" CssClass="btn btn-success" OnClientClick="uservali()" OnClick="btnupuser_Click" />
                         </div>
                         <div class="col-md-4">
                         </div>

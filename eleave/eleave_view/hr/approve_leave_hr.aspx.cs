@@ -22,14 +22,21 @@ namespace eleave_view.hr
 
         protected void checklogin()
         {
-            if (Session["is_login"].ToString() == "t")
+            if (Session["is_login"] != null)
             {
-                fill_app_rej_hr();
+                if (Session["is_login"].ToString() == "t")
+                {
+                    fill_app_rej_hr();
 
+                }
+                else
+                {
+                    Response.Redirect("~/unauthorised.aspx");
+                }
             }
             else
             {
-                Response.Redirect("~/unauthorised.aspx");
+                Response.Redirect("~/Login.aspx");
             }
         }
 

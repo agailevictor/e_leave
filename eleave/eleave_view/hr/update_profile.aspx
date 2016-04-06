@@ -6,11 +6,13 @@
             swal({
                 title: 'Success!',
                 text: 'Your profile has been succesfully Updated',
-                type: 'success'
-                },
+                type: 'success',
+                allowEscapeKey: false,
+                allowOutsideClick: false
+            },
                 function () {
                     window.location = "hrdash.aspx";
-            });
+                });
         }
     </script>
     <script type="text/javascript">
@@ -18,7 +20,9 @@
             swal({
                 title: 'Error!',
                 text: 'Something Went Wrong',
-                type: 'error'
+                type: 'error',
+                allowEscapeKey: false,
+                allowOutsideClick: false
             });
         }
     </script>
@@ -27,7 +31,20 @@
             swal({
                 title: 'Warning!',
                 text: 'Failed to fetch the details needed',
-                type: 'warning'
+                type: 'warning',
+                allowEscapeKey: false,
+                allowOutsideClick: false
+            });
+        }
+    </script>
+    <script type="text/javascript">
+        function errorlength() {
+            swal({
+                title: 'Error!',
+                text: 'Address 1 & Address 2 can\'t be of length grater than 20 charcaters',
+                type: 'error',
+                allowEscapeKey: false,
+                allowOutsideClick: false
             });
         }
     </script>
@@ -64,49 +81,56 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label class="control-label">
-                                    Name <span class="symbol required"></span>
+                                    Name
                                 </label>
                                 <asp:Label ID="lblname" runat="server" CssClass="form-control"
                                     ClientIDMode="Static"></asp:Label>
                             </div>
                             <div class="form-group">
                                 <label class="control-label">
-                                    UserName <span class="symbol required"></span>
+                                    Username
                                 </label>
                                 <asp:Label ID="lbluname" runat="server" CssClass="form-control"
                                     ClientIDMode="Static"></asp:Label>
                             </div>
                             <div class="form-group">
                                 <label class="control-label">
-                                    Gender <span class="symbol required"></span>
+                                    Email
+                                </label>
+                                <asp:Label ID="lblemail" runat="server" CssClass="form-control"
+                                    ClientIDMode="Static"></asp:Label>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label">
+                                    Gender
                                 </label>
                                 <asp:Label ID="lblgender" runat="server" CssClass="form-control"
                                     ClientIDMode="Static"></asp:Label>
                             </div>
                             <div class="form-group">
                                 <label class="control-label">
-                                    Date Of Join <span class="symbol required"></span>
+                                    Date Of Join 
                                 </label>
                                 <asp:Label ID="lbldoj" runat="server" CssClass="form-control"
                                     ClientIDMode="Static"></asp:Label>
                             </div>
                             <div class="form-group">
                                 <label class="control-label">
-                                    Department <span class="symbol required"></span>
+                                    Department 
                                 </label>
                                 <asp:Label ID="lbldep" runat="server" CssClass="form-control"
                                     ClientIDMode="Static"></asp:Label>
                             </div>
                             <div class="form-group">
                                 <label class="control-label">
-                                    Designation <span class="symbol required"></span>
+                                    Designation 
                                 </label>
                                 <asp:Label ID="lbldesg" runat="server" CssClass="form-control"
                                     ClientIDMode="Static"></asp:Label>
                             </div>
                             <div class="form-group">
                                 <label class="control-label">
-                                    Grade <span class="symbol required"></span>
+                                    Grade 
                                 </label>
                                 <asp:Label ID="lblgrade" runat="server" CssClass="form-control"
                                     ClientIDMode="Static"></asp:Label>
@@ -132,7 +156,7 @@
                             </div>
                             <div class="form-group">
                                 <label class="control-label">
-                                    Region <span class="symbol required"></span>
+                                    Region
                                 </label>
                                 <asp:Label ID="lblregion" runat="server" CssClass="form-control"
                                     ClientIDMode="Static"></asp:Label>

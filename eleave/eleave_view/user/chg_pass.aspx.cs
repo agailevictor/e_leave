@@ -18,7 +18,7 @@ namespace eleave_view.user
         string hashed_old, hashed;
         protected void Page_Load(object sender, EventArgs e)
         {
-            if(!IsPostBack)
+            if (!IsPostBack)
             {
                 checklogin();
             }
@@ -26,9 +26,16 @@ namespace eleave_view.user
 
         protected void checklogin()
         {
-            if (Session["is_login"].ToString() == "f")
+            if (Session["is_login"] != null)
             {
-                Response.Redirect("~/unauthorised.aspx");
+                if (Session["is_login"].ToString() == "f")
+                {
+                    Response.Redirect("~/unauthorised.aspx");
+                }
+            }
+            else
+            {
+                Response.Redirect("~/Login.aspx");
             }
         }
 
@@ -53,36 +60,48 @@ namespace eleave_view.user
         {
             if (txt_oldpwd.Text != "" && txt_nwpwd.Text != "" && txt_conf_nwpwd.Text != "")
             {
-                hashed_old = MD5Hash(txt_oldpwd.Text.Trim());
-                hashed = MD5Hash(txt_conf_nwpwd.Text.Trim());
-                if (hashed != "" && hashed_old != "")
+                if (txt_conf_nwpwd.Text.Trim().Length > 6 && txt_conf_nwpwd.Text.Trim().Length <= 10)
                 {
-                    bus.userid = int.Parse(Session["user_id"].ToString());
-                    bus.oldp = hashed_old;
-                    bus.newp = hashed;
-                    int r = bus.updatepwd();
-                    if (r == 1)
+                    hashed_old = MD5Hash(txt_oldpwd.Text.Trim());
+                    hashed = MD5Hash(txt_conf_nwpwd.Text.Trim());
+                    if (hashed != "" && hashed_old != "")
                     {
-                        clear();
-                        clear2();
-                        ScriptManager.RegisterStartupScript(this, GetType(), "displayalertmessage", "success_pwd();", true);
-                    }
-                    else if (r == 2)
-                    {
-                        clear();
-                        ScriptManager.RegisterStartupScript(this, GetType(), "displayalertmessage", "error_pwd();", true);
+                        bus.userid = int.Parse(Session["user_id"].ToString());
+                        bus.oldp = hashed_old;
+                        bus.newp = hashed;
+                        int r = bus.updatepwd();
+                        if (r == 1)
+                        {
+                            clear();
+                            clear2();
+                            ScriptManager.RegisterStartupScript(this, GetType(), "displayalertmessage", "success_pwd();", true);
+                        }
+                        else if (r == 2)
+                        {
+                            clear();
+                            ScriptManager.RegisterStartupScript(this, GetType(), "displayalertmessage", "error_pwd();", true);
+                        }
+                        else
+                        {
+                            clear();
+                            ScriptManager.RegisterStartupScript(this, GetType(), "displayalertmessage", "error_old();", true);
+                        }
                     }
                     else
                     {
                         clear();
-                        ScriptManager.RegisterStartupScript(this, GetType(), "displayalertmessage", "error_old();", true);
+                        ScriptManager.RegisterStartupScript(this, GetType(), "displayalertmessage", "error_pwd();", true);
                     }
                 }
                 else
                 {
                     clear();
-                    ScriptManager.RegisterStartupScript(this, GetType(), "displayalertmessage", "error_pwd();", true);
+                    ScriptManager.RegisterStartupScript(this, GetType(), "displayalertmessage", "error_length();", true);
                 }
+            }
+            else
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "displayalertmessage", "error();", true);
             }
         }
 

@@ -6,7 +6,9 @@
             swal({
                 title: 'Success!',
                 text: 'Your request has been succesfully updated !',
-                type: 'success'
+                type: 'success',
+                allowEscapeKey: false,
+                allowOutsideClick: false
             });
         }
     </script>
@@ -15,10 +17,29 @@
             swal({
                 title: 'Error!',
                 text: 'Something Went Wrong !',
-                type: 'error'
+                type: 'error',
+                allowEscapeKey: false,
+                allowOutsideClick: false
             });
         }
     </script>
+    <script type="text/javascript">
+        function warningemail() {
+            swal({
+                title: 'Warning!',
+                text: 'Failed to send email !',
+                type: 'warning',
+                allowEscapeKey: false,
+                allowOutsideClick: false
+            });
+        }
+    </script>
+    <style type="text/css">
+        .WordWrap1 {
+            /*width: 100%;*/
+            word-break: break-all;
+        }
+    </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="page-header">
@@ -34,10 +55,19 @@
                 <asp:BoundField DataField="depname" HeaderText="Department" />
                 <asp:BoundField DataField="desig" HeaderText="Designation" />
                 <asp:BoundField DataField="ltype" HeaderText="Leave Type" />
-                <asp:BoundField DataField="dates" HeaderText="Dates Applied" />
+                <asp:BoundField DataField="dates" HeaderText="Dates Applied" >
+                <ItemStyle CssClass="WordWrap1" />
+                </asp:BoundField>
                 <asp:BoundField DataField="period" HeaderText="Period" />
-                <asp:BoundField DataField="reason" HeaderText="Reason" />
+                <asp:BoundField DataField="reason" HeaderText="Reason" >
+                <ItemStyle CssClass="WordWrap1" />
+                </asp:BoundField>
                 <asp:BoundField DataField="idate" HeaderText="idate">
+                    <HeaderStyle CssClass="hidden"></HeaderStyle>
+
+                    <ItemStyle CssClass="hidden"></ItemStyle>
+                </asp:BoundField>
+                <asp:BoundField DataField="email" HeaderText="Email">
                     <HeaderStyle CssClass="hidden"></HeaderStyle>
 
                     <ItemStyle CssClass="hidden"></ItemStyle>

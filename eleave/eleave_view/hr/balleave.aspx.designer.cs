@@ -7,45 +7,36 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace eleave_view.user {
+namespace eleave_view.hr {
     
     
-    public partial class applyleave {
+    public partial class balleave {
         
         /// <summary>
-        /// ddlleave control.
+        /// grd_bal control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlleave;
+        protected global::System.Web.UI.WebControls.GridView grd_bal;
         
         /// <summary>
-        /// bootdate control.
+        /// btnpdf control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox bootdate;
+        protected global::System.Web.UI.WebControls.Button btnpdf;
         
         /// <summary>
-        /// txtfile control.
+        /// btnexl control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtfile;
-        
-        /// <summary>
-        /// Button1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button1;
+        protected global::System.Web.UI.WebControls.Button btnexl;
     }
 }

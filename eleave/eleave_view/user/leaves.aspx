@@ -6,7 +6,9 @@
         swal({
             title: 'Success!',
             text: 'Your request has been succesfully Updated',
-            type: 'success'
+            type: 'success',
+            allowEscapeKey: false,
+            allowOutsideClick: false
             });
     }
     </script>
@@ -15,7 +17,9 @@
             swal({
                 title: 'Error!',
                 text: 'Something Went Wrong',
-                type: 'error'
+                type: 'error',
+                allowEscapeKey: false,
+                allowOutsideClick: false
             });
         }
     </script>

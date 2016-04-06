@@ -49,13 +49,32 @@ var userval = function () {
     var runUserFormValidator = function () {
         var form = $('#form1');
         var errorHandler = $('.errorHandler', form);
+        jQuery.validator.addMethod("fullname", function (value, element) {
+            return this.optional(element) || /^[a-z\s]+$/i.test(value);
+        }, "Only alphabetical characters");
+
+        jQuery.validator.addMethod("mail", function (value, element) {
+            return this.optional(element) || /^\b[A-Z0-9._%-]+@[A-Z0-9.-]+\.[A-Z]{2,4}\b$/i.test(value);
+        }, "Enter Valid Email id");
         form.validate({
             rules: {
                 ctl00$ContentPlaceHolder1$txtname: {
+                    minlength: 3,
+                    maxlength: 30,
+                    fullname: true,
                     required: true
                 },
                 ctl00$ContentPlaceHolder1$txtuname: {
+                    minlength: 3,
+                    maxlength: 30,
+                    alphanumeric: true,
                     required: true
+                    
+                },
+                ctl00$ContentPlaceHolder1$txtemail: {
+                    required: true,
+                    mail: true,
+                    maxlength: 30
                 },
                 ctl00$ContentPlaceHolder1$ddlgender: {
                     required: true

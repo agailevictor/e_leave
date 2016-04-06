@@ -19,24 +19,35 @@ namespace eleave_view
 
         public void check_multiple_login()
         {
-            if (Session["is_login"] == "t")
+            if (Session["is_login"] == null)
             {
-                if (Session["role"].ToString() == "User")
-                {
-                    Response.Redirect("~/user/dash.aspx");
-                }
-                else if (Session["role"].ToString() == "official")
-                {
-                    Response.Redirect("~/official/adduser.aspx");
-                }
-                else
-                {
-                    Response.Redirect("~/succ.aspx");
-                }
+                Response.Redirect("~/Login.aspx");
             }
             else
             {
-                Response.Redirect("~/Login.aspx");
+                if (Session["is_login"].ToString() == "t")
+                {
+                    if (Session["role"].ToString() == "User")
+                    {
+                        Response.Redirect("~/user/dash.aspx");
+                    }
+                    else if (Session["role"].ToString() == "HR")
+                    {
+                        Response.Redirect("~/hr/hrdash.aspx");
+                    }
+                    else if (Session["role"].ToString() == "Management")
+                    {
+                        Response.Redirect("~/md/dash.aspx");
+                    }
+                    else
+                    {
+                        Response.Redirect("~/unauthorised.aspx");
+                    }
+                }
+                else
+                {
+                    Response.Redirect("~/Login.aspx");
+                }
             }
         }
     }

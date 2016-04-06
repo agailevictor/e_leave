@@ -4,7 +4,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="page-header">
-        <h1>Dash Board</h1>
+        <h1>Dashboard</h1>
     </div>
     <!-- start: DIALER -->
     <div class="row">
@@ -59,4 +59,26 @@
             <!-- end: FULL CALENDAR PANEL -->
         </div>
     </div>
+
+    <div id="event-management" class="modal fade" tabindex="-1" data-width="760" style="display: none;">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        &times;
+                    </button>
+                    <h4 class="modal-title" id="modal-title">Holiday Details</h4>
+                </div>
+                <div class="modal-body" id="modal-body">
+                    <h2 id="mbody"></h2>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" data-dismiss="modal" class="btn btn-light-grey">
+                        Close
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </asp:Content>

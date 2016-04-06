@@ -11,7 +11,9 @@
             swal({
                 title: 'Success!',
                 text: 'Your Password has been succesfully Updated',
-                type: 'success'
+                type: 'success',
+                allowEscapeKey: false,
+                allowOutsideClick: false
             },
                 function () {
                     window.location = "../Logout.aspx";
@@ -24,23 +26,50 @@
             swal({
                 title: 'Error!',
                 text: 'Something Went Wrong. Try Again',
-                type: 'error'
+                type: 'error',
+                allowEscapeKey: false,
+                allowOutsideClick: false
             });
         }
     </script>
 
     <script type="text/javascript">
-        function error_old() {
+        function error_pwd() {
             swal({
                 title: 'Error!',
-                text: 'Old Password is Wrong',
-                type: 'error'
+                text: 'Something Went Wrong. Try Again',
+                type: 'error',
+                allowEscapeKey: false,
+                allowOutsideClick: false
+            });
+        }
+    </script>
+
+    <script type="text/javascript">
+        function error1() {
+            swal({
+                title: 'Error!',
+                text: 'You have some form errors',
+                type: 'error',
+                allowEscapeKey: false,
+                allowOutsideClick: false
+            });
+        }
+    </script>
+    <script type="text/javascript">
+        function error_length() {
+            swal({
+                title: 'Error!',
+                text: 'Password Should be of length 6 to 10 characters!',
+                type: 'error',
+                allowEscapeKey: false,
+                allowOutsideClick: false
             });
         }
     </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-     <div class="page-header">
+    <div class="page-header">
         <h1>Change Password</h1>
     </div>
     <div class="row">
@@ -104,7 +133,7 @@
                             </div>
                             <div class="row">
                                 <div class="col-md-4">
-                                    <asp:Button ID="btncp" runat="server" Text="Change Password" CssClass="btn btn-success" OnClientClick="cpassvali()" OnClick="btncp_Click"/>
+                                    <asp:Button ID="btncp" runat="server" Text="Change Password" CssClass="btn btn-success" ClientIDMode="Static" OnClientClick="cpassvali()" OnClick="btncp_Click" />
                                 </div>
                             </div>
                         </div>
@@ -114,8 +143,8 @@
                                 </label>
                             </div>
                             <div class="form-group">
-                                <div id="pulsate-regular" style="padding: 5px; width: 202px; display:none">
-                                <asp:Label ID="lblop" runat="server" Text="Enter Valid Password" ClientIDMode="Static" ForeColor="Black"></asp:Label>
+                                <div id="pulsate-regular" style="padding: 5px; width: 202px; display: none">
+                                    <asp:Label ID="lblop" runat="server" Text="Enter Valid Password" ClientIDMode="Static" ForeColor="Black"></asp:Label>
                                 </div>
                             </div>
                         </div>

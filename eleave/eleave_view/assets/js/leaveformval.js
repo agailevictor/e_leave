@@ -4,8 +4,9 @@ Author : Agaile
 Custom leave application form validation script
 */
 var leaveval = function () {
-
+    
     var runSetDefaultValidation = function () {
+
         $.validator.setDefaults({
             errorElement: "span", // contain the error msg in a small tag
             errorClass: 'help-block',
@@ -88,6 +89,7 @@ var leaveval = function () {
         init: function () {
             runSetDefaultValidation();
             runLeaveFormValidator();
+           
         }
     };
 } ();

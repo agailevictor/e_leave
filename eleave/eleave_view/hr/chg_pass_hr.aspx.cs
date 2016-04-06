@@ -26,9 +26,16 @@ namespace eleave_view.hr
 
         protected void checklogin()
         {
-            if (Session["is_login"].ToString() == "f")
+            if (Session["is_login"] != null)
             {
-                Response.Redirect("~/unauthorised.aspx");
+                if (Session["is_login"].ToString() == "f")
+                {
+                    Response.Redirect("~/unauthorised.aspx");
+                }
+            }
+            else
+            {
+                Response.Redirect("~/Login.aspx");
             }
         }
 
@@ -37,36 +44,48 @@ namespace eleave_view.hr
 
             if(oldpwd_hr_txt.Text !="" && nwpwd_hr_txt.Text !="" && conf_nwpwd_hr_txt.Text !="")
             {
-                hashed_old = MD5Hash(oldpwd_hr_txt.Text.Trim());
-                hashed = MD5Hash(conf_nwpwd_hr_txt.Text.Trim());
-                if (hashed != "" && hashed_old != "")
+                if (conf_nwpwd_hr_txt.Text.Trim().Length > 6 && conf_nwpwd_hr_txt.Text.Trim().Length <= 10)
                 {
-                    bus.userid = int.Parse(Session["user_id"].ToString());
-                    bus.oldp = hashed_old;
-                    bus.newp = hashed;
-                    int r = bus.updatepwd();
-                    if (r == 1)
+                    hashed_old = MD5Hash(oldpwd_hr_txt.Text.Trim());
+                    hashed = MD5Hash(conf_nwpwd_hr_txt.Text.Trim());
+                    if (hashed != "" && hashed_old != "")
                     {
-                        clear();
-                        clear2();
-                        ScriptManager.RegisterStartupScript(this, GetType(), "displayalertmessage", "success_pwd();", true);
-                    }
-                    else if (r == 2)
-                    {
-                        clear();
-                        ScriptManager.RegisterStartupScript(this, GetType(), "displayalertmessage", "error_pwd();", true);
+                        bus.userid = int.Parse(Session["user_id"].ToString());
+                        bus.oldp = hashed_old;
+                        bus.newp = hashed;
+                        int r = bus.updatepwd();
+                        if (r == 1)
+                        {
+                            clear();
+                            clear2();
+                            ScriptManager.RegisterStartupScript(this, GetType(), "displayalertmessage", "success_pwd();", true);
+                        }
+                        else if (r == 2)
+                        {
+                            clear();
+                            ScriptManager.RegisterStartupScript(this, GetType(), "displayalertmessage", "error_pwd();", true);
+                        }
+                        else
+                        {
+                            clear();
+                            ScriptManager.RegisterStartupScript(this, GetType(), "displayalertmessage", "error_old();", true);
+                        }
                     }
                     else
                     {
                         clear();
-                        ScriptManager.RegisterStartupScript(this, GetType(), "displayalertmessage", "error_old();", true);
+                        ScriptManager.RegisterStartupScript(this, GetType(), "displayalertmessage", "error_pwd();", true);
                     }
                 }
                 else
                 {
                     clear();
-                    ScriptManager.RegisterStartupScript(this, GetType(), "displayalertmessage", "error_pwd();", true);
+                    ScriptManager.RegisterStartupScript(this, GetType(), "displayalertmessage", "error_length();", true);
                 }
+            }
+            else
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "displayalertmessage", "error();", true);
             }
 
         }

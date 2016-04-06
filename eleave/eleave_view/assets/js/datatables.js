@@ -12,10 +12,7 @@
             "oLanguage": {
                 "sLengthMenu": "Show _MENU_ Rows",
                 "sSearch": "",
-                "oPaginate": {
-                    "sPrevious": "",
-                    "sNext": ""
-                }
+                "pagingType": "full_numbers"
             },
             "aaSorting": [
                 [1, 'asc']
@@ -41,10 +38,7 @@
             "oLanguage": {
                 "sLengthMenu": "Show _MENU_ Rows",
                 "sSearch": "",
-                "oPaginate": {
-                    "sPrevious": "",
-                    "sNext": ""
-                }
+                "pagingType": "full_numbers"
             },
             "aaSorting": [
                 [0, 'asc']
@@ -70,10 +64,7 @@
             "oLanguage": {
                 "sLengthMenu": "Show _MENU_ Rows",
                 "sSearch": "",
-                "oPaginate": {
-                    "sPrevious": "",
-                    "sNext": ""
-                }
+                "pagingType": "full_numbers"
             },
             "aaSorting": [
                 [0, 'asc']
@@ -101,10 +92,7 @@
             "oLanguage": {
                 "sLengthMenu": "Show _MENU_ Rows",
                 "sSearch": "",
-                "oPaginate": {
-                    "sPrevious": "",
-                    "sNext": ""
-                }
+                "pagingType": "full_numbers"
             },
             "aaSorting": [
                 [1, 'asc']
@@ -130,10 +118,7 @@
             "oLanguage": {
                 "sLengthMenu": "Show _MENU_ Rows",
                 "sSearch": "",
-                "oPaginate": {
-                    "sPrevious": "",
-                    "sNext": ""
-                }
+                "pagingType": "full_numbers"
             },
             "aaSorting": [
                 [0, 'asc']
@@ -151,6 +136,141 @@
         // modify table per page dropdown
     };
 
+    var runDataTable5 = function () {
+        var oTable = $('#grd_cflist').dataTable({
+            "aoColumnDefs": [{
+                "aTargets": [0]
+            }],
+            "oLanguage": {
+                "sLengthMenu": "Show _MENU_ Rows",
+                "sSearch": "",
+                "pagingType": "full_numbers"
+            },
+            "aaSorting": [
+                [0, 'asc']
+            ],
+            "aLengthMenu": [
+                [5, 10, 15, 20, -1],
+                [5, 10, 15, 20, "All"] // change per page values here
+            ],
+            // set the initial value
+            "iDisplayLength": 5,
+        });
+        $('#grd_cflist_wrapper .dataTables_filter input').addClass("form-control input-sm").attr("placeholder", "Search");
+        // modify table search input
+        $('#grd_cflist_wrapper .dataTables_length select').addClass("m-wrap small");
+        // modify table per page dropdown
+    };
+
+
+    var runDataTable6 = function () {
+        var oTable = $('#grd_ltaken').dataTable({
+            "aoColumnDefs": [{
+                "aTargets": [0]
+            }],
+            "oLanguage": {
+                "sLengthMenu": "Show _MENU_ Rows",
+                "sSearch": "",
+                "pagingType": "full_numbers"
+            },
+            "aaSorting": [
+                [0, 'asc']
+            ],
+            "aLengthMenu": [
+                [5, 10, 15, 20, -1],
+                [5, 10, 15, 20, "All"] // change per page values here
+            ],
+            // set the initial value
+            "iDisplayLength": 5,
+        });
+        $('#grd_ltaken_wrapper .dataTables_filter input').addClass("form-control input-sm").attr("placeholder", "Search");
+        // modify table search input
+        $('#grd_ltaken_wrapper .dataTables_length select').addClass("m-wrap small");
+        // modify table per page dropdown
+    };
+
+    var runDataTable7 = function () {
+        var oTable = $('#grd_bal').dataTable({
+            "aoColumnDefs": [{
+                "aTargets": [0]
+            }],
+            "oLanguage": {
+                "sLengthMenu": "Show _MENU_ Rows",
+                "sSearch": "",
+                "pagingType": "full_numbers"
+            },
+            "aaSorting": [
+                [0, 'asc']
+            ],
+            "aLengthMenu": [
+                [5, 10, 15, 20, -1],
+                [5, 10, 15, 20, "All"] // change per page values here
+            ],
+            // set the initial value
+            "iDisplayLength": 5,
+        });
+        $('#grd_bal_wrapper .dataTables_filter input').addClass("form-control input-sm").attr("placeholder", "Search");
+        // modify table search input
+        $('#grd_bal_wrapper .dataTables_length select').addClass("m-wrap small");
+        // modify table per page dropdown
+    };
+
+
+    var runDataTable8 = function () {
+        var oTable = $('#grd_cflistr').dataTable({
+            "aoColumnDefs": [{
+                "aTargets": [0]
+            }],
+            "oLanguage": {
+                "sLengthMenu": "Show _MENU_ Rows",
+                "sSearch": "",
+                "pagingType": "full_numbers"
+            },
+            "aaSorting": [
+                [0, 'asc']
+            ],
+            "aLengthMenu": [
+                [5, 10, 15, 20, -1],
+                [5, 10, 15, 20, "All"] // change per page values here
+            ],
+            // set the initial value
+            "iDisplayLength": 5,
+        });
+        $('#grd_cflistr_wrapper .dataTables_filter input').addClass("form-control input-sm").attr("placeholder", "Search");
+        // modify table search input
+        $('#grd_cflistr_wrapper .dataTables_length select').addClass("m-wrap small");
+        // modify table per page dropdown
+    };
+
+    var runDataTable9 = function () {
+        var oTable = $('#grd_log').dataTable({
+            "aoColumnDefs": [{
+                "aTargets": [0]
+            }],
+            "oLanguage": {
+                "sLengthMenu": "Show _MENU_ Rows",
+                "sSearch": "",
+                "pagingType": "full_numbers"
+            },
+            "aaSorting": [
+                [0, 'asc']
+            ],
+            "aLengthMenu": [
+                [5, 10, 15, 20, -1],
+                [5, 10, 15, 20, "All"] // change per page values here
+            ],
+            // set the initial value
+            "iDisplayLength": 5,
+        });
+        $('#grd_log_wrapper .dataTables_filter input').addClass("form-control input-sm").attr("placeholder", "Search");
+        // modify table search input
+        $('#grd_log_wrapper .dataTables_length select').addClass("m-wrap small");
+        // modify table per page dropdown
+    };
+
+
+
+
    return {
         //main function to initiate template pages
         init: function () {
@@ -159,6 +279,11 @@
             runDataTable2();
             runDataTable3();
             runDataTable4();
+            runDataTable5();
+            runDataTable6();
+            runDataTable7();
+            runDataTable8();
+            runDataTable9();
         }
     };
 }();

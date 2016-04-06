@@ -7,12 +7,17 @@ using System.Web.UI.WebControls;
 using System.Data;
 using eleave_c;
 using System.Web.Services;
+using System.Text.RegularExpressions;
 
 namespace eleave_view.hr
 {
     public partial class adduser : System.Web.UI.Page
     {
         bus_eleave bus = new bus_eleave();
+        Regex regex = new Regex(@"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$");
+        Regex name = new Regex("^[a-zA-Z ]{3,30}$");
+        Regex uname = new Regex("^[a-zA-Z0-9_]{3,30}$");
+        Match match, namematch, unamematch;
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -23,18 +28,26 @@ namespace eleave_view.hr
 
         protected void checklogin()
         {
-            if (Session["is_login"].ToString() == "t")
+            if (Session["is_login"] != null)
             {
-                fillgender();
-                filldep();
-                fillregion();
-                txtdoj.Attributes.Add("readonly", "readonly");
-                txtcategory.Attributes.Add("readonly", "readonly");
 
+                if (Session["is_login"].ToString() == "t")
+                {
+                    fillgender();
+                    filldep();
+                    fillregion();
+                    txtdoj.Attributes.Add("readonly", "readonly");
+                    txtcategory.Attributes.Add("readonly", "readonly");
+
+                }
+                else
+                {
+                    Response.Redirect("~/unauthorised.aspx");
+                }
             }
             else
             {
-                Response.Redirect("~/unauthorised.aspx");
+                Response.Redirect("~/Login.aspx");
             }
         }
 
@@ -51,6 +64,24 @@ namespace eleave_view.hr
                 dates.Add(_holiday);
             }
             return dates;
+        }
+
+        [WebMethod]
+        public static int checkusername(string uname)
+        {
+            bus_eleave bus = new bus_eleave();
+            bus.user_name = uname;
+            int ru = bus.checkusername();
+            return ru;
+        }
+
+        [WebMethod]
+        public static int checkemail(string email)
+        {
+            bus_eleave bus = new bus_eleave();
+            bus.email = email;
+            int re = bus.checkemail();
+            return re;
         }
 
         protected void fillgender()
@@ -77,41 +108,50 @@ namespace eleave_view.hr
             ddlregion.Items.Insert(0, new ListItem("-----SELECT-----", ""));
         }
 
-        protected void btnreq_hr_Click(object sender, EventArgs e)
-        {
-            bus.name = txtname.Text.Trim();
-            bus.user_name = txtuname.Text.Trim();
-            bus.gender = ddlgender.SelectedItem.ToString().Trim();
-            bus.doj = DateTime.Parse(txtdoj.Text.Trim());
-            bus.dep = int.Parse(ddldep.SelectedValue.ToString());
-            //string d = ddldesi.SelectedValue.ToString();
-            bus.desi = int.Parse(Request.Form[ddldesi.UniqueID]);
-            //string g =  Request.Form[ddlgrade.UniqueID];
-            bus.grade = int.Parse(Request.Form[ddlgrade.UniqueID]);
-            bus.region = int.Parse(ddlregion.SelectedValue.ToString());
-            int r = bus.add_user();
-            if (r == 1)
-            {
-                clearfeilds();
-                ScriptManager.RegisterStartupScript(this, GetType(), "displayalertmessage", "success();", true);
-            }
-            else if (r == 2)
-            {
-                clearfeilds();
-                ScriptManager.RegisterStartupScript(this, GetType(), "displayalertmessage", "error_dupli();", true);
-            }
-            else
-            {
-                clearfeilds();
-                ScriptManager.RegisterStartupScript(this, GetType(), "displayalertmessage", "error();", true);
-            }
-        }
+        //protected void btnreq_hr_Click(object sender, EventArgs e)
+        //{
+        //    //if (txtname.Text != "" && txtuname.Text != "" && ddlgender.SelectedIndex != 0 && txtdoj.Text != "" && ddldep.SelectedIndex != 0 && Request.Form[ddldesi.UniqueID] != null && Request.Form[ddlgrade.UniqueID] != null && ddlregion.SelectedIndex != 0)
+        //    //{
+        //        bus.name = txtname.Text.Trim();
+        //        bus.user_name = txtuname.Text.Trim();
+        //        bus.gender = ddlgender.SelectedItem.ToString().Trim();
+        //        bus.doj = DateTime.Parse(txtdoj.Text.Trim());
+        //        bus.dep = int.Parse(ddldep.SelectedValue.ToString());
+        //        //string d = ddldesi.SelectedValue.ToString();
+        //        bus.desi = int.Parse(Request.Form[ddldesi.UniqueID]);
+        //        //string g =  Request.Form[ddlgrade.UniqueID];
+        //        bus.grade = int.Parse(Request.Form[ddlgrade.UniqueID]);
+        //        bus.region = int.Parse(ddlregion.SelectedValue.ToString());
+        //        int r = bus.add_user();
+        //        if (r == 1)
+        //        {
+        //            clearfeilds();
+        //            ScriptManager.RegisterStartupScript(this, GetType(), "displayalertmessage", "success();", true);
+        //        }
+        //        else if (r == 2)
+        //        {
+        //            clearfeilds();
+        //            ScriptManager.RegisterStartupScript(this, GetType(), "displayalertmessage", "error_dupli();", true);
+        //        }
+        //        else
+        //        {
+        //            clearfeilds();
+        //            ScriptManager.RegisterStartupScript(this, GetType(), "displayalertmessage", "error();", true);
+        //        }
+        //    //}
+        //    //else
+        //    //{
+        //    //    clearfeilds();
+        //    //    ScriptManager.RegisterStartupScript(this, GetType(), "displayalertmessage", "error1();", true);
+        //    //}
+        //}
 
         protected void clearfeilds()
         {
             txtname.Text = "";
             txtuname.Text = "";
             txtdoj.Text = "";
+            txtemail.Text = "";
             ddlgender.SelectedIndex = 0;
             ddldep.SelectedIndex = 0;
             ddlgrade.SelectedIndex = 0;
@@ -169,6 +209,85 @@ namespace eleave_view.hr
                 grd.Add(_grade);
             }
             return grd;
+        }
+
+        protected void btnuseradd_Click(object sender, EventArgs e)
+        {
+            if (txtname.Text != "" && txtuname.Text != "" && txtemail.Text != "" && ddlgender.SelectedIndex != 0 && txtdoj.Text != "" && ddldep.SelectedIndex != 0 && Request.Form[ddldesi.UniqueID] != null && Request.Form[ddlgrade.UniqueID] != null && ddlregion.SelectedIndex != 0)
+            {
+                if (txtemail.Text.Trim().Length <= 30)
+                {
+                    namematch = name.Match(txtname.Text.Trim());
+                    if (namematch.Success)
+                    {
+                        unamematch = uname.Match(txtuname.Text.Trim());
+                        if (unamematch.Success)
+                        {
+                            match = regex.Match(txtemail.Text.Trim());
+                            if (match.Success)
+                            {
+                                bus.name = txtname.Text.Trim();
+                                bus.user_name = txtuname.Text.Trim();
+                                bus.email = txtemail.Text.Trim();
+                                bus.gender = ddlgender.SelectedItem.ToString().Trim();
+                                bus.doj = DateTime.Parse(txtdoj.Text.Trim());
+                                bus.dep = int.Parse(ddldep.SelectedValue.ToString());
+                                //string d = ddldesi.SelectedValue.ToString();
+                                bus.desi = int.Parse(Request.Form[ddldesi.UniqueID]);
+                                //string g =  Request.Form[ddlgrade.UniqueID];
+                                bus.grade = int.Parse(Request.Form[ddlgrade.UniqueID]);
+                                bus.region = int.Parse(ddlregion.SelectedValue.ToString());
+                                int r = bus.add_user();
+                                if (r == 1)
+                                {
+                                    clearfeilds();
+                                    ScriptManager.RegisterStartupScript(this, GetType(), "displayalertmessage", "success();", true);
+                                }
+                                else if (r == 2)
+                                {
+                                    clearfeilds();
+                                    ScriptManager.RegisterStartupScript(this, GetType(), "displayalertmessage", "error_dupli();", true);
+                                }
+                                else if (r == 4)
+                                {
+                                    clearfeilds();
+                                    ScriptManager.RegisterStartupScript(this, GetType(), "displayalertmessage", "error_dupliemail();", true);
+                                }
+                                else
+                                {
+                                    clearfeilds();
+                                    ScriptManager.RegisterStartupScript(this, GetType(), "displayalertmessage", "error();", true);
+                                }
+                            }
+                            else
+                            {
+                                ddldep.SelectedIndex = 0;
+                                ScriptManager.RegisterStartupScript(this, GetType(), "displayalertmessage", "errorinvalid();", true);
+                            }// end email regex
+                        }
+                        else
+                        {
+                            ddldep.SelectedIndex = 0;
+                            ScriptManager.RegisterStartupScript(this, GetType(), "displayalertmessage", "erroruname();", true);
+                        }// end uname regex
+                    }
+                    else
+                    {
+                        ddldep.SelectedIndex = 0;
+                        ScriptManager.RegisterStartupScript(this, GetType(), "displayalertmessage", "errorname();", true);
+                    } // end name regex
+                }
+                else
+                {
+                    ddldep.SelectedIndex = 0;
+                    ScriptManager.RegisterStartupScript(this, GetType(), "displayalertmessage", "errorlength();", true);
+                }// end length email
+            }
+            else
+            {
+                clearfeilds();
+                ScriptManager.RegisterStartupScript(this, GetType(), "displayalertmessage", "error1();", true);
+            }
         }
     }
 }

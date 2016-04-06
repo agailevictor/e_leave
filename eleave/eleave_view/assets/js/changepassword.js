@@ -55,9 +55,13 @@ var changepassval = function () {
                     required: true
                 },
                 ctl00$ContentPlaceHolder1$nwpwd_hr_txt: {
+                    minlength: 6,
+                    maxlength: 10,
                     required: true
                 },
                 ctl00$ContentPlaceHolder1$conf_nwpwd_hr_txt: {
+                    minlength: 6,
+                    maxlength: 10,
                     required: true,
                     equalTo: "#nwpwd_hr_txt"
                 }

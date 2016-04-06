@@ -67,6 +67,24 @@ namespace eleave_view.hr {
         protected global::System.Web.UI.WebControls.TextBox txtdate_hr;
         
         /// <summary>
+        /// txtsdate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtsdate;
+        
+        /// <summary>
+        /// txtedate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtedate;
+        
+        /// <summary>
         /// ddlper_hr control.
         /// </summary>
         /// <remarks>
@@ -101,6 +119,15 @@ namespace eleave_view.hr {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtphone_hr;
+        
+        /// <summary>
+        /// lblio control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblio;
         
         /// <summary>
         /// btnreq_hr control.

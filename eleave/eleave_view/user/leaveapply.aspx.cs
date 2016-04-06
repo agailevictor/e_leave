@@ -8,6 +8,7 @@ using System.Data;
 using System.Web.Services;
 using eleave_c;
 using System.IO;
+using System.Web.Mail;
 
 
 namespace eleave_view.user
@@ -15,30 +16,40 @@ namespace eleave_view.user
     public partial class leaveapply : System.Web.UI.Page
     {
         bus_eleave bus = new bus_eleave();
-        string filename;
+        string filename, daterange, toemail, mailbody, url = "http://uoa.hummingsoft.com.my:8065/e_leave/ target=\"_blank\"";
+        double ct;
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
                 checklogin();
-                
+
             }
         }
 
         protected void checklogin()
         {
-            if (Session["is_login"].ToString() == "t")
+            if (Session["is_login"] != null)
             {
-                fill_userdetails();
-                fill_leavetypes();
-                fill_period();
-                fill_collegues();
-                txtdate.Attributes.Add("readonly", "readonly");
+                if (Session["is_login"].ToString() == "t")
+                {
+                    fill_userdetails();
+                    fill_leavetypes();
+                    fill_period();
+                    fill_collegues();
+                    txtdate.Attributes.Add("readonly", "readonly");
+                    txtsdate.Attributes.Add("readonly", "readonly");
+                    txtedate.Attributes.Add("readonly", "readonly");
 
+                }
+                else
+                {
+                    Response.Redirect("~/unauthorised.aspx");
+                }
             }
             else
             {
-                Response.Redirect("~/unauthorised.aspx");
+                Response.Redirect("~/Login.aspx");
             }
         }
 
@@ -57,6 +68,22 @@ namespace eleave_view.user
             }
             return dates;
         }
+
+        protected void fetch_mail_details()
+        {
+            toemail = "";
+            bus.role = Session["role"].ToString();
+            DataTable dt = bus.fetch_mail_details();
+            if (dt.Rows.Count > 0)
+            {
+                toemail = dt.Rows[0][0].ToString();
+            }
+            else
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "displayalertmessage", "warning();", true);
+            }
+        }
+
 
         public static DataTable fetchdates(int userid)
         {
@@ -77,6 +104,28 @@ namespace eleave_view.user
             }
             return dt1;
         }
+
+
+        public static DataTable fetchdatesmaternity(int userid)
+        {
+            bus_eleave bus = new bus_eleave();
+            bus.userid = userid;
+            DataTable dt = bus.fetch_holidaysma();
+            DataTable dtma = new DataTable();
+            dtma.Columns.Add("dates1");
+            for (int i = 0; i < dt.Rows.Count; i++)
+            {
+                string[] split = dt.Rows[i]["dates"].ToString().Split(',');
+                for (int j = 0; j < split.Length; j++)
+                {
+                    DataRow dr = dtma.NewRow();
+                    dr["dates1"] = split[j];
+                    dtma.Rows.Add(dr);
+                }
+            }
+            return dtma;
+        }
+
 
         protected void fill_userdetails()
         {
@@ -141,131 +190,304 @@ namespace eleave_view.user
 
         protected void btnreq_Click(object sender, EventArgs e)
         {
-            if (int.Parse(ddlltype.SelectedValue.ToString()) == 2)
+            if (ddlltype.SelectedIndex != 0)
             {
-                if (fupload.HasFile)
+                if (int.Parse(ddlltype.SelectedValue.ToString()) == 2) // Medical 
                 {
-                    if (fupload.PostedFile.ContentLength < 3145728)
+                    if (fupload.HasFile)
                     {
-                        String ext = System.IO.Path.GetExtension(fupload.FileName);
-                        if (ext == ".pdf")
+                        if (fupload.PostedFile.ContentLength < 3145728)
                         {
+                            String ext = System.IO.Path.GetExtension(fupload.FileName);
+                            if (ext == ".pdf")
+                            {
+                                if (txtdate.Text != "" && ddlper.SelectedValue.ToString() != "" && txtreason.Text != "" && ddljobc.SelectedValue.ToString() != "" && txtphone.Text != "")
+                                {
+                                    FileInfo file = new System.IO.FileInfo(fupload.PostedFile.FileName);
+                                    string fname = file.Name.Remove((file.Name.Length - file.Extension.Length));
+                                    fname = fname + System.DateTime.Now.ToString("_dd-MM-yy_hh;mm;ss") + file.Extension; // renaming file uploads
+                                    filename = Path.Combine(HttpContext.Current.Server.MapPath("~/uploads/"), fname);
+                                    string filename_vir = Path.Combine("~/uploads/", fname);
+                                    bus.userid = int.Parse(Session["user_id"].ToString());
+                                    bus.ltype = int.Parse(ddlltype.SelectedValue.ToString());
+                                    bus.dates = txtdate.Text.Trim();
+                                    bus.period = int.Parse(ddlper.SelectedValue.ToString());
+                                    bus.reason = txtreason.Text.Trim();
+                                    bus.rdays = getcount();
+                                    bus.jobc = ddljobc.SelectedItem.ToString();
+                                    bus.contact = txtphone.Text.Trim();
+                                    bus.med_path = filename_vir;
+                                    // check here the applied leaves exceeds or not (here check only medical)
+                                    int r = bus.insert_med();
+                                    if (r == 1)
+                                    {
+                                        fupload.SaveAs(filename);
+                                        // send email
+                                        fetch_mail_details();
+                                        mailbody = "<table  border='1' cellpadding='0' cellspacing='0' style='width: 750px; border-color: black;'><tr><td colspan='9'><br>&nbsp &nbspDear Sir / Madam,<br /><br />&nbsp&nbsp&nbsp&nbsp&nbspLeave application has been submitted by <b>" + Session["name"].ToString() + "</b> on <b>" + DateTime.Now.ToString("dd/MM/yyyy") + ".</b> The details are as follows.<br /><br /></td></tr><tr style='font-weight: 700;'></tr><tr><td colspan='9'><br/><p></p><p> &nbsp&nbsp&nbspName:   " + Session["name"].ToString() + "</p><p>&nbsp&nbsp&nbspDepartment:   " + Session["dep"].ToString() + "</p><p>&nbsp&nbsp&nbspDesignation:   " + Session["des"].ToString() + " </p><p>&nbsp&nbsp&nbspLeave Type:   " + ddlltype.SelectedItem.ToString() + " </p><p>&nbsp&nbsp&nbspPeriod:   " + ddlper.SelectedItem.ToString() + " </p><p>&nbsp&nbsp&nbspReason:   " + txtreason.Text.Trim() + " </p><p>&nbsp&nbsp&nbspclick<a href=" + url + "> here </a>to login into the application</p><br/></td></tr><tr></tr><td colspan='9' style='font-weight: bold' align='right'><br /><br />Regards,<br />Team e-leave</td></tr><tr><td align='center'><p style='color:blue;'> This is a system generated response. Please do not respond to this email id.</p></td></tr></table>";
+                                        bool check = SendWebMail(toemail, "Leave Application Notification", mailbody, "", "", "info@hummingsoft.com.my");
+                                        if (check == true)
+                                        {
+                                            clearfeilds();
+                                            ScriptManager.RegisterStartupScript(this, GetType(), "displayalertmessage", "success();", true);
+                                        }
+                                        else
+                                        {
+                                            clearfeilds();
+                                            ScriptManager.RegisterStartupScript(this, GetType(), "displayalertmessage", "errormail();", true);
+                                        }
+                                    }
+                                    else if (r == 2)
+                                    {
+                                        clearfeilds();
+                                        ScriptManager.RegisterStartupScript(this, GetType(), "displayalertmessage", "error();", true);
+                                    }
+                                    else
+                                    {
+                                        clearfeilds1();
+                                        ScriptManager.RegisterStartupScript(this, GetType(), "displayalertmessage", "errornotavail();", true);
+                                    }
+                                }
+                                else
+                                {
+                                    clearfeilds();
+                                    ScriptManager.RegisterStartupScript(this, GetType(), "displayalertmessage", "error1();", true);
+                                }
 
-                            FileInfo file = new System.IO.FileInfo(fupload.PostedFile.FileName);
-                            string fname = file.Name.Remove((file.Name.Length - file.Extension.Length));
-                            fname = fname + System.DateTime.Now.ToString("_dd-MM-yy_hh;mm;ss") + file.Extension; // renaming file uploads
-                            filename = Path.Combine(HttpContext.Current.Server.MapPath("~/uploads/"), fname);
-                            string filename_vir = Path.Combine("~/uploads/", fname);
-                            //fupload.SaveAs(filename);
-                            bus.userid = int.Parse(Session["user_id"].ToString());
-                            bus.ltype = int.Parse(ddlltype.SelectedValue.ToString());
-                            bus.dates = txtdate.Text.Trim();
-                            bus.period = int.Parse(ddlper.SelectedValue.ToString());
-                            bus.reason = txtreason.Text.Trim();
-                            bus.rdays = getcount();
-                            bus.jobc = ddljobc.SelectedItem.ToString();
-                            bus.contact = txtphone.Text.Trim();
-                            bus.med_path = filename_vir;
-                            // check here the applied leaves exceeds or not (here check only medical)
-                            int r = bus.insert_med();
-                            if (r == 1)
-                            {
-                                fupload.SaveAs(filename);
-                                clearfeilds();
-                                ScriptManager.RegisterStartupScript(this, GetType(), "displayalertmessage", "success();", true);
-                            }
-                            else if (r == 2)
-                            {
-                                clearfeilds();
-                                ScriptManager.RegisterStartupScript(this, GetType(), "displayalertmessage", "error();", true);
                             }
                             else
                             {
-                                clearfeilds1();
-                                ScriptManager.RegisterStartupScript(this, GetType(), "displayalertmessage", "errornotavail();", true);
+                                clearfeilds2();
+                                ScriptManager.RegisterStartupScript(this, GetType(), "displayalertmessage", "errorpdf();", true);
+                                //ScriptManager.RegisterStartupScript(this, GetType(), "displayalertmessage", "errorpdf();window.location='" + Request.ApplicationPath + "user/leaves.aspx';", true);
                             }
-
                         }
                         else
                         {
                             clearfeilds2();
-                            ScriptManager.RegisterStartupScript(this, GetType(), "displayalertmessage", "errorpdf();", true);
-                            //ScriptManager.RegisterStartupScript(this, GetType(), "displayalertmessage", "errorpdf();window.location='" + Request.ApplicationPath + "user/leaves.aspx';", true);
+                            ScriptManager.RegisterStartupScript(this, GetType(), "displayalertmessage", "errorpdfsize();", true);
                         }
                     }
                     else
                     {
                         clearfeilds2();
-                        ScriptManager.RegisterStartupScript(this, GetType(), "displayalertmessage", "errorpdfsize();", true);
+                        ScriptManager.RegisterStartupScript(this, GetType(), "displayalertmessage", "errornofile();", true);
                     }
                 }
-                else
+                else if (int.Parse(ddlltype.SelectedValue.ToString()) == 4) // Maternity Leave (Only Women)
                 {
-                    clearfeilds2();
-                    ScriptManager.RegisterStartupScript(this, GetType(), "displayalertmessage", "errorofile();", true);
+                    List<DateTime> holiday = new List<DateTime>();
+                    DataTable dt2 = fetchdatesmaternity(int.Parse(Session["user_id"].ToString()));
+                    for (int i = 0; i < dt2.Rows.Count; i++)
+                    {
+                        holiday.Add(DateTime.Parse(dt2.Rows[i]["dates1"].ToString()));
+                    }
+
+                    if (txtsdate.Text != "" && txtedate.Text != "" & ddlper.SelectedValue.ToString() != "" && txtreason.Text != "" && ddljobc.SelectedValue.ToString() != "" && txtphone.Text != "")
+                    {
+
+                        if (txtsdate.Text != "" && txtedate.Text != "")
+                        {
+                            if (txtsdate.Text != txtedate.Text)
+                            {
+                                DateTime sd = DateTime.Parse(txtsdate.Text.Trim());
+                                DateTime ed = DateTime.Parse(txtedate.Text.Trim());
+                                DataTable rc = new DataTable();
+                                rc.Columns.Add("Date", typeof(string));
+                                while (sd <= ed)
+                                {
+                                    if (holiday.Contains(sd))
+                                    {
+                                        sd = sd.AddDays(1);
+                                    }
+                                    else
+                                    {
+                                        //Insert into datatable && get the count
+                                        rc.Rows.Add(sd.ToString("dd/MM/yyyy"));
+                                        ct = ct + 1;
+                                        sd = sd.AddDays(1);
+                                    }
+                                }
+
+                                for (int i = 0; i < rc.Rows.Count; i++)
+                                {
+                                    daterange = daterange + rc.Rows[i]["Date"].ToString();
+                                    daterange += (i < rc.Rows.Count - 1) ? "," : string.Empty;
+                                }
+
+                                // from datatable get the concatenated string
+
+                                string rdate = txtsdate.Text.Trim() + '-' + txtedate.Text.Trim();
+                                bus.userid = int.Parse(Session["user_id"].ToString());
+                                bus.ltype = int.Parse(ddlltype.SelectedValue.ToString());
+                                bus.dates = daterange;
+                                bus.period = int.Parse(ddlper.SelectedValue.ToString());
+                                bus.reason = txtreason.Text.Trim();
+                                if (int.Parse(ddlper.SelectedValue.ToString()) == 1)
+                                {
+                                    bus.rdays = ct;
+                                }
+                                else
+                                {
+                                    bus.rdays = ct / 2;
+                                }
+
+                                bus.jobc = ddljobc.SelectedItem.ToString();
+                                bus.contact = txtphone.Text.Trim();
+                                int r1 = bus.insert_leave();
+                                if (r1 == 1)
+                                {
+                                    // send email
+                                    fetch_mail_details();
+                                    mailbody = "<table  border='1' cellpadding='0' cellspacing='0' style='width: 750px; border-color: black;'><tr><td colspan='9'><br>&nbsp &nbspDear Sir / Madam,<br /><br />&nbsp&nbsp&nbsp&nbsp&nbspLeave application has been submitted by <b>" + Session["name"].ToString() + "</b> on <b>" + DateTime.Now.ToString("dd/MM/yyyy") + ".</b> The details are as follows.<br /><br /></td></tr><tr style='font-weight: 700;'></tr><tr><td colspan='9'><br/><p></p><p> &nbsp&nbsp&nbspName:   " + Session["name"].ToString() + "</p><p>&nbsp&nbsp&nbspDepartment:   " + Session["dep"].ToString() + "</p><p>&nbsp&nbsp&nbspDesignation:   " + Session["des"].ToString() + " </p><p>&nbsp&nbsp&nbspLeave Type:   " + ddlltype.SelectedItem.ToString() + " </p><p>&nbsp&nbsp&nbspPeriod:   " + ddlper.SelectedItem.ToString() + " </p><p>&nbsp&nbsp&nbspReason:   " + txtreason.Text.Trim() + " </p><p>&nbsp&nbsp&nbspclick<a href=" + url + "> here </a>to login into the application</p><br/></td></tr><tr></tr><td colspan='9' style='font-weight: bold' align='right'><br /><br />Regards,<br />Team e-leave</td></tr><tr><td align='center'><p style='color:blue;'> This is a system generated response. Please do not respond to this email id.</p></td></tr></table>";
+                                    bool check = SendWebMail(toemail, "Leave Application Notification", mailbody, "", "", "info@hummingsoft.com.my");
+                                    if (check == true)
+                                    {
+                                        clearfeilds();
+                                        ScriptManager.RegisterStartupScript(this, GetType(), "displayalertmessage", "success();", true);
+                                    }
+                                    else
+                                    {
+                                        clearfeilds();
+                                        ScriptManager.RegisterStartupScript(this, GetType(), "displayalertmessage", "errormail();", true);
+                                    }
+                                }
+                                else if( r1 == 3)
+                                {
+                                    clearfeilds1();
+                                    ScriptManager.RegisterStartupScript(this, GetType(), "displayalertmessage", "errornotavail();", true);
+                                }
+                                else
+                                {
+                                    clearfeilds();
+                                    ScriptManager.RegisterStartupScript(this, GetType(), "displayalertmessage", "error();", true);
+                                }
+                            }
+                            else
+                            {
+                                clearfeilds3();
+                                ScriptManager.RegisterStartupScript(this, GetType(), "displayalertmessage", "errorsrange();", true);
+                            }
+                        }
+                        else
+                        {
+                            clearfeilds();
+                            ScriptManager.RegisterStartupScript(this, GetType(), "displayalertmessage", "errorrange();", true);
+                        }
+                    }
+                    else
+                    {
+                        clearfeilds();
+                        ScriptManager.RegisterStartupScript(this, GetType(), "displayalertmessage", "error1();", true);
+                    }
                 }
-            }
-            else if (int.Parse(ddlltype.SelectedValue.ToString()) == 5 || int.Parse(ddlltype.SelectedValue.ToString()) == 6)
-            {
-                bus.userid = int.Parse(Session["user_id"].ToString());
-                bus.ltype = int.Parse(ddlltype.SelectedValue.ToString());
-                bus.dates = txtdate.Text.Trim();
-                bus.period = int.Parse(ddlper.SelectedValue.ToString());
-                bus.reason = txtreason.Text.Trim();
-                bus.rdays = getcount();
-                bus.jobc = ddljobc.SelectedItem.ToString();
-                bus.contact = txtphone.Text.Trim();
-                int r1 = bus.insert_oleave(); 
-                if (r1 == 1)
+                else if (int.Parse(ddlltype.SelectedValue.ToString()) == 5 || int.Parse(ddlltype.SelectedValue.ToString()) == 6) // Unpaid or Compassionate
                 {
-                    clearfeilds();
-                    ScriptManager.RegisterStartupScript(this, GetType(), "displayalertmessage", "success();", true);
+                    if (txtdate.Text != "" && ddlper.SelectedIndex != 0 && txtreason.Text != "" && ddljobc.SelectedValue.ToString() != "" && txtphone.Text != "")
+                    {
+                        bus.userid = int.Parse(Session["user_id"].ToString());
+                        bus.ltype = int.Parse(ddlltype.SelectedValue.ToString());
+                        bus.dates = txtdate.Text.Trim();
+                        bus.period = int.Parse(ddlper.SelectedValue.ToString());
+                        bus.reason = txtreason.Text.Trim();
+                        bus.rdays = getcount();
+                        bus.jobc = ddljobc.SelectedItem.ToString();
+                        bus.contact = txtphone.Text.Trim();
+                        int r1 = bus.insert_oleave();
+                        if (r1 == 1)
+                        {
+                            // send email
+                            fetch_mail_details();
+                            mailbody = "<table  border='1' cellpadding='0' cellspacing='0' style='width: 750px; border-color: black;'><tr><td colspan='9'><br>&nbsp &nbspDear Sir / Madam,<br /><br />&nbsp&nbsp&nbsp&nbsp&nbspLeave application has been submitted by <b>" + Session["name"].ToString() + "</b> on <b>" + DateTime.Now.ToString("dd/MM/yyyy") + ".</b> The details are as follows.<br /><br /></td></tr><tr style='font-weight: 700;'></tr><tr><td colspan='9'><br/><p></p><p> &nbsp&nbsp&nbspName:   " + Session["name"].ToString() + "</p><p>&nbsp&nbsp&nbspDepartment:   " + Session["dep"].ToString() + "</p><p>&nbsp&nbsp&nbspDesignation:   " + Session["des"].ToString() + " </p><p>&nbsp&nbsp&nbspLeave Type:   " + ddlltype.SelectedItem.ToString() + " </p><p>&nbsp&nbsp&nbspPeriod:   " + ddlper.SelectedItem.ToString() + " </p><p>&nbsp&nbsp&nbspReason:   " + txtreason.Text.Trim() + " </p><p>&nbsp&nbsp&nbspclick<a href=" + url + "> here </a>to login into the application</p><br/></td></tr><tr></tr><td colspan='9' style='font-weight: bold' align='right'><br /><br />Regards,<br />Team e-leave</td></tr><tr><td align='center'><p style='color:blue;'> This is a system generated response. Please do not respond to this email id.</p></td></tr></table>";
+                            bool check = SendWebMail(toemail, "Leave Application Notification", mailbody, "", "", "info@hummingsoft.com.my");
+                            if (check == true)
+                            {
+                                clearfeilds();
+                                ScriptManager.RegisterStartupScript(this, GetType(), "displayalertmessage", "success();", true);
+                            }
+                            else
+                            {
+                                clearfeilds();
+                                ScriptManager.RegisterStartupScript(this, GetType(), "displayalertmessage", "errormail();", true);
+                            }
+                        }
+                        else
+                        {
+                            clearfeilds();
+                            ScriptManager.RegisterStartupScript(this, GetType(), "displayalertmessage", "error();", true);
+                        }
+                    }
+                    else
+                    {
+                        clearfeilds();
+                        ScriptManager.RegisterStartupScript(this, GetType(), "displayalertmessage", "error1();", true);
+                    }
                 }
-                else
+                else // Marriage and Annual
                 {
-                    clearfeilds();
-                    ScriptManager.RegisterStartupScript(this, GetType(), "displayalertmessage", "error();", true);
+                    if (txtdate.Text != "" && ddlper.SelectedIndex != 0 && txtreason.Text != "" && ddljobc.SelectedValue.ToString() != "" && txtphone.Text != "")
+                    {
+                        bus.userid = int.Parse(Session["user_id"].ToString());
+                        bus.ltype = int.Parse(ddlltype.SelectedValue.ToString());
+                        bus.dates = txtdate.Text.Trim();
+                        bus.period = int.Parse(ddlper.SelectedValue.ToString());
+                        bus.reason = txtreason.Text.Trim();
+                        bus.rdays = getcount();
+                        bus.jobc = ddljobc.SelectedItem.ToString();
+                        bus.contact = txtphone.Text.Trim();
+                        // check here the applied leaves exceeds or not (annual, marriage)
+                        //int inter = bus.check_avail();
+                        //if (inter == 1)
+                        //{ 
+                        // too many parameters clear sql parameters
+                        //    applyleave();
+                        //}
+                        //else
+                        //{
+                        //    clearfeilds();
+                        //    ScriptManager.RegisterStartupScript(this, GetType(), "displayalertmessage", "errornotavail();", true);
+                        //}
+                        int r1 = bus.insert_leave(); // checking and insertion is done in one procedure
+                        if (r1 == 1)
+                        {
+                            // send email
+                            fetch_mail_details();
+                            mailbody = "<table  border='1' cellpadding='0' cellspacing='0' style='width: 750px; border-color: black;'><tr><td colspan='9'><br>&nbsp &nbspDear Sir / Madam,<br /><br />&nbsp&nbsp&nbsp&nbsp&nbspLeave application has been submitted by <b>" + Session["name"].ToString() + "</b> on <b>" + DateTime.Now.ToString("dd/MM/yyyy") + ".</b> The details are as follows.<br /><br /></td></tr><tr style='font-weight: 700;'></tr><tr><td colspan='9'><br/><p></p><p> &nbsp&nbsp&nbspName:   " + Session["name"].ToString() + "</p><p>&nbsp&nbsp&nbspDepartment:   " + Session["dep"].ToString() + "</p><p>&nbsp&nbsp&nbspDesignation:   " + Session["des"].ToString() + " </p><p>&nbsp&nbsp&nbspLeave Type:   " + ddlltype.SelectedItem.ToString() + " </p><p>&nbsp&nbsp&nbspPeriod:   " + ddlper.SelectedItem.ToString() + " </p><p>&nbsp&nbsp&nbspReason:   " + txtreason.Text.Trim() + " </p><p>&nbsp&nbsp&nbspclick<a href=" + url + "> here </a>to login into the application</p><br/></td></tr><tr></tr><td colspan='9' style='font-weight: bold' align='right'><br /><br />Regards,<br />Team e-leave</td></tr><tr><td align='center'><p style='color:blue;'> This is a system generated response. Please do not respond to this email id.</p></td></tr></table>";
+                            bool check = SendWebMail(toemail, "Leave Application Notification", mailbody, "", "", "info@hummingsoft.com.my");
+                            if (check == true)
+                            {
+                                clearfeilds();
+                                ScriptManager.RegisterStartupScript(this, GetType(), "displayalertmessage", "success();", true);
+                            }
+                            else
+                            {
+                                clearfeilds();
+                                ScriptManager.RegisterStartupScript(this, GetType(), "displayalertmessage", "errormail();", true);
+                            }
+                        }
+                        else if (r1 == 3)
+                        {
+                            clearfeilds1();
+                            ScriptManager.RegisterStartupScript(this, GetType(), "displayalertmessage", "errornotavail();", true);
+                        }
+                        else
+                        {
+                            clearfeilds();
+                            ScriptManager.RegisterStartupScript(this, GetType(), "displayalertmessage", "error();", true);
+                        }
+                    }
+                    else
+                    {
+                        clearfeilds();
+                        ScriptManager.RegisterStartupScript(this, GetType(), "displayalertmessage", "error1();", true);
+                    }
+
                 }
             }
             else
             {
-                bus.userid = int.Parse(Session["user_id"].ToString());
-                bus.ltype = int.Parse(ddlltype.SelectedValue.ToString());
-                bus.dates = txtdate.Text.Trim();
-                bus.period = int.Parse(ddlper.SelectedValue.ToString());
-                bus.reason = txtreason.Text.Trim();
-                bus.rdays = getcount();
-                bus.jobc = ddljobc.SelectedItem.ToString();
-                bus.contact = txtphone.Text.Trim();
-                // check here the applied leaves exceeds or not (annual, marriage, maternity)
-                //int inter = bus.check_avail();
-                //if (inter == 1)
-                //{ 
-                // too many parameters clear sql parameters
-                //    applyleave();
-                //}
-                //else
-                //{
-                //    clearfeilds();
-                //    ScriptManager.RegisterStartupScript(this, GetType(), "displayalertmessage", "errornotavail();", true);
-                //}
-                int r1 = bus.insert_leave(); // checking and insertion is done in one procedure
-                if (r1 == 1)
-                {
-                    clearfeilds();
-                    ScriptManager.RegisterStartupScript(this, GetType(), "displayalertmessage", "success();", true);
-                }
-                else if (r1 == 3)
-                {
-                    clearfeilds1();
-                    ScriptManager.RegisterStartupScript(this, GetType(), "displayalertmessage", "errornotavail();", true);
-                }
-                else
-                {
-                    clearfeilds();
-                    ScriptManager.RegisterStartupScript(this, GetType(), "displayalertmessage", "error();", true);
-                }
-
+                clearfeilds();
+                ScriptManager.RegisterStartupScript(this, GetType(), "displayalertmessage", "error();", true);
             }
         }
 
@@ -314,6 +536,13 @@ namespace eleave_view.user
         protected void clearfeilds1()
         {
             txtdate.Text = "";
+            ddlltype.SelectedIndex = 0;
+        }
+        protected void clearfeilds3()
+        {
+            txtsdate.Text = "";
+            txtedate.Text = "";
+            ddlltype.SelectedIndex = 0;
         }
 
         protected void clearfeilds2()
@@ -344,6 +573,120 @@ namespace eleave_view.user
             }
         }
 
+
+        private bool SendWebMail(string strTo, string subj, string cont, string cc, string bcc, string strfrom)
+        {
+            bool flg = false;
+            MailMessage msg = new MailMessage();
+            msg.Body = cont;
+            msg.From = strfrom;
+            msg.To = strTo;
+            msg.Subject = subj;
+            msg.Cc = cc;
+            msg.Bcc = bcc;
+            msg.BodyFormat = MailFormat.Html;
+            try
+            {
+                //SmtpMail.SmtpServer = "175.143.44.165";
+                SmtpMail.SmtpServer = "192.168.1.4"; // change the ip address when hosting in server
+                SmtpMail.Send(msg);
+                flg = true;
+            }
+            catch (Exception)
+            {
+                flg = false;
+            }
+            return flg;
+        }
+
+        //  start : from here for showing clientside noti for insufficiant leaves
+        [WebMethod]
+
+        public static int in_out_maternity(int userid, int typ, int per, string sd, string ed)
+        {
+            double ct1 = 0.0;
+            bus_eleave bus1 = new bus_eleave();
+            List<DateTime> holday = new List<DateTime>();
+            DataTable dtio = fetchdatesmaternity(userid);
+            for (int i = 0; i < dtio.Rows.Count; i++)
+            {
+                holday.Add(DateTime.Parse(dtio.Rows[i]["dates1"].ToString()));
+            }
+
+            DateTime sd1 = DateTime.Parse(sd);
+            DateTime ed1 = DateTime.Parse(ed);
+            while (sd1 <= ed1)
+            {
+                if (holday.Contains(sd1))
+                {
+                    sd1 = sd1.AddDays(1);
+                }
+                else
+                {
+                    // get the count
+                    ct1 = ct1 + 1;
+                    sd1 = sd1.AddDays(1);
+                }
+            }
+
+            bus1.userid = userid;
+            bus1.ltype = typ;
+            if (per == 1)
+            {
+                bus1.rdays = ct1;
+            }
+            else
+            {
+                bus1.rdays = ct1 / 2;
+            }
+
+            int res = bus1.check_in_out();
+            return res;
+
+        }
+
+        [WebMethod]
+
+        public static int in_out_others(int userid, int typ, int per, string ds)
+        {
+            bus_eleave bus2 = new bus_eleave();
+            bus2.userid = userid;
+            bus2.ltype = typ;
+            bus2.rdays = getc(per, ds);
+            int res1 = bus2.check_in_out();
+            return res1;
+        }
+
+        public static double getc(int per, string ds)
+        {
+            double ct1 = 0.0;
+            double hf1 = 0.5;
+            string a1;
+            if (per == 1)
+            {
+                a1 = ds;
+                string[] values = a1.Split(',');
+                for (int i = 0; i < values.Length; i++)
+                {
+                    ct1 = ct1 + 1;
+                }
+            }
+            else if (per == 2)
+            {
+                a1 = ds;
+                string[] values = a1.Split(',');
+                for (int i = 0; i < values.Length; i++)
+                {
+                    ct1 = ct1 + hf1;
+                }
+            }
+            else
+            {
+                ct1 = 0;
+            }
+            return ct1;
+        }
+        // end : from here for showing clientside noti for insufficiant leaves
 
     }
 }

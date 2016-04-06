@@ -4,7 +4,6 @@ Author : Agaile
 Custom leave application form validation script for medical
 */
 var leavevalm = function () {
-
     var runSetDefaultValidation = function () {
         $.validator.setDefaults({
             errorElement: "span", // contain the error msg in a small tag
@@ -48,8 +47,14 @@ var leavevalm = function () {
         });
     };
     var runLeaveFormValidatorm = function () {
-        var form = $('#form1');
-        var errorHandler = $('.errorHandler', form);
+         var form = $('#form1');
+         var errorHandler = $('.errorHandler', form);
+         $.validator.addMethod('filesize', function (value, element, param) {
+             // param = size (in bytes) 
+             // element = element to validate (<input>)
+             // value = value of the element (file name)
+             return this.optional(element) || (element.files[0].size <= param)
+         }, "File must be less than 3 Mb");
         form.validate({
             rules: {
                 ctl00$ContentPlaceHolder1$ddlltype: {
@@ -75,6 +80,7 @@ var leavevalm = function () {
                 },
                 ctl00$ContentPlaceHolder1$fupload: {
                     required: true,
+                    filesize: 3145728,
                     accept: "application/pdf"
                 }
             },
@@ -92,6 +98,7 @@ var leavevalm = function () {
         init: function () {
             runSetDefaultValidation();
             runLeaveFormValidatorm();
+            
         }
     };
 }();

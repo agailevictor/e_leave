@@ -24,9 +24,16 @@ namespace eleave_view.md
         }
         protected void checklogin()
         {
-            if (Session["is_login"].ToString() == "f")
+            if (Session["is_login"] != null)
             {
-                Response.Redirect("~/unauthorised.aspx");
+                if (Session["is_login"].ToString() == "f")
+                {
+                    Response.Redirect("~/unauthorised.aspx");
+                }
+            }
+            else
+            {
+                Response.Redirect("~/Login.aspx");
             }
         }
 

@@ -23,14 +23,21 @@ namespace eleave_view.md
 
         protected void checklogin()
         {
-            if (Session["is_login"].ToString() == "t")
+            if (Session["is_login"] != null)
             {
-                fill_leaves_all();
+                if (Session["is_login"].ToString() == "t")
+                {
+                    fill_leaves_all();
 
+                }
+                else
+                {
+                    Response.Redirect("~/unauthorised.aspx");
+                }
             }
             else
             {
-                Response.Redirect("~/unauthorised.aspx");
+                Response.Redirect("~/Login.aspx");
             }
         }
         protected void fill_leaves_all()

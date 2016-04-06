@@ -13,8 +13,27 @@ namespace eleave_view.user
         {
             if (!IsPostBack)
             {
-                lbluname.Text = Session["name"].ToString();
-                SetCurrentPage();
+                checklogin();
+            }
+        }
+
+        protected void checklogin()
+        {
+            if (Session["is_login"] != null)
+            {
+                if (Session["is_login"].ToString() == "t")
+                {
+                    lbluname.Text = Session["name"].ToString();
+                    SetCurrentPage();
+                }
+                else
+                {
+                    Response.Redirect("~/unauthorised.aspx");
+                }
+            }
+            else
+            {
+                Response.Redirect("~/Login.aspx");
             }
         }
 

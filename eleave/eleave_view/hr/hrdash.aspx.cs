@@ -12,6 +12,7 @@ namespace eleave_view.hr
 {
     public partial class hrdash : System.Web.UI.Page
     {
+        bus_eleave bus = new bus_eleave();
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -22,9 +23,20 @@ namespace eleave_view.hr
 
         protected void checklogin()
         {
-            if (Session["is_login"].ToString() == "f")
+            if (Session["is_login"] != null)
             {
-                Response.Redirect("~/unauthorised.aspx");
+                if (Session["is_login"].ToString() == "f")
+                {
+                    Response.Redirect("~/unauthorised.aspx");
+                }
+                else
+                {
+                    checkcf();
+                }
+            }
+            else
+            {
+                Response.Redirect("~/Login.aspx");
             }
         }
 
@@ -69,6 +81,27 @@ namespace eleave_view.hr
             bus_eleave bus = new bus_eleave();
             int r = bus.fetchalerts();
             return r;
+        }
+
+        [WebMethod]
+        public static int updatealerts1(int userid)
+        {
+            bus_eleave bus = new bus_eleave();
+            bus.userid = userid;
+            int r1 = bus.fetchalerts_user();
+            return r1;
+        }
+
+        protected void checkcf()
+        {
+            int chk = bus.checkcf();
+            if (chk == 1)
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "displayalertmessage", "cfnot();", true);
+            }
+            else
+            {
+            }
         }
     }
 }

@@ -25,22 +25,29 @@ namespace eleave_view.user
 
         protected void checklogin()
         {
-            if (Session["is_login"].ToString() == "t")
+            if (Session["is_login"] != null)
             {
-                change_stat();
-                fill_grid();
+                if (Session["is_login"].ToString() == "t")
+                {
+                    change_stat();
+                    fill_grid();
 
+                }
+                else
+                {
+                    Response.Redirect("~/unauthorised.aspx");
+                }
             }
             else
             {
-                Response.Redirect("~/unauthorised.aspx");
+                Response.Redirect("~/Login.aspx");
             }
         }
 
         protected void change_stat()
         {
             bus.userid = int.Parse(Session["user_id"].ToString());
-            bus.change_stat();
+            bus.change_stat();// to change the seen status of notification
         }
 
         protected void fill_grid()
@@ -110,7 +117,7 @@ namespace eleave_view.user
             DataTable dt = bus.fetch_download_leaves();
             if (dt.Rows.Count > 0)
             {
-                rd.Load(Server.MapPath(Request.ApplicationPath) + "/user/download_approved.rpt");
+                rd.Load(Server.MapPath(Request.ApplicationPath) + "/user/approved.rpt");
                 rd.SetDataSource(dt);
                 rd.ExportToHttpResponse(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat, Response, true, "Approved_Leave");
             }

@@ -4,7 +4,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <title></title>
+    <title>e-leave</title>
     <script type="text/javascript">
 
         function preventBack() {
@@ -28,7 +28,7 @@
     <meta content="" name="author" />
     <!-- end: META -->
     <!-- start: MAIN CSS -->
-
+    <link rel="shortcut icon" href="../assets/images/favicon.ico" type="image/x-icon">
     <link href="../assets/plugins/swal/sweetalert.css" rel="stylesheet" type="text/css" />
     <script src="../assets/plugins/swal/sweetalert.min.js" type="text/javascript"></script>
     <link href="../assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen" />
@@ -62,11 +62,11 @@
             background: url('../assets/images/double_loader.gif') 50% 50% no-repeat rgb(249,249,249);
         }
     </style>
-    <script type="text/javascript">
+    <%--    <script type="text/javascript">
         $(window).load(function () {
             $(".loader").fadeOut(5000);
         })
-    </script>
+    </script>--%>
     <script type="text/css">
         .chosen-disabled {
          opacity: 1 !important; 
@@ -78,7 +78,7 @@
 </head>
 <body>
     <!-- Loading Container -->
-    <%--    <div class="loader"></div>--%>
+<%--    <div class="loader" id="loader" style="display: none"></div>--%>
     <!--  /Loading Container -->
     <!-- start: HEADER -->
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -91,7 +91,7 @@
                 </button>
                 <!-- end: RESPONSIVE MENU TOGGLER -->
                 <!-- start: LOGO -->
-                <a class="navbar-brand" href="#">
+                <a class="navbar-brand" href="dash.aspx">
                     <i class="clip-IE"></i>
                     <asp:Label ID="Label1" runat="server" Text="- Leave" ForeColor="#007AFF"></asp:Label>
                 </a>
@@ -111,13 +111,13 @@
                     <!-- start: NOTIFICATION DROPDOWN -->
                     <li class="dropdown">
                         <a href="app_rej.aspx" class="dropdown-toggle">
-                            <i class="clip-notification"></i>
+                            <i class="icon-info"></i>
                             <span class="badge" id="info"></span>
                         </a>
                     </li>
                     <li class="dropdown">
                         <a href="cancelappr.aspx" class="dropdown-toggle">
-                            <i class="clip-warning"></i>
+                            <i class="icon-bell-alt"></i>
                             <span class="badge" id="info1"></span>
                         </a>
                     </li>
@@ -218,19 +218,39 @@
                                 </a>
                             </li>
                             <li id="settings2" runat="server">
-                                <a href="userleavesall.aspx"><i class="clip-stackoverflow"></i>
+                                <a href="leave_logs.aspx"><i class="clip-stackoverflow"></i>
                                     <span class="title">Leave Status</span>
                                     <span class="selected"></span>
                                 </a>
                             </li>
                         </ul>
                     </li>
-                    <%--                    <li id="rpt" runat="server">
-                        <a href="#"><i class="clip-bars"></i>
-                            <span class="title">Reports </span>
+                    <li id="rpt" runat="server">
+                        <a href="javascript:void(0)"><i class="clip-bars"></i>
+                            <span class="title">Reports </span><i class="icon-arrow"></i>
                             <span class="selected"></span>
                         </a>
-                    </li>--%>
+                        <ul class="sub-menu">
+                            <li id="rpt1" runat="server">
+                                <a href="leavetaken.aspx"><i class="icon-file-text"></i>
+                                    <span class="title">Leave Taken</span>
+                                    <span class="selected"></span>
+                                </a>
+                            </li>
+                            <li id="rpt2" runat="server">
+                                <a href="balleave.aspx"><i class="icon-file-text"></i>
+                                    <span class="title">Balance Leave</span>
+                                    <span class="selected"></span>
+                                </a>
+                            </li>
+                            <li id="rpt3" runat="server">
+                                <a href="cfleave.aspx"><i class="icon-file-text"></i>
+                                    <span class="title">Carry Forward</span>
+                                    <span class="selected"></span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
                 </ul>
                 <!-- end: MAIN NAVIGATION MENU -->
             </div>
@@ -285,7 +305,7 @@
     <!-- start: FOOTER -->
     <div class="footer clearfix">
         <div class="footer-inner">
-            2015 &copy; <i class="clip-IE"></i>-Leave by summersoft pvt ltd.
+            2015 &copy; <i class="clip-IE"></i>-Leave by <a href="http://summersoft.in/" target="_blank">summersoft pvt ltd.
         </div>
         <div class="footer-items">
             <span class="go-top"><i class="clip-chevron-up"></i></span>
@@ -342,16 +362,16 @@
             calendar();
             updateAlerts();
             updateAlerts2();
-            sessiontimeout();
+            //sessiontimeout();
+            inputlimit_add1();
+            inputlimit_add2();
         });
     </script>
 
     <script type="text/javascript">
         function cpassvali() {
-            jQuery(document).ready(function () {
-                //alert('im called user');
-                changepassval.init();
-            });
+            //alert('im called user');
+            changepassval.init();
         }
     </script>
     <script type="text/javascript">
@@ -389,10 +409,8 @@
     </script>
     <script type="text/javascript">
         function uprofilevali() {
-            jQuery(document).ready(function () {
-                //alert('im called user');
-                uprofileval.init();
-            });
+            //alert('im called user');
+            uprofileval.init();
         }
     </script>
     <script type="text/javascript">
@@ -418,8 +436,10 @@
                             $('#lblop').hide();
                             $('#pulsate-regular').pulsate("destroy");
                             $('#pulsate-regular').hide();
+                            $('#btncp').prop('disabled', false);
                         }
                         else {
+                            $('#btncp').prop('disabled', true);
                             $('#pulsate-regular').show();
                             $('#lblop').show();
                             $('#pulsate-regular').pulsate({
@@ -440,7 +460,10 @@
             }
             else {
 
+                $('#pulsate-regular').pulsate("destroy");
+                $('#pulsate-regular').hide();
                 $('#lblop').hide();
+                $('#btncp').prop('disabled', false);
             }
         }
     </script>
@@ -584,7 +607,12 @@
                         editable: true,
                         droppable: true, // this allows things to be dropped onto the calendar
                         eventLimit: true, // allow "more" link when too many events
-                        events: event1
+                        events: event1,
+                        eventClick: function (event) {
+                            $('#mbody').html(event.title);
+                            $('#mbody').css('color', event.color);
+                            $('#event-management').modal('show');
+                        }
                     });
                 },
                 error: function (XMLHttpRequest, textStatus, errorThrown) {
@@ -656,6 +684,45 @@
         }
         setInterval(updateAlerts2, 10000); // 10 seconds
     </script>
+
+    <%--To limit no: of characters in Reason--%>
+    <script type="text/javascript">
+        function inputlimit() {
+            $('#txtbreason').inputlimiter({
+                limit: 100,
+                remText: 'You only have %n character%s remaining...',
+                remFullText: 'Stop typing! You\'re not allowed any more characters!',
+                limitText: 'You\'re allowed to input %n character%s into this field.'
+            });
+        }
+    </script>
+    <script type="text/javascript">
+        function inputlimit_add1() {
+            $('#txtadd1').inputlimiter({
+                limit: 20,
+                remText: 'You only have %n character%s remaining...',
+                remFullText: 'Stop typing! You\'re not allowed any more characters!',
+                limitText: 'You\'re allowed to input %n character%s into this field.'
+            });
+        }
+    </script>
+    <script type="text/javascript">
+        function inputlimit_add2() {
+            $('#txtadd2').inputlimiter({
+                limit: 20,
+                remText: 'You only have %n character%s remaining...',
+                remFullText: 'Stop typing! You\'re not allowed any more characters!',
+                limitText: 'You\'re allowed to input %n character%s into this field.'
+            });
+        }
+    </script>
+
+    <script type="text/javascript">
+        function load_hide() {
+            $('#loader').hide();
+        }
+    </script>
+
 </body>
 <!-- end: BODY -->
 </html>

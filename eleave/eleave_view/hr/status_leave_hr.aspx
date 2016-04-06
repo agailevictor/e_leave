@@ -3,66 +3,76 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 
     <script type="text/javascript">
-    function success() {
-        swal({
-            title: 'Success!',
-            text: 'Your request has been succesfully Updated',
-            type: 'success'
+        function success() {
+            swal({
+                title: 'Success!',
+                text: 'Your request has been succesfully Updated',
+                type: 'success',
+                allowEscapeKey: false,
+                allowOutsideClick: false
             });
-    }
+        }
     </script>
     <script type="text/javascript">
         function error() {
             swal({
                 title: 'Error!',
                 text: 'Something Went Wrong',
-                type: 'error'
+                type: 'error',
+                allowEscapeKey: false,
+                allowOutsideClick: false
             });
         }
     </script>
     <style type="text/css">
-        .WordWrap {
-            overflow-x: auto; /* Use horizontal scroller if needed; for Firefox 2, not needed in Firefox 3 */
-             white-space: pre-wrap; /* css-3 */
-              white-space: -moz-pre-wrap !important; /* Mozilla, since 1999 */ 
-              white-space: -pre-wrap; /* Opera 4-6 */ 
-              white-space: -o-pre-wrap; /* Opera 7 */ /* width: 99%; */ 
-              word-wrap: break-word; /* Internet Explorer 5.5+ */
+        .WordWrap1 {
+            /*width: 100%;*/
+            word-break: break-all;
         }
     </style>
 
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
-    <div class="page-header">                            
-        <h1>Leaves<small><a href="applyleave_hr.aspx"> Request Leave</a></small></h1>                                 
+    <div class="page-header">
+        <h1>Leaves<small><a href="applyleave_hr.aspx"> Request Leave</a></small></h1>
     </div>
     <div class="table-responsive">
-        <asp:GridView ID="status_hr" runat="server" 
-            CssClass="table table-bordered table-hover" AutoGenerateColumns="False" 
-            DataKeyNames="lid" ClientIDMode="Static" OnPreRender="status_hr_PreRender"  >
+        <asp:GridView ID="status_hr" runat="server"
+            CssClass="table table-bordered table-hover" AutoGenerateColumns="False"
+            DataKeyNames="lid" ClientIDMode="Static" OnPreRender="status_hr_PreRender">
             <Columns>
                 <asp:TemplateField HeaderText="No.">
-                <ItemTemplate>
-                 <%# Container.DataItemIndex + 1 %>
-                </ItemTemplate>
+                    <ItemTemplate>
+                        <%# Container.DataItemIndex + 1 %>
+                    </ItemTemplate>
                 </asp:TemplateField>
                 <asp:BoundField DataField="ltype" HeaderText="Leave Type" />
                 <asp:BoundField DataField="req_date" HeaderText="Applied On" />
-                <asp:BoundField DataField="dates" HeaderText="Dates Applied" />
-                <asp:BoundField DataField="rej_reason" HeaderText="Reject Reason" />
+                <asp:BoundField DataField="dates" HeaderText="Dates Applied" >
+                <ItemStyle CssClass="WordWrap1" />
+                </asp:BoundField>
+                <asp:BoundField DataField="rej_reason" HeaderText="Reject Reason" >
+                <ItemStyle CssClass="WordWrap1" />
+                </asp:BoundField>
                 <asp:BoundField DataField="stat" HeaderText="Status" />
+<%--                <asp:TemplateField HeaderText="Operation_Test">
+                    <ItemTemplate>
+                        <asp:LinkButton ID="lnkedit" runat="server" CssClass="icon-edit" ToolTip="Edit Leave" Visible='<%# Isvisible((string)Eval("stat")) %>' OnClick="lnkedit_Click"></asp:LinkButton>
+                        <asp:LinkButton ID="lnkcancel" runat="server" CssClass="clip-cancel-circle" ToolTip="Cancel Leave" Visible='<%# Isvisible((string)Eval("stat")) %>'></asp:LinkButton>
+                    </ItemTemplate>
+                </asp:TemplateField>--%>
                 <asp:TemplateField HeaderText="Operation">
                     <ItemTemplate>
-                        <asp:Button ID="btncancel_hr" runat="server" CssClass="btn btn-bricky" Visible='<%# Isvisible((string)Eval("stat")) %>' 
-                            Text="Cancel" onclick="btncancel_Click" />
+                        <asp:Button ID="btncancel_hr" runat="server" CssClass="btn btn-bricky" Visible='<%# Isvisible((string)Eval("stat")) %>'
+                            Text="Cancel" OnClick="btncancel_Click" />
                     </ItemTemplate>
                 </asp:TemplateField>
                 <asp:TemplateField HeaderText="Download">
                     <ItemTemplate>
-                        <asp:LinkButton ID="dwnld_hr" runat="server" 
-                            Visible='<%# Isenable((string)Eval("stat")) %>' CssClass="clip-download-2" 
-                            onclick="LinkButton1_Click"></asp:LinkButton>
+                        <asp:LinkButton ID="dwnld_hr" runat="server"
+                            Visible='<%# Isenable((string)Eval("stat")) %>' CssClass="clip-download-2"
+                            OnClick="LinkButton1_Click"></asp:LinkButton>
                     </ItemTemplate>
                 </asp:TemplateField>
             </Columns>

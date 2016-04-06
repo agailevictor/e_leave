@@ -6,7 +6,9 @@
         swal({
             title: 'Success!',
             text: 'Your request has been succesfully Updated',
-            type: 'success'
+            type: 'success',
+            allowEscapeKey: false,
+            allowOutsideClick: false
             });
     }
     </script>
@@ -15,10 +17,18 @@
             swal({
                 title: 'Error!',
                 text: 'Something Went Wrong',
-                type: 'error'
+                type: 'error',
+                allowEscapeKey: false,
+                allowOutsideClick: false
             });
         }
     </script>
+    <style type="text/css">
+        .WordWrap1 {
+            /*width: 100%;*/
+            word-break: break-all;
+        }
+    </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="page-header">                            
@@ -32,8 +42,12 @@
                 </asp:TemplateField>
                 <asp:BoundField DataField="ltype" HeaderText="Leave Type" />
                 <asp:BoundField DataField="req_date" HeaderText="Applied On" />
-                <asp:BoundField DataField="dates" HeaderText="Dates Applied" />
-                <asp:BoundField DataField="rej_reason" HeaderText="Reject Reason" />
+                <asp:BoundField DataField="dates" HeaderText="Dates Applied" >
+                <ItemStyle CssClass="WordWrap1" />
+                </asp:BoundField>
+                <asp:BoundField DataField="rej_reason" HeaderText="Reject Reason" >
+                <ItemStyle CssClass="WordWrap1" />
+                </asp:BoundField>
                 <asp:BoundField DataField="stat" HeaderText="Status" />
                 <asp:TemplateField HeaderText="Operation">
                     <ItemTemplate>

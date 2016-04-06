@@ -42,6 +42,8 @@ namespace eleave_c
         public string add1 { get; set; }
         public string add2 { get; set; }
         public string mob { get; set; }
+        public string email { get; set; }
+        public string role { get; set; }
 
         public int check_login()
         {
@@ -62,6 +64,12 @@ namespace eleave_c
             return data.fetch_holidays1(userid);
 
         }
+        public DataTable fetch_holidaysma()
+        {
+            return data.fetch_holidaysma(userid);
+
+        }
+
         public DataTable fetch_leaves()
         {
             return data.fetch_leaves(userid);
@@ -147,7 +155,7 @@ namespace eleave_c
         }
         public int add_user()
         {
-            return data.add_user(name,user_name,gender,doj,dep,grade,desi,region);
+            return data.add_user(name,user_name,email,gender,doj,dep,grade,desi,region);
         }
         public DataTable fetchdesignation()
         {
@@ -283,8 +291,84 @@ namespace eleave_c
         }
         public int update_user()
         {
-            return data.update_user(id,name, user_name, gender, doj, dep, grade, desi, region);
+            return data.update_user(id,name, user_name, email,gender, doj, dep, grade, desi, region);
         }
 
+        public DataTable fillcflist() 
+        {
+            return data.fillcflist();
+        }
+
+        public int checkcf()
+        {
+            return data.checkcf();
+        }
+
+        public int cf()
+        {
+            return data.cf();
+        }
+
+        public DataTable fetch_leaves_taken()
+        {
+            return data.fetch_leaves_taken();
+        }
+        public DataTable fetch_leaves_balance()
+        {
+            return data.fetch_leaves_balance();
+        }
+
+        public DataTable fill_logs()
+        {
+            return data.fill_logs();
+        }
+
+        public DataTable fetch_mail_details()
+        {
+            return data.fetch_mail_details(role);
+        }
+        public DataTable fetch_mail_details_cancel()
+        {
+            return data.fetch_mail_details_cancel();
+        }
+        public DataTable fetch_mail_details_hr_apply()
+        {
+            return data.fetch_mail_details_hr_apply(role);
+        }
+
+        public int checkusername()
+        {
+            return data.checkusername(user_name);
+        }
+        public int checkemail()
+        {
+            return data.checkemail(email);
+        }
+        public int checkusername_edit()
+        {
+            return data.checkusername_edit(user_name,id);
+        }
+        public int checkemail_edit()
+        {
+            return data.checkemail_edit(email, id);
+        }
+        public DataTable fill_ldetails()
+        {
+            return data.fill_ldetails(lid);
+        }
+        public string fetch_details_edit()
+        {
+            return data.fetch_details_edit(id);
+        }
+
+        public int check_in_out()
+        {
+            return data.check_in_out(userid,ltype,rdays);
+        }
+
+        public int clear_holidays()
+        {
+            return data.clear_holidays();
+        }
     }
 }

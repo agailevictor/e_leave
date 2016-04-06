@@ -1,10 +1,24 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="hrdash.aspx.cs" Inherits="eleave_view.hr.hrdash" MasterPageFile="~/hr/hr.Master" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    <script type="text/javascript">
+        function cfnot() {
+            swal({
+                title: 'Warning!',
+                text: 'Perform Carryforward!',
+                type: 'warning',
+                allowEscapeKey: false,
+                allowOutsideClick: false
+            },
+                function () {
+                    window.location = "cf.aspx";
+                });
+        }
+    </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="page-header">
-        <h1>Dash Board</h1>
+        <h1>Dashboard</h1>
     </div>
     <!-- start: PAGE CONTENT -->
     <!-- start: DIALER -->
@@ -25,17 +39,25 @@
                                 </div>
                 </div>
                 <div class="panel-body">
-                    <div class="col-sm-3">
-                        <div id="ann"></div>
+                    <div id="ann1">
+                        <center>
+                            <div id="ann"></div>
+                        </center>
                     </div>
-                    <div class="col-sm-3">
-                        <div id="med"></div>
+                    <div id="med1">
+                        <center>
+                            <div id="med"></div>
+                        </center>
                     </div>
-                    <div class="col-sm-3">
-                        <div id="repl"></div>
+                    <div id="repl1">
+                        <center>
+                            <div id="repl"></div>
+                        </center>
                     </div>
-                    <div class="col-sm-3">
-                        <div id="mrg"></div>
+                    <div id="mrg1">
+                        <center>
+                            <div id="mrg"></div>
+                        </center>
                     </div>
                 </div>
             </div>
@@ -69,5 +91,27 @@
             <!-- end: FULL CALENDAR PANEL -->
         </div>
     </div>
+
+    <div id="event-management" class="modal fade" tabindex="-1" data-width="760" style="display: none;">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        &times;
+                    </button>
+                    <h4 class="modal-title" id="modal-title">Holiday Details</h4>
+                </div>
+                <div class="modal-body" id="modal-body">
+                    <h2 id="mbody"></h2>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" data-dismiss="modal" class="btn btn-light-grey">
+                        Close
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- end: PAGE CONTENT-->
 </asp:Content>

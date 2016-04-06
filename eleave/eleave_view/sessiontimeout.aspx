@@ -20,6 +20,7 @@
     <meta content="" name="author" />
     <!-- end: META -->
     <!-- start: MAIN CSS -->
+    <link rel="shortcut icon" href="assets/images/favicon.ico" type="image/x-icon">
     <link href="assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
     <link href="assets/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
     <link href="assets/fonts/style.css" rel="stylesheet" />
@@ -75,7 +76,7 @@
                         Unfortunately the page you were looking for could not be found.
 						
                         <br>
-                        <a href="MainPage.aspx" class="btn btn-teal btn-return">Click here to login Again
+                        <a href="MainPage.aspx" class="btn btn-teal btn-return">Click here to Login Again
 							</a>
                         <br>
                     </p>

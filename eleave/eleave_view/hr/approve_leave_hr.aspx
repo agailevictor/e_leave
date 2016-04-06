@@ -8,7 +8,9 @@
         swal({
             title: 'Success!',
             text: 'Leave Sanctioned Sucessfully',
-            type: 'success'
+            type: 'success',
+            allowEscapeKey: false,
+            allowOutsideClick: false
         },
                 function () {
                     window.location = "approve_leave_hr.aspx";
@@ -23,7 +25,9 @@
             swal({
             title: 'Error!',
             text: 'Something Went Wrong',
-            type: 'error'
+            type: 'error',
+            allowEscapeKey: false,
+            allowOutsideClick: false
             });
         }
     </script>
@@ -32,7 +36,9 @@
         swal({
             title: 'Success!',
             text: 'Leave Rejected Sucessfully',
-            type: 'success'
+            type: 'success',
+            allowEscapeKey: false,
+            allowOutsideClick: false
         },
                 function () {
                     window.location = "approve_leave_hr.aspx";
@@ -44,7 +50,9 @@
             swal({
                 title: 'Error!',
                 text: 'Something Went Wrong',
-                type: 'error'
+                type: 'error',
+                allowEscapeKey: false,
+                allowOutsideClick: false
             });
         }
     </script>

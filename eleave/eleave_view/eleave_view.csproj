@@ -50,6 +50,7 @@
     <Reference Include="CrystalDecisions.CrystalReports.Engine, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
     <Reference Include="CrystalDecisions.ReportSource, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
     <Reference Include="CrystalDecisions.Shared, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.Web, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
@@ -59,6 +60,7 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Web" />
@@ -93,6 +95,7 @@
     <Content Include="assets\images\blackandwhite.png" />
     <Content Include="assets\images\darkgrey.png" />
     <Content Include="assets\images\double_loader.GIF" />
+    <Content Include="assets\images\favicon.ico" />
     <Content Include="assets\images\green.png" />
     <Content Include="assets\images\leaves.jpg" />
     <Content Include="assets\images\lightgrey.png" />
@@ -102,7 +105,9 @@
     <Content Include="assets\images\navy.png" />
     <Content Include="assets\images\summersoft.jpg" />
     <Content Include="assets\images\timer-piece.png" />
+    <Content Include="assets\js\agaile.js" />
     <Content Include="assets\js\applyleavem_hr.js" />
+    <Content Include="assets\js\applyleaver_hr.js" />
     <Content Include="assets\js\bulkuploadvalidation.js" />
     <Content Include="assets\js\applyleave_hr.js" />
     <Content Include="assets\js\changepassword.js" />
@@ -111,6 +116,7 @@
     <Content Include="assets\js\datatables.js" />
     <Content Include="assets\js\datatablesuser.js" />
     <Content Include="assets\js\datatables_md_ed.js" />
+    <Content Include="assets\js\edit_leave_hr.js" />
     <Content Include="assets\js\form-calendar.js" />
     <Content Include="assets\js\form-dropzone.js" />
     <Content Include="assets\js\form-elements.js" />
@@ -118,14 +124,17 @@
     <Content Include="assets\js\form-valiation-custom.js" />
     <Content Include="assets\js\form-validation.js" />
     <Content Include="assets\js\form-wizard.js" />
+    <Content Include="assets\js\formval.js" />
     <Content Include="assets\js\index.js" />
     <Content Include="assets\js\jquery.min.js" />
     <Content Include="assets\js\leaveformmval.js" />
+    <Content Include="assets\js\leaveformrval.js" />
     <Content Include="assets\js\leaveformval.js" />
     <Content Include="assets\js\login.js" />
     <Content Include="assets\js\login_custom.js" />
     <Content Include="assets\js\main.js" />
     <Content Include="assets\js\maps.js" />
+    <Content Include="assets\js\removeval.js" />
     <Content Include="assets\js\table-data.js" />
     <Content Include="assets\js\ui-buttons.js" />
     <Content Include="assets\js\ui-elements.js" />
@@ -351,6 +360,8 @@
     <Content Include="assets\plugins\select2\select2.min.js" />
     <Content Include="assets\plugins\select2\select2.png" />
     <Content Include="assets\plugins\select2\select2x2.png" />
+    <Content Include="assets\plugins\shaker\jquery-shaker.js" />
+    <Content Include="assets\plugins\shaker\jquery.jrumble.1.3.min.js" />
     <Content Include="assets\plugins\summernote\build\summernote.css" />
     <Content Include="assets\plugins\summernote\build\summernote.min.js" />
     <Content Include="assets\plugins\swal\sweetalert-dev.js" />
@@ -363,26 +374,37 @@
     <Content Include="hr\adduser.aspx" />
     <Content Include="hr\applyleave_hr.aspx" />
     <Content Include="hr\approve_leave_hr.aspx" />
+    <Content Include="hr\balleave.aspx" />
     <Content Include="hr\cancel_hr.aspx" />
     <Content Include="hr\cf.aspx" />
+    <Content Include="hr\cfleave.aspx" />
     <Content Include="hr\chg_pass_hr.aspx" />
+    <Content Include="hr\cholidays.aspx" />
     <Content Include="hr\edituser.aspx" />
+    <Content Include="hr\edit_leave.aspx" />
     <Content Include="hr\forward_hr.aspx" />
     <Content Include="hr\holidays_upload.aspx" />
     <Content Include="hr\hrdash.aspx" />
+    <Content Include="hr\leavetaken.aspx" />
+    <Content Include="hr\leave_logs.aspx" />
     <Content Include="hr\listuser.aspx" />
     <Content Include="hr\status_leave_hr.aspx" />
     <Content Include="hr\testpage_hr.aspx" />
     <Content Include="hr\update_profile.aspx" />
     <Content Include="hr\userleavesall.aspx" />
+    <Content Include="hr\user_add.aspx" />
     <Content Include="hr\WebForm1.aspx" />
     <Content Include="Login.aspx" />
     <Content Include="Logout.aspx" />
     <Content Include="MainPage.aspx" />
     <Content Include="md\app_rej.aspx" />
+    <Content Include="md\balleave.aspx" />
     <Content Include="md\cancelappr.aspx" />
+    <Content Include="md\cfleave.aspx" />
     <Content Include="md\chg_pass.aspx" />
     <Content Include="md\dash.aspx" />
+    <Content Include="md\leavetaken.aspx" />
+    <Content Include="md\leave_logs.aspx" />
     <Content Include="md\listuser.aspx" />
     <Content Include="md\update_profile.aspx" />
     <Content Include="md\userleavesall.aspx" />
@@ -390,7 +412,6 @@
     <Content Include="sessiontimeout.aspx" />
     <Content Include="Test.aspx" />
     <Content Include="unauthorised.aspx" />
-    <Content Include="user\applyleave.aspx" />
     <Content Include="user\cancel.aspx" />
     <Content Include="user\chg_pass.aspx" />
     <Content Include="user\dash.aspx" />
@@ -398,9 +419,9 @@
     <Content Include="user\leaveapply.aspx" />
     <Content Include="user\leaves.aspx" />
     <Content Include="user\listleaves.aspx" />
-    <Content Include="user\test.aspx" />
     <Content Include="user\update_profile.aspx" />
     <Content Include="user\WebForm1.aspx" />
+    <Content Include="user\WebForm2.aspx" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -426,12 +447,31 @@
     <Compile Include="hr\applyleave_hr.aspx.designer.cs">
       <DependentUpon>applyleave_hr.aspx</DependentUpon>
     </Compile>
+    <Compile Include="hr\approved.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>approved.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="hr\approve_leave_hr.aspx.cs">
       <DependentUpon>approve_leave_hr.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="hr\approve_leave_hr.aspx.designer.cs">
       <DependentUpon>approve_leave_hr.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="hr\balleave.aspx.cs">
+      <DependentUpon>balleave.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="hr\balleave.aspx.designer.cs">
+      <DependentUpon>balleave.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="hr\bal_leave.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>bal_leave.rpt</DependentUpon>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="hr\cancel_hr.aspx.cs">
       <DependentUpon>cancel_hr.aspx</DependentUpon>
@@ -447,12 +487,32 @@
     <Compile Include="hr\cf.aspx.designer.cs">
       <DependentUpon>cf.aspx</DependentUpon>
     </Compile>
+    <Compile Include="hr\cfleave.aspx.cs">
+      <DependentUpon>cfleave.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="hr\cfleave.aspx.designer.cs">
+      <DependentUpon>cfleave.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="hr\cf_leave.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>cf_leave.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="hr\chg_pass_hr.aspx.cs">
       <DependentUpon>chg_pass_hr.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="hr\chg_pass_hr.aspx.designer.cs">
       <DependentUpon>chg_pass_hr.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="hr\cholidays.aspx.cs">
+      <DependentUpon>cholidays.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="hr\cholidays.aspx.designer.cs">
+      <DependentUpon>cholidays.aspx</DependentUpon>
     </Compile>
     <Compile Include="hr\download_approved_hr.cs">
       <AutoGen>True</AutoGen>
@@ -466,6 +526,13 @@
     </Compile>
     <Compile Include="hr\edituser.aspx.designer.cs">
       <DependentUpon>edituser.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="hr\edit_leave.aspx.cs">
+      <DependentUpon>edit_leave.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="hr\edit_leave.aspx.designer.cs">
+      <DependentUpon>edit_leave.aspx</DependentUpon>
     </Compile>
     <Compile Include="hr\forward_hr.aspx.cs">
       <DependentUpon>forward_hr.aspx</DependentUpon>
@@ -494,6 +561,26 @@
     </Compile>
     <Compile Include="hr\hrdash.aspx.designer.cs">
       <DependentUpon>hrdash.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="hr\leavestaken.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>leavestaken.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="hr\leavetaken.aspx.cs">
+      <DependentUpon>leavetaken.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="hr\leavetaken.aspx.designer.cs">
+      <DependentUpon>leavetaken.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="hr\leave_logs.aspx.cs">
+      <DependentUpon>leave_logs.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="hr\leave_logs.aspx.designer.cs">
+      <DependentUpon>leave_logs.aspx</DependentUpon>
     </Compile>
     <Compile Include="hr\listuser.aspx.cs">
       <DependentUpon>listuser.aspx</DependentUpon>
@@ -530,6 +617,13 @@
     <Compile Include="hr\userleavesall.aspx.designer.cs">
       <DependentUpon>userleavesall.aspx</DependentUpon>
     </Compile>
+    <Compile Include="hr\user_add.aspx.cs">
+      <DependentUpon>user_add.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="hr\user_add.aspx.designer.cs">
+      <DependentUpon>user_add.aspx</DependentUpon>
+    </Compile>
     <Compile Include="hr\WebForm1.aspx.cs">
       <DependentUpon>WebForm1.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -565,12 +659,26 @@
     <Compile Include="md\app_rej.aspx.designer.cs">
       <DependentUpon>app_rej.aspx</DependentUpon>
     </Compile>
+    <Compile Include="md\balleave.aspx.cs">
+      <DependentUpon>balleave.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="md\balleave.aspx.designer.cs">
+      <DependentUpon>balleave.aspx</DependentUpon>
+    </Compile>
     <Compile Include="md\cancelappr.aspx.cs">
       <DependentUpon>cancelappr.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="md\cancelappr.aspx.designer.cs">
       <DependentUpon>cancelappr.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="md\cfleave.aspx.cs">
+      <DependentUpon>cfleave.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="md\cfleave.aspx.designer.cs">
+      <DependentUpon>cfleave.aspx</DependentUpon>
     </Compile>
     <Compile Include="md\chg_pass.aspx.cs">
       <DependentUpon>chg_pass.aspx</DependentUpon>
@@ -585,6 +693,20 @@
     </Compile>
     <Compile Include="md\dash.aspx.designer.cs">
       <DependentUpon>dash.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="md\leavetaken.aspx.cs">
+      <DependentUpon>leavetaken.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="md\leavetaken.aspx.designer.cs">
+      <DependentUpon>leavetaken.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="md\leave_logs.aspx.cs">
+      <DependentUpon>leave_logs.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="md\leave_logs.aspx.designer.cs">
+      <DependentUpon>leave_logs.aspx</DependentUpon>
     </Compile>
     <Compile Include="md\listuser.aspx.cs">
       <DependentUpon>listuser.aspx</DependentUpon>
@@ -643,12 +765,11 @@
     <Compile Include="unauthorised.aspx.designer.cs">
       <DependentUpon>unauthorised.aspx</DependentUpon>
     </Compile>
-    <Compile Include="user\applyleave.aspx.cs">
-      <DependentUpon>applyleave.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="user\applyleave.aspx.designer.cs">
-      <DependentUpon>applyleave.aspx</DependentUpon>
+    <Compile Include="user\approved.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>approved.rpt</DependentUpon>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="user\cancel.aspx.cs">
       <DependentUpon>cancel.aspx</DependentUpon>
@@ -705,13 +826,6 @@
     <Compile Include="user\listleaves.aspx.designer.cs">
       <DependentUpon>listleaves.aspx</DependentUpon>
     </Compile>
-    <Compile Include="user\test.aspx.cs">
-      <DependentUpon>test.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="user\test.aspx.designer.cs">
-      <DependentUpon>test.aspx</DependentUpon>
-    </Compile>
     <Compile Include="user\update_profile.aspx.cs">
       <DependentUpon>update_profile.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -732,6 +846,13 @@
     </Compile>
     <Compile Include="user\WebForm1.aspx.designer.cs">
       <DependentUpon>WebForm1.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="user\WebForm2.aspx.cs">
+      <DependentUpon>WebForm2.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="user\WebForm2.aspx.designer.cs">
+      <DependentUpon>WebForm2.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -774,9 +895,29 @@
     <Service Include="{C0C07587-41A7-46C8-8FBD-3F9C8EBE2DDC}" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="hr\approved.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>approved.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="hr\bal_leave.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>bal_leave.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="hr\cf_leave.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>cf_leave.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="hr\download_approved_hr.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>download_approved_hr.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="hr\leavestaken.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>leavestaken.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="user\approved.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>approved.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="user\download_approved.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>

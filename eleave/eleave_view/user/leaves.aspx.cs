@@ -25,14 +25,21 @@ namespace eleave_view.user
 
         public void checklogin()
         {
-            if (Session["is_login"].ToString() == "t")
+            if (Session["is_login"] != null)
             {
-                fill_grid();
+                if (Session["is_login"].ToString() == "t")
+                {
+                    fill_grid();
 
+                }
+                else
+                {
+                    Response.Redirect("~/unauthorised.aspx");
+                }
             }
             else
             {
-                Response.Redirect("~/unauthorised.aspx");
+                Response.Redirect("~/Login.aspx");
             }
         }
 

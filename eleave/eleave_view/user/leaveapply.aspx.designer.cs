@@ -67,6 +67,24 @@ namespace eleave_view.user {
         protected global::System.Web.UI.WebControls.TextBox txtdate;
         
         /// <summary>
+        /// txtsdate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtsdate;
+        
+        /// <summary>
+        /// txtedate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtedate;
+        
+        /// <summary>
         /// ddlper control.
         /// </summary>
         /// <remarks>
@@ -101,6 +119,15 @@ namespace eleave_view.user {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtphone;
+        
+        /// <summary>
+        /// lblio control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblio;
         
         /// <summary>
         /// btnreq control.

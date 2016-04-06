@@ -59,7 +59,8 @@ var Login = function () {
                     required: true
                 },
                 password: {
-                    //minlength: 6,
+                    minlength: 6,
+                    maxlength : 10,
                     required: true
                 }
             },

@@ -6,7 +6,9 @@
             swal({
                 title: 'Success!',
                 text: 'User Successfully Deleted !',
-                type: 'success'
+                type: 'success',
+                allowEscapeKey: false,
+                allowOutsideClick: false
             });
         }
     </script>
@@ -15,7 +17,9 @@
             swal({
                 title: 'Warning!',
                 text: 'Something Went Wrong',
-                type: 'warning'
+                type: 'warning',
+                allowEscapeKey: false,
+                allowOutsideClick: false
             });
         }
     </script>
@@ -24,7 +28,9 @@
             swal({
                 title: 'Error!',
                 text: 'Operation Failed!',
-                type: 'error'
+                type: 'error',
+                allowEscapeKey: false,
+                allowOutsideClick: false
             });
         }
     </script>
@@ -53,6 +59,7 @@
                 </asp:TemplateField>
                 <asp:BoundField DataField="name" HeaderText="Name" />
                 <asp:BoundField DataField="uname" HeaderText="User Name" />
+                <asp:BoundField DataField="email" HeaderText="Email" />
                 <asp:BoundField DataField="gender" HeaderText="Gender" />
                 <asp:BoundField DataField="doj" HeaderText="Date Of Join" />
                 <asp:BoundField DataField="dep" HeaderText="Department" />

@@ -13,8 +13,28 @@ namespace eleave_view.md
         {
             if (!IsPostBack)
             {
-                lbluname.Text = Session["name"].ToString();
-                SetCurrentPage();
+                checklogin();
+            }
+        }
+
+        protected void checklogin()
+        {
+            if (Session["is_login"] != null)
+            {
+                if (Session["is_login"].ToString() == "t")
+                {
+                    lbluname.Text = Session["name"].ToString();
+                    SetCurrentPage();
+
+                }
+                else
+                {
+                    Response.Redirect("~/unauthorised.aspx");
+                }
+            }
+            else
+            {
+                Response.Redirect("~/Login.aspx");
             }
         }
 
@@ -39,9 +59,21 @@ namespace eleave_view.md
                     settings.Attributes["class"] = "active";
                     settings1.Attributes["class"] = "active open";
                     break;
-                case "userleavesall.aspx":
+                case "leave_logs.aspx":
                     settings.Attributes["class"] = "active";
                     settings2.Attributes["class"] = "active open";
+                    break;
+                case "leavetaken.aspx":
+                    rpt.Attributes["class"] = "active";
+                    rpt1.Attributes["class"] = "active open";
+                    break;
+                case "balleave.aspx":
+                    rpt.Attributes["class"] = "active";
+                    rpt2.Attributes["class"] = "active open";
+                    break;
+                case "cfleave.aspx":
+                    rpt.Attributes["class"] = "active";
+                    rpt3.Attributes["class"] = "active open";
                     break;
             }
         }

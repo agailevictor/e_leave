@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data;
 using eleave_c;
+using System.Web.Mail;
 
 namespace eleave_view.md
 {
@@ -14,9 +15,10 @@ namespace eleave_view.md
         bus_eleave bus = new bus_eleave();
         int f;
         CheckBox cbox;
+        public string toemail, mailbody, url = "http://uoa.hummingsoft.com.my:8065/e_leave/ target=\"_blank\"";
         protected void Page_Load(object sender, EventArgs e)
         {
-            if(!IsPostBack)
+            if (!IsPostBack)
             {
                 checklogin();
             }
@@ -24,14 +26,21 @@ namespace eleave_view.md
 
         protected void checklogin()
         {
-            if (Session["is_login"].ToString() == "t")
+            if (Session["is_login"] != null)
             {
-                fillleavesapr();
+                if (Session["is_login"].ToString() == "t")
+                {
+                    fillleavesapr();
 
+                }
+                else
+                {
+                    Response.Redirect("~/unauthorised.aspx");
+                }
             }
             else
             {
-                Response.Redirect("~/unauthorised.aspx");
+                Response.Redirect("~/Login.aspx");
             }
         }
 
@@ -94,8 +103,18 @@ namespace eleave_view.md
             int r = bus.approve_leave();
             if (r == 1)
             {
-                fillleavesapr();
-                ScriptManager.RegisterStartupScript(this, GetType(), "displayalertmessage", "success();", true);
+                mailbody = "<table  border='1' cellpadding='0' cellspacing='0' style='width: 850px; border-color: black;'><tr><td colspan='9'><br>&nbsp &nbspDear " + row.Cells[2].Text.ToString() + ",<br /><br />&nbsp&nbsp&nbsp&nbsp&nbspLeave application submitted by you is <b>Approved </b> on " + DateTime.Now.ToString("dd/MM/yyyy") + ".</b> The details are as follows.<br /><br /></td></tr><tr style='font-weight: 700;'></tr><tr><td colspan='9'><br/><p></p><p> &nbsp&nbsp&nbspName:   " + row.Cells[2].Text.ToString() + "</p><p>&nbsp&nbsp&nbspDepartment:   " + row.Cells[3].Text.ToString() + "</p><p>&nbsp&nbsp&nbspDesignation:   " + row.Cells[4].Text.ToString() + " </p><p>&nbsp&nbsp&nbspLeave Type:   " + row.Cells[5].Text.ToString() + " </p><p>&nbsp&nbsp&nbspPeriod:   " + row.Cells[7].Text.ToString() + " </p><p>&nbsp&nbsp&nbspReason:   " + row.Cells[8].Text.ToString() + " </p><p>&nbsp&nbsp&nbspclick<a href=" + url + "> here </a>to login into the application</p><br/></td></tr><tr></tr><td colspan='9' style='font-weight: bold' align='right'><br /><br />Regards,<br />Team e-leave</td></tr><tr><td align='center'><p style='color:blue;'> This is a system generated response. Please do not respond to this email id.</p></td></tr></table>";
+                bool check = SendWebMail(row.Cells[11].Text.ToString(), "Leave Application Notification", mailbody, "", "", "info@hummingsoft.com.my");
+                if (check == true)
+                {
+                    fillleavesapr();
+                    ScriptManager.RegisterStartupScript(this, GetType(), "displayalertmessage", "success();", true);
+                }
+                else
+                {
+                    fillleavesapr();
+                    ScriptManager.RegisterStartupScript(this, GetType(), "displayalertmessage", "warningemail();", true);
+                }
             }
             else
             {
@@ -116,8 +135,18 @@ namespace eleave_view.md
             int r = bus.reject_leave_md();
             if (r == 1)
             {
-                fillleavesapr();
-                ScriptManager.RegisterStartupScript(this, GetType(), "displayalertmessage", "success();", true);
+                mailbody = "<table  border='1' cellpadding='0' cellspacing='0' style='width: 850px; border-color: black;'><tr><td colspan='9'><br>&nbsp &nbspDear " + row.Cells[2].Text.ToString() + ",<br /><br />&nbsp&nbsp&nbsp&nbsp&nbspLeave application submitted by you is <b>Rejected </b> on " + DateTime.Now.ToString("dd/MM/yyyy") + ".</b> The details are as follows.<br /><br /></td></tr><tr style='font-weight: 700;'></tr><tr><td colspan='9'><br/><p></p><p> &nbsp&nbsp&nbspName:   " + row.Cells[2].Text.ToString() + "</p><p>&nbsp&nbsp&nbspDepartment:   " + row.Cells[3].Text.ToString() + "</p><p>&nbsp&nbsp&nbspDesignation:   " + row.Cells[4].Text.ToString() + " </p><p>&nbsp&nbsp&nbspLeave Type:   " + row.Cells[5].Text.ToString() + " </p><p>&nbsp&nbsp&nbspPeriod:   " + row.Cells[7].Text.ToString() + " </p><p>&nbsp&nbsp&nbspReason:   " + row.Cells[8].Text.ToString() + " </p><p>&nbsp&nbsp&nbspclick<a href=" + url + "> here </a>to login into the application</p><br/></td></tr><tr></tr><td colspan='9' style='font-weight: bold' align='right'><br /><br />Regards,<br />Team e-leave</td></tr><tr><td align='center'><p style='color:blue;'> This is a system generated response. Please do not respond to this email id.</p></td></tr></table>";
+                bool check = SendWebMail(row.Cells[11].Text.ToString(), "Leave Application Notification", mailbody, "", "", "info@hummingsoft.com.my");
+                if (check == true)
+                {
+                    fillleavesapr();
+                    ScriptManager.RegisterStartupScript(this, GetType(), "displayalertmessage", "success();", true);
+                }
+                else
+                {
+                    fillleavesapr();
+                    ScriptManager.RegisterStartupScript(this, GetType(), "displayalertmessage", "warningemail();", true);
+                }
             }
             else
             {
@@ -143,7 +172,16 @@ namespace eleave_view.md
                     int r = bus.approve_leave();
                     if (r == 1)
                     {
-                        f = 0;
+                        mailbody = "<table  border='1' cellpadding='0' cellspacing='0' style='width: 850px; border-color: black;'><tr><td colspan='9'><br>&nbsp &nbspDear " + row.Cells[2].Text.ToString() + ",<br /><br />&nbsp&nbsp&nbsp&nbsp&nbspLeave application submitted by you is <b>Approved </b> on " + DateTime.Now.ToString("dd/MM/yyyy") + ".</b> The details are as follows.<br /><br /></td></tr><tr style='font-weight: 700;'></tr><tr><td colspan='9'><br/><p></p><p> &nbsp&nbsp&nbspName:   " + row.Cells[2].Text.ToString() + "</p><p>&nbsp&nbsp&nbspDepartment:   " + row.Cells[3].Text.ToString() + "</p><p>&nbsp&nbsp&nbspDesignation:   " + row.Cells[4].Text.ToString() + " </p><p>&nbsp&nbsp&nbspLeave Type:   " + row.Cells[5].Text.ToString() + " </p><p>&nbsp&nbsp&nbspPeriod:   " + row.Cells[7].Text.ToString() + " </p><p>&nbsp&nbsp&nbspReason:   " + row.Cells[8].Text.ToString() + " </p><p>&nbsp&nbsp&nbspclick<a href=" + url + "> here </a>to login into the application</p><br/></td></tr><tr></tr><td colspan='9' style='font-weight: bold' align='right'><br /><br />Regards,<br />Team e-leave</td></tr><tr><td align='center'><p style='color:blue;'> This is a system generated response. Please do not respond to this email id.</p></td></tr></table>";
+                        bool check = SendWebMail(row.Cells[11].Text.ToString(), "Leave Application Notification", mailbody, "", "", "info@hummingsoft.com.my");
+                        if (check == true)
+                        {
+                            f = 0;
+                        }
+                        else
+                        {
+                            f = 3;
+                        }
                     }
                     else
                     {
@@ -162,6 +200,11 @@ namespace eleave_view.md
             {
                 fillleavesapr();
                 ScriptManager.RegisterStartupScript(this, GetType(), "displayalertmessage", "error();", true);
+            }
+            else if (f == 3)
+            {
+                fillleavesapr();
+                ScriptManager.RegisterStartupScript(this, GetType(), "displayalertmessage", "warningemail();", true);
             }
             else
             {
@@ -242,7 +285,16 @@ namespace eleave_view.md
                         int r = bus.reject_leave_md();
                         if (r == 1)
                         {
-                            f = 0;
+                            mailbody = "<table  border='1' cellpadding='0' cellspacing='0' style='width: 850px; border-color: black;'><tr><td colspan='9'><br>&nbsp &nbspDear " + row.Cells[2].Text.ToString() + ",<br /><br />&nbsp&nbsp&nbsp&nbsp&nbspLeave application submitted by you is <b>Rejected </b> on " + DateTime.Now.ToString("dd/MM/yyyy") + ".</b>The details are as follows.<br /><br /></td></tr><tr style='font-weight: 700;'></tr><tr><td colspan='9'><br/><p></p><p> &nbsp&nbsp&nbspName:   " + row.Cells[2].Text.ToString() + "</p><p>&nbsp&nbsp&nbspDepartment:   " + row.Cells[3].Text.ToString() + "</p><p>&nbsp&nbsp&nbspDesignation:   " + row.Cells[4].Text.ToString() + " </p><p>&nbsp&nbsp&nbspLeave Type:   " + row.Cells[5].Text.ToString() + " </p><p>&nbsp&nbsp&nbspPeriod:   " + row.Cells[7].Text.ToString() + " </p><p>&nbsp&nbsp&nbspReason:   " + row.Cells[8].Text.ToString() + " </p><p>&nbsp&nbsp&nbspclick<a href=" + url + "> here </a>to login into the application</p><br/></td></tr><tr></tr><td colspan='9' style='font-weight: bold' align='right'><br /><br />Regards,<br />Team e-leave</td></tr><tr><td align='center'><p style='color:blue;'> This is a system generated response. Please do not respond to this email id.</p></td></tr></table>";
+                            bool check = SendWebMail(row.Cells[11].Text.ToString(), "Leave Application Notification", mailbody, "", "", "info@hummingsoft.com.my");
+                            if (check == true)
+                            {
+                                f = 0;
+                            }
+                            else
+                            {
+                                f = 3;
+                            }
                         }
                         else
                         {
@@ -267,12 +319,42 @@ namespace eleave_view.md
                 fillleavesapr();
                 ScriptManager.RegisterStartupScript(this, GetType(), "displayalertmessage", "error();", true);
             }
+            else if( f == 3)
+            {
+                fillleavesapr();
+                ScriptManager.RegisterStartupScript(this, GetType(), "displayalertmessage", "warningemail();", true);
+            }
             else
             {
                 fillleavesapr();
                 txtbreason.Text = "";
                 ScriptManager.RegisterStartupScript(this, GetType(), "displayalertmessage", "warning();", true);
             }
+        }
+
+        private bool SendWebMail(string strTo, string subj, string cont, string cc, string bcc, string strfrom)
+        {
+            bool flg = false;
+            MailMessage msg = new MailMessage();
+            msg.Body = cont;
+            msg.From = strfrom;
+            msg.To = strTo;
+            msg.Subject = subj;
+            msg.Cc = cc;
+            msg.Bcc = bcc;
+            msg.BodyFormat = MailFormat.Html;
+            try
+            {
+                //SmtpMail.SmtpServer = "175.143.44.165";
+                SmtpMail.SmtpServer = "192.168.1.4"; // change the ip address when hosting in server
+                SmtpMail.Send(msg);
+                flg = true;
+            }
+            catch (Exception)
+            {
+                flg = false;
+            }
+            return flg;
         }
     }
 }

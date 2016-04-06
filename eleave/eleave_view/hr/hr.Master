@@ -1,10 +1,10 @@
 ﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="hr.master.cs" Inherits="eleave_view.hr.hr" %>
 
-<!DOCTYPE html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <title></title>
+    <title>e-leave</title>
     <script type="text/javascript">
 
         function preventBack() {
@@ -28,7 +28,7 @@
     <meta content="" name="author" />
     <!-- end: META -->
     <!-- start: MAIN CSS -->
-
+    <link rel="shortcut icon" href="../assets/images/favicon.ico" type="image/x-icon">
     <link href="../assets/plugins/swal/sweetalert.css" rel="stylesheet" type="text/css" />
     <script src="../assets/plugins/swal/sweetalert.min.js" type="text/javascript"></script>
     <link href="../assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen" />
@@ -91,7 +91,7 @@
                 </button>
                 <!-- end: RESPONSIVE MENU TOGGLER -->
                 <!-- start: LOGO -->
-                <a class="navbar-brand" href="#">
+                <a class="navbar-brand" href="hrdash.aspx">
                     <i class="clip-IE"></i>
                     <asp:Label ID="Label1" runat="server" Text="- Leave" ForeColor="#007AFF"></asp:Label>
                 </a>
@@ -110,8 +110,14 @@
                     <!-- end: TO-DO DROPDOWN-->
                     <!-- start: NOTIFICATION DROPDOWN -->
                     <li class="dropdown">
+                        <a href="status_leave_hr.aspx" class="dropdown-toggle">
+                            <i class=" icon-info"></i>
+                            <span class="badge" id="info1"></span>
+                        </a>
+                    </li>
+                    <li class="dropdown">
                         <a href="forward_hr.aspx" class="dropdown-toggle">
-                            <i class="clip-notification"></i>
+                            <i class=" icon-bell-alt"></i>
                             <span class="badge" id="info"></span>
                         </a>
                     </li>
@@ -224,11 +230,12 @@
                                 </a>
                             </li>
                             <li id="settings3" runat="server">
-                                <a href="userleavesall.aspx"><i class="clip-stackoverflow"></i>
+                                <a href="leave_logs.aspx"><i class="clip-stackoverflow"></i>
                                     <span class="title">Leave Status</span>
                                     <span class="selected"></span>
                                 </a>
                             </li>
+
                             <li id="settings4" runat="server">
                                 <a href="cf.aspx"><i class="clip-transfer"></i>
                                     <span class="title">Carry Forward</span>
@@ -237,12 +244,32 @@
                             </li>
                         </ul>
                     </li>
-                    <%--                    <li id="rpt" runat="server">
-                        <a href="#"><i class="clip-bars"></i>
-                            <span class="title">Reports </span>
+                    <li id="rpt" runat="server">
+                        <a href="javascript:void(0)"><i class="clip-bars"></i>
+                            <span class="title">Reports </span><i class="icon-arrow"></i>
                             <span class="selected"></span>
                         </a>
-                    </li>--%>
+                        <ul class="sub-menu">
+                            <li id="rpt1" runat="server">
+                                <a href="leavetaken.aspx"><i class="icon-file-text"></i>
+                                    <span class="title">Leave Taken</span>
+                                    <span class="selected"></span>
+                                </a>
+                            </li>
+                            <li id="rpt2" runat="server">
+                                <a href="balleave.aspx"><i class="icon-file-text"></i>
+                                    <span class="title">Balance Leave</span>
+                                    <span class="selected"></span>
+                                </a>
+                            </li>
+                            <li id="rpt3" runat="server">
+                                <a href="cfleave.aspx"><i class="icon-file-text"></i>
+                                    <span class="title">Carry Forward</span>
+                                    <span class="selected"></span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
                 </ul>
                 <!-- end: MAIN NAVIGATION MENU -->
             </div>
@@ -297,7 +324,7 @@
     <!-- start: FOOTER -->
     <div class="footer clearfix">
         <div class="footer-inner">
-            2015 &copy; <i class="clip-IE"></i>-Leave by summersoft pvt ltd.
+            2015 &copy; <i class="clip-IE"></i>-Leave by <a href="http://summersoft.in/" target="_blank">summersoft pvt ltd.
         </div>
         <div class="footer-items">
             <span class="go-top"><i class="clip-chevron-up"></i></span>
@@ -333,7 +360,6 @@
     <script src="../assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js" type="text/javascript"></script>
     <script src="../assets/plugins/jquery-validation/dist/jquery.validate.min.js" type="text/javascript"></script>
     <script src="../assets/js/bulkuploadvalidation.js"></script>
-    <script src="../assets/js/leaveformval.js" type="text/javascript"></script>
     <script src="../assets/js/applyleave_hr.js" type="text/javascript"></script>
     <script src="../assets/js/uservalidation.js"></script>
     <script src="../assets/js/changepassword.js"></script>
@@ -347,23 +373,29 @@
     <script src="../assets/js/applyleavem_hr.js"></script>
     <script src="../assets/plugins/jquery-validation/dist/additional-methods.min.js"></script>
     <script src="../assets/js/valrreason.js"></script>
+    <script src="../assets/js/applyleaver_hr.js"></script>
+    <script src="../assets/js/edit_leave_hr.js"></script>
     <!-- end: JAVASCRIPTS REQUIRED FOR THIS PAGE ONLY -->
     <script type="text/javascript">
         jQuery(document).ready(function () {
+            editleave();
+            inputlimit_add1();
+            inputlimit_add2();
             var startdate, enddate;
             Main.init();
+            setcolspan()
             calendar();
             leaves();
-            //datepick();
             inputlimit();
             hidefupload();
-            //  leavevali();
             doj();
             updateAlerts();
+            updateAlerts1();
             TableData.init();
             $('#lblop').hide();
             //sessiontimeout();
             getdoj_euser();
+            chkcf();
         });
     </script>
 
@@ -414,7 +446,12 @@
                         editable: true,
                         droppable: true, // this allows things to be dropped onto the calendar
                         eventLimit: true, // allow "more" link when too many events
-                        events: event1
+                        events: event1,
+                        eventClick: function (event) {
+                            $('#mbody').html(event.title);
+                            $('#mbody').css('color', event.color);
+                            $('#event-management').modal('show');
+                        }
                     });
                 },
                 error: function (XMLHttpRequest, textStatus, errorThrown) {
@@ -512,7 +549,7 @@
                     }
                     //$("input[id$='bootdate']").datepicker({
                     $('#txtdate_hr').datepicker({
-                        format: "dd/mm/yyyy",
+                        format: "dd-mm-yyyy",
                         multidate: true,
                         multidateSeparator: ",",
                         daysOfWeekDisabled: "0,6", // to disable weekends 0 - sunday, 6 - saturday
@@ -545,31 +582,28 @@
     <script type="text/javascript">
         function bulkvali() {
             //alert('im called!');
-            jQuery(document).ready(function () {
-                bulkval.init();
-            });
+            bulkval.init();
         }
     </script>
     <script type="text/javascript">
         function leavevali() {
-            jQuery(document).ready(function () {
-                //  alert('entered validation');
-                var ltype = $('#ddlltype_hr option:selected').val();
-                if (ltype == 2) {
-                    leavevalm_hr.init();
-                }
-                else {
-                    leaveval_hr.init();
-                }
-            });
+            //  alert('entered validation');
+            var ltype = $('#ddlltype_hr option:selected').val();
+            if (ltype == 2) {
+                leavevalm_hr.init();
+            }
+            else if (ltype == 4) {
+                leavevalr.init();
+            }
+            else {
+                leaveval_hr.init();
+            }
         }
     </script>
     <script type="text/javascript">
         function uservali() {
-            jQuery(document).ready(function () {
-                //alert('im called user');
-                userval.init();
-            });
+            //alert('im called user');
+            userval.init();
         }
     </script>
     <script type="text/javascript">
@@ -583,12 +617,20 @@
         var chk;
         function hideshowfup_hr() {
             //alert('im called');
+            var sdate = "+2d";
+            var yr = new Date().getFullYear() + '';
+            edate = "31-12-" + yr;
+            $('#dateranges').hide();
+            $('#txtsdate').val("");
+            $('#txtedate').val("");
             $('#txtdate_hr').val("");
             $("#fupload_hr").val("");
             chk = $('#ddlltype_hr option:selected').val();
             //alert(chk);
             if (chk == 2) {
                 $('#fup_hr').show();
+                $('#dateranges').hide();
+                $('#dates').show();
                 $("#txtdate_hr").datepicker('remove');
                 startdate = "-7d";
                 enddate = "-1d";
@@ -598,23 +640,71 @@
             else if (chk == 0) {
                 $("#txtdate_hr").datepicker('remove');
                 $('#fup_hr').hide();
+                $('#dateranges').hide();
+                $('#dates').show();
+            }
+            else if (chk == 4) {
+                $('#dates').hide();
+                $('#fup_hr').hide();
+                $('#dateranges').show();
+
+                var disableddates = []; //dd/mm/yyyy
+                var data = {};
+                var userid = '<%= Session["user_id"] %>';
+                data.uid = userid;
+                $.ajax({
+                    type: "POST",
+                    contentType: "application/json",
+                    data: '{"userid":"' + userid + '"}',
+                    url: "applyleave_hr.aspx/disdates_hr",
+                    dataType: "json",
+                    success: function (data) {
+                        for (var i = 0; i < data.d.length; i++) {
+                            disableddates.push(data.d[i].EventDate);
+                        }
+                        $('#txtsdate').datepicker({
+                            format: "dd-mm-yyyy",
+                            daysOfWeekDisabled: "0,6", // to disable weekends 0 - sunday, 6 - saturday
+                            startDate: sdate, // to disable previous days
+                            endDate: edate, // to disable future year dates
+                            todayHighlight: true, // to highlight today
+                            datesDisabled: disableddates, // array of days to be disabled
+                            orientation: "bottom auto"
+                        });
+
+                        $('#txtedate').datepicker({
+                            format: "dd-mm-yyyy",
+                            daysOfWeekDisabled: "0,6", // to disable weekends 0 - sunday, 6 - saturday
+                            startDate: sdate, // to disable previous days
+                            endDate: edate, // to disable future year dates
+                            todayHighlight: true, // to highlight today
+                            datesDisabled: disableddates, // array of days to be disabled
+                            orientation: "bottom auto"
+                        });
+                    },
+                    error: function (XMLHttpRequest, textStatus, errorThrown) {
+                        //alert("error datepick");
+                    }
+                });
             }
             else {
                 $('#fup_hr').hide();
+                $('#dateranges').hide();
+                $('#dates').show();
                 $("#txtdate_hr").datepicker('remove');
                 startdate = "+2d";
                 var year = new Date().getFullYear() + '';
-                enddate = "31/12/" + year;
+                enddate = "31-12-" + year;
                 datepick();
             }
-        }
+}
     </script>
     <%--To initiate date of join datepicker for user add --%>
     <script type="text/javascript">
         function doj() {
             var disableddates = []; //dd/mm/yyyy
             var year = new Date().getFullYear() + '';
-            edate = "31/12/" + year;
+            edate = "31-12-" + year;
             $.ajax({
                 type: "POST",
                 contentType: "application/json",
@@ -627,7 +717,7 @@
                         disableddates.push(data.d[i].EventDate);
                     }
                     $('#txtdoj').datepicker({
-                        format: "dd/mm/yyyy",
+                        format: "dd-mm-yyyy",
                         daysOfWeekDisabled: "0,6", // to disable weekends 0 - sunday, 6 - saturday
                         startDate: "today", // to disable previous days
                         endDate: edate, // to disable future year dates
@@ -642,7 +732,7 @@
             });
         }
     </script>
-    <script>
+    <script type="text/javascript">
         function updateAlerts() {
             $.ajax({
                 type: "POST",
@@ -666,11 +756,36 @@
         setInterval(updateAlerts, 10000); // 10 seconds
     </script>
     <script type="text/javascript">
-        function cpassvali() {
-            jQuery(document).ready(function () {
-                //alert('im called user');
-                changepassval.init();
+        function updateAlerts1() {
+            var data = {};
+            var userid = '<%= Session["user_id"] %>';
+            $.ajax({
+                type: "POST",
+                contentType: "application/json",
+                data: '{"userid":"' + userid + '"}',
+                url: "hrdash.aspx/updatealerts1",
+                dataType: "json",
+                success: function (data) {
+                    if (data.d > 0) {
+                        $('#info1').text(data.d);
+                    }
+                    else {
+                        $('#info1').text("");
+                    }
+                },
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    //alert("error notification badge");
+                }
             });
+        }
+        setInterval(updateAlerts, 10000); // 10 seconds
+    </script>
+
+
+    <script type="text/javascript">
+        function cpassvali() {
+            //alert('im called user');
+            changepassval.init();
         }
     </script>
     <script type="text/javascript">
@@ -708,10 +823,7 @@
     </script>
     <script type="text/javascript">
         function uprofilevali() {
-            jQuery(document).ready(function () {
-                //alert('im called user');
-                uprofileval.init();
-            });
+            uprofileval.init();
         }
     </script>
     <script type="text/javascript">
@@ -807,10 +919,12 @@
                         //alert(data.d);
                         if (data.d == 1) {
                             $('#lblop').hide();
+                            $('#Button1').prop("disabled", false);
                             $('#pulsate-regular').pulsate("destroy");
                             $('#pulsate-regular').hide();
                         }
                         else {
+                            $('#Button1').prop("disabled", true);
                             $('#pulsate-regular').show();
                             $('#lblop').show();
                             $('#pulsate-regular').pulsate({
@@ -831,7 +945,10 @@
             }
             else {
 
+                $('#pulsate-regular').pulsate("destroy");
+                $('#pulsate-regular').hide();
                 $('#lblop').hide();
+                $('#Button1').prop('disabled', false);
             }
         }
     </script>
@@ -897,8 +1014,8 @@
             var disableddates = []; //dd/mm/yyyy
             var sdate;
             var year = new Date().getFullYear() + '';
-            edate = "31/12/" + year;
-            sdate = "01/01/" + year;
+            edate = "31-12-" + year;
+            sdate = "01-01-" + year;
             $.ajax({
                 type: "POST",
                 contentType: "application/json",
@@ -911,7 +1028,7 @@
                         disableddates.push(data.d[i].EventDate);
                     }
                     $('#txtdoje').datepicker({
-                        format: "dd/mm/yyyy",
+                        format: "dd-mm-yyyy",
                         daysOfWeekDisabled: "0,6", // to disable weekends 0 - sunday, 6 - saturday
                         startDate: sdate, // to disable previous days
                         endDate: edate, // to disable future year dates
@@ -924,6 +1041,481 @@
                     //alert("error datepick");
                 }
             });
+        }
+    </script>
+    <%--    <script>
+        function agaile() {
+            $(function () {
+                // enter code here
+                alert('agaile');
+                userval.init();
+            });
+        }
+    </script>--%>
+    <script type="text/javascript">
+        function setcolspan() {
+            var gender = '<%= Session["gender"] %>';
+            if (gender == "Male") {
+                $("#ann1").addClass("col-sm-4");
+                $("#med1").addClass("col-sm-4");
+                $("#repl1").addClass("col-sm-4");
+                // class="col-sm-4"
+                $("#mrg1").remove();
+            }
+            else {
+                $("#ann1").addClass("col-sm-3");
+                $("#med1").addClass("col-sm-3");
+                $("#repl1").addClass("col-sm-3");
+                $("#mrg1").addClass("col-sm-3");
+                // class="col-sm-3"
+            }
+        }
+
+    </script>
+    <script type="text/javascript">
+        function Check(textBox, maxLength) {
+            if (textBox.value.length > maxLength) {
+                alert("Max characters allowed are " + maxLength);
+                textBox.value = textBox.value.substr(0, maxLength);
+            }
+        }
+    </script>
+
+    <script type="text/javascript">
+        function checkusername() {
+            $('#pulsate-regularun').pulsate("destroy");
+            var uname;
+            var data = {};
+            uname = $('#txtuname').val();
+            if (uname.length > 0) {
+                $.ajax({
+                    type: "POST",
+                    contentType: "application/json",
+                    data: '{"uname":"' + uname + '"}',
+                    url: "adduser.aspx/checkusername",
+                    dataType: "json",
+                    success: function (data) {
+                        if (data.d == 1) {
+                            $('#lblun').hide();
+                            $('#btnuseradd').prop("disabled", false);
+                            $('#pulsate-regularun').pulsate("destroy");
+                            $('#pulsate-regularun').hide();
+                        }
+                        else {
+                            $('#btnuseradd').prop("disabled", true);
+                            $('#pulsate-regularun').show();
+                            $('#lblun').show();
+                            $('#pulsate-regularun').pulsate({
+                                color: '#C43C35', // set the color of the pulse
+                                reach: 20, // how far the pulse goes in px
+                                speed: 1000, // how long one pulse takes in ms
+                                pause: 0, // how long the pause between pulses is in ms
+                                glow: true, // if the glow should be shown too
+                                repeat: true, // will repeat forever if true, if given a number will repeat for that many times
+                                onHover: false // if true only pulsate if user hovers over the element
+                            });
+                        }
+                    },
+                    error: function (XMLHttpRequest, textStatus, errorThrown) {
+                        //alert("error datepick");
+                    }
+                });
+            }
+            else {
+
+                $('#lblun').hide();
+                $('#btnuseradd').prop("disabled", false);
+                $('#pulsate-regularun').pulsate("destroy");
+                $('#pulsate-regularun').hide();
+            }
+        }
+    </script>
+    <script type="text/javascript">
+        function checkemail() {
+            //alert('email');
+            $('#pulsate-regularem').pulsate("destroy");
+            var email;
+            var data = {};
+            email = $('#txtemail').val();
+            //alert(email);
+            if (email.length > 0) {
+                $.ajax({
+                    type: "POST",
+                    contentType: "application/json",
+                    data: '{"email":"' + email + '"}',
+                    url: "adduser.aspx/checkemail",
+                    dataType: "json",
+                    success: function (data) {
+                        if (data.d == 1) {
+                            $('#lblem').hide();
+                            $('#btnuseradd').prop("disabled", false);
+                            $('#pulsate-regularem').pulsate("destroy");
+                            $('#pulsate-regularem').hide();
+                        }
+                        else {
+                            $('#btnuseradd').prop("disabled", true);
+                            $('#pulsate-regularem').show();
+                            $('#lblem').show();
+                            $('#pulsate-regularem').pulsate({
+                                color: '#C43C35', // set the color of the pulse
+                                reach: 20, // how far the pulse goes in px
+                                speed: 1000, // how long one pulse takes in ms
+                                pause: 0, // how long the pause between pulses is in ms
+                                glow: true, // if the glow should be shown too
+                                repeat: true, // will repeat forever if true, if given a number will repeat for that many times
+                                onHover: false // if true only pulsate if user hovers over the element
+                            });
+                        }
+                    },
+                    error: function (XMLHttpRequest, textStatus, errorThrown) {
+                        //alert("error datepick");
+                    }
+                });
+            }
+            else {
+
+                $('#lblem').hide();
+                $('#btnuseradd').prop("disabled", false);
+                $('#pulsate-regularem').pulsate("destroy");
+                $('#pulsate-regularem').hide();
+            }
+        }
+    </script>
+
+    <script type="text/javascript">
+        function checkusername_edit() {
+            $('#pulsate-regularun').pulsate("destroy");
+            var uname, editid;
+            var data = {};
+            uname = $('#txtuname').val();
+            editid = '<%= Session["edit_id"] %>';
+            if (uname.length > 0) {
+                $.ajax({
+                    type: "POST",
+                    contentType: "application/json",
+                    data: '{"uname":"' + uname + '","editid":"' + editid + '"}',
+                    url: "edituser.aspx/checkusername_edit",
+                    dataType: "json",
+                    success: function (data) {
+                        if (data.d == 1) {
+                            $('#lblun').hide();
+                            $('#btnupuser').prop("disabled", false);
+                            $('#pulsate-regularun').pulsate("destroy");
+                            $('#pulsate-regularun').hide();
+                        }
+                        else {
+                            $('#btnupuser').prop("disabled", true);
+                            $('#pulsate-regularun').show();
+                            $('#lblun').show();
+                            $('#pulsate-regularun').pulsate({
+                                color: '#C43C35', // set the color of the pulse
+                                reach: 20, // how far the pulse goes in px
+                                speed: 1000, // how long one pulse takes in ms
+                                pause: 0, // how long the pause between pulses is in ms
+                                glow: true, // if the glow should be shown too
+                                repeat: true, // will repeat forever if true, if given a number will repeat for that many times
+                                onHover: false // if true only pulsate if user hovers over the element
+                            });
+                        }
+                    },
+                    error: function (XMLHttpRequest, textStatus, errorThrown) {
+                        //alert("error datepick");
+                    }
+                });
+            }
+            else {
+
+                $('#lblun').hide();
+                $('#btnupuser').prop("disabled", false);
+                $('#pulsate-regularun').pulsate("destroy");
+                $('#pulsate-regularun').hide();
+            }
+        }
+    </script>
+
+    <script type="text/javascript">
+        function checkemail_edit() {
+            $('#pulsate-regularem').pulsate("destroy");
+            var email, editid;
+            var data = {};
+            email = $('#txtemail').val();
+            editid = '<%= Session["edit_id"] %>';
+            //alert(email);
+            if (email.length > 0) {
+                $.ajax({
+                    type: "POST",
+                    contentType: "application/json",
+                    data: '{"email":"' + email + '","editid":"' + editid + '"}',
+                    url: "edituser.aspx/email_edit_check",
+                    dataType: "json",
+                    success: function (data) {
+                        if (data.d == 1) {
+                            $('#lblem').hide();
+                            $('#btnupuser').prop("disabled", false);
+                            $('#pulsate-regularem').pulsate("destroy");
+                            $('#pulsate-regularem').hide();
+                        }
+                        else {
+                            $('#btnupuser').prop("disabled", true);
+                            $('#pulsate-regularem').show();
+                            $('#lblem').show();
+                            $('#pulsate-regularem').pulsate({
+                                color: '#C43C35', // set the color of the pulse
+                                reach: 20, // how far the pulse goes in px
+                                speed: 1000, // how long one pulse takes in ms
+                                pause: 0, // how long the pause between pulses is in ms
+                                glow: true, // if the glow should be shown too
+                                repeat: true, // will repeat forever if true, if given a number will repeat for that many times
+                                onHover: false // if true only pulsate if user hovers over the element
+                            });
+                        }
+                    },
+                    error: function (XMLHttpRequest, textStatus, errorThrown) {
+                        //alert("error datepick");
+                    }
+                });
+            }
+            else {
+
+                $('#lblem').hide();
+                $('#btnupuser').prop("disabled", false);
+                $('#pulsate-regularem').pulsate("destroy");
+                $('#pulsate-regularem').hide();
+            }
+        }
+    </script>
+    <script type="text/javascript">
+        function inputlimit_add1() {
+            $('#txtadd1').inputlimiter({
+                limit: 20,
+                remText: 'You only have %n character%s remaining...',
+                remFullText: 'Stop typing! You\'re not allowed any more characters!',
+                limitText: 'You\'re allowed to input %n character%s into this field.'
+            });
+        }
+    </script>
+    <script type="text/javascript">
+        function inputlimit_add2() {
+            $('#txtadd2').inputlimiter({
+                limit: 20,
+                remText: 'You only have %n character%s remaining...',
+                remFullText: 'Stop typing! You\'re not allowed any more characters!',
+                limitText: 'You\'re allowed to input %n character%s into this field.'
+            });
+        }
+    </script>
+
+    <script type="text/javascript">
+        function editleave() { // here need to do something more in retrospective
+            var userid, eleave_id, typel, sdateedit, edateedit;
+            sdateedit = "+2d";
+            var yr = new Date().getFullYear() + '';
+            edateedit = "31-12-" + yr;
+            userid = '<%= Session["user_id"] %>';
+            eleave_id = '<%= Session["eleave_id"] %>';
+            $.ajax({
+                type: "POST",
+                contentType: "application/json",
+                data: '{"eleave_id":"' + eleave_id + '"}',
+                url: "edit_leave.aspx/fetch_details",
+                dataType: "json",
+                success: function (data) {
+
+                    if (data.d != 'Maternity' && data.d !='Medical') { // annual,marriage,unpaid,compasionate
+
+                        $("#dates").removeAttr("style");
+                        $("#dateranges").css({ 'display': 'none' });
+                        $('#dateranges').hide();
+                        $('#dates').show();
+                        $("#txtdate_hr_edit").datepicker('remove');
+                        //startdate = "+1d";
+                        //enddate = edateedit;
+                        //var year = new Date().getFullYear() + '';
+                        //enddate = "31-12-" + year;
+                        //datepick_edit();
+                    }
+                    else if (data.d == 'Medical') { // medical
+
+                        $("#dates").removeAttr("style");
+                        $("#dateranges").css({ 'display': 'none' });
+                        $('#dateranges').hide();
+                        $('#dates').show();
+                        $("#txtdate_hr_edit").datepicker('remove');
+                        //startdate = "-7d";
+                        //enddate = "-1d";
+                        //datepick_edit();
+                    }
+                    else if (data.d == 'Maternity') { //maternity
+
+                        $("#dateranges").removeAttr("style");
+                        $("#dates").css({ 'display': 'none' });
+                        $('#dates').hide();
+                        $('#dateranges').show();
+                    }
+
+                },
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    //alert("error datepick");
+                }
+            });
+        }
+    </script>
+
+        <script type="text/javascript">
+            function datepick_edit() {
+                var disableddates = []; //dd/mm/yyyy
+                var data = {};
+                var userid = '<%= Session["user_id"] %>';
+            data.uid = userid;
+            //alert('ready');
+            $.ajax({
+                type: "POST",
+                contentType: "application/json",
+                data: '{"userid":"' + userid + '"}',
+                url: "applyleave_hr.aspx/disdates_hr",
+                dataType: "json",
+                success: function (data) {
+                    for (var i = 0; i < data.d.length; i++) {
+                        //alert(data.d[i].hday);
+                        disableddates.push(data.d[i].EventDate);
+                    }
+                    //$("input[id$='bootdate']").datepicker({
+                    $('#txtdate_hr_edit').datepicker({
+                        format: "dd-mm-yyyy",
+                        multidate: true,
+                        multidateSeparator: ",",
+                        daysOfWeekDisabled: "0,6", // to disable weekends 0 - sunday, 6 - saturday
+                        startDate: startdate, // to disable previous days
+                        endDate: enddate, // to disable future year dates
+                        todayHighlight: true, // to highlight today
+                        datesDisabled: disableddates, // array of days to be disabled
+                        orientation: "bottom auto"
+                    });
+                },
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    //alert("error datepick");
+                }
+            });
+        }
+    </script>
+    <script type="text/javascript">
+        function leave_edit() {
+            //alert('validation');
+            var eleavet = $('#lblltype_hr').val();
+            editleavevalhr.init();
+        }
+    </script>
+    <script type="text/javascript">
+        function reset_period()
+        {
+            $('#ddlper_hr').val('');
+            $('#lblio').hide();
+            $('#pulsate-regulario').pulsate("destroy");
+            $('#pulsate-regulario').hide();
+            $('#btnreq_hr').prop("disabled", false);
+        }
+    </script>
+    <script type="text/javascript">
+        function in_or_out()
+        {
+            var userid,typ, per,ds,sd,ed;
+            userid = '<%= Session["user_id"] %>';
+            typ = $('#ddlltype_hr option:selected').val();
+            per = $('#ddlper_hr option:selected').val();
+            //alert(per);
+            var data = {};
+
+            if(typ != "" && per !="")
+            {
+                if (typ == 1 || typ == 2 || typ == 3) {
+                    ds = $('#txtdate_hr').val();
+                    //alert(typ);
+                    //alert(per);
+                    //alert(dates);
+                    $.ajax({
+                        type: "POST",
+                        contentType: "application/json",
+                        data: '{"userid":"' + userid + '","typ":"' + typ + '","per":"' + per + '","ds":"' + ds + '"}',
+                        url: "applyleave_hr.aspx/in_out_others",
+                        dataType: "json",
+                        success: function (data) {
+                            //alert(data.d);
+                            if (data.d == 1) {
+                                $('#lblio').hide();
+                                $('#pulsate-regulario').pulsate("destroy");
+                                $('#pulsate-regulario').hide();
+                                $('#btnreq_hr').prop("disabled", false);
+                            }
+                            else {
+                                $('#pulsate-regulario').show();
+                                $('#lblio').show();
+                                $('#btnreq_hr').prop("disabled", true);
+                                $('#pulsate-regulario').pulsate({
+                                    color: '#C43C35', // set the color of the pulse
+                                    reach: 20, // how far the pulse goes in px
+                                    speed: 1000, // how long one pulse takes in ms
+                                    pause: 0, // how long the pause between pulses is in ms
+                                    glow: true, // if the glow should be shown too
+                                    repeat: true, // will repeat forever if true, if given a number will repeat for that many times
+                                    onHover: false // if true only pulsate if user hovers over the element
+                                });
+                            }
+                        },
+                        error: function (XMLHttpRequest, textStatus, errorThrown) {
+                            //alert("error datepick");
+                        }
+                    });
+
+                }
+                else if( typ == 4)
+                {
+                    sd = $('#txtsdate').val();
+                    ed = $('#txtedate').val();
+                    //alert(typ);
+                    //alert(per);
+                    //alert(sd);
+                    //alert(ed);
+                    $.ajax({
+                        type: "POST",
+                        contentType: "application/json",
+                        data: '{"userid":"' + userid + '","typ":"' + typ + '","per":"' + per + '","sd":"' + sd + '","ed":"' + ed + '"}',
+                        url: "applyleave_hr.aspx/in_out_maternity",
+                        dataType: "json",
+                        success: function (data) {
+                            //alert(data.d);
+                            if (data.d == 1) {
+                                $('#lblio').hide();
+                                $('#pulsate-regulario').pulsate("destroy");
+                                $('#pulsate-regulario').hide();
+                                $('#btnreq_hr').prop("disabled", false);
+                            }
+                            else {
+                                $('#pulsate-regulario').show();
+                                $('#lblio').show();
+                                $('#btnreq_hr').prop("disabled", true);
+                                $('#pulsate-regulario').pulsate({
+                                    color: '#C43C35', // set the color of the pulse
+                                    reach: 20, // how far the pulse goes in px
+                                    speed: 1000, // how long one pulse takes in ms
+                                    pause: 0, // how long the pause between pulses is in ms
+                                    glow: true, // if the glow should be shown too
+                                    repeat: true, // will repeat forever if true, if given a number will repeat for that many times
+                                    onHover: false // if true only pulsate if user hovers over the element
+                                });
+                            }
+                        },
+                        error: function (XMLHttpRequest, textStatus, errorThrown) {
+                            //alert("error datepick");
+                        }
+                    });
+                }
+                else {
+
+                }
+            }
+            else {
+                
+            }
         }
     </script>
 </body>

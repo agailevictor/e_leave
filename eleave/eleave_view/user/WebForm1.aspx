@@ -5,7 +5,9 @@
         swal({
             title: 'Congratulations!',
             text: 'Your message has been succesfully sent',
-            type: 'success'
+            type: 'success',
+            allowEscapeKey: false,
+            allowOutsideClick: false
         });
     }
 </script>

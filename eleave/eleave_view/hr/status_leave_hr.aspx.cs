@@ -25,15 +25,29 @@ namespace eleave_view.hr
 
         protected void checklogin()
         {
-            if (Session["is_login"].ToString() == "t")
+            if (Session["is_login"] != null)
             {
-                fill_grid_hr();
+                if (Session["is_login"].ToString() == "t")
+                {
+                    change_stat();
+                    fill_grid_hr();
 
+                }
+                else
+                {
+                    Response.Redirect("~/unauthorised.aspx");
+                }
             }
             else
             {
-                Response.Redirect("~/unauthorised.aspx");
+                Response.Redirect("~/Login.aspx");
             }
+        }
+
+        protected void change_stat()
+        {
+            obj.userid = int.Parse(Session["user_id"].ToString());
+            obj.change_stat();// to change the seen status of notification
         }
 
         //To bind the grid with datatable
@@ -103,7 +117,7 @@ namespace eleave_view.hr
             DataTable dt = obj.fetch_download_leaves();
             if (dt.Rows.Count > 0)
             {
-                rd.Load(Server.MapPath(Request.ApplicationPath) + "/hr/download_approved_hr.rpt");
+                rd.Load(Server.MapPath(Request.ApplicationPath) + "/hr/approved.rpt");
                 rd.SetDataSource(dt);
                 rd.ExportToHttpResponse(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat, Response, true, "Approved_Leave");
             }
@@ -116,6 +130,15 @@ namespace eleave_view.hr
                 status_hr.UseAccessibleHeader = true;
                 status_hr.HeaderRow.TableSection = TableRowSection.TableHeader;
             }
+        }
+
+        protected void lnkedit_Click(object sender, EventArgs e)
+        {
+            LinkButton lnk = sender as LinkButton;
+            GridViewRow row = lnk.NamingContainer as GridViewRow;
+            int id = int.Parse(status_hr.DataKeys[row.RowIndex].Value.ToString());
+            Session["eleave_id"] = id;
+            Response.Redirect("~/hr/edit_leave.aspx");
         }
     }
 }

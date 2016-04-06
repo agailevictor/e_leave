@@ -20,7 +20,9 @@
             swal({
                 title: 'Success!',
                 text: 'Your request has been succesfully updated !',
-                type: 'success'
+                type: 'success',
+                allowEscapeKey: false,
+                allowOutsideClick: false
             });
         }
     </script>
@@ -29,7 +31,9 @@
             swal({
                 title: 'Error!',
                 text: 'Something Went Wrong !',
-                type: 'error'
+                type: 'error',
+                allowEscapeKey: false,
+                allowOutsideClick: false
             });
         }
     </script>
@@ -38,7 +42,9 @@
             swal({
                 title: 'Warning!',
                 text: 'Atleast Select One record !',
-                type: 'warning'
+                type: 'warning',
+                allowEscapeKey: false,
+                allowOutsideClick: false
             });
         }
     </script>
@@ -52,10 +58,29 @@
             swal({
                 title: 'Warning!',
                 text: 'Enter Reject Reason !',
-                type: 'warning'
+                type: 'warning',
+                allowEscapeKey: false,
+                allowOutsideClick: false
             });
         }
     </script>
+    <script type="text/javascript">
+        function errormail() {
+            swal({
+                title: 'Warning!',
+                text: 'Mail Not Sent!',
+                type: 'warning',
+                allowEscapeKey: false,
+                allowOutsideClick: false
+            });
+        }
+    </script>
+    <style type="text/css">
+        .WordWrap1 {
+            /*width: 100%;*/
+            word-break: break-all;
+        }
+    </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <asp:ScriptManager ID="ScriptManager1" runat="server">
@@ -82,25 +107,31 @@
                 <asp:BoundField DataField="depname" HeaderText="Department" />
                 <asp:BoundField DataField="desig" HeaderText="Designation" />
                 <asp:BoundField DataField="ltype" HeaderText="Leave Type" />
-                <asp:BoundField DataField="dates" HeaderText="Dates Applied" />
+                <asp:BoundField DataField="dates" HeaderText="Dates Applied" >
+                <ItemStyle CssClass="WordWrap1" />
+                </asp:BoundField>
                 <asp:BoundField DataField="period" HeaderText="Period" />
-                <asp:BoundField DataField="reason" HeaderText="Reason" />
+                <asp:BoundField DataField="reason" HeaderText="Reason" >
+                <ItemStyle CssClass="WordWrap1" />
+                </asp:BoundField>
                 <asp:BoundField DataField="med_path" HeaderText="File Path">
                     <HeaderStyle CssClass="hidden"></HeaderStyle>
                     <ItemStyle CssClass="hidden"></ItemStyle>
                 </asp:BoundField>
                 <asp:TemplateField HeaderText="Medical Certificate">
-                    <EditItemTemplate>
-                        <asp:TextBox ID="TextBox1" runat="server"></asp:TextBox>
-                    </EditItemTemplate>
                     <ItemTemplate>
-                        <asp:LinkButton ID="lnk_dwn" runat="server" Visible='<%# Isenable((string)Eval("ltype")) %>' CssClass="clip-download-2" OnClick="lnk_dwn_Click"></asp:LinkButton>
+                        <asp:LinkButton ID="lnk_dwn" runat="server" Visible='<%# Isenable((string)Eval("ltype")) %>' CssClass="clip-download-2" OnClick="lnk_dwn_Click" CausesValidation="False"></asp:LinkButton>
                     </ItemTemplate>
                 </asp:TemplateField>
+                <asp:BoundField DataField="email" HeaderText="Email">
+                    <HeaderStyle CssClass="hidden"></HeaderStyle>
+                    <ItemStyle CssClass="hidden"></ItemStyle>
+                </asp:BoundField>
                 <asp:TemplateField HeaderText="Reject Reason">
                     <ItemTemplate>
                         <asp:TextBox ID="txtrejs" runat="server" CssClass="form-control" TextMode="MultiLine"></asp:TextBox>
                         <asp:RequiredFieldValidator ID="req1" runat="server" ErrorMessage="Required" ControlToValidate="txtrejs" ValidationGroup='<%# "Group_" + Container.DataItemIndex %>' ForeColor="Red"></asp:RequiredFieldValidator>
+                        <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ErrorMessage="Minimum 7 & Maximum 50 Charcaters allowed" ForeColor="Red" ControlToValidate="txtrejs" ValidationExpression="^[a-zA-Z ]{7,50}$" ValidationGroup='<%# "Group_" + Container.DataItemIndex %>'></asp:RegularExpressionValidator>
                     </ItemTemplate>
                 </asp:TemplateField>
                 <asp:TemplateField HeaderText="Forward">
@@ -130,7 +161,7 @@
         </table>
     </div>
     <!-- Modal: Start -->
-    <asp:Panel ID="Panel1" runat="server" style="display:none" >
+    <asp:Panel ID="Panel1" runat="server" Style="display: none">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -141,6 +172,7 @@
                     <p>
                         <asp:TextBox ID="txtbreason" runat="server" CssClass="form-control" TextMode="MultiLine"></asp:TextBox>
                         <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="Required" ControlToValidate="txtbreason" ForeColor="Red"></asp:RequiredFieldValidator>
+                        <asp:RegularExpressionValidator ID="RegularExpressionValidator2" runat="server" ErrorMessage="Minimum 7 & Maximum 50 Charcaters allowed" ForeColor="Red" ControlToValidate="txtbreason" ValidationExpression="^[a-zA-Z ]{7,50}$"></asp:RegularExpressionValidator>
                     </p>
                 </div>
                 <div class="modal-footer">
