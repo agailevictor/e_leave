@@ -447,6 +447,12 @@
     <Compile Include="hr\applyleave_hr.aspx.designer.cs">
       <DependentUpon>applyleave_hr.aspx</DependentUpon>
     </Compile>
+    <Compile Include="hr\approved_malaysia.cs">
+      <DependentUpon>approved_malaysia.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="hr\approved.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -765,6 +771,12 @@
     <Compile Include="unauthorised.aspx.designer.cs">
       <DependentUpon>unauthorised.aspx</DependentUpon>
     </Compile>
+    <Compile Include="user\approved_malaysia.cs">
+      <DependentUpon>approved_malaysia.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="user\approved.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -895,6 +907,10 @@
     <Service Include="{C0C07587-41A7-46C8-8FBD-3F9C8EBE2DDC}" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="hr\approved_malaysia.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>approved_malaysia.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="hr\approved.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>approved.cs</LastGenOutput>
@@ -914,6 +930,10 @@
     <EmbeddedResource Include="hr\leavestaken.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>leavestaken.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="user\approved_malaysia.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>approved_malaysia.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="user\approved.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>

@@ -115,11 +115,21 @@ namespace eleave_view.hr
         {
             obj.lid = id;
             DataTable dt = obj.fetch_download_leaves();
+            int reg = Int32.Parse(Session["region"].ToString());
             if (dt.Rows.Count > 0)
             {
-                rd.Load(Server.MapPath(Request.ApplicationPath) + "/hr/approved.rpt");
-                rd.SetDataSource(dt);
-                rd.ExportToHttpResponse(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat, Response, true, "Approved_Leave");
+                if(reg==2)
+                {
+                    rd.Load(Server.MapPath(Request.ApplicationPath) + "/hr/approved.rpt");
+                    rd.SetDataSource(dt);
+                    rd.ExportToHttpResponse(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat, Response, true, "Approved_Leave");
+                }
+                else if(reg==1)
+                {
+                    rd.Load(Server.MapPath(Request.ApplicationPath) + "/hr/approved_malaysia.rpt");
+                    rd.SetDataSource(dt);
+                    rd.ExportToHttpResponse(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat, Response, true, "Approved_Leave");
+                }
             }
         }
 

@@ -71,6 +71,7 @@ namespace eleave_view
                 Session["dep"] = dt.Rows[0][4].ToString();
                 Session["des"] = dt.Rows[0][5].ToString();
                 Session["role"] = dt.Rows[0][6].ToString();
+                Session["region"]=dt.Rows[0][7].ToString();
                 Session["is_login"] = "t";
                 if (Session["role"].ToString() == "User")
                 {
