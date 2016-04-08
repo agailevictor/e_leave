@@ -245,7 +245,7 @@
                             </li>
                             <li id="rpt3" runat="server">
                                 <a href="cfleave.aspx"><i class="icon-file-text"></i>
-                                    <span class="title">Carry Forward</span>
+                                    <span class="title">Carryforward</span>
                                     <span class="selected"></span>
                                 </a>
                             </li>
