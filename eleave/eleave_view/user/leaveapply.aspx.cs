@@ -588,7 +588,7 @@ namespace eleave_view.user
             try
             {
                 //SmtpMail.SmtpServer = "175.143.44.165";
-                SmtpMail.SmtpServer = "192.168.1.4"; // change the ip address when hosting in server
+                SmtpMail.SmtpServer = "192.168.1.4"; // change the ip address to this when hosting in server
                 SmtpMail.Send(msg);
                 flg = true;
             }
