@@ -98,7 +98,11 @@ namespace eleave_view.hr
             DataTable dt = obj.fetch_mail_details_hr_apply();
             if (dt.Rows.Count > 0)
             {
-                toemail = dt.Rows[0][0].ToString();
+                for (int i = 0; i < dt.Rows.Count; i++)
+                {
+                    toemail = toemail + dt.Rows[i]["email"].ToString();
+                    toemail += (i < dt.Rows.Count - 1) ? ";" : string.Empty;
+                }
             }
             else
             {
