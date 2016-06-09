@@ -41,10 +41,11 @@ namespace eleave_view.hr
         }
 
         [WebMethod]
-        public static List<Event> GetEvents()
+        public static List<Event> GetEvents(int rid)
         {
             List<Event> events = new List<Event>();
             bus_eleave bus = new bus_eleave();
+            bus.id = rid;
             DataTable dt = bus.fetch_holidays();
             for (int i = 0; i < dt.Rows.Count; i++)
             {

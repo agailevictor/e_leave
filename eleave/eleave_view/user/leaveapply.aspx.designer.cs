@@ -94,6 +94,15 @@ namespace eleave_view.user {
         protected global::System.Web.UI.WebControls.DropDownList ddlper;
         
         /// <summary>
+        /// lblreq control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblreq;
+        
+        /// <summary>
         /// txtreason control.
         /// </summary>
         /// <remarks>

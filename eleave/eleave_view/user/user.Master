@@ -331,11 +331,13 @@
     </script>
     <script type="text/javascript">
         function calendar() {
+            var data = {};
+            var rid = '<%= Session["region"] %>';
             $.ajax({
                 type: "POST",
                 contentType: "application/json",
-                data: "{}",
-                url: "dash.aspx/GetEvents",
+                data: '{"rid":"' + rid + '"}',
+                url: "dash.aspx/GetEvents_calendar",
                 dataType: "json",
                 success: function (data) {
                     //alert(data.d.length);
@@ -802,10 +804,14 @@
     </script>
     <script type="text/javascript">
         function in_or_out() {
-            var userid, typ, per, ds, sd, ed;
+            var userid, typ, per, ds, sd, ed, dv1, dv2, pert;
             userid = '<%= Session["user_id"] %>';
+            dv1 = $('#txtdate').val();
+            dv2 = (dv1.match(/,/g) || []).length + 1;
             typ = $('#ddlltype option:selected').val();
             per = $('#ddlper option:selected').val();
+            pert = $('#ddlper option:selected').text();
+            $('#lblreq').html(dv2 + ' ' + pert);
             //alert(per);
             var data = {};
 

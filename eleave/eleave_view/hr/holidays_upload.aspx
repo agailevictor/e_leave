@@ -34,10 +34,20 @@
             });
         }
     </script>
+    <style type="text/css">
+        .cust {
+            width: 30%;
+        }
+    </style>
+    <style type="text/css">
+        .cust1 {
+            width: 50%;
+        }
+    </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="page-header">
-        <h1>Upload Holidays List<small><a href="cholidays.aspx"> Clear Holidays</a></small></h1>
+        <h1>Upload Holidays List<small><a href="cholidays_hr.aspx"> Clear Hummingsoft Holidays / </a></small><small><a href="cholidays.aspx"> Clear Summersoft Holidays</a></small></h1>
     </div>
     <div class="row">
         <div class="col-md-12">
@@ -68,10 +78,16 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label class="control-label">
+                                    Region <span class="symbol required"></span>
+                                </label>
+                                <asp:DropDownList ID="ddlreg" runat="server" CssClass="form-control cust" ClientIDMode="Static" DataTextField="region" DataValueField="region_id"></asp:DropDownList>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label">
                                     Holidays <span class="symbol required"></span>
                                 </label>
                                 <asp:TextBox ID="txtholidays_hr" runat="server" TextMode="MultiLine"
-                                    CssClass="form-control" ClientIDMode="Static" MaxLength="1" Rows="2"></asp:TextBox>
+                                    CssClass="form-control cust1" ClientIDMode="Static" MaxLength="1" Rows="2"></asp:TextBox>
                             </div>
                         </div>
                     </div>

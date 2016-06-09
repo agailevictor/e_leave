@@ -226,6 +226,12 @@
                             </div>
                             <div class="form-group">
                                 <label class="control-label">
+                                    Selected
+                                </label>
+                                <asp:Label ID="lblreq" runat="server" CssClass="form-control" Text="N/A" ClientIDMode="Static"></asp:Label>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label">
                                     Reason <span class="symbol required"></span>
                                 </label>
                                 <asp:TextBox ID="txtreason_hr" runat="server" TextMode="MultiLine"

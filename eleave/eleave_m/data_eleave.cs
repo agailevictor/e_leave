@@ -62,7 +62,7 @@ namespace eleave_m
                 db.disconnect();
             }
         }
-        public DataTable fetch_holidays()
+        public DataTable fetch_holidays(int rid)
         {
             try
             {
@@ -70,6 +70,29 @@ namespace eleave_m
                 cmd.Parameters.Clear();
                 cmd.CommandText = "sp_fetch_holidays";
                 cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@rid", rid);
+                SqlDataAdapter da = new SqlDataAdapter();
+                DataTable dt = new DataTable();
+                cmd.Connection = db.connect();
+                da.SelectCommand = cmd;
+                da.Fill(dt);
+                return dt;
+            }
+            finally
+            {
+                db.disconnect();
+            }
+        }
+
+        public DataTable fetch_holidays_cal(int rid)
+        {
+            try
+            {
+                //cmd.Connection = db.disconnect();
+                cmd.Parameters.Clear();
+                cmd.CommandText = "sp_fetch_holidays_cal";
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@rid", rid);
                 SqlDataAdapter da = new SqlDataAdapter();
                 DataTable dt = new DataTable();
                 cmd.Connection = db.connect();
@@ -516,6 +539,36 @@ namespace eleave_m
                 //cmd.Connection = db.disconnect();
                 cmd.Parameters.Clear();
                 cmd.CommandText = "sp_upload_holidays_bulk";
+                cmd.CommandType = CommandType.StoredProcedure;
+                //cmd.Connection = db.connect();
+                cmd.Parameters.AddWithValue("@event_name", event_name);
+                cmd.Parameters.AddWithValue("@event_date", event_date);
+                cmd.Parameters.AddWithValue("@event_color", event_color);
+                SqlParameter outparam = new SqlParameter();
+                outparam.ParameterName = "@flag";
+                outparam.Direction = ParameterDirection.InputOutput;
+                outparam.DbType = DbType.Int32;
+                outparam.Value = 0;
+                cmd.Parameters.Add(outparam);
+                cmd.Connection = db.connect();
+                cmd.ExecuteNonQuery();
+                int res = int.Parse(cmd.Parameters["@flag"].Value.ToString());
+                //cmd.Dispose();
+                return res;
+            }
+            finally
+            {
+                db.disconnect();
+            }
+        }
+
+        public int upload_holidays_malaysia(string event_name, DateTime event_date, string event_color)
+        {
+            try
+            {
+                //cmd.Connection = db.disconnect();
+                cmd.Parameters.Clear();
+                cmd.CommandText = "sp_upload_holidays_bulk_malaysia";
                 cmd.CommandType = CommandType.StoredProcedure;
                 //cmd.Connection = db.connect();
                 cmd.Parameters.AddWithValue("@event_name", event_name);
@@ -1819,6 +1872,56 @@ namespace eleave_m
                 int res = int.Parse(cmd.Parameters["@flag"].Value.ToString());
                 //cmd.Dispose();
                 return res;
+            }
+            finally
+            {
+                db.disconnect();
+            }
+        }
+
+        public int clear_holidays_hs()
+        {
+            try
+            {
+                //cmd.Connection = db.disconnect();
+                cmd.Parameters.Clear();
+                cmd.CommandText = "sp_clear_holidays_hs";
+                cmd.CommandType = CommandType.StoredProcedure;
+                //cmd.Connection = db.connect();
+                SqlParameter outparam = new SqlParameter();
+                outparam.ParameterName = "@flag";
+                outparam.Direction = ParameterDirection.InputOutput;
+                outparam.DbType = DbType.Int32;
+                outparam.Value = 0;
+                cmd.Parameters.Add(outparam);
+                cmd.Connection = db.connect();
+                cmd.ExecuteNonQuery();
+                int res = int.Parse(cmd.Parameters["@flag"].Value.ToString());
+                //cmd.Dispose();
+                return res;
+            }
+            finally
+            {
+                db.disconnect();
+            }
+        }
+
+        public DataTable fill_leves_appr_all()
+        {
+            try
+            {
+                //cmd.Connection = db.disconnect();
+                cmd.Parameters.Clear();
+                cmd.CommandText = "sp_fill_leves_appr_all";
+                cmd.CommandType = CommandType.StoredProcedure;
+                //cmd.Connection = db.connect();
+                SqlDataAdapter da = new SqlDataAdapter();
+                DataTable dt = new DataTable();
+                cmd.Connection = db.connect();
+                da.SelectCommand = cmd;
+                da.Fill(dt);
+                //db.disconnect();
+                return dt;
             }
             finally
             {

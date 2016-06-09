@@ -52,6 +52,24 @@ namespace eleave_view.user
             return events;
         }
         [WebMethod]
+        public static List<Event> GetEvents_calendar(int rid)
+        {
+            List<Event> events = new List<Event>();
+            bus_eleave bus = new bus_eleave();
+            bus.id = rid;
+            DataTable dt = bus.fetch_holidays_cal();
+            for (int i = 0; i < dt.Rows.Count; i++)
+            {
+                Event _Event = new Event();
+                _Event.EventID = int.Parse(dt.Rows[i]["event_id"].ToString());
+                _Event.EventName = dt.Rows[i]["event_name"].ToString();
+                _Event.EventDate = dt.Rows[i]["event_date"].ToString();
+                _Event.color = dt.Rows[i]["event_color"].ToString();
+                events.Add(_Event);
+            }
+            return events;
+        }
+        [WebMethod]
         public static List<Leaves> fetchleave(int userid)
         {
             List<Leaves> leaves = new List<Leaves>();

@@ -54,7 +54,7 @@ var bulkval = function () {
                 ctl00$ContentPlaceHolder1$txtholidays_hr: {
                     required: true
                 },
-                ctl00$ContentPlaceHolder1$txtname: {
+                ctl00$ContentPlaceHolder1$ddlreg: {
                     required: true
                 }
             },

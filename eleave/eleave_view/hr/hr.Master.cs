@@ -61,6 +61,10 @@ namespace eleave_view.hr
                     leaves.Attributes["class"] = "active";
                     leaves3.Attributes["class"] = "active open";
                     break;
+                case "download_all_hr.aspx":
+                    leaves.Attributes["class"] = "active";
+                    leaves4.Attributes["class"] = "active open";
+                    break;
                 case "listuser.aspx":
                     settings.Attributes["class"] = "active";
                     settings1.Attributes["class"] = "active open";

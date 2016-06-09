@@ -1,11 +1,11 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="cholidays.aspx.cs" Inherits="eleave_view.hr.cholidays" MasterPageFile="~/hr/hr.Master" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="cholidays_hr.aspx.cs" Inherits="eleave_view.hr.cholidays_hr" MasterPageFile="~/hr/hr.Master" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <script type="text/javascript">
         function success() {
             swal({
                 title: 'Success!',
-                text: 'Successfully removed Summersoft holidays !',
+                text: 'Successfully removed Hummingsoft holidays !',
                 type: 'success',
                 allowEscapeKey: false,
                 allowOutsideClick: false

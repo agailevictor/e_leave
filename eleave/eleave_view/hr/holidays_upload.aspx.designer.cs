@@ -13,6 +13,15 @@ namespace eleave_view.hr {
     public partial class holidays_upload {
         
         /// <summary>
+        /// ddlreg control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlreg;
+        
+        /// <summary>
         /// txtholidays_hr control.
         /// </summary>
         /// <remarks>

@@ -57,7 +57,12 @@ namespace eleave_c
         }
         public DataTable fetch_holidays()
         {
-            return data.fetch_holidays();
+            return data.fetch_holidays(id);
+
+        }
+        public DataTable fetch_holidays_cal()
+        {
+            return data.fetch_holidays_cal(id);
 
         }
         public DataTable fetch_holidays1()
@@ -144,6 +149,11 @@ namespace eleave_c
         public int upload_holidays()
         {
             return data.upload_holidays(event_name,event_date,event_color);
+        }
+
+        public int upload_holidays_malaysia()
+        {
+            return data.upload_holidays_malaysia(event_name, event_date, event_color);
         }
 
         public DataTable fillgender()
@@ -370,6 +380,14 @@ namespace eleave_c
         public int clear_holidays()
         {
             return data.clear_holidays();
+        }
+        public int clear_holidays_hs()
+        {
+            return data.clear_holidays_hs();
+        }
+        public DataTable fill_leves_appr_all()
+        {
+            return data.fill_leves_appr_all();
         }
     }
 }

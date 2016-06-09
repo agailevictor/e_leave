@@ -30,6 +30,10 @@ namespace eleave_view.hr
                 {
                     Response.Redirect("~/unauthorised.aspx");
                 }
+                else
+                {
+                    fill_region();
+                }
             }
             else
             {
@@ -37,97 +41,209 @@ namespace eleave_view.hr
             }
         }
 
+        protected void fill_region()
+        {
+            DataTable dt1 = bus.fillregion();
+            if (dt1.Rows.Count > 0)
+            {
+                ddlreg.DataSource = dt1;
+                ddlreg.DataBind();
+                ddlreg.Items.Insert(0, new ListItem("-----SELECT-----", ""));
+            }
+            else
+            {
+
+            }
+        }
+
+
         protected void btnreq_hr_Click(object sender, EventArgs e)
         {
-            if (txtholidays_hr.Text != "")
+            if (ddlreg.SelectedIndex !=0  && txtholidays_hr.Text != "")
             {
-                CHK_NULL = 0;
-                CHK_EF = 0;
-                DateTime dt;
-                DataTable a = datamapper.GetDataTable(txtholidays_hr.Text, true);
-                if (a.Rows.Count > 0)
+                if (ddlreg.SelectedItem.Text == "Cochin")
                 {
-                    for (int i = 0; i < a.Rows.Count; i++)
+
+                    CHK_NULL = 0;
+                    CHK_EF = 0;
+                    DateTime dt;
+                    DataTable a = datamapper.GetDataTable(txtholidays_hr.Text, true);
+                    if (a.Rows.Count > 0)
                     {
-                        if (a.Rows[i][0].ToString().Trim() == "")
-                        {
-                            CHK_NULL = 1;
-                            break;
-                        }
-                        else
-                        {
-                            bus.event_name = a.Rows[i][0].ToString();
-                        }
-                        if (a.Rows[i][1].ToString().Trim() == "")
-                        {
-                            CHK_NULL = 1;
-                            break;
-                        }
-                        else
-                        {
-                            //bus.event_date = DateTime.Parse(a.Rows[i][1].ToString());
-                            bool success = DateTime.TryParseExact(a.Rows[i][1].ToString(), "yyyy-MM-dd", System.Globalization.CultureInfo.InvariantCulture, System.Globalization.DateTimeStyles.None, out dt);
-                            if (success)
-                            {
-                                bus.event_date = dt;
-                            }
-                            else
-                            {
-                                CHK_EF = 1;
-                            }
-
-                        }
-                        if (a.Rows[i][2].ToString().Trim() == "")
-                        {
-                            CHK_NULL = 1;
-                            break;
-                        }
-                        else
-                        {
-                            bus.event_color = a.Rows[i][2].ToString();
-
-                        }
-
-
-                    }
-                    if (CHK_NULL == 0 && CHK_EF == 0)
-                    {
-                        int count = 0;
-                        int countd = 0;
-                        int counts = 0;
-
                         for (int i = 0; i < a.Rows.Count; i++)
                         {
-
-                            bus.event_name = a.Rows[i][0].ToString();
-                            bus.event_date = DateTime.Parse(a.Rows[i][1].ToString());
-                            //bus.event_date = DateTime.ParseExact(a.Rows[i][1].ToString().Trim(), "yyyyMMdd", System.Globalization.CultureInfo.InvariantCulture);
-                            bus.event_color = a.Rows[i][2].ToString();
-                            int r = bus.upload_holidays();
-                            if (r == 1)
+                            if (a.Rows[i][0].ToString().Trim() == "")
                             {
-                                countd++;
-                                //lblsuccesfulmsg.Text = +countd + " Record(s) inserted Succesfully ";
-                            }
-                            else if (r == 2)
-                            {
-                                counts++;
-                                count = counts - countd;
-                                //lblduplicatemsg.Text = "There are " + count + " Duplicated Value(s)";
+                                CHK_NULL = 1;
+                                break;
                             }
                             else
                             {
+                                bus.event_name = a.Rows[i][0].ToString();
+                            }
+                            if (a.Rows[i][1].ToString().Trim() == "")
+                            {
+                                CHK_NULL = 1;
+                                break;
+                            }
+                            else
+                            {
+                                //bus.event_date = DateTime.Parse(a.Rows[i][1].ToString());
+                                bool success = DateTime.TryParseExact(a.Rows[i][1].ToString(), "yyyy-MM-dd", System.Globalization.CultureInfo.InvariantCulture, System.Globalization.DateTimeStyles.None, out dt);
+                                if (success)
+                                {
+                                    bus.event_date = dt;
+                                }
+                                else
+                                {
+                                    CHK_EF = 1;
+                                }
 
                             }
+                            if (a.Rows[i][2].ToString().Trim() == "")
+                            {
+                                CHK_NULL = 1;
+                                break;
+                            }
+                            else
+                            {
+                                bus.event_color = a.Rows[i][2].ToString();
+
+                            }
+
+
                         }
-                        txtholidays_hr.Text = "";
-                        ScriptManager.RegisterStartupScript(this, GetType(), "displayalertmessage", "success();", true);
+                        if (CHK_NULL == 0 && CHK_EF == 0)
+                        {
+                            int count = 0;
+                            int countd = 0;
+                            int counts = 0;
+
+                            for (int i = 0; i < a.Rows.Count; i++)
+                            {
+
+                                bus.event_name = a.Rows[i][0].ToString();
+                                bus.event_date = DateTime.Parse(a.Rows[i][1].ToString());
+                                //bus.event_date = DateTime.ParseExact(a.Rows[i][1].ToString().Trim(), "yyyyMMdd", System.Globalization.CultureInfo.InvariantCulture);
+                                bus.event_color = a.Rows[i][2].ToString();
+                                int r = bus.upload_holidays();
+                                if (r == 1)
+                                {
+                                    countd++;
+                                    //lblsuccesfulmsg.Text = +countd + " Record(s) inserted Succesfully ";
+                                }
+                                else if (r == 2)
+                                {
+                                    counts++;
+                                    count = counts - countd;
+                                    //lblduplicatemsg.Text = "There are " + count + " Duplicated Value(s)";
+                                }
+                                else
+                                {
+
+                                }
+                            }
+                            txtholidays_hr.Text = "";
+                            ScriptManager.RegisterStartupScript(this, GetType(), "displayalertmessage", "success();", true);
+                        }
+                        else
+                        {
+                            txtholidays_hr.Text = "";
+                            ScriptManager.RegisterStartupScript(this, GetType(), "displayalertmessage", "error();", true);
+                        }
                     }
-                    else
+                }
+                else
+                {
+                    CHK_NULL = 0;
+                    CHK_EF = 0;
+                    DateTime dt;
+                    DataTable a = datamapper.GetDataTable(txtholidays_hr.Text, true);
+                    if (a.Rows.Count > 0)
                     {
-                        txtholidays_hr.Text = "";
-                        ScriptManager.RegisterStartupScript(this, GetType(), "displayalertmessage", "error();", true);
+                        for (int i = 0; i < a.Rows.Count; i++)
+                        {
+                            if (a.Rows[i][0].ToString().Trim() == "")
+                            {
+                                CHK_NULL = 1;
+                                break;
+                            }
+                            else
+                            {
+                                bus.event_name = a.Rows[i][0].ToString();
+                            }
+                            if (a.Rows[i][1].ToString().Trim() == "")
+                            {
+                                CHK_NULL = 1;
+                                break;
+                            }
+                            else
+                            {
+                                //bus.event_date = DateTime.Parse(a.Rows[i][1].ToString());
+                                bool success = DateTime.TryParseExact(a.Rows[i][1].ToString(), "yyyy-MM-dd", System.Globalization.CultureInfo.InvariantCulture, System.Globalization.DateTimeStyles.None, out dt);
+                                if (success)
+                                {
+                                    bus.event_date = dt;
+                                }
+                                else
+                                {
+                                    CHK_EF = 1;
+                                }
+
+                            }
+                            if (a.Rows[i][2].ToString().Trim() == "")
+                            {
+                                CHK_NULL = 1;
+                                break;
+                            }
+                            else
+                            {
+                                bus.event_color = a.Rows[i][2].ToString();
+
+                            }
+
+
+                        }
+                        if (CHK_NULL == 0 && CHK_EF == 0)
+                        {
+                            int count = 0;
+                            int countd = 0;
+                            int counts = 0;
+
+                            for (int i = 0; i < a.Rows.Count; i++)
+                            {
+
+                                bus.event_name = a.Rows[i][0].ToString();
+                                bus.event_date = DateTime.Parse(a.Rows[i][1].ToString());
+                                //bus.event_date = DateTime.ParseExact(a.Rows[i][1].ToString().Trim(), "yyyyMMdd", System.Globalization.CultureInfo.InvariantCulture);
+                                bus.event_color = a.Rows[i][2].ToString();
+                                int r = bus.upload_holidays_malaysia();
+                                if (r == 1)
+                                {
+                                    countd++;
+                                    //lblsuccesfulmsg.Text = +countd + " Record(s) inserted Succesfully ";
+                                }
+                                else if (r == 2)
+                                {
+                                    counts++;
+                                    count = counts - countd;
+                                    //lblduplicatemsg.Text = "There are " + count + " Duplicated Value(s)";
+                                }
+                                else
+                                {
+
+                                }
+                            }
+                            txtholidays_hr.Text = "";
+                            ScriptManager.RegisterStartupScript(this, GetType(), "displayalertmessage", "success();", true);
+                        }
+                        else
+                        {
+                            txtholidays_hr.Text = "";
+                            ScriptManager.RegisterStartupScript(this, GetType(), "displayalertmessage", "error();", true);
+                        }
                     }
+
                 }
             }
             else

@@ -209,6 +209,12 @@
                                     <span class="selected"></span>
                                 </a>
                             </li>
+                            <li id="leaves4" runat="server">
+                                <a href="download_all_hr.aspx"><i class="icon-download-alt"></i>
+                                    <span class="title">Download Leaves </span>
+                                    <span class="selected"></span>
+                                </a>
+                            </li>
                         </ul>
                     </li>
                     <li id="settings" runat="server">
@@ -401,10 +407,12 @@
 
     <script type="text/javascript">
         function calendar() {
+            var data = {};
+            var rid = '<%= Session["region"] %>';
             $.ajax({
                 type: "POST",
                 contentType: "application/json",
-                data: "{}",
+                data: '{"rid":"' + rid + '"}',
                 url: "hrdash.aspx/GetEvents",
                 dataType: "json",
                 success: function (data) {
@@ -625,6 +633,7 @@
             $('#txtedate').val("");
             $('#txtdate_hr').val("");
             $("#fupload_hr").val("");
+            $('#lblreq').html('N/A');
             chk = $('#ddlltype_hr option:selected').val();
             //alert(chk);
             if (chk == 2) {
@@ -1321,7 +1330,7 @@
                 dataType: "json",
                 success: function (data) {
 
-                    if (data.d != 'Maternity' && data.d !='Medical') { // annual,marriage,unpaid,compasionate
+                    if (data.d != 'Maternity' && data.d != 'Medical') { // annual,marriage,unpaid,compasionate
 
                         $("#dates").removeAttr("style");
                         $("#dateranges").css({ 'display': 'none' });
@@ -1361,11 +1370,11 @@
         }
     </script>
 
-        <script type="text/javascript">
-            function datepick_edit() {
-                var disableddates = []; //dd/mm/yyyy
-                var data = {};
-                var userid = '<%= Session["user_id"] %>';
+    <script type="text/javascript">
+        function datepick_edit() {
+            var disableddates = []; //dd/mm/yyyy
+            var data = {};
+            var userid = '<%= Session["user_id"] %>';
             data.uid = userid;
             //alert('ready');
             $.ajax({
@@ -1406,9 +1415,9 @@
         }
     </script>
     <script type="text/javascript">
-        function reset_period()
-        {
+        function reset_period() {
             $('#ddlper_hr').val('');
+            $('#lblreq').html('N/A');
             $('#lblio').hide();
             $('#pulsate-regulario').pulsate("destroy");
             $('#pulsate-regulario').hide();
@@ -1416,19 +1425,21 @@
         }
     </script>
     <script type="text/javascript">
-        function in_or_out()
-        {
-            var userid,typ, per,ds,sd,ed;
+        function in_or_out() {
+            var userid, typ, per, ds, sd, ed, dv1, dv2, pert;
             userid = '<%= Session["user_id"] %>';
             typ = $('#ddlltype_hr option:selected').val();
             per = $('#ddlper_hr option:selected').val();
             //alert(per);
             var data = {};
 
-            if(typ != "" && per !="")
-            {
+            if (typ != "" && per != "") {
                 if (typ == 1 || typ == 2 || typ == 3) {
+                    dv1 = $('#txtdate_hr').val();
+                    dv2 = (dv1.match(/,/g) || []).length + 1;
                     ds = $('#txtdate_hr').val();
+                    pert = $('#ddlper_hr option:selected').text();
+                    $('#lblreq').html(dv2 + ' ' + pert);
                     //alert(typ);
                     //alert(per);
                     //alert(dates);
@@ -1467,54 +1478,75 @@
                     });
 
                 }
-                else if( typ == 4)
-                {
+                else if (typ == 4) {
                     sd = $('#txtsdate').val();
                     ed = $('#txtedate').val();
+                    pert = $('#ddlper_hr option:selected').text();
                     //alert(typ);
                     //alert(per);
                     //alert(sd);
                     //alert(ed);
+
                     $.ajax({
                         type: "POST",
                         contentType: "application/json",
                         data: '{"userid":"' + userid + '","typ":"' + typ + '","per":"' + per + '","sd":"' + sd + '","ed":"' + ed + '"}',
-                        url: "applyleave_hr.aspx/in_out_maternity",
+                        url: "applyleave_hr.aspx/in_out_maternity_days",
                         dataType: "json",
                         success: function (data) {
+
                             //alert(data.d);
-                            if (data.d == 1) {
-                                $('#lblio').hide();
-                                $('#pulsate-regulario').pulsate("destroy");
-                                $('#pulsate-regulario').hide();
-                                $('#btnreq_hr').prop("disabled", false);
-                            }
-                            else {
-                                $('#pulsate-regulario').show();
-                                $('#lblio').show();
-                                $('#btnreq_hr').prop("disabled", true);
-                                $('#pulsate-regulario').pulsate({
-                                    color: '#C43C35', // set the color of the pulse
-                                    reach: 20, // how far the pulse goes in px
-                                    speed: 1000, // how long one pulse takes in ms
-                                    pause: 0, // how long the pause between pulses is in ms
-                                    glow: true, // if the glow should be shown too
-                                    repeat: true, // will repeat forever if true, if given a number will repeat for that many times
-                                    onHover: false // if true only pulsate if user hovers over the element
+                            $('#lblreq').html(data.d +' ' +  pert);
+                                    
+                                $.ajax({
+                                    type: "POST",
+                                    contentType: "application/json",
+                                    data: '{"userid":"' + userid + '","typ":"' + typ + '","per":"' + per + '","sd":"' + sd + '","ed":"' + ed + '"}',
+                                    url: "applyleave_hr.aspx/in_out_maternity",
+                                    dataType: "json",
+                                    success: function (data) {
+                                        //alert(data.d);
+                                        if (data.d == 1) {
+                                            $('#lblio').hide();
+                                            $('#pulsate-regulario').pulsate("destroy");
+                                            $('#pulsate-regulario').hide();
+                                            $('#btnreq_hr').prop("disabled", false);
+                                        }
+                                        else {
+                                            $('#pulsate-regulario').show();
+                                            $('#lblio').show();
+                                            $('#btnreq_hr').prop("disabled", true);
+                                            $('#pulsate-regulario').pulsate({
+                                                color: '#C43C35', // set the color of the pulse
+                                                reach: 20, // how far the pulse goes in px
+                                                speed: 1000, // how long one pulse takes in ms
+                                                pause: 0, // how long the pause between pulses is in ms
+                                                glow: true, // if the glow should be shown too
+                                                repeat: true, // will repeat forever if true, if given a number will repeat for that many times
+                                                onHover: false // if true only pulsate if user hovers over the element
+                                            });
+                                        }
+                                    },
+                                    error: function (XMLHttpRequest, textStatus, errorThrown) {
+                                        //alert("error datepick");
+                                    }
                                 });
-                            }
-                        },
+                        },//
                         error: function (XMLHttpRequest, textStatus, errorThrown) {
                             //alert("error datepick");
                         }
                     });
                 }
                 else {
-
+                    dv1 = $('#txtdate_hr').val();
+                    dv2 = (dv1.match(/,/g) || []).length + 1;
+                    ds = $('#txtdate_hr').val();
+                    pert = $('#ddlper_hr option:selected').text();
+                    $('#lblreq').html(dv2 + ' ' + pert);
                 }
             }
             else {
-                
+
             }
         }
     </script>

@@ -98,6 +98,7 @@
     <Content Include="assets\images\favicon.ico" />
     <Content Include="assets\images\green.png" />
     <Content Include="assets\images\leaves.jpg" />
+    <Content Include="assets\images\leaves1.jpg" />
     <Content Include="assets\images\lightgrey.png" />
     <Content Include="assets\images\loader_new.GIF" />
     <Content Include="assets\images\loading.gif" />
@@ -380,6 +381,8 @@
     <Content Include="hr\cfleave.aspx" />
     <Content Include="hr\chg_pass_hr.aspx" />
     <Content Include="hr\cholidays.aspx" />
+    <Content Include="hr\cholidays_hr.aspx" />
+    <Content Include="hr\download_all_hr.aspx" />
     <Content Include="hr\edituser.aspx" />
     <Content Include="hr\edit_leave.aspx" />
     <Content Include="hr\forward_hr.aspx" />
@@ -519,6 +522,20 @@
     </Compile>
     <Compile Include="hr\cholidays.aspx.designer.cs">
       <DependentUpon>cholidays.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="hr\cholidays_hr.aspx.cs">
+      <DependentUpon>cholidays_hr.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="hr\cholidays_hr.aspx.designer.cs">
+      <DependentUpon>cholidays_hr.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="hr\download_all_hr.aspx.cs">
+      <DependentUpon>download_all_hr.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="hr\download_all_hr.aspx.designer.cs">
+      <DependentUpon>download_all_hr.aspx</DependentUpon>
     </Compile>
     <Compile Include="hr\download_approved_hr.cs">
       <AutoGen>True</AutoGen>
