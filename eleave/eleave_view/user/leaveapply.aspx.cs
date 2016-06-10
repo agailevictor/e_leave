@@ -692,5 +692,38 @@ namespace eleave_view.user
         }
         // end : from here for showing clientside noti for insufficiant leaves
 
+        [WebMethod]
+
+        public static double in_out_maternity_days(int userid, int typ, int per, string sd, string ed)
+        {
+            double ct1 = 0.0, req = 0.0;
+            bus_eleave bus1 = new bus_eleave();
+            List<DateTime> holday = new List<DateTime>();
+            DataTable dtio = fetchdatesmaternity(userid);
+            for (int i = 0; i < dtio.Rows.Count; i++)
+            {
+                holday.Add(DateTime.Parse(dtio.Rows[i]["dates1"].ToString()));
+            }
+
+            DateTime sd1 = DateTime.Parse(sd);
+            DateTime ed1 = DateTime.Parse(ed);
+            while (sd1 <= ed1)
+            {
+                if (holday.Contains(sd1))
+                {
+                    sd1 = sd1.AddDays(1);
+                }
+                else
+                {
+                    // get the count
+                    ct1 = ct1 + 1;
+                    sd1 = sd1.AddDays(1);
+                }
+            }
+            req = ct1;
+            return req;
+
+        }
+
     }
 }

@@ -538,6 +538,7 @@
             $('#txtsdate').val("");
             $('#txtedate').val("");
             $("#fupload").val("");
+            $('#lblreq').html('N/A');
             chk = $('#ddlltype option:selected').val();
             //alert(chk);
             if (chk == 2) {
@@ -555,6 +556,11 @@
                 $('#fup').hide();
                 $('#dateranges').hide();
                 $('#dates').show();
+                $("#ddlper").prop("selectedIndex", 0);
+                $('#lblio').hide()
+                $('#pulsate-regulario').pulsate("destroy");
+                $('#pulsate-regulario').hide();
+                $('#btnreq').prop("disabled", false);
             }
             else if (chk == 4) {
                 $('#dates').hide();
@@ -793,31 +799,33 @@
             });
         }
     </script>
-        <script type="text/javascript">
-            function reset_period() {
-                $('#ddlper').val('');
-                $('#lblio').hide();
-                $('#pulsate-regulario').pulsate("destroy");
-                $('#pulsate-regulario').hide();
-                $('#btnreq').prop("disabled", false);
-            }
+    <script type="text/javascript">
+        function reset_period() {
+            $('#ddlper').val('');
+            $('#lblio').hide();
+            $('#lblreq').html('');
+            $('#lblreq').html('N/A');
+            $('#pulsate-regulario').pulsate("destroy");
+            $('#pulsate-regulario').hide();
+            $('#btnreq').prop("disabled", false);
+        }
     </script>
     <script type="text/javascript">
         function in_or_out() {
             var userid, typ, per, ds, sd, ed, dv1, dv2, pert;
             userid = '<%= Session["user_id"] %>';
-            dv1 = $('#txtdate').val();
-            dv2 = (dv1.match(/,/g) || []).length + 1;
             typ = $('#ddlltype option:selected').val();
             per = $('#ddlper option:selected').val();
-            pert = $('#ddlper option:selected').text();
-            $('#lblreq').html(dv2 + ' ' + pert);
             //alert(per);
             var data = {};
 
             if (typ != "" && per != "") {
                 if (typ == 1 || typ == 2 || typ == 3) {
                     ds = $('#txtdate').val();
+                    pert = $('#ddlper option:selected').text();
+                    dv1 = $('#txtdate').val();
+                    dv2 = (dv1.match(/,/g) || []).length + 1;
+                    $('#lblreq').html(dv2 + ' ' + pert);
                     //alert(typ);
                     //alert(per);
                     //alert(dates);
@@ -859,50 +867,80 @@
                 else if (typ == 4) {
                     sd = $('#txtsdate').val();
                     ed = $('#txtedate').val();
+                    pert = $('#ddlper option:selected').text();
                     //alert(typ);
                     //alert(per);
                     //alert(sd);
                     //alert(ed);
+
                     $.ajax({
                         type: "POST",
                         contentType: "application/json",
                         data: '{"userid":"' + userid + '","typ":"' + typ + '","per":"' + per + '","sd":"' + sd + '","ed":"' + ed + '"}',
-                        url: "leaveapply.aspx/in_out_maternity",
+                        url: "leaveapply.aspx/in_out_maternity_days",
                         dataType: "json",
                         success: function (data) {
-                            //alert(data.d);
-                            if (data.d == 1) {
-                                $('#lblio').hide();
-                                $('#pulsate-regulario').pulsate("destroy");
-                                $('#pulsate-regulario').hide();
-                                $('#btnreq').prop("disabled", false);
-                            }
-                            else {
-                                $('#pulsate-regulario').show();
-                                $('#lblio').show();
-                                $('#btnreq').prop("disabled", true);
-                                $('#pulsate-regulario').pulsate({
-                                    color: '#C43C35', // set the color of the pulse
-                                    reach: 20, // how far the pulse goes in px
-                                    speed: 1000, // how long one pulse takes in ms
-                                    pause: 0, // how long the pause between pulses is in ms
-                                    glow: true, // if the glow should be shown too
-                                    repeat: true, // will repeat forever if true, if given a number will repeat for that many times
-                                    onHover: false // if true only pulsate if user hovers over the element
-                                });
-                            }
+                            $('#lblreq').html(data.d + ' ' + pert);
+
+
+                            $.ajax({
+                                type: "POST",
+                                contentType: "application/json",
+                                data: '{"userid":"' + userid + '","typ":"' + typ + '","per":"' + per + '","sd":"' + sd + '","ed":"' + ed + '"}',
+                                url: "leaveapply.aspx/in_out_maternity",
+                                dataType: "json",
+                                success: function (data) {
+                                    //alert(data.d);
+                                    if (data.d == 1) {
+                                        $('#lblio').hide();
+                                        $('#pulsate-regulario').pulsate("destroy");
+                                        $('#pulsate-regulario').hide();
+                                        $('#btnreq').prop("disabled", false);
+                                    }
+                                    else {
+                                        $('#pulsate-regulario').show();
+                                        $('#lblio').show();
+                                        $('#btnreq').prop("disabled", true);
+                                        $('#pulsate-regulario').pulsate({
+                                            color: '#C43C35', // set the color of the pulse
+                                            reach: 20, // how far the pulse goes in px
+                                            speed: 1000, // how long one pulse takes in ms
+                                            pause: 0, // how long the pause between pulses is in ms
+                                            glow: true, // if the glow should be shown too
+                                            repeat: true, // will repeat forever if true, if given a number will repeat for that many times
+                                            onHover: false // if true only pulsate if user hovers over the element
+                                        });
+                                    }
+                                },
+                                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                                    //alert("error datepick");
+                                }
+                            });//
                         },
                         error: function (XMLHttpRequest, textStatus, errorThrown) {
                             //alert("error datepick");
                         }
                     });
+
+
                 }
                 else {
-
+                    pert = $('#ddlper option:selected').text();
+                    dv1 = $('#txtdate').val();
+                    dv2 = (dv1.match(/,/g) || []).length + 1;
+                    $('#lblreq').html(dv2 + ' ' + pert);
+                    $('#lblio').hide();
+                    $('#pulsate-regulario').pulsate("destroy");
+                    $('#pulsate-regulario').hide();
+                    $('#btnreq').prop("disabled", false);
                 }
             }
             else {
-
+                $('#lblreq').html('N/A');
+                $('#lblio').hide();
+                $('#pulsate-regulario').pulsate("destroy");
+                $('#pulsate-regulario').hide();
+                $('#btnreq').prop("disabled", false);
             }
         }
     </script>

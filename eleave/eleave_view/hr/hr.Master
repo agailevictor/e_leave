@@ -651,6 +651,11 @@
                 $('#fup_hr').hide();
                 $('#dateranges').hide();
                 $('#dates').show();
+                $("#ddlper_hr").prop("selectedIndex", 0);
+                $('#lblio').hide();
+                $('#pulsate-regulario').pulsate("destroy");
+                $('#pulsate-regulario').hide();
+                $('#btnreq_hr').prop("disabled", false);
             }
             else if (chk == 4) {
                 $('#dates').hide();
@@ -1417,6 +1422,7 @@
     <script type="text/javascript">
         function reset_period() {
             $('#ddlper_hr').val('');
+            $('#lblreq').html('');
             $('#lblreq').html('N/A');
             $('#lblio').hide();
             $('#pulsate-regulario').pulsate("destroy");
@@ -1494,8 +1500,6 @@
                         url: "applyleave_hr.aspx/in_out_maternity_days",
                         dataType: "json",
                         success: function (data) {
-
-                            //alert(data.d);
                             $('#lblreq').html(data.d +' ' +  pert);
                                     
                                 $.ajax({
@@ -1543,10 +1547,18 @@
                     ds = $('#txtdate_hr').val();
                     pert = $('#ddlper_hr option:selected').text();
                     $('#lblreq').html(dv2 + ' ' + pert);
+                    $('#lblio').hide();
+                    $('#pulsate-regulario').pulsate("destroy");
+                    $('#pulsate-regulario').hide();
+                    $('#btnreq_hr').prop("disabled", false);
                 }
             }
             else {
-
+                $('#lblreq').html('N/A');
+                $('#lblio').hide();
+                $('#pulsate-regulario').pulsate("destroy");
+                $('#pulsate-regulario').hide();
+                $('#btnreq_hr').prop("disabled", false);
             }
         }
     </script>
