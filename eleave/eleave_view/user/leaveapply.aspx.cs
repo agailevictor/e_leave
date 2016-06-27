@@ -68,6 +68,21 @@ namespace eleave_view.user
             }
             return dates;
         }
+        [WebMethod]
+
+        public static int browser_back()
+        {
+            string p = HttpContext.Current.Request.Url.AbsoluteUri;
+            string[] parts = p.Split('/');
+            string pagename = parts[parts.Length - 2];
+            if (pagename == "leaveapply.aspx")
+            {
+                leaveapply obj = new leaveapply();
+                obj.b_back();
+            }
+           
+            return 1;
+        }
 
         protected void fetch_mail_details()
         {
@@ -546,7 +561,12 @@ namespace eleave_view.user
         {
             txtsdate.Text = "";
             txtedate.Text = "";
-            ddlltype.SelectedIndex = 0;
+            txtreason.Text = "";
+            txtphone.Text = "";
+            fill_userdetails();
+            fill_period();
+            fill_leavetypes();
+            fill_collegues();
         }
 
         protected void clearfeilds2()
@@ -723,6 +743,17 @@ namespace eleave_view.user
             req = ct1;
             return req;
 
+        }
+
+        public void b_back()
+        {
+            fill_userdetails();
+            fill_leavetypes();
+            fill_period();
+            fill_collegues();
+            txtdate.Attributes.Add("readonly", "readonly");
+            txtsdate.Attributes.Add("readonly", "readonly");
+            txtedate.Attributes.Add("readonly", "readonly");
         }
 
     }

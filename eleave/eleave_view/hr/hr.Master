@@ -17,7 +17,13 @@
             null
         };
 
+        //function disableBack() { window.history.forward() }
+
+        //window.onload = disableBack();
+        //window.onpageshow = function (evt) { if (evt.persisted) disableBack() }
+
     </script>
+
     <!-- start: META -->
     <meta charset="utf-8" />
     <!--[if IE]><meta http-equiv='X-UA-Compatible' content="IE=edge,IE=9,IE=8,chrome=1" /><![endif]-->
@@ -76,7 +82,7 @@
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
 </head>
-<body>
+<body onload="browser_back()">
     <!-- Loading Container -->
     <%--    <div class="loader"></div>--%>
     <!--  /Loading Container -->
@@ -402,6 +408,12 @@
             //sessiontimeout();
             getdoj_euser();
             chkcf();
+         
+        });
+        $(document).on("keydown", function (e) {
+            if (e.which === 8 && !$(e.target).is("input, textarea")) {
+                e.preventDefault();
+            }
         });
     </script>
 
@@ -1098,6 +1110,9 @@
     <script type="text/javascript">
         function checkusername() {
             $('#pulsate-regularun').pulsate("destroy");
+            $('#btnuseradd').prop("disabled", false);
+            $('#pulsate-regularun').hide();
+            $('#lblun').hide();
             var uname;
             var data = {};
             uname = $('#txtuname').val();
@@ -1198,7 +1213,10 @@
 
     <script type="text/javascript">
         function checkusername_edit() {
+            $('#lblun').hide();
+            $('#btnupuser').prop("disabled", false);
             $('#pulsate-regularun').pulsate("destroy");
+            $('#pulsate-regularun').hide();
             var uname, editid;
             var data = {};
             uname = $('#txtuname').val();
@@ -1560,6 +1578,27 @@
                 $('#pulsate-regulario').hide();
                 $('#btnreq_hr').prop("disabled", false);
             }
+        }
+    </script>
+
+    <script type="text/javascript">
+        function browser_back() {
+            $('#ddlltype_hr').val('');
+            $('#ddlper_hr').val('');
+            $('#txtreason_hr').val('');
+            $('#ddljobc_hr').val('');
+            $('#txtdate_hr').val('');
+            $('#txtsdate').val('');
+            //$('#txtedate').val('');
+            //$('#txtname').val('');
+            //$('#txtuname').val('');
+            //$('#txtemail').val('');
+            //$('#ddlgender').val('');
+            //$('#txtdoj').val('');
+            //$('#ddldep').val('');
+            //$('#txtcategory').val('');
+            //$('#ddlregion').val('');
+
         }
     </script>
 </body>

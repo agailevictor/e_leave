@@ -47,7 +47,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="page-header">
-        <h1>Upload Holidays List<small><a href="cholidays_hr.aspx"> Clear Hummingsoft Holidays / </a></small><small><a href="cholidays.aspx"> Clear Summersoft Holidays</a></small></h1>
+        <h1>Upload Holidays List<small><a href="cholidays_hr.aspx"> Clear Hummingsoft Holidays /</a></small><small><a href="cholidays.aspx"> Clear Summersoft Holidays</a></small></h1>
     </div>
     <div class="row">
         <div class="col-md-12">

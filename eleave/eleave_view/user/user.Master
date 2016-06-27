@@ -6,8 +6,8 @@
 <head runat="server">
     <title>e-leave</title>
     <script type="text/javascript">
-
         function preventBack() {
+
             window.history.forward();
         }
 
@@ -78,7 +78,7 @@
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
 </head>
-<body>
+<body onload="browser_back()">
     <!-- Loading Container -->
     <%--    <div class="loader"></div>--%>
     <!--  /Loading Container -->
@@ -328,6 +328,11 @@
             //sessiontimeout();
             $('#lblop').hide();
         });
+        $(document).on("keydown", function (e) {
+            if (e.which === 8 && !$(e.target).is("input, textarea")) {
+                e.preventDefault();
+            }
+        });
     </script>
     <script type="text/javascript">
         function calendar() {
@@ -440,7 +445,7 @@
                             $('#repl').attr("data-fgcolor", "#339933");
                             $('#repl').circliful();
                         }
-                        else {
+                        else if (data.d[i].LeaveType == "Maternity") {
                             $('#mrg').empty();
                             $('#mrg').removeData();
                             $('#mrg').attr("data-percent", data.d[i].LeavePerc);
@@ -448,6 +453,18 @@
                             $('#mrg').attr("data-info", data.d[i].LeaveType);
                             $('#mrg').attr("data-fgcolor", "#FF8000");
                             $('#mrg').circliful();
+                        }
+                        else if (data.d[i].LeaveType == "Paternity") {
+                            $('#pl').empty();
+                            $('#pl').removeData();
+                            $('#pl').attr("data-percent", data.d[i].LeavePerc);
+                            $('#pl').attr("data-text", data.d[i].LeaveCount);
+                            $('#pl').attr("data-info", data.d[i].LeaveType);
+                            $('#pl').attr("data-fgcolor", "#FF8000");
+                            $('#pl').circliful();
+                        }
+                        else {
+                            console.log('uncaught');
                         }
                     }
                 },
@@ -763,9 +780,10 @@
         function setcolspan() {
             var gender = '<%= Session["gender"] %>';
             if (gender == "Male") {
-                $("#ann1").addClass("col-sm-4");
-                $("#med1").addClass("col-sm-4");
-                $("#repl1").addClass("col-sm-4");
+                $("#ann1").addClass("col-sm-3");
+                $("#med1").addClass("col-sm-3");
+                $("#repl1").addClass("col-sm-3");
+                $("#pl1").addClass("col-sm-3");
                 // class="col-sm-4"
                 $("#mrg1").remove();
             }
@@ -944,6 +962,59 @@
             }
         }
     </script>
+    <script type="text/javascript">
+        function browser_back() {
+            //alert('im called');
+            //$.ajax({
+            //    type: "POST",
+            //    contentType: "application/json",
+            //    data: {},
+            //    url: "leaveapply.aspx/browser_back",
+            //    dataType: "json",
+            //    success: function (data) {
+            //        alert('browser back pressed');
+            //    },
+            //    error: function (XMLHttpRequest, textStatus, errorThrown) {
+            //        console.log('browser back button clicked!');
+            //    }
+            //});
+            $('#ddlltype').val('');
+            $('#ddlper').val('');
+            $('#txtreason').val('');
+            $('#ddljobc').val('');
+            $('#txtdate').val('');
+            $('#txtsdate').val('');
+            $('#txtedate').val('');
+            
+        }
+    </script>
+    <script type="text/javascript">
+        function HandleBackFunctionality()
+        {
+            if(window.event)
+            {
+                if(window.event.clientX < 40 && window.event.clientY < 0)
+                {
+                    alert("Browser back button is clicked…");
+                }
+                else
+                {
+                    alert("Browser refresh button is clicked…");
+                }
+            }
+            else
+            {
+                if(event.currentTarget.performance.navigation.type == 1)
+                {
+                    alert("Browser refresh button is clicked firefox…");
+                }
+                if(event.currentTarget.performance.navigation.type == 2)
+                {
+                    alert("Browser back button is clicked firefox…");
+                }
+            }
+        }
+</script>
 </body>
 <!-- end: BODY -->
 </html>

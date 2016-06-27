@@ -427,7 +427,12 @@ namespace eleave_view.hr
         {
             txtsdate.Text = "";
             txtedate.Text = "";
-            ddlltype_hr.SelectedIndex = 0;
+            txtreason_hr.Text = "";
+            txtphone_hr.Text = "";
+            fill_lbl_hr();
+            fill_ltype_hr();
+            fill_period_hr();
+            fill_collegues_hr();
         }
 
         //To get the no: of days selected
