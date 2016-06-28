@@ -793,6 +793,7 @@
                 $("#repl1").addClass("col-sm-3");
                 $("#mrg1").addClass("col-sm-3");
                 // class="col-sm-3"
+                $("#pl1").remove();
             }
         }
 
@@ -834,11 +835,14 @@
             userid = '<%= Session["user_id"] %>';
             typ = $('#ddlltype option:selected').val();
             per = $('#ddlper option:selected').val();
+            $('#lblio').hide();
+            $('#pulsate-regulario').pulsate("destroy");
+            $('#pulsate-regulario').hide();
             //alert(per);
             var data = {};
 
             if (typ != "" && per != "") {
-                if (typ == 1 || typ == 2 || typ == 3) {
+                if (typ == 1 || typ == 2 || typ == 3 || typ == 7) {
                     ds = $('#txtdate').val();
                     pert = $('#ddlper option:selected').text();
                     dv1 = $('#txtdate').val();

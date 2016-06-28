@@ -442,7 +442,7 @@ namespace eleave_view.user
                         ScriptManager.RegisterStartupScript(this, GetType(), "displayalertmessage", "error1();", true);
                     }
                 }
-                else // Marriage and Annual
+                else // Marriage, Annual and Paternity
                 {
                     if (txtdate.Text != "" && ddlper.SelectedIndex != 0 && txtreason.Text != "" && ddljobc.SelectedValue.ToString() != "" && txtphone.Text != "")
                     {

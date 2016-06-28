@@ -529,7 +529,7 @@
                             $('#repl').attr("data-fgcolor", "#339933");
                             $('#repl').circliful();
                         }
-                        else {
+                        else if (data.d[i].LeaveType == "Maternity") {
                             $('#mrg').empty();
                             $('#mrg').removeData();
                             $('#mrg').attr("data-percent", data.d[i].LeavePerc);
@@ -538,12 +538,24 @@
                             $('#mrg').attr("data-fgcolor", "#FF8000");
                             $('#mrg').circliful();
                         }
-                    }
-                },
+                        else if (data.d[i].LeaveType == "Paternity") {
+                            $('#pl').empty();
+                            $('#pl').removeData();
+                            $('#pl').attr("data-percent", data.d[i].LeavePerc);
+                            $('#pl').attr("data-text", data.d[i].LeaveCount);
+                            $('#pl').attr("data-info", data.d[i].LeaveType);
+                            $('#pl').attr("data-fgcolor", "#FF8000");
+                            $('#pl').circliful();
+                        }
+                        else {
+                            console.log('uncaught');
+                        }
+                }
+            },
                 error: function (XMLHttpRequest, textStatus, errorThrown) {
                     //alert("error leaves");
-                }
-            });
+            }
+        });
         }
         setInterval(leaves, 10000); // 10 seconds
     </script>
@@ -1082,9 +1094,10 @@
         function setcolspan() {
             var gender = '<%= Session["gender"] %>';
             if (gender == "Male") {
-                $("#ann1").addClass("col-sm-4");
-                $("#med1").addClass("col-sm-4");
-                $("#repl1").addClass("col-sm-4");
+                $("#ann1").addClass("col-sm-3");
+                $("#med1").addClass("col-sm-3");
+                $("#repl1").addClass("col-sm-3");
+                $("#pl1").addClass("col-sm-3");
                 // class="col-sm-4"
                 $("#mrg1").remove();
             }
@@ -1094,6 +1107,7 @@
                 $("#repl1").addClass("col-sm-3");
                 $("#mrg1").addClass("col-sm-3");
                 // class="col-sm-3"
+                $("#pl1").remove();
             }
         }
 
@@ -1454,11 +1468,14 @@
             userid = '<%= Session["user_id"] %>';
             typ = $('#ddlltype_hr option:selected').val();
             per = $('#ddlper_hr option:selected').val();
+            $('#lblio').hide();
+            $('#pulsate-regulario').pulsate("destroy");
+            $('#pulsate-regulario').hide();
             //alert(per);
             var data = {};
 
             if (typ != "" && per != "") {
-                if (typ == 1 || typ == 2 || typ == 3) {
+                if (typ == 1 || typ == 2 || typ == 3 || typ == 7) {
                     dv1 = $('#txtdate_hr').val();
                     dv2 = (dv1.match(/,/g) || []).length + 1;
                     ds = $('#txtdate_hr').val();
@@ -1520,39 +1537,39 @@
                         success: function (data) {
                             $('#lblreq').html(data.d +' ' +  pert);
                                     
-                                $.ajax({
-                                    type: "POST",
-                                    contentType: "application/json",
-                                    data: '{"userid":"' + userid + '","typ":"' + typ + '","per":"' + per + '","sd":"' + sd + '","ed":"' + ed + '"}',
-                                    url: "applyleave_hr.aspx/in_out_maternity",
-                                    dataType: "json",
-                                    success: function (data) {
-                                        //alert(data.d);
-                                        if (data.d == 1) {
-                                            $('#lblio').hide();
-                                            $('#pulsate-regulario').pulsate("destroy");
-                                            $('#pulsate-regulario').hide();
-                                            $('#btnreq_hr').prop("disabled", false);
-                                        }
-                                        else {
-                                            $('#pulsate-regulario').show();
-                                            $('#lblio').show();
-                                            $('#btnreq_hr').prop("disabled", true);
-                                            $('#pulsate-regulario').pulsate({
-                                                color: '#C43C35', // set the color of the pulse
-                                                reach: 20, // how far the pulse goes in px
-                                                speed: 1000, // how long one pulse takes in ms
-                                                pause: 0, // how long the pause between pulses is in ms
-                                                glow: true, // if the glow should be shown too
-                                                repeat: true, // will repeat forever if true, if given a number will repeat for that many times
-                                                onHover: false // if true only pulsate if user hovers over the element
-                                            });
-                                        }
-                                    },
-                                    error: function (XMLHttpRequest, textStatus, errorThrown) {
-                                        //alert("error datepick");
+                            $.ajax({
+                                type: "POST",
+                                contentType: "application/json",
+                                data: '{"userid":"' + userid + '","typ":"' + typ + '","per":"' + per + '","sd":"' + sd + '","ed":"' + ed + '"}',
+                                url: "applyleave_hr.aspx/in_out_maternity",
+                                dataType: "json",
+                                success: function (data) {
+                                    //alert(data.d);
+                                    if (data.d == 1) {
+                                        $('#lblio').hide();
+                                        $('#pulsate-regulario').pulsate("destroy");
+                                        $('#pulsate-regulario').hide();
+                                        $('#btnreq_hr').prop("disabled", false);
                                     }
-                                });
+                                    else {
+                                        $('#pulsate-regulario').show();
+                                        $('#lblio').show();
+                                        $('#btnreq_hr').prop("disabled", true);
+                                        $('#pulsate-regulario').pulsate({
+                                            color: '#C43C35', // set the color of the pulse
+                                            reach: 20, // how far the pulse goes in px
+                                            speed: 1000, // how long one pulse takes in ms
+                                            pause: 0, // how long the pause between pulses is in ms
+                                            glow: true, // if the glow should be shown too
+                                            repeat: true, // will repeat forever if true, if given a number will repeat for that many times
+                                            onHover: false // if true only pulsate if user hovers over the element
+                                        });
+                                    }
+                                },
+                                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                                    //alert("error datepick");
+                                }
+                            });
                         },//
                         error: function (XMLHttpRequest, textStatus, errorThrown) {
                             //alert("error datepick");

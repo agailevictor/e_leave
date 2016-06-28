@@ -343,7 +343,7 @@ namespace eleave_view.hr
                         ScriptManager.RegisterStartupScript(this, GetType(), "displayalertmessage", "error1();", true);
                     }
                 }
-                else // Marriage and Annual
+                else // Marriage, Annual and Paternity
                 {
                     if (txtdate_hr.Text != "" && ddlper_hr.SelectedIndex != 0 && txtreason_hr.Text != "" && ddljobc_hr.SelectedValue.ToString() != "" && txtphone_hr.Text != "")
                     {

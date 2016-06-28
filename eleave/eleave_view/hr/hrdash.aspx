@@ -59,6 +59,11 @@
                             <div id="mrg"></div>
                         </center>
                     </div>
+                    <div id="pl1">
+                        <center>
+                            <div id="pl"></div>
+                        </center>
+                    </div>
                 </div>
             </div>
         </div>
@@ -83,7 +88,7 @@
                                     </div>
                 </div>
                 <div class="panel-body">
-                    <div class="col-sm-9">
+                    <div class="col-sm-12">
                         <div id='calendar'></div>
                     </div>
                 </div>
