@@ -126,6 +126,28 @@
             });
         }
     </script>
+    <script type="text/javascript">
+        function error_mandatory_p() {
+            swal({
+                title: 'Warning!',
+                text: 'Select 3 days Mandatory',
+                type: 'warning',
+                allowEscapeKey: false,
+                allowOutsideClick: false
+            });
+        }
+    </script>
+    <script type="text/javascript">
+        function errormandatory_m() {
+            swal({
+                title: 'Warning!',
+                text: 'Select 3 days Mandatory',
+                type: 'warning',
+                allowEscapeKey: false,
+                allowOutsideClick: false
+            });
+        }
+    </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="page-header">
@@ -340,7 +362,7 @@
                             </div>
                             <div class="form-group">
                                 <div id="pulsate-regulario" style="padding: 5px; width: 202px; display: none">
-                                    <asp:Label ID="lblio" runat="server" Text="Leave Count is insufficiant" ClientIDMode="Static" ForeColor="Black"></asp:Label>
+                                    <asp:Label ID="lblio" runat="server" ClientIDMode="Static" ForeColor="Black"></asp:Label>
                                 </div>
                             </div>
                         </div>

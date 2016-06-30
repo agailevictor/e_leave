@@ -376,6 +376,11 @@ namespace eleave_view.user
                                     clearfeilds1();
                                     ScriptManager.RegisterStartupScript(this, GetType(), "displayalertmessage", "errornotavail();", true);
                                 }
+                                else if(r1 ==5)
+                                {
+                                    clearfeilds1();
+                                    ScriptManager.RegisterStartupScript(this, GetType(), "displayalertmessage", "errormandatory_m();", true);
+                                }
                                 else
                                 {
                                     clearfeilds();
@@ -489,10 +494,15 @@ namespace eleave_view.user
                             clearfeilds1();
                             ScriptManager.RegisterStartupScript(this, GetType(), "displayalertmessage", "errornotavail();", true);
                         }
-                        else
+                        else if(r1 ==2)
                         {
                             clearfeilds();
                             ScriptManager.RegisterStartupScript(this, GetType(), "displayalertmessage", "error();", true);
+                        }
+                        else
+                        {
+                            clearfeilds();
+                            ScriptManager.RegisterStartupScript(this, GetType(), "displayalertmessage", "error_mandatory_p();", true);
                         }
                     }
                     else

@@ -550,12 +550,12 @@
                         else {
                             console.log('uncaught');
                         }
-                }
-            },
+                    }
+                },
                 error: function (XMLHttpRequest, textStatus, errorThrown) {
                     //alert("error leaves");
-            }
-        });
+                }
+            });
         }
         setInterval(leaves, 10000); // 10 seconds
     </script>
@@ -660,35 +660,45 @@
             $('#lblreq').html('N/A');
             chk = $('#ddlltype_hr option:selected').val();
             //alert(chk);
-            if (chk == 2) {
-                $('#fup_hr').show();
-                $('#dateranges').hide();
-                $('#dates').show();
-                $("#txtdate_hr").datepicker('remove');
-                startdate = "-7d";
-                enddate = "-1d";
-                datepick();
+            if (chk == 1) {
+               $('#fup_hr').hide();
+              $('#dateranges').hide();
+            $('#dates').show();
+            $("#txtdate_hr").datepicker('remove');
+            startdate = "-7d";
+            var year = new Date().getFullYear() + '';
+            enddate = "31-12-" + year;
+            datepick();
+        }
+        else if (chk == 2) {
+            $('#fup_hr').show();
+            $('#dateranges').hide();
+            $('#dates').show();
+            $("#txtdate_hr").datepicker('remove');
+            startdate = "-7d";
+            enddate = "-1d";
+            datepick();
 
-            }
-            else if (chk == 0) {
-                $("#txtdate_hr").datepicker('remove');
-                $('#fup_hr').hide();
-                $('#dateranges').hide();
-                $('#dates').show();
-                $("#ddlper_hr").prop("selectedIndex", 0);
-                $('#lblio').hide();
-                $('#pulsate-regulario').pulsate("destroy");
-                $('#pulsate-regulario').hide();
-                $('#btnreq_hr').prop("disabled", false);
-            }
-            else if (chk == 4) {
-                $('#dates').hide();
-                $('#fup_hr').hide();
-                $('#dateranges').show();
+        }
+        else if (chk == 0) {
+            $("#txtdate_hr").datepicker('remove');
+            $('#fup_hr').hide();
+            $('#dateranges').hide();
+            $('#dates').show();
+            $("#ddlper_hr").prop("selectedIndex", 0);
+            $('#lblio').hide();
+            $('#pulsate-regulario').pulsate("destroy");
+            $('#pulsate-regulario').hide();
+            $('#btnreq_hr').prop("disabled", false);
+        }
+        else if (chk == 4) {
+            $('#dates').hide();
+            $('#fup_hr').hide();
+            $('#dateranges').show();
 
-                var disableddates = []; //dd/mm/yyyy
-                var data = {};
-                var userid = '<%= Session["user_id"] %>';
+            var disableddates = []; //dd/mm/yyyy
+            var data = {};
+            var userid = '<%= Session["user_id"] %>';
                 data.uid = userid;
                 $.ajax({
                     type: "POST",
@@ -727,15 +737,15 @@
             }
             else {
                 $('#fup_hr').hide();
-                $('#dateranges').hide();
-                $('#dates').show();
-                $("#txtdate_hr").datepicker('remove');
-                startdate = "+2d";
-                var year = new Date().getFullYear() + '';
-                enddate = "31-12-" + year;
-                datepick();
+            $('#dateranges').hide();
+            $('#dates').show();
+            $("#txtdate_hr").datepicker('remove');
+            startdate = "+2d";
+            var year = new Date().getFullYear() + '';
+            enddate = "31-12-" + year;
+            datepick();
             }
-}
+            }
     </script>
     <%--To initiate date of join datepicker for user add --%>
     <script type="text/javascript">
@@ -1498,8 +1508,9 @@
                                 $('#pulsate-regulario').hide();
                                 $('#btnreq_hr').prop("disabled", false);
                             }
-                            else {
+                            else if (data.d == 3) {
                                 $('#pulsate-regulario').show();
+                                $('#lblio').html('Leave Count is insufficiant');
                                 $('#lblio').show();
                                 $('#btnreq_hr').prop("disabled", true);
                                 $('#pulsate-regulario').pulsate({
@@ -1512,6 +1523,24 @@
                                     onHover: false // if true only pulsate if user hovers over the element
                                 });
                             }
+                            else if (data.d == 4) {
+                                $('#pulsate-regulario').show();
+                                $('#lblio').html('3 Full days Mandatory');
+                                $('#lblio').show();
+                                $('#btnreq_hr').prop("disabled", true);
+                                $('#pulsate-regulario').pulsate({
+                                    color: '#C43C35', // set the color of the pulse
+                                    reach: 20, // how far the pulse goes in px
+                                    speed: 1000, // how long one pulse takes in ms
+                                    pause: 0, // how long the pause between pulses is in ms
+                                    glow: true, // if the glow should be shown too
+                                    repeat: true, // will repeat forever if true, if given a number will repeat for that many times
+                                    onHover: false // if true only pulsate if user hovers over the element
+                                });
+                            }
+                            else{
+                                console.log('uncaught mandatory');
+                            }
                         },
                         error: function (XMLHttpRequest, textStatus, errorThrown) {
                             //alert("error datepick");
@@ -1523,6 +1552,9 @@
                     sd = $('#txtsdate').val();
                     ed = $('#txtedate').val();
                     pert = $('#ddlper_hr option:selected').text();
+                    $('#lblio').hide();
+                    $('#pulsate-regulario').pulsate("destroy");
+                    $('#pulsate-regulario').hide();
                     //alert(typ);
                     //alert(per);
                     //alert(sd);
@@ -1551,8 +1583,9 @@
                                         $('#pulsate-regulario').hide();
                                         $('#btnreq_hr').prop("disabled", false);
                                     }
-                                    else {
+                                    else if (data.d == 3) {
                                         $('#pulsate-regulario').show();
+                                        $('#lblio').html('Leave Count is insufficiant');
                                         $('#lblio').show();
                                         $('#btnreq_hr').prop("disabled", true);
                                         $('#pulsate-regulario').pulsate({
@@ -1564,6 +1597,24 @@
                                             repeat: true, // will repeat forever if true, if given a number will repeat for that many times
                                             onHover: false // if true only pulsate if user hovers over the element
                                         });
+                                    }
+                                    else if (data.d == 5) {
+                                        $('#pulsate-regulario').show();
+                                        $('#lblio').html('60 Full days Mandatory');
+                                        $('#lblio').show();
+                                        $('#btnreq_hr').prop("disabled", true);
+                                        $('#pulsate-regulario').pulsate({
+                                            color: '#C43C35', // set the color of the pulse
+                                            reach: 20, // how far the pulse goes in px
+                                            speed: 1000, // how long one pulse takes in ms
+                                            pause: 0, // how long the pause between pulses is in ms
+                                            glow: true, // if the glow should be shown too
+                                            repeat: true, // will repeat forever if true, if given a number will repeat for that many times
+                                            onHover: false // if true only pulsate if user hovers over the element
+                                        });
+                                    }
+                                    else {
+
                                     }
                                 },
                                 error: function (XMLHttpRequest, textStatus, errorThrown) {
