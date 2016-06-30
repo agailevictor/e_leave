@@ -15,6 +15,7 @@ namespace eleave_c
         public int lid { get; set; }
         public string nwpwd { get; set; }
         public string cnf_nwpwd { get; set; }
+        public string role { get; set; }
         // public struct name { get; set; }
 
         public DataTable fetch_collegues()
@@ -55,5 +56,35 @@ namespace eleave_c
         //{
         //    return obj.approve_mul_hr(lid);
         //}
+
+        public DataTable fetch_mail_details_hr()
+        {
+            return obj.fetch_mail_details_hr();
+        }
+        public DataTable fetch_mail_details_cancel()
+        {
+            return obj.fetch_mail_details_cancel();
+        }
+
+        public DataTable fill_approvedleaves()
+        {
+            return obj.fill_approvedleaves();
+        }
+
+        public int forward_leave_appr()
+        {
+            return obj.forward_leave_appr(lid);
+        }
+
+        public DataTable fetch_mail_details_appr()
+        {
+            return obj.fetch_mail_details_appr();
+        }
+
+        public int forward_leave_rej()
+        {
+            return obj.forward_leave_rej(lid);
+        }
+        
     }
 }

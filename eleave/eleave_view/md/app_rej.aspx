@@ -35,6 +35,17 @@
         }
     </script>
     <script type="text/javascript">
+        function warning_fetch() {
+            swal({
+                title: 'Warning!',
+                text: 'Failed to fetch the details needed',
+                type: 'warning',
+                allowEscapeKey: false,
+                allowOutsideClick: false
+            });
+        }
+    </script>
+    <script type="text/javascript">
         function warningemail() {
             swal({
                 title: 'Warning!',

@@ -215,6 +215,12 @@
                                     <span class="selected"></span>
                                 </a>
                             </li>
+                            <li id="leaves5" runat="server">
+                                <a href="app_rej_forward_hr.aspx"><i class="icon-fast-forward"></i>
+                                    <span class="title">Forward Approved Leaves </span>
+                                    <span class="selected"></span>
+                                </a>
+                            </li>
                             <li id="leaves4" runat="server">
                                 <a href="download_all_hr.aspx"><i class="icon-download-alt"></i>
                                     <span class="title">Download Leaves </span>

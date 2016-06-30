@@ -67,7 +67,7 @@
     <script type="text/javascript">
         function errormail() {
             swal({
-                title: 'Warning!',
+                title: 'Warning!',  
                 text: 'Mail Not Sent!',
                 type: 'warning',
                 allowEscapeKey: false,

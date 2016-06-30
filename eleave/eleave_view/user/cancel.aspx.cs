@@ -14,6 +14,7 @@ namespace eleave_view.user
     public partial class cancel : System.Web.UI.Page
     {
         bus_eleave bus = new bus_eleave();
+        bus_eleave_HS bus2 = new bus_eleave_HS();
         string a, a1, toemail, mailbody, url = "http://uoa.hummingsoft.com.my:8065/e_leave/ target=\"_blank\"";
         DateTime dt1, dt2;
         int chk;
@@ -57,10 +58,14 @@ namespace eleave_view.user
         protected void fetch_mail_details_cancel()
         {
             toemail = "";
-            DataTable dt = bus.fetch_mail_details_cancel();
+            DataTable dt = bus2.fetch_mail_details_cancel();
             if (dt.Rows.Count > 0)
             {
-                toemail = dt.Rows[0][0].ToString();
+                for (int i = 0; i < dt.Rows.Count; i++)
+                {
+                    toemail = toemail + dt.Rows[i]["email"].ToString();
+                    toemail += (i < dt.Rows.Count - 1) ? ";" : string.Empty;
+                }
             }
             else
             {

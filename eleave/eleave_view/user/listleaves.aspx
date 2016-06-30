@@ -13,6 +13,17 @@
     }
     </script>
     <script type="text/javascript">
+        function errormail() {
+            swal({
+                title: 'Error!',
+                text: 'Mail Not Send',
+                type: 'error',
+                allowEscapeKey: false,
+                allowOutsideClick: false
+            });
+        }
+    </script>
+    <script type="text/javascript">
         function error() {
             swal({
                 title: 'Error!',
@@ -45,6 +56,7 @@
                 <asp:BoundField DataField="dates" HeaderText="Dates Applied" >
                 <ItemStyle CssClass="WordWrap1" />
                 </asp:BoundField>
+                <asp:BoundField DataField="period" HeaderText="Period" />
                 <asp:BoundField DataField="rej_reason" HeaderText="Reject Reason" >
                 <ItemStyle CssClass="WordWrap1" />
                 </asp:BoundField>

@@ -194,5 +194,135 @@ namespace eleave_m
                 db.disconnect();
             }
         }
+
+        public DataTable fetch_mail_details_hr()
+        {
+            try
+            {
+                cmd.Parameters.Clear();
+                cmd.CommandText = "sp_fetch_mail_details_hr_cc";
+                cmd.CommandType = CommandType.StoredProcedure;
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                DataTable dt = new DataTable();
+                cmd.Connection = db.connect();
+                da.Fill(dt);
+                return dt;
+            }
+            finally
+            {
+                db.disconnect();
+            }
+        }
+
+        public DataTable fetch_mail_details_cancel()
+        {
+            try
+            {
+                cmd.Parameters.Clear();
+                cmd.CommandText = "sp_fetch_mail_details_cancel_hr";
+                cmd.CommandType = CommandType.StoredProcedure;
+                SqlDataAdapter da = new SqlDataAdapter();
+                DataTable dt = new DataTable();
+                cmd.Connection = db.connect();
+                da.SelectCommand = cmd;
+                da.Fill(dt);
+                return dt;
+            }
+            finally
+            {
+                db.disconnect();
+            }
+        }
+
+        public DataTable fill_approvedleaves()
+        {
+            try
+            {
+                cmd.Parameters.Clear();
+                cmd.CommandText = "sp_fill_approvedleaves";
+                cmd.CommandType = CommandType.StoredProcedure;                
+                SqlDataAdapter da = new SqlDataAdapter();
+                DataTable dt = new DataTable();
+                cmd.Connection = db.connect();
+                da.SelectCommand = cmd;
+                da.Fill(dt);                
+                return dt;
+            }
+            finally
+            {
+                db.disconnect();
+            }
+        }
+
+        public int forward_leave_appr(int lid)
+        {
+            try
+            {                
+                cmd.Parameters.Clear();
+                cmd.CommandText = "sp_forward_leave";
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@lid", lid);                
+                SqlParameter outparam = new SqlParameter();
+                outparam.ParameterName = "@flag";
+                outparam.Direction = ParameterDirection.InputOutput;
+                outparam.DbType = DbType.Int32;
+                outparam.Value = 0;
+                cmd.Parameters.Add(outparam);
+                cmd.Connection = db.connect();
+                cmd.ExecuteNonQuery();
+                int res = int.Parse(cmd.Parameters["@flag"].Value.ToString());
+                return res;
+            }
+            finally
+            {
+                db.disconnect();
+            }
+        }
+
+        public DataTable fetch_mail_details_appr()
+        {
+            try
+            {
+                cmd.Parameters.Clear();
+                cmd.CommandText = "sp_fetch_mail_details_appr";
+                cmd.CommandType = CommandType.StoredProcedure;
+                SqlDataAdapter da = new SqlDataAdapter();
+                DataTable dt = new DataTable();
+                cmd.Connection = db.connect();
+                da.SelectCommand = cmd;
+                da.Fill(dt);
+                return dt;
+            }
+            finally
+            {
+                db.disconnect();
+            }
+        }
+
+        public int forward_leave_rej(int lid)
+        {
+            try
+            {
+                cmd.Parameters.Clear();
+                cmd.CommandText = "sp_forward_leave_rej";
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@lid", lid);
+                SqlParameter outparam = new SqlParameter();
+                outparam.ParameterName = "@flag";
+                outparam.Direction = ParameterDirection.InputOutput;
+                outparam.DbType = DbType.Int32;
+                outparam.Value = 0;
+                cmd.Parameters.Add(outparam);
+                cmd.Connection = db.connect();
+                cmd.ExecuteNonQuery();
+                int res = int.Parse(cmd.Parameters["@flag"].Value.ToString());
+                return res;
+            }
+            finally
+            {
+                db.disconnect();
+            }
+        }
+        
     }
 }

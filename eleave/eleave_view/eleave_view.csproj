@@ -377,6 +377,7 @@
     <Content Include="hr\adduser.aspx" />
     <Content Include="hr\applyleave_hr.aspx" />
     <Content Include="hr\approve_leave_hr.aspx" />
+    <Content Include="hr\app_rej_forward_hr.aspx" />
     <Content Include="hr\balleave.aspx" />
     <Content Include="hr\cancel_hr.aspx" />
     <Content Include="hr\cf.aspx" />
@@ -470,6 +471,13 @@
     </Compile>
     <Compile Include="hr\approve_leave_hr.aspx.designer.cs">
       <DependentUpon>approve_leave_hr.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="hr\app_rej_forward_hr.aspx.cs">
+      <DependentUpon>app_rej_forward_hr.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="hr\app_rej_forward_hr.aspx.designer.cs">
+      <DependentUpon>app_rej_forward_hr.aspx</DependentUpon>
     </Compile>
     <Compile Include="hr\balleave.aspx.cs">
       <DependentUpon>balleave.aspx</DependentUpon>
