@@ -211,7 +211,7 @@ namespace eleave_view.user
         {
             if (ddlltype.SelectedIndex != 0)
             {
-                if (int.Parse(ddlltype.SelectedValue.ToString()) == 2) // Medical 
+                if (int.Parse(ddlltype.SelectedValue.ToString()) == 2 || int.Parse(ddlltype.SelectedValue.ToString()) == 8) // Medical  or Hospitilization
                 {
                     if (fupload.HasFile)
                     {
