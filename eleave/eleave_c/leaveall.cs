@@ -12,5 +12,7 @@ namespace eleave_c
         public float sleave { get; set; }
         public float mleave { get; set; }
         public float m2leave { get; set; }
+        public float pleave { get; set; }
+        public float hleave { get; set; }
     }
 }

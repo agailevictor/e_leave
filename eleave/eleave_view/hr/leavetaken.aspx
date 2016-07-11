@@ -25,6 +25,8 @@
                 <asp:BoundField DataField="Medical" HeaderText="Medical" />
                 <asp:BoundField DataField="Marriage" HeaderText="Marriage" />
                 <asp:BoundField DataField="Maternity" HeaderText="Maternity" />
+                <asp:BoundField DataField="Paternity" HeaderText="Paternity" />
+                <asp:BoundField DataField="Hospitalization" HeaderText="Hospitalization" />
             </Columns>
         </asp:GridView>
     </div>

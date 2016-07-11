@@ -221,6 +221,11 @@ namespace eleave_c
             return data.fetchalerts();
         }
 
+        public int fetchalerts_cancel()
+        {
+            return data.fetchalerts_cancel();
+        }
+
         public int updatepwd()
         {
             return data.updatepwd(userid, oldp, newp);

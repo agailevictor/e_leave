@@ -476,13 +476,15 @@
                 url: "dash.aspx/highcharts",
                 dataType: "json",
                 success: function (data) {
-                    var cat = [], data1 = [], data2 = [], data3 = [], data4 = [];
+                    var cat = [], data1 = [], data2 = [], data3 = [], data4 = [], data5= [], data6 =[];
                     for (var i = 0; i < data.d.length; i++) {
                         cat.push(data.d[i].Name);
                         data1.push(data.d[i].aleave);
                         data2.push(data.d[i].sleave);
                         data3.push(data.d[i].mleave);
                         data4.push(data.d[i].m2leave);
+                        data5.push(data.d[i].pleave);
+                        data6.push(data.d[i].hleave);
                     }
                     $('#container').highcharts({
                         chart: {
@@ -526,7 +528,7 @@
                             column: {
                                 stacking: 'normal',
                                 dataLabels: {
-                                    enabled: true,
+                                    enabled: false,
                                     color: (Highcharts.theme && Highcharts.theme.dataLabelsColor) || 'white',
                                     style: {
                                         textShadow: '0 0 3px black'
@@ -548,6 +550,14 @@
                         {
                             name: 'Maternity Leave',
                             data: data4
+                        },
+                        {
+                            name: 'Paternity Leave',
+                            data: data5
+                        },
+                        {
+                            name: 'Hospitalization Leave',
+                            data: data6
                         }]
                     });
                 },

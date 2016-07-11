@@ -116,6 +116,12 @@
                     <!-- end: TO-DO DROPDOWN-->
                     <!-- start: NOTIFICATION DROPDOWN -->
                     <li class="dropdown">
+                        <a href="app_rej_forward_hr.aspx" class="dropdown-toggle">
+                            <i class="icon-bitbucket"></i>
+                            <span class="badge" id="info2"></span>
+                        </a>
+                    </li>
+                    <li class="dropdown">
                         <a href="status_leave_hr.aspx" class="dropdown-toggle">
                             <i class=" icon-info"></i>
                             <span class="badge" id="info1"></span>
@@ -217,7 +223,7 @@
                             </li>
                             <li id="leaves5" runat="server">
                                 <a href="app_rej_forward_hr.aspx"><i class="icon-fast-forward"></i>
-                                    <span class="title">Forward Approved Leaves </span>
+                                    <span class="title">Forward Cancel Request </span>
                                     <span class="selected"></span>
                                 </a>
                             </li>
@@ -396,7 +402,7 @@
     <!-- end: JAVASCRIPTS REQUIRED FOR THIS PAGE ONLY -->
     <script type="text/javascript">
         jQuery(document).ready(function () {
-            editleave();
+            //editleave();
             inputlimit_add1();
             inputlimit_add2();
             var startdate, enddate;
@@ -409,6 +415,7 @@
             doj();
             updateAlerts();
             updateAlerts1();
+            updateAlerts2();
             TableData.init();
             $('#lblop').hide();
             //sessiontimeout();
@@ -831,6 +838,30 @@
                     //alert("error notification badge");
                 }
             });
+        }
+        setInterval(updateAlerts, 10000); // 10 seconds
+    </script>
+
+        <script type="text/javascript">
+            function updateAlerts2() {
+                $.ajax({
+                    type: "POST",
+                    contentType: "application/json",
+                    data: "{}",
+                    url: "hrdash.aspx/updatealerts2",
+                    dataType: "json",
+                    success: function (data) {
+                        if (data.d > 0) {
+                            $('#info2').text(data.d);
+                        }
+                        else {
+                            $('#info2').text("");
+                        }
+                    },
+                    error: function (XMLHttpRequest, textStatus, errorThrown) {
+                        //alert("error notification badge");
+                    }
+                });
         }
         setInterval(updateAlerts, 10000); // 10 seconds
     </script>

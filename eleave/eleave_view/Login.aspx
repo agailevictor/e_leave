@@ -116,6 +116,7 @@
 
     <script type="text/javascript">
         function unload() {
+            if (document.getElementById("inval"))
             document.getElementById("inval").className = "no-display";
         }
     </script>

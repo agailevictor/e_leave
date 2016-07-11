@@ -52,6 +52,8 @@ namespace eleave_view.md
                 _ls.sleave = float.Parse(dt.Rows[i]["sleave"].ToString());
                 _ls.mleave = float.Parse(dt.Rows[i]["mleave"].ToString());
                 _ls.m2leave = float.Parse(dt.Rows[i]["m2leave"].ToString());
+                _ls.pleave = float.Parse(dt.Rows[i]["pleave"].ToString());
+                _ls.hleave = float.Parse(dt.Rows[i]["hleave"].ToString());
                 ls.Add(_ls);
             }
             return ls;

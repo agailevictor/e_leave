@@ -149,8 +149,8 @@ namespace eleave_view.hr
             msg.BodyFormat = MailFormat.Html;
             try
             {
-                SmtpMail.SmtpServer = "175.143.44.165";
-                //SmtpMail.SmtpServer = "192.168.1.4"; // change the ip address to this when hosting in server
+                //SmtpMail.SmtpServer = "175.143.44.165";
+                SmtpMail.SmtpServer = "192.168.1.4"; // change the ip address to this when hosting in server
                 SmtpMail.Send(msg);
                 flg = true;
             }
@@ -159,6 +159,15 @@ namespace eleave_view.hr
                 flg = false;
             }
             return flg;
+        }
+
+        protected void approved_hr_PreRender(object sender, EventArgs e)
+        {
+            if (approved_hr.Rows.Count > 0)
+            {
+                approved_hr.UseAccessibleHeader = true;
+                approved_hr.HeaderRow.TableSection = TableRowSection.TableHeader;
+            }
         }
 
         

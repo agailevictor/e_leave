@@ -294,7 +294,33 @@
         // modify table per page dropdown
     };
 
-
+    var runDataTable21 = function () {
+        //var oTable = $('#grd_forward').dataTable({
+        var oTable = $("[id$=approved_hr]").dataTable({
+            "aoColumnDefs": [{
+                'bSortable': false,
+                "aTargets": [0, 8, 9, 10, 11, 12, 13]
+            }],
+            "oLanguage": {
+                "sLengthMenu": "Show _MENU_ Rows",
+                "sSearch": "",
+                "pagingType": "full_numbers"
+            },
+            "aaSorting": [
+                [1, 'asc']
+            ],
+            "aLengthMenu": [
+                [5, 10, 15, 20, -1],
+                [5, 10, 15, 20, "All"] // change per page values here
+            ],
+            // set the initial value
+            "iDisplayLength": 5,
+        });
+        $('#approved_hr_wrapper .dataTables_filter input').addClass("form-control input-sm").attr("placeholder", "Search");
+        // modify table search input
+        $('#approved_hr_wrapper .dataTables_length select').addClass("m-wrap small");
+        // modify table per page dropdown
+    };
 
 
    return {
@@ -311,6 +337,7 @@
             runDataTable8();
             runDataTable9();
             runDataTable12();
+            //runDataTable21();
         }
     };
 }();

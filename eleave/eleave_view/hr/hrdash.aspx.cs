@@ -93,6 +93,14 @@ namespace eleave_view.hr
             return r1;
         }
 
+        [WebMethod]
+        public static int updatealerts2()
+        {
+            bus_eleave bus = new bus_eleave();
+            int r2 = bus.fetchalerts_cancel();
+            return r2;
+        }
+
         protected void checkcf()
         {
             int chk = bus.checkcf();

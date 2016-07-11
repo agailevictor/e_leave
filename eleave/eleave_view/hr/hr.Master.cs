@@ -65,6 +65,10 @@ namespace eleave_view.hr
                     leaves.Attributes["class"] = "active";
                     leaves4.Attributes["class"] = "active open";
                     break;
+                case "app_rej_forward_hr.aspx":
+                    leaves.Attributes["class"] = "active";
+                    leaves5.Attributes["class"] = "active open";
+                    break;
                 case "listuser.aspx":
                     settings.Attributes["class"] = "active";
                     settings1.Attributes["class"] = "active open";
