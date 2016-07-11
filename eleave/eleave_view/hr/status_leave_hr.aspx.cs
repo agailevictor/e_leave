@@ -8,6 +8,7 @@ using System.Data;
 using eleave_c;
 using CrystalDecisions.CrystalReports.Engine;
 using CrystalDecisions.Shared;
+using System.Web.Mail;
 
 namespace eleave_view.hr
 {
@@ -15,6 +16,10 @@ namespace eleave_view.hr
     {
         bus_eleave obj = new bus_eleave();
         ReportDocument rd = new ReportDocument();
+        bus_eleave_HS bus = new bus_eleave_HS();
+        int f;
+        CheckBox cbox;
+        public string toemail, mailbody, url = "http://uoa.hummingsoft.com.my:8065/e_leave/ target=\"_blank\"";
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -101,8 +106,19 @@ namespace eleave_view.hr
             int r = obj.cancel_leave();
             if (r == 1)
             {
-                fill_grid_hr();
-                ScriptManager.RegisterStartupScript(this, GetType(), "displayalertmessage", "success();", true);
+                fetch_hr_email();
+                mailbody = "<table  border='1' cellpadding='0' cellspacing='0' style='width: 850px; border-color: black;'><tr><td colspan='9'><br>&nbsp &nbspDear Sir / Madam,<br /><br />&nbsp&nbsp&nbsp&nbsp&nbspLeave application submitted by <b>" + Session["name"].ToString() + "</b> has been cancelled on <b>" + DateTime.Now.ToString("dd/MM/yyyy") + ".</b> The details are as follows.<br /><br /></td></tr><tr style='font-weight: 700;'></tr><tr><td colspan='9'><br/><p></p><p> &nbsp&nbsp&nbspName:   " + Session["name"].ToString() + "</p><p>&nbsp&nbsp&nbspDepartment:   " + Session["dep"].ToString() + "</p><p>&nbsp&nbsp&nbspDesignation:   " + Session["des"].ToString() + " </p><p>&nbsp&nbsp&nbspLeave Type:   " + row.Cells[1].Text.ToString() + " </p><p>&nbsp&nbsp&nbspPeriod:   " + row.Cells[4].Text.ToString() + " </p><p>&nbsp&nbsp&nbsp</p><p>&nbsp&nbsp&nbspclick<a href=" + url + "> here </a>to login into the application</p><br/></td></tr><tr></tr><td colspan='9' style='font-weight: bold' align='right'><br /><br />Regards,<br />Team e-leave</td></tr><tr><td align='center'><p style='color:blue;'> This is a system generated response. Please do not respond to this email id.</p></td></tr></table>";
+                bool check = SendWebMail(toemail, "Leave Application Notification", mailbody, "", "", "info@hummingsoft.com.my");
+                if(check == true)
+                {
+                    fill_grid_hr();
+                    ScriptManager.RegisterStartupScript(this, GetType(), "displayalertmessage", "success();", true);
+                }
+                else
+                {
+                    fill_grid_hr();
+                    ScriptManager.RegisterStartupScript(this, GetType(), "displayalertmessage", "errormail();", true);
+                }
             }
             else
             {
@@ -157,6 +173,48 @@ namespace eleave_view.hr
             int id = int.Parse(status_hr.DataKeys[row.RowIndex].Value.ToString());
             Session["eleave_id"] = id;
             Response.Redirect("~/hr/edit_leave.aspx");
+        }
+
+        public void fetch_hr_email()
+        {
+            toemail = "";            
+            DataTable dtemail = bus.fetch_mail_details_cancel();
+            if (dtemail.Rows.Count > 0)
+            {
+                for (int i = 0; i < dtemail.Rows.Count; i++)
+                {
+                    toemail = toemail + dtemail.Rows[i]["email"].ToString();
+                    toemail += (i < dtemail.Rows.Count - 1) ? ";" : string.Empty;
+                }
+            }
+            else
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "displayalertmessage", "warning();", true);
+            }
+        }
+        private bool SendWebMail(string strTo, string subj, string cont, string cc, string bcc, string strfrom)
+        {
+            bool flg = false;
+            MailMessage msg = new MailMessage();
+            msg.Body = cont;
+            msg.From = strfrom;
+            msg.To = strTo;
+            msg.Subject = subj;
+            msg.Cc = cc;
+            msg.Bcc = bcc;
+            msg.BodyFormat = MailFormat.Html;
+            try
+            {
+                //SmtpMail.SmtpServer = "175.143.44.165";
+                SmtpMail.SmtpServer = "192.168.1.4"; // change the ip address to this when hosting in server
+                SmtpMail.Send(msg);
+                flg = true;
+            }
+            catch (Exception)
+            {
+                flg = false;
+            }
+            return flg;
         }
     }
 }

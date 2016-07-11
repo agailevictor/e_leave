@@ -49,15 +49,6 @@ namespace eleave_view.hr {
         protected global::System.Web.UI.WebControls.DropDownList ddlltype_hr;
         
         /// <summary>
-        /// fupload_hr control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.FileUpload fupload_hr;
-        
-        /// <summary>
         /// txtdate_hr control.
         /// </summary>
         /// <remarks>
@@ -128,6 +119,15 @@ namespace eleave_view.hr {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtphone_hr;
+        
+        /// <summary>
+        /// fupload_hr control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.FileUpload fupload_hr;
         
         /// <summary>
         /// lblio control.

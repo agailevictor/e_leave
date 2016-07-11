@@ -528,7 +528,7 @@
             var ltype;
             ltype = $('#ddlltype option:selected').val();
             //alert(ltype);
-            if (ltype == 2) {
+            if (ltype == 2 || ltype == 8) {
                 leavevalm.init();
             }
             else if (ltype == 4) {
@@ -576,6 +576,16 @@
                 $('#dates').show();
                 $("#txtdate").datepicker('remove');
                 startdate = "-7d";
+                enddate = "-1d";
+                datepick();
+
+            }
+            else if (chk == 8) { // medical
+                $('#fup').show();
+                $('#dateranges').hide();
+                $('#dates').show();
+                $("#txtdate").datepicker('remove');
+                startdate = "-100d";
                 enddate = "-1d";
                 datepick();
 
@@ -855,7 +865,7 @@
             var data = {};
 
             if (typ != "" && per != "") {
-                if (typ == 1 || typ == 2 || typ == 3 || typ == 7) {
+                if (typ == 1 || typ == 2 || typ == 3 || typ == 7 || typ == 8) {
                     ds = $('#txtdate').val();
                     pert = $('#ddlper option:selected').text();
                     dv1 = $('#txtdate').val();

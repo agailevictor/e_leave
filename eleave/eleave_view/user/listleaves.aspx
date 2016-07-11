@@ -34,6 +34,17 @@
             });
         }
     </script>
+    <script type="text/javascript">
+        function warning() {
+            swal({
+                title: 'Error!',
+                text: 'Could Not Fetch Mail Details',
+                type: 'error',
+                allowEscapeKey: false,
+                allowOutsideClick: false
+            });
+        }
+    </script>
     <style type="text/css">
         .WordWrap1 {
             /*width: 100%;*/

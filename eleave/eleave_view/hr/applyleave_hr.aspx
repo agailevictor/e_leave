@@ -201,17 +201,7 @@
                                     ClientIDMode="Static" onchange="hideshowfup_hr()" DataTextField="leave_type"
                                     DataValueField="ltype_id">
                                 </asp:DropDownList>
-                            </div>
-                            <div class="form-group" id="fup_hr" style="display: none">
-                                <label class="control-label">
-                                    Upload File <span class="symbol required"></span>
-                                </label>
-                                <asp:FileUpload ID="fupload_hr" runat="server"
-                                    CssClass="fileupload fileupload-new" ClientIDMode="Static" />
-                                <p class="help-block">
-                                    Allowed File Type is PDF. <span class="clip-file-pdf"></span>
-                                </p>
-                            </div>
+                            </div>                            
                             <div class="form-group" id="dates">
                                 <label class="control-label">
                                     Dates <span class="symbol required"></span>
@@ -273,6 +263,16 @@
                                 <asp:TextBox ID="txtphone_hr" runat="server" CssClass="form-control"
                                     ClientIDMode="Static"></asp:TextBox>
                             </div>
+                            <div class="form-group" id="fup_hr" style="display: none">
+                                <label class="control-label">
+                                    Medical Certificate <span class="symbol required"></span>
+                                </label>
+                                <asp:FileUpload ID="fupload_hr" runat="server"
+                                    CssClass="fileupload fileupload-new" ClientIDMode="Static" />
+                                <p class="help-block">
+                                    Allowed File Type is PDF. <span class="clip-file-pdf"></span>
+                                </p>
+                            </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
@@ -292,18 +292,6 @@
                                 </label>
                             </div>
                             <div class="form-group">
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label">
-                                </label>
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label">
-                                </label>
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label">
-                                </label>
                             </div>
                             <div class="form-group">
                                 <label class="control-label">

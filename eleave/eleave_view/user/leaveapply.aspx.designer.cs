@@ -49,15 +49,6 @@ namespace eleave_view.user {
         protected global::System.Web.UI.WebControls.DropDownList ddlltype;
         
         /// <summary>
-        /// fupload control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.FileUpload fupload;
-        
-        /// <summary>
         /// txtdate control.
         /// </summary>
         /// <remarks>
@@ -128,6 +119,15 @@ namespace eleave_view.user {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtphone;
+        
+        /// <summary>
+        /// fupload control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.FileUpload fupload;
         
         /// <summary>
         /// lblio control.

@@ -118,7 +118,7 @@ namespace eleave_view.hr
             //string agaile = ddlltype_hr.SelectedValue.ToString();
             if (ddlltype_hr.SelectedIndex != 0) // serverside validation 
             {
-                if (int.Parse(ddlltype_hr.SelectedValue.ToString()) == 2)
+                if (int.Parse(ddlltype_hr.SelectedValue.ToString()) == 2 || int.Parse(ddlltype_hr.SelectedValue.ToString()) == 8)
                 {
                     if (fupload_hr.HasFile) // Medical Leave
                     {

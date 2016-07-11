@@ -208,17 +208,7 @@
                                     ClientIDMode="Static" onchange="hideshowfup()" DataTextField="leave_type"
                                     DataValueField="ltype_id">
                                 </asp:DropDownList>
-                            </div>
-                            <div class="form-group" id="fup" style="display: none">
-                                <label class="control-label">
-                                    Upload File <span class="symbol required"></span>
-                                </label>
-                                <asp:FileUpload ID="fupload" runat="server"
-                                    CssClass="fileupload fileupload-new" ClientIDMode="Static" />
-                                <p class="help-block">
-                                    Allowed File Type is PDF. <span class="clip-file-pdf"></span>
-                                </p>
-                            </div>
+                            </div>                            
                             <div class="form-group" id="dates">
                                 <label class="control-label">
                                     Dates <span class="symbol required"></span>
@@ -279,6 +269,16 @@
                                 </label>
                                 <asp:TextBox ID="txtphone" runat="server" CssClass="form-control"
                                     ClientIDMode="Static"></asp:TextBox>
+                            </div>
+                            <div class="form-group" id="fup" style="display: none">
+                                <label class="control-label">
+                                    Medical Certificate <span class="symbol required"></span>
+                                </label>
+                                <asp:FileUpload ID="fupload" runat="server"
+                                    CssClass="fileupload fileupload-new" ClientIDMode="Static" />
+                                <p class="help-block">
+                                    Allowed File Type is PDF. <span class="clip-file-pdf"></span>
+                                </p>
                             </div>
                         </div>
                         <div class="col-md-6">
@@ -347,19 +347,7 @@
                             <div class="form-group">
                                 <label class="control-label">
                                 </label>
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label">
-                                </label>
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label">
-                                </label>
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label">
-                                </label>
-                            </div>
+                            </div>                            
                             <div class="form-group">
                                 <div id="pulsate-regulario" style="padding: 5px; width: 202px; display: none">
                                     <asp:Label ID="lblio" runat="server" ClientIDMode="Static" ForeColor="Black"></asp:Label>
