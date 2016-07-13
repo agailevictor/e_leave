@@ -145,6 +145,26 @@ namespace eleave_view.user
             return dtma;
         }
 
+        public static DataTable fetchdatesmaternity_cochin(int userid)
+        {
+            bus_eleave bus = new bus_eleave();
+            bus.userid = userid;
+            DataTable dt = bus.fetch_holidays_cochin();
+            DataTable dtma = new DataTable();
+            dtma.Columns.Add("dates1");
+            for (int i = 0; i < dt.Rows.Count; i++)
+            {
+                string[] split = dt.Rows[i]["dates"].ToString().Split(',');
+                for (int j = 0; j < split.Length; j++)
+                {
+                    DataRow dr = dtma.NewRow();
+                    dr["dates1"] = split[j];
+                    dtma.Rows.Add(dr);
+                }
+            }
+            return dtma;
+        }
+
 
         protected void fill_userdetails()
         {
@@ -636,30 +656,56 @@ namespace eleave_view.user
         //  start : from here for showing clientside noti for insufficiant leaves
         [WebMethod]
 
-        public static int in_out_maternity(int userid, int typ, int per, string sd, string ed)
+        public static int in_out_maternity(int userid, int typ, int per, string sd, string ed, int region)
         {
             double ct1 = 0.0;
             bus_eleave bus1 = new bus_eleave();
-            List<DateTime> holday = new List<DateTime>();
-            DataTable dtio = fetchdatesmaternity(userid);
-            for (int i = 0; i < dtio.Rows.Count; i++)
-            {
-                holday.Add(DateTime.Parse(dtio.Rows[i]["dates1"].ToString()));
-            }
-
-            DateTime sd1 = DateTime.Parse(sd);
-            DateTime ed1 = DateTime.Parse(ed);
-            while (sd1 <= ed1)
-            {
-                if (holday.Contains(sd1))
+            if(region == 1){
+                List<DateTime> holday = new List<DateTime>();
+                DataTable dtio = fetchdatesmaternity(userid);
+                for (int i = 0; i < dtio.Rows.Count; i++)
                 {
-                    sd1 = sd1.AddDays(1);
+                    holday.Add(DateTime.Parse(dtio.Rows[i]["dates1"].ToString()));
                 }
-                else
+
+                DateTime sd1 = DateTime.Parse(sd);
+                DateTime ed1 = DateTime.Parse(ed);
+                while (sd1 <= ed1)
                 {
-                    // get the count
-                    ct1 = ct1 + 1;
-                    sd1 = sd1.AddDays(1);
+                    if (holday.Contains(sd1))
+                    {
+                        sd1 = sd1.AddDays(1);
+                    }
+                    else
+                    {
+                        // get the count
+                        ct1 = ct1 + 1;
+                        sd1 = sd1.AddDays(1);
+                    }
+                }
+            }
+            else if(region == 2){
+                List<DateTime> holday = new List<DateTime>();
+                DataTable dtio = fetchdatesmaternity_cochin(userid);
+                for (int i = 0; i < dtio.Rows.Count; i++)
+                {
+                    holday.Add(DateTime.Parse(dtio.Rows[i]["dates1"].ToString()));
+                }
+
+                DateTime sd1 = DateTime.Parse(sd);
+                DateTime ed1 = DateTime.Parse(ed);
+                while (sd1 <= ed1)
+                {
+                    if (holday.Contains(sd1))
+                    {
+                        sd1 = sd1.AddDays(1);
+                    }
+                    else
+                    {
+                        // get the count
+                        ct1 = ct1 + 1;
+                        sd1 = sd1.AddDays(1);
+                    }
                 }
             }
 
@@ -724,31 +770,64 @@ namespace eleave_view.user
 
         [WebMethod]
 
-        public static double in_out_maternity_days(int userid, int typ, int per, string sd, string ed)
+        public static double in_out_maternity_days(int userid, int typ, int per, string sd, string ed, int region)
         {
             double ct1 = 0.0, req = 0.0;
-            bus_eleave bus1 = new bus_eleave();
-            List<DateTime> holday = new List<DateTime>();
-            DataTable dtio = fetchdatesmaternity(userid);
-            for (int i = 0; i < dtio.Rows.Count; i++)
+            if (region == 1) // Malaysia
             {
-                holday.Add(DateTime.Parse(dtio.Rows[i]["dates1"].ToString()));
-            }
+                bus_eleave bus1 = new bus_eleave();
+                List<DateTime> holday = new List<DateTime>();
+                DataTable dtio = fetchdatesmaternity(userid);
+                for (int i = 0; i < dtio.Rows.Count; i++)
+                {
+                    holday.Add(DateTime.Parse(dtio.Rows[i]["dates1"].ToString()));
+                }
 
-            DateTime sd1 = DateTime.Parse(sd);
-            DateTime ed1 = DateTime.Parse(ed);
-            while (sd1 <= ed1)
+                DateTime sd1 = DateTime.Parse(sd);
+                DateTime ed1 = DateTime.Parse(ed);
+                while (sd1 <= ed1)
+                {
+                    if (holday.Contains(sd1))
+                    {
+                        sd1 = sd1.AddDays(1);
+                    }
+                    else
+                    {
+                        // get the count
+                        ct1 = ct1 + 1;
+                        sd1 = sd1.AddDays(1);
+                    }
+                }
+            }
+            else if (region == 2) //Cochin
             {
-                if (holday.Contains(sd1))
+                bus_eleave bus1 = new bus_eleave();
+                List<DateTime> holday = new List<DateTime>();
+                DataTable dtio = fetchdatesmaternity_cochin(userid);
+                for (int i = 0; i < dtio.Rows.Count; i++)
                 {
-                    sd1 = sd1.AddDays(1);
+                    holday.Add(DateTime.Parse(dtio.Rows[i]["dates1"].ToString()));
                 }
-                else
+
+                DateTime sd1 = DateTime.Parse(sd);
+                DateTime ed1 = DateTime.Parse(ed);
+                while (sd1 <= ed1)
                 {
-                    // get the count
-                    ct1 = ct1 + 1;
-                    sd1 = sd1.AddDays(1);
+                    if (holday.Contains(sd1))
+                    {
+                        sd1 = sd1.AddDays(1);
+                    }
+                    else
+                    {
+                        // get the count
+                        ct1 = ct1 + 1;
+                        sd1 = sd1.AddDays(1);
+                    }
                 }
+            }
+            else
+            {
+
             }
             req = ct1;
             return req;

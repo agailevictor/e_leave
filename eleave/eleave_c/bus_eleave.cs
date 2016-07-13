@@ -75,6 +75,11 @@ namespace eleave_c
             return data.fetch_holidaysma(userid);
 
         }
+        public DataTable fetch_holidays_cochin()
+        {
+            return data.fetch_holidays_cochin(userid);
+
+        }
 
         public DataTable fetch_leaves()
         {

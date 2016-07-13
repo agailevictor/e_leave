@@ -51,6 +51,12 @@ var leaveval = function () {
     var runLeaveFormValidator = function () {
         var form = $('#form1');
         var errorHandler = $('.errorHandler', form);
+        $.validator.addMethod('filesize', function (value, element, param) {
+            // param = size (in bytes) 
+            // element = element to validate (<input>)
+            // value = value of the element (file name)
+            return this.optional(element) || (element.files[0].size <= param)
+        }, "File must be less than 3 Mb");
         form.validate({
             rules: {
                 ctl00$ContentPlaceHolder1$ddlltype: {
@@ -73,6 +79,17 @@ var leaveval = function () {
                     digits: true,
                     minlength: 10,
                     maxlength: 10
+                },
+                ctl00$ContentPlaceHolder1$txtsdate: {
+                    required: true
+                },
+                ctl00$ContentPlaceHolder1$txtedate: {
+                    required: true
+                },
+                ctl00$ContentPlaceHolder1$fupload: {
+                    required: true,
+                    filesize: 3145728,
+                    accept: "application/pdf"
                 }
             },
             submitHandler: function (form) {

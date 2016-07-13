@@ -595,6 +595,7 @@
                     //$("input[id$='bootdate']").datepicker({
                     $('#txtdate_hr').datepicker({
                         format: "dd-mm-yyyy",
+                        keyboardNavigation: false,
                         multidate: true,
                         multidateSeparator: ",",
                         daysOfWeekDisabled: "0,6", // to disable weekends 0 - sunday, 6 - saturday
@@ -633,16 +634,18 @@
     <script type="text/javascript">
         function leavevali() {
             //  alert('entered validation');
-            var ltype = $('#ddlltype_hr option:selected').val();
-            if (ltype == 2 || ltype == 8) {
-                leavevalm_hr.init();
-            }
-            else if (ltype == 4) {
-                leavevalr.init();
-            }
-            else {
-                leaveval_hr.init();
-            }
+            //var ltype = $('#ddlltype_hr option:selected').val();
+            //if (ltype == 2 || ltype == 8) {
+            //    leavevalm_hr.init();
+            //}
+            //else if (ltype == 4) {
+            //    leavevalr.init();
+            //}
+            //else {
+            //    leaveval_hr.init();
+            //}
+            //combined all the validations into a single js file
+            leaveval_hr.init();
         }
     </script>
     <script type="text/javascript">
@@ -735,6 +738,7 @@
                         }
                         $('#txtsdate').datepicker({
                             format: "dd-mm-yyyy",
+                            keyboardNavigation: false,
                             daysOfWeekDisabled: "0,6", // to disable weekends 0 - sunday, 6 - saturday
                             startDate: sdate, // to disable previous days
                             endDate: edate, // to disable future year dates
@@ -745,6 +749,7 @@
 
                         $('#txtedate').datepicker({
                             format: "dd-mm-yyyy",
+                            keyboardNavigation: false,
                             daysOfWeekDisabled: "0,6", // to disable weekends 0 - sunday, 6 - saturday
                             startDate: sdate, // to disable previous days
                             endDate: edate, // to disable future year dates
@@ -789,6 +794,7 @@
                     }
                     $('#txtdoj').datepicker({
                         format: "dd-mm-yyyy",
+                        keyboardNavigation: false,
                         daysOfWeekDisabled: "0,6", // to disable weekends 0 - sunday, 6 - saturday
                         startDate: "today", // to disable previous days
                         endDate: edate, // to disable future year dates
@@ -1486,6 +1492,7 @@
                     $('#txtdate_hr_edit').datepicker({
                         format: "dd-mm-yyyy",
                         multidate: true,
+                        keyboardNavigation: false,
                         multidateSeparator: ",",
                         daysOfWeekDisabled: "0,6", // to disable weekends 0 - sunday, 6 - saturday
                         startDate: startdate, // to disable previous days

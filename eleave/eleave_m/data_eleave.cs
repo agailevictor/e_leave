@@ -150,6 +150,29 @@ namespace eleave_m
                 db.disconnect();
             }
         }
+        public DataTable fetch_holidays_cochin(int userid)
+        {
+            try
+            {
+                //cmd.Connection = db.disconnect();
+                cmd.Parameters.Clear();
+                cmd.CommandText = "sp_fetch_holidayscochin";
+                cmd.CommandType = CommandType.StoredProcedure;
+                //cmd.Connection = db.connect();
+                cmd.Parameters.AddWithValue("@userid", userid);
+                SqlDataAdapter da = new SqlDataAdapter();
+                DataTable dt = new DataTable();
+                cmd.Connection = db.connect();
+                da.SelectCommand = cmd;
+                da.Fill(dt);
+                //db.disconnect();
+                return dt;
+            }
+            finally
+            {
+                db.disconnect();
+            }
+        }
 
         public DataTable fetch_leaves(int userid)
         {
