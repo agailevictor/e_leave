@@ -64,7 +64,7 @@ namespace eleave_view.md
 
         protected Boolean Isenable(string ltype)
         {
-            if (ltype == "Medical")
+            if (ltype == "Medical" || ltype== "Hospitalization")
             {
                 return true;
             }

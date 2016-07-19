@@ -95,6 +95,7 @@ var leaveval = function () {
             submitHandler: function (form) {
                 errorHandler.hide();
                 form.submit();
+                $('#btnreq').prop('disabled', true);
             },
             invalidHandler: function (event, validator) { //display error alert on form submit
                 errorHandler.show();
