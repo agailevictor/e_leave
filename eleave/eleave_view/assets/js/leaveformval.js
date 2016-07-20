@@ -4,6 +4,10 @@ Author : Agaile
 Custom leave application form validation script
 */
 var leaveval = function () {
+    //var runSetmulti = function () {
+    //    $('#btnreq').prop('disabled', 'disabled');
+    //    $('#btnreq').parents('form').submit();
+    //};
     
     var runSetDefaultValidation = function () {
 
@@ -49,6 +53,7 @@ var leaveval = function () {
         });
     };
     var runLeaveFormValidator = function () {
+       
         var form = $('#form1');
         var errorHandler = $('.errorHandler', form);
         $.validator.addMethod('filesize', function (value, element, param) {
@@ -93,9 +98,16 @@ var leaveval = function () {
                 }
             },
             submitHandler: function (form) {
-                errorHandler.hide();
-                form.submit();
-                $('#btnreq').prop('disabled', true);
+                //alert('im called');
+                var multicheck = $('#chk').val();              
+                if (multicheck != 1) {
+                    errorHandler.hide();
+                    form.submit();
+                    $('#chk').val("1");
+                }
+                else {
+                }              
+                
             },
             invalidHandler: function (event, validator) { //display error alert on form submit
                 errorHandler.show();
@@ -106,6 +118,7 @@ var leaveval = function () {
         //main function to initiate template pages
         init: function () {
             runSetDefaultValidation();
+            //runSetmulti();
             runLeaveFormValidator();
            
         }

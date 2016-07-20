@@ -366,6 +366,7 @@
                     <div class="row">
                         <div class="col-md-8">
                             <asp:Button ID="btnreq" runat="server" Text="Apply" CssClass="btn btn-success" OnClientClick="leavevali()" OnClick="btnreq_Click" ClientIDMode="Static" />
+                            <input type="hidden" id="chk" />
                         </div>
                         <div class="col-md-4">
                         </div>

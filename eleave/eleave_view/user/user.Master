@@ -540,6 +540,7 @@
             //}
             // combined all the validations into one js file.
             leaveval.init();
+            //$('#btnreq').prop('disabled', 'disabled');
         }
     </script>
     <script type="text/javascript">

@@ -92,9 +92,14 @@ var leaveval_hr = function () {
                 }
             },
             submitHandler: function (form) {
-                errorHandler.hide();
-                form.submit();
-                $('#btnreq_hr').prop('disabled', true);
+                var multicheck = $('#chk').val();
+                if (multicheck != 1) {
+                    errorHandler.hide();
+                    form.submit();
+                    $('#chk').val("1");
+                }
+                else {
+                }
             },
             invalidHandler: function (event, validator) { //display error alert on form submit
                 errorHandler.show();
