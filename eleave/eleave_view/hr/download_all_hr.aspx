@@ -15,6 +15,12 @@
             return true;
         }
     </script>
+    <style type="text/css">
+        .WordWrap1 {
+            /*width: 100%;*/
+            word-break: break-all;
+        }
+    </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="page-header">
@@ -33,7 +39,9 @@
                 <asp:BoundField DataField="Name" HeaderText="Name" />
                 <asp:BoundField DataField="ltype" HeaderText="Leave Type" />
                 <asp:BoundField DataField="req_date" HeaderText="Requested Date" />
-                <asp:BoundField DataField="dates" HeaderText="Dates Applied" />
+                <asp:BoundField DataField="dates" HeaderText="Dates Applied" >
+                <ItemStyle CssClass="WordWrap1" />
+                </asp:BoundField>
                 <asp:BoundField DataField="period" HeaderText="Period" />
                 <asp:BoundField DataField="stat" HeaderText="Status" />
                 <asp:BoundField DataField="med_path" HeaderText="File Path">
