@@ -146,13 +146,41 @@ namespace eleave_view.hr
                 {
                     rd.Load(Server.MapPath(Request.ApplicationPath) + "/hr/approved.rpt");
                     rd.SetDataSource(dt);
-                    rd.ExportToHttpResponse(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat, Response, true, "Approved_Leave");
+                    // location of empty pdf file
+                    string exportPath = Server.MapPath("~/pdf/Approved_Leave.pdf");
+
+                    // export the report to pdf and write to empty pdf file inside pdf folder
+                    ExportOptions CrExportOptions;
+                    DiskFileDestinationOptions CrDiskFileDestinationOptions = new DiskFileDestinationOptions();
+                    PdfRtfWordFormatOptions CrFormatTypeOptions = new PdfRtfWordFormatOptions();
+                    CrDiskFileDestinationOptions.DiskFileName = exportPath;
+                    CrExportOptions = rd.ExportOptions;//Report document  object has to be given here
+                    CrExportOptions.ExportDestinationType = ExportDestinationType.DiskFile;
+                    CrExportOptions.ExportFormatType = ExportFormatType.PortableDocFormat;
+                    CrExportOptions.DestinationOptions = CrDiskFileDestinationOptions;
+                    CrExportOptions.FormatOptions = CrFormatTypeOptions;
+                    rd.Export();
+                    Response.Redirect("~/ViewPdf.aspx?reportFile=" + exportPath);
                 }
                 else if(reg==1)
                 {
                     rd.Load(Server.MapPath(Request.ApplicationPath) + "/hr/approved_malaysia.rpt");
                     rd.SetDataSource(dt);
-                    rd.ExportToHttpResponse(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat, Response, true, "Approved_Leave");
+                    // location of empty pdf file
+                    string exportPath = Server.MapPath("~/pdf/Approved_Leave.pdf");
+
+                    // export the report to pdf and write to empty pdf file inside pdf folder
+                    ExportOptions CrExportOptions;
+                    DiskFileDestinationOptions CrDiskFileDestinationOptions = new DiskFileDestinationOptions();
+                    PdfRtfWordFormatOptions CrFormatTypeOptions = new PdfRtfWordFormatOptions();
+                    CrDiskFileDestinationOptions.DiskFileName = exportPath;
+                    CrExportOptions = rd.ExportOptions;//Report document  object has to be given here
+                    CrExportOptions.ExportDestinationType = ExportDestinationType.DiskFile;
+                    CrExportOptions.ExportFormatType = ExportFormatType.PortableDocFormat;
+                    CrExportOptions.DestinationOptions = CrDiskFileDestinationOptions;
+                    CrExportOptions.FormatOptions = CrFormatTypeOptions;
+                    rd.Export();
+                    Response.Redirect("~/ViewPdf.aspx?reportFile=" + exportPath);
                 }
             }
         }

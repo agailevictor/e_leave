@@ -8,6 +8,7 @@ using System.Data;
 using eleave_c;
 using CrystalDecisions.CrystalReports.Engine;
 using CrystalDecisions.Shared;
+using System.Net;
 
 namespace eleave_view.hr
 {
@@ -15,6 +16,7 @@ namespace eleave_view.hr
     {
         bus_eleave bus = new bus_eleave();
         ReportDocument rd = new ReportDocument();
+        WebClient client = new WebClient();
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -78,16 +80,72 @@ namespace eleave_view.hr
                 {
                     rd.Load(Server.MapPath(Request.ApplicationPath) + "/user/approved.rpt");
                     rd.SetDataSource(dt);
-                    rd.ExportToHttpResponse(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat, Response, true, "Approved_Leave");
+                    
+                    // location of empty pdf file
+                    string exportPath = Server.MapPath("~/pdf/Approved_Leave.pdf");
+
+                    // export the report to pdf and write to empty pdf file inside pdf folder
+                    ExportOptions CrExportOptions;
+                    DiskFileDestinationOptions CrDiskFileDestinationOptions = new DiskFileDestinationOptions();
+                    PdfRtfWordFormatOptions CrFormatTypeOptions = new PdfRtfWordFormatOptions();
+                    CrDiskFileDestinationOptions.DiskFileName = exportPath;
+                    CrExportOptions = rd.ExportOptions;//Report document  object has to be given here
+                    CrExportOptions.ExportDestinationType = ExportDestinationType.DiskFile;
+                    CrExportOptions.ExportFormatType = ExportFormatType.PortableDocFormat;
+                    CrExportOptions.DestinationOptions = CrDiskFileDestinationOptions;
+                    CrExportOptions.FormatOptions = CrFormatTypeOptions;
+                    rd.Export();
+                    Response.Redirect("~/ViewPdf.aspx?reportFile=" + exportPath);
                 }
                 else if (reg == 1)
                 {
                     rd.Load(Server.MapPath(Request.ApplicationPath) + "/user/approved_malaysia.rpt");
-                    rd.SetDataSource(dt);
-                    rd.ExportToHttpResponse(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat, Response, true, "Approved_Leave");
+                    rd.SetDataSource(dt);                    
+
+                    // location of empty pdf file
+                    string exportPath = Server.MapPath("~/pdf/Approved_Leave.pdf");
+
+                    // export the report to pdf and write to empty pdf file inside pdf folder
+                    ExportOptions CrExportOptions;
+                    DiskFileDestinationOptions CrDiskFileDestinationOptions = new DiskFileDestinationOptions();
+                    PdfRtfWordFormatOptions CrFormatTypeOptions = new PdfRtfWordFormatOptions();
+                    CrDiskFileDestinationOptions.DiskFileName = exportPath;
+                    CrExportOptions = rd.ExportOptions;//Report document  object has to be given here
+                    CrExportOptions.ExportDestinationType = ExportDestinationType.DiskFile;
+                    CrExportOptions.ExportFormatType = ExportFormatType.PortableDocFormat;
+                    CrExportOptions.DestinationOptions = CrDiskFileDestinationOptions;
+                    CrExportOptions.FormatOptions = CrFormatTypeOptions;
+                    rd.Export();
+                    Response.Redirect("~/ViewPdf.aspx?reportFile=" + exportPath);
                 }
             }
         }
 
+        protected void med_lnk_Click(object sender, EventArgs e)
+        {                       
+            LinkButton lnk = sender as LinkButton;
+            GridViewRow grow = lnk.NamingContainer as GridViewRow;            
+            string filePath = grow.Cells[8].Text.ToString();
+            string bill_path = Server.MapPath(filePath);            
+            Byte[] buffer = client.DownloadData(bill_path);
+            if (buffer != null)
+            {
+                Response.ContentType = "application/pdf";
+                Response.AddHeader("content-length", buffer.Length.ToString());
+                Response.BinaryWrite(buffer);
+            }
+        }
+
+        protected Boolean Isenable(string ltype)
+        {
+            if (ltype == "Medical" || ltype == "Hospitalization")
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
     }
 }

@@ -428,6 +428,7 @@
     <Content Include="user\update_profile.aspx" />
     <Content Include="user\WebForm1.aspx" />
     <Content Include="user\WebForm2.aspx" />
+    <Content Include="ViewPdf.aspx" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -893,6 +894,13 @@
     <Compile Include="user\WebForm2.aspx.designer.cs">
       <DependentUpon>WebForm2.aspx</DependentUpon>
     </Compile>
+    <Compile Include="ViewPdf.aspx.cs">
+      <DependentUpon>ViewPdf.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ViewPdf.aspx.designer.cs">
+      <DependentUpon>ViewPdf.aspx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="assets\fonts\fonts\clip-font.eot" />
@@ -922,6 +930,7 @@
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="pdf\" />
     <Folder Include="uploads\" />
   </ItemGroup>
   <ItemGroup>

@@ -54,6 +54,15 @@
         }
     </style>
 
+    <script type="text/javascript">
+        function PostToNewWindow() {
+            originalTarget = document.forms[0].target;
+            document.forms[0].target = '_blank';
+            window.setTimeout("document.forms[0].target=originalTarget;", 300);
+            return true;
+        }
+    </script>
+
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
@@ -95,8 +104,8 @@
                 <asp:TemplateField HeaderText="Download">
                     <ItemTemplate>
                         <asp:LinkButton ID="dwnld_hr" runat="server"
-                            Visible='<%# Isenable((string)Eval("stat")) %>' CssClass="clip-download-2"
-                            OnClick="LinkButton1_Click"></asp:LinkButton>
+                            Visible='<%# Isenable((string)Eval("stat")) %>' CssClass="icon-external-link"
+                            OnClick="LinkButton1_Click" OnClientClick="PostToNewWindow()"></asp:LinkButton>
                     </ItemTemplate>
                 </asp:TemplateField>
             </Columns>

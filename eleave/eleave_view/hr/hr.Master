@@ -421,7 +421,7 @@
             //sessiontimeout();
             getdoj_euser();
             chkcf();
-         
+            var newtab = 'target=_blank';
         });
         $(document).on("keydown", function (e) {
             if (e.which === 8 && !$(e.target).is("input, textarea")) {

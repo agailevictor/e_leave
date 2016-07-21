@@ -6,6 +6,15 @@
             display: none;
         }
     </style>
+
+    <script type="text/javascript">
+        function PostToNewWindow() {
+            originalTarget = document.forms[0].target;
+            document.forms[0].target = '_blank';
+            window.setTimeout("document.forms[0].target=originalTarget;", 300);
+            return true;
+        }
+    </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="page-header">
@@ -27,13 +36,21 @@
                 <asp:BoundField DataField="dates" HeaderText="Dates Applied" />
                 <asp:BoundField DataField="period" HeaderText="Period" />
                 <asp:BoundField DataField="stat" HeaderText="Status" />
+                <asp:BoundField DataField="med_path" HeaderText="File Path">
+                    <HeaderStyle CssClass="hidden"></HeaderStyle>
+                    <ItemStyle CssClass="hidden"></ItemStyle>
+                </asp:BoundField>
+                <asp:TemplateField HeaderText="Medical Certificate">
+                    <ItemTemplate>
+                        <asp:LinkButton ID="med_lnk" runat="server" CssClass="icon-external-link" Visible='<%# Isenable((string)Eval("ltype")) %>' OnClientClick="PostToNewWindow()" OnClick="med_lnk_Click" ToolTip="Medical Certificate" ></asp:LinkButton>
+                    </ItemTemplate>
+                </asp:TemplateField>
                 <asp:TemplateField HeaderText="Download">
                     <ItemTemplate>
-                        <asp:LinkButton ID="lnkdwnld_all" runat="server" CssClass="clip-download-2" ToolTip="Download" OnClick="lnkdwnld_all_Click"></asp:LinkButton>
+                        <asp:LinkButton ID="lnkdwnld_all" runat="server" CssClass="icon-external-link" ToolTip="Download" OnClick="lnkdwnld_all_Click" OnClientClick="PostToNewWindow()"></asp:LinkButton>
                     </ItemTemplate>
                 </asp:TemplateField>
             </Columns>
-
         </asp:GridView>
     </div>
 </asp:Content>

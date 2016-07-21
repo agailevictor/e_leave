@@ -51,6 +51,16 @@
             word-break: break-all;
         }
     </style>
+    
+    <script type="text/javascript">
+        function PostToNewWindow() {
+            originalTarget = document.forms[0].target;
+            document.forms[0].target = '_blank';
+            window.setTimeout("document.forms[0].target=originalTarget;", 300);
+            return true;
+        }
+    </script>
+
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="page-header">                            
@@ -79,7 +89,7 @@
                 </asp:TemplateField>
                 <asp:TemplateField HeaderText="Download">
                     <ItemTemplate>
-                        <asp:LinkButton ID="lnldownload" runat="server" CssClass="clip-download-2" OnClick="lnldownload_Click" ToolTip="Download" Visible='<%# Isenable((string)Eval("stat")) %>'></asp:LinkButton>
+                        <asp:LinkButton ID="lnldownload" runat="server" CssClass="icon-external-link" OnClick="lnldownload_Click" ToolTip="Download" Visible='<%# Isenable((string)Eval("stat")) %>' OnClientClick="PostToNewWindow()"></asp:LinkButton>
                     </ItemTemplate>
                 </asp:TemplateField>
             </Columns>

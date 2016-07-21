@@ -89,6 +89,16 @@
             word-break: break-all;
         }
     </style>
+
+    <%--TO view medical certificate--%>
+    <script type="text/javascript">
+        function PostToNewWindow() {
+            originalTarget = document.forms[0].target;
+            document.forms[0].target = '_blank';
+            window.setTimeout("document.forms[0].target=originalTarget;", 300);
+            return true;
+        }
+    </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
@@ -127,7 +137,7 @@
                 </asp:BoundField>
                 <asp:TemplateField HeaderText="Medical Certificate">
                     <ItemTemplate>
-                        <asp:LinkButton ID="lnk_dwn" runat="server" Visible='<%# Isenable((string)Eval("ltype")) %>' CssClass="clip-download-2" OnClick="lnk_dwn_Click" CausesValidation="False"></asp:LinkButton>
+                        <asp:LinkButton ID="lnk_dwn" runat="server" Visible='<%# Isenable((string)Eval("ltype")) %>' CssClass="icon-external-link" ToolTip="Medical Certificate" OnClick="lnk_dwn_Click" CausesValidation="False" OnClientClick="PostToNewWindow()"></asp:LinkButton>
                     </ItemTemplate>
                 </asp:TemplateField>
                 <asp:BoundField DataField="email" HeaderText="Email" HeaderStyle-CssClass="hidden" ItemStyle-CssClass="hidden">

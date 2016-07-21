@@ -7,6 +7,7 @@ using System.Web.UI.WebControls;
 using System.Data;
 using eleave_c;
 using System.Web.Mail;
+using System.Net;
 
 namespace eleave_view.hr
 {
@@ -14,6 +15,7 @@ namespace eleave_view.hr
     {
         bus_eleave bus = new bus_eleave();
         bus_eleave_HS obj = new bus_eleave_HS();
+        WebClient client = new WebClient();
         int f;
         CheckBox cbox;
         public string toemail, mailbody, url = "http://uoa.hummingsoft.com.my:8065/e_leave/ target=\"_blank\"";
@@ -203,12 +205,7 @@ namespace eleave_view.hr
             {
                 fillleavesfr();
                 ScriptManager.RegisterStartupScript(this, GetType(), "displayalertmessage", "error();", true);
-            }
-            //}
-            //else
-            //{
-            //    ScriptManager.RegisterStartupScript(this, GetType(), "displayalertmessage", "warning2();", true);
-            //}
+            }            
         }
 
         protected Boolean Isenable(string ltype)
@@ -228,11 +225,15 @@ namespace eleave_view.hr
 
             LinkButton lnkbtn = sender as LinkButton;
             GridViewRow gvrow = lnkbtn.NamingContainer as GridViewRow;
-            string filePath = gvrow.Cells[9].Text.ToString();
-            Response.ContentType = "application/pdf";
-            Response.AddHeader("Content-Disposition", "attachment;filename=\"" + filePath + "\"");
-            Response.TransmitFile(Server.MapPath(filePath));
-            Response.End();
+            string medPath = gvrow.Cells[9].Text.ToString();
+            string med_path = Server.MapPath(medPath);
+            Byte[] buffer = client.DownloadData(med_path);
+            if (buffer != null)
+            {
+                Response.ContentType = "application/pdf";
+                Response.AddHeader("content-length", buffer.Length.ToString());
+                Response.BinaryWrite(buffer);
+            }
         }
 
         protected void grd_forward_PreRender(object sender, EventArgs e)
