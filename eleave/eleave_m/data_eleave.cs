@@ -273,7 +273,8 @@ namespace eleave_m
             {
                 //cmd.Connection = db.disconnect();
                 cmd.Parameters.Clear();
-                cmd.CommandText = "sp_fetch_leavetypes";
+                //cmd.CommandText = "sp_fetch_leavetypes";
+                cmd.CommandText = "sp_fetch_leaves_available";
                 //cmd.CommandText = "sp_fill_leavetype_test";
                 cmd.CommandType = CommandType.StoredProcedure;
                 //cmd.Connection = db.connect();
