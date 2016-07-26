@@ -316,10 +316,20 @@ namespace eleave_view.user
                 else if (int.Parse(ddlltype.SelectedValue.ToString()) == 4) // Maternity Leave (Only Women)
                 {
                     List<DateTime> holiday = new List<DateTime>();
-                    DataTable dt2 = fetchdatesmaternity(int.Parse(Session["user_id"].ToString()));
+                    DataTable dt2 = new DataTable();
+                    if(int.Parse(Session["region"].ToString()) == 1){
+                    dt2 = fetchdatesmaternity(int.Parse(Session["user_id"].ToString()));
                     for (int i = 0; i < dt2.Rows.Count; i++)
                     {
                         holiday.Add(DateTime.Parse(dt2.Rows[i]["dates1"].ToString()));
+                    }
+                    }
+                    else if(int.Parse(Session["region"].ToString()) == 2){
+                    dt2 = fetchdatesmaternity_cochin(int.Parse(Session["user_id"].ToString()));
+                    for (int i = 0; i < dt2.Rows.Count; i++)
+                    {
+                        holiday.Add(DateTime.Parse(dt2.Rows[i]["dates1"].ToString()));
+                    }
                     }
 
                     if (txtsdate.Text != "" && txtedate.Text != "" & ddlper.SelectedValue.ToString() != "" && txtreason.Text != "" && ddljobc.SelectedValue.ToString() != "" && txtphone.Text != "")
