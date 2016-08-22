@@ -677,7 +677,8 @@
             chk = $('#ddlltype_hr option:selected').val();
             //alert(chk);
             if (chk == 1) {
-               $('#fup_hr').hide();
+                $('#fup_hr').hide();
+                $("#ddlper_hr option[value='2']").removeAttr('disabled');
               $('#dateranges').hide();
             $('#dates').show();
             $("#txtdate_hr").datepicker('remove');
@@ -688,6 +689,7 @@
         }
         else if (chk == 2) {
             $('#fup_hr').show();
+            $("#ddlper_hr option[value='2']").removeAttr('disabled');
             $('#dateranges').hide();
             $('#dates').show();
             $("#txtdate_hr").datepicker('remove');
@@ -696,8 +698,20 @@
             datepick();
 
         }
+        else if (chk == 7) {
+            $('#fup_hr').hide();
+            $("#ddlper_hr option[value='2']").attr('disabled', 'disabled');
+            $('#dateranges').hide();
+            $('#dates').show();
+            $("#txtdate_hr").datepicker('remove');
+            startdate = "+2d";
+            var year = new Date().getFullYear() + '';
+            enddate = "31-12-" + year;
+            datepick();
+            }
         else if (chk == 8) {
             $('#fup_hr').show();
+            $("#ddlper_hr option[value='2']").removeAttr('disabled');
             $('#dateranges').hide();
             $('#dates').show();
             $("#txtdate_hr").datepicker('remove');
@@ -708,6 +722,7 @@
         }
         else if (chk == 0) {
             $("#txtdate_hr").datepicker('remove');
+            $("#ddlper_hr option[value='2']").removeAttr('disabled');
             $('#fup_hr').hide();
             $('#dateranges').hide();
             $('#dates').show();
@@ -721,7 +736,7 @@
             $('#dates').hide();
             $('#fup_hr').hide();
             $('#dateranges').show();
-
+            $("#ddlper_hr option[value='2']").attr('disabled', 'disabled');
             var disableddates = []; //dd/mm/yyyy
             var data = {};
             var userid = '<%= Session["user_id"] %>';
@@ -765,6 +780,7 @@
             }
             else {
                 $('#fup_hr').hide();
+                $("#ddlper_hr option[value='2']").removeAttr('disabled');
             $('#dateranges').hide();
             $('#dates').show();
             $("#txtdate_hr").datepicker('remove');

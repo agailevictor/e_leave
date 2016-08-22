@@ -597,6 +597,17 @@
                 datepick();
 
             }
+            else if (chk == 7) {
+                $('#fup').hide();
+                $('#dateranges').hide();
+                $('#dates').show();
+                $("#txtdate").datepicker('remove');
+                $("#ddlper option[value='2']").attr('disabled', 'disabled');
+                startdate = "+2d";
+                var year = new Date().getFullYear() + '';
+                enddate = "31-12-" + year;
+                datepick();
+            }
             else if (chk == 0) { // select
                 $("#txtdate").datepicker('remove');
                 $("#ddlper option[value='2']").removeAttr('disabled');
@@ -661,6 +672,7 @@
                 $('#dateranges').hide();
                 $('#dates').show();
                 $("#txtdate").datepicker('remove');
+                $("#ddlper option[value='2']").removeAttr('disabled');
                 startdate = "+2d";
                 var year = new Date().getFullYear() + '';
                 enddate = "31-12-" + year;
