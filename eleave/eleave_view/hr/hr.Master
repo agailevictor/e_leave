@@ -951,6 +951,7 @@
             if (dep == 0) {
                 $('#ddldesi').empty();
                 $('#ddlgrade').empty();
+                $('#ddlgrade').val("");
                 $("#txtcategory").val("");
             }
             else {
@@ -985,6 +986,7 @@
             grade = $('#ddldesi option:selected').val();
             if (grade == 0) {
                 $('#ddlgrade').empty();
+                $('#ddlgrade').val("");
                 $("#txtcategory").val("");
             }
             else {
