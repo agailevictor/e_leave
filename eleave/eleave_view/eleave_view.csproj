@@ -428,6 +428,7 @@
     <Content Include="user\update_profile.aspx" />
     <Content Include="user\WebForm1.aspx" />
     <Content Include="user\WebForm2.aspx" />
+    <Content Include="user\WebForm3.aspx" />
     <Content Include="ViewPdf.aspx" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -893,6 +894,13 @@
     </Compile>
     <Compile Include="user\WebForm2.aspx.designer.cs">
       <DependentUpon>WebForm2.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="user\WebForm3.aspx.cs">
+      <DependentUpon>WebForm3.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="user\WebForm3.aspx.designer.cs">
+      <DependentUpon>WebForm3.aspx</DependentUpon>
     </Compile>
     <Compile Include="ViewPdf.aspx.cs">
       <DependentUpon>ViewPdf.aspx</DependentUpon>
