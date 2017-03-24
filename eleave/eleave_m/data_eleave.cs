@@ -16,7 +16,6 @@ namespace eleave_m
         {
             try
             {
-                //cmd.Connection = db.disconnect();
                 cmd.Parameters.Clear();
                 cmd.CommandText = "sp_checklogin";
                 cmd.CommandType = CommandType.StoredProcedure;
@@ -31,7 +30,6 @@ namespace eleave_m
                 cmd.Connection = db.connect();
                 cmd.ExecuteNonQuery();
                 int res = int.Parse(cmd.Parameters["@flag"].Value.ToString());
-                //cmd.Dispose();
                 return res;
             }
             finally
@@ -44,7 +42,6 @@ namespace eleave_m
         {
             try
             {
-                //cmd.Connection = db.disconnect();
                 cmd.Parameters.Clear();
                 cmd.CommandText = "sp_fetch_user_details";
                 cmd.CommandType = CommandType.StoredProcedure;
@@ -54,7 +51,6 @@ namespace eleave_m
                 cmd.Connection = db.connect();
                 da.SelectCommand = cmd;
                 da.Fill(dt);
-                //db.disconnect();
                 return dt;
             }
             finally
@@ -66,7 +62,6 @@ namespace eleave_m
         {
             try
             {
-                //cmd.Connection = db.disconnect();
                 cmd.Parameters.Clear();
                 cmd.CommandText = "sp_fetch_holidays";
                 cmd.CommandType = CommandType.StoredProcedure;
@@ -88,7 +83,6 @@ namespace eleave_m
         {
             try
             {
-                //cmd.Connection = db.disconnect();
                 cmd.Parameters.Clear();
                 cmd.CommandText = "sp_fetch_holidays_cal";
                 cmd.CommandType = CommandType.StoredProcedure;
@@ -110,7 +104,6 @@ namespace eleave_m
         {
             try
             {
-                //cmd.Connection = db.disconnect();
                 cmd.Parameters.Clear();
                 cmd.CommandText = "sp_fetch_holidays1";
                 cmd.CommandType = CommandType.StoredProcedure;
@@ -131,18 +124,15 @@ namespace eleave_m
         {
             try
             {
-                //cmd.Connection = db.disconnect();
                 cmd.Parameters.Clear();
                 cmd.CommandText = "sp_fetch_holidaysma";
                 cmd.CommandType = CommandType.StoredProcedure;
-                //cmd.Connection = db.connect();
                 cmd.Parameters.AddWithValue("@userid", userid);
                 SqlDataAdapter da = new SqlDataAdapter();
                 DataTable dt = new DataTable();
                 cmd.Connection = db.connect();
                 da.SelectCommand = cmd;
                 da.Fill(dt);
-                //db.disconnect();
                 return dt;
             }
             finally
@@ -154,18 +144,15 @@ namespace eleave_m
         {
             try
             {
-                //cmd.Connection = db.disconnect();
                 cmd.Parameters.Clear();
                 cmd.CommandText = "sp_fetch_holidayscochin";
                 cmd.CommandType = CommandType.StoredProcedure;
-                //cmd.Connection = db.connect();
                 cmd.Parameters.AddWithValue("@userid", userid);
                 SqlDataAdapter da = new SqlDataAdapter();
                 DataTable dt = new DataTable();
                 cmd.Connection = db.connect();
                 da.SelectCommand = cmd;
                 da.Fill(dt);
-                //db.disconnect();
                 return dt;
             }
             finally
@@ -178,7 +165,6 @@ namespace eleave_m
         {
             try
             {
-                //cmd.Connection = db.disconnect();
                 cmd.Parameters.Clear();
                 cmd.CommandText = "sp_fetch_leaves";
                 cmd.CommandType = CommandType.StoredProcedure;
@@ -188,7 +174,6 @@ namespace eleave_m
                 cmd.Connection = db.connect();
                 da.SelectCommand = cmd;
                 da.Fill(dt);
-               // db.disconnect();
                 return dt;
             }
             finally
@@ -201,7 +186,6 @@ namespace eleave_m
         {
             try
             {
-                //cmd.Connection = db.disconnect();
                 cmd.Parameters.Clear();
                 cmd.CommandText = "sp_fill_leaves_user";
                 cmd.CommandType = CommandType.StoredProcedure;
@@ -211,7 +195,6 @@ namespace eleave_m
                 cmd.Connection = db.connect();
                 da.SelectCommand = cmd;
                 da.Fill(dt);
-                //db.disconnect();
                 return dt;
             }
             finally
@@ -224,7 +207,6 @@ namespace eleave_m
         {
             try
             {
-               // cmd.Connection = db.disconnect();
                 cmd.Parameters.Clear();
                 cmd.CommandText = "sp_download_approved_leaves";
                 cmd.CommandType = CommandType.StoredProcedure;
@@ -234,7 +216,6 @@ namespace eleave_m
                 cmd.Connection = db.connect();
                 da.SelectCommand = cmd;
                 da.Fill(dt);
-                //db.disconnect();
                 return dt;
             }
             finally
@@ -247,18 +228,15 @@ namespace eleave_m
         {
             try
             {
-                //cmd.Connection = db.disconnect();
                 cmd.Parameters.Clear();
                 cmd.CommandText = "sp_fetch_details";
                 cmd.CommandType = CommandType.StoredProcedure;
-                //cmd.Connection = db.connect();
                 cmd.Parameters.AddWithValue("@userid", userid);
                 SqlDataAdapter da = new SqlDataAdapter();
                 DataTable dt = new DataTable();
                 cmd.Connection = db.connect();
                 da.SelectCommand = cmd;
                 da.Fill(dt);
-                //db.disconnect();
                 return dt;
             }
             finally
@@ -271,20 +249,15 @@ namespace eleave_m
         {
             try
             {
-                //cmd.Connection = db.disconnect();
                 cmd.Parameters.Clear();
-                //cmd.CommandText = "sp_fetch_leavetypes";
                 cmd.CommandText = "sp_fetch_leaves_available";
-                //cmd.CommandText = "sp_fill_leavetype_test";
                 cmd.CommandType = CommandType.StoredProcedure;
-                //cmd.Connection = db.connect();
                 cmd.Parameters.AddWithValue("@userid", userid);
                 SqlDataAdapter da = new SqlDataAdapter();
                 DataTable dt = new DataTable();
                 cmd.Connection = db.connect();
                 da.SelectCommand = cmd;
                 da.Fill(dt);
-                //db.disconnect();
                 return dt;
             }
             finally
@@ -297,17 +270,14 @@ namespace eleave_m
         {
             try
             {
-                //cmd.Connection = db.disconnect();
                 cmd.Parameters.Clear();
                 cmd.CommandText = "sp_fetch_period";
                 cmd.CommandType = CommandType.StoredProcedure;
-                //cmd.Connection = db.connect();
                 SqlDataAdapter da = new SqlDataAdapter();
                 DataTable dt = new DataTable();
                 cmd.Connection = db.connect();
                 da.SelectCommand = cmd;
                 da.Fill(dt);
-                //db.disconnect();
                 return dt;
             }
             finally
@@ -320,18 +290,15 @@ namespace eleave_m
         {
             try
             {
-                //cmd.Connection = db.disconnect();
                 cmd.Parameters.Clear();
                 cmd.CommandText = "sp_fetch_collegues";
                 cmd.CommandType = CommandType.StoredProcedure;
-                //cmd.Connection = db.connect();
                 cmd.Parameters.AddWithValue("@userid", userid);
                 SqlDataAdapter da = new SqlDataAdapter();
                 DataTable dt = new DataTable();
                 cmd.Connection = db.connect();
                 da.SelectCommand = cmd;
                 da.Fill(dt);
-                //db.disconnect();
                 return dt;
             }
             finally
@@ -344,11 +311,9 @@ namespace eleave_m
         {
             try
             {
-                //cmd.Connection = db.disconnect();
                 cmd.Parameters.Clear();
                 cmd.CommandText = "sp_insert_med";
                 cmd.CommandType = CommandType.StoredProcedure;
-                //cmd.Connection = db.connect();
                 cmd.Parameters.AddWithValue("@userid", userid);
                 cmd.Parameters.AddWithValue("@ltype", ltype);
                 cmd.Parameters.AddWithValue("@dates", dates);
@@ -367,7 +332,6 @@ namespace eleave_m
                 cmd.Connection = db.connect();
                 cmd.ExecuteNonQuery();
                 int res = int.Parse(cmd.Parameters["@flag"].Value.ToString());
-                //cmd.Dispose();
                 return res;
             }
             finally
@@ -380,11 +344,9 @@ namespace eleave_m
         {
             try
             {
-                //cmd.Connection = db.disconnect();
                 cmd.Parameters.Clear();
                 cmd.CommandText = "sp_check_avail_chk";
                 cmd.CommandType = CommandType.StoredProcedure;
-                //cmd.Connection = db.connect();
                 cmd.Parameters.AddWithValue("@userid", userid);
                 cmd.Parameters.AddWithValue("@ltype", ltype);
                 cmd.Parameters.AddWithValue("@dates", dates);
@@ -402,7 +364,6 @@ namespace eleave_m
                 cmd.Connection = db.connect();
                 cmd.ExecuteNonQuery();
                 int res = int.Parse(cmd.Parameters["@flag"].Value.ToString());
-                //cmd.Dispose();
                 return res;
             }
             finally
@@ -415,11 +376,9 @@ namespace eleave_m
         {
             try
             {
-                //cmd.Connection = db.disconnect();
                 cmd.Parameters.Clear();
                 cmd.CommandText = "sp_insert_oleaves";
                 cmd.CommandType = CommandType.StoredProcedure;
-                //cmd.Connection = db.connect();
                 cmd.Parameters.AddWithValue("@userid", userid);
                 cmd.Parameters.AddWithValue("@ltype", ltype);
                 cmd.Parameters.AddWithValue("@dates", dates);
@@ -437,7 +396,6 @@ namespace eleave_m
                 cmd.Connection = db.connect();
                 cmd.ExecuteNonQuery();
                 int res = int.Parse(cmd.Parameters["@flag"].Value.ToString());
-                //cmd.Dispose();
                 return res;
             }
             finally
@@ -450,11 +408,9 @@ namespace eleave_m
         {
             try
             {
-                //cmd.Connection = db.disconnect();
                 cmd.Parameters.Clear();
                 cmd.CommandText = "sp_cancel_leave";
                 cmd.CommandType = CommandType.StoredProcedure;
-                //cmd.Connection = db.connect();
                 cmd.Parameters.AddWithValue("@lid", lid);
                 SqlParameter outparam = new SqlParameter();
                 outparam.ParameterName = "@flag";
@@ -465,7 +421,6 @@ namespace eleave_m
                 cmd.Connection = db.connect();
                 cmd.ExecuteNonQuery();
                 int res = int.Parse(cmd.Parameters["@flag"].Value.ToString());
-                //cmd.Dispose();
                 return res;
             }
             finally
@@ -478,18 +433,15 @@ namespace eleave_m
         {
             try
             {
-                //cmd.Connection = db.disconnect();
                 cmd.Parameters.Clear();
                 cmd.CommandText = "sp_fetch_approved_leaves";
                 cmd.CommandType = CommandType.StoredProcedure;
-                //cmd.Connection = db.connect();
                 cmd.Parameters.AddWithValue("@userid", userid);
                 SqlDataAdapter da = new SqlDataAdapter();
                 DataTable dt = new DataTable();
                 cmd.Connection = db.connect();
                 da.SelectCommand = cmd;
                 da.Fill(dt);
-                //db.disconnect();
                 return dt;
             }
             finally
@@ -502,11 +454,9 @@ namespace eleave_m
         {
             try
             {
-                //cmd.Connection = db.disconnect();
                 cmd.Parameters.Clear();
                 cmd.CommandText = "sp_check_avail";
                 cmd.CommandType = CommandType.StoredProcedure;
-                //cmd.Connection = db.connect();
                 cmd.Parameters.AddWithValue("@userid", userid);
                 cmd.Parameters.AddWithValue("@ltype", ltype);
                 cmd.Parameters.AddWithValue("@rdays", rdays);
@@ -519,7 +469,6 @@ namespace eleave_m
                 cmd.Connection = db.connect();
                 cmd.ExecuteNonQuery();
                 int res = int.Parse(cmd.Parameters["@flag"].Value.ToString());
-                //cmd.Dispose();
                 return res;
             }
             finally
@@ -532,11 +481,9 @@ namespace eleave_m
         {
             try
             {
-                //cmd.Connection = db.disconnect();
                 cmd.Parameters.Clear();
                 cmd.CommandText = "sp_initiate_cancel";
                 cmd.CommandType = CommandType.StoredProcedure;
-                //cmd.Connection = db.connect();
                 cmd.Parameters.AddWithValue("@lid", lid);
                 SqlParameter outparam = new SqlParameter();
                 outparam.ParameterName = "@flag";
@@ -547,7 +494,6 @@ namespace eleave_m
                 cmd.Connection = db.connect();
                 cmd.ExecuteNonQuery();
                 int res = int.Parse(cmd.Parameters["@flag"].Value.ToString());
-                //cmd.Dispose();
                 return res;
             }
             finally
@@ -560,11 +506,9 @@ namespace eleave_m
         {
             try
             {
-                //cmd.Connection = db.disconnect();
                 cmd.Parameters.Clear();
                 cmd.CommandText = "sp_upload_holidays_bulk";
                 cmd.CommandType = CommandType.StoredProcedure;
-                //cmd.Connection = db.connect();
                 cmd.Parameters.AddWithValue("@event_name", event_name);
                 cmd.Parameters.AddWithValue("@event_date", event_date);
                 cmd.Parameters.AddWithValue("@event_color", event_color);
@@ -577,7 +521,6 @@ namespace eleave_m
                 cmd.Connection = db.connect();
                 cmd.ExecuteNonQuery();
                 int res = int.Parse(cmd.Parameters["@flag"].Value.ToString());
-                //cmd.Dispose();
                 return res;
             }
             finally
@@ -590,11 +533,9 @@ namespace eleave_m
         {
             try
             {
-                //cmd.Connection = db.disconnect();
                 cmd.Parameters.Clear();
                 cmd.CommandText = "sp_upload_holidays_bulk_malaysia";
                 cmd.CommandType = CommandType.StoredProcedure;
-                //cmd.Connection = db.connect();
                 cmd.Parameters.AddWithValue("@event_name", event_name);
                 cmd.Parameters.AddWithValue("@event_date", event_date);
                 cmd.Parameters.AddWithValue("@event_color", event_color);
@@ -607,7 +548,6 @@ namespace eleave_m
                 cmd.Connection = db.connect();
                 cmd.ExecuteNonQuery();
                 int res = int.Parse(cmd.Parameters["@flag"].Value.ToString());
-                //cmd.Dispose();
                 return res;
             }
             finally
@@ -620,17 +560,14 @@ namespace eleave_m
         {
             try
             {
-                //cmd.Connection = db.disconnect();
                 cmd.Parameters.Clear();
                 cmd.CommandText = "sp_fillgender";
                 cmd.CommandType = CommandType.StoredProcedure;
-                //cmd.Connection = db.connect();
                 SqlDataAdapter da = new SqlDataAdapter();
                 DataTable dt = new DataTable();
                 cmd.Connection = db.connect();
                 da.SelectCommand = cmd;
                 da.Fill(dt);
-                //db.disconnect();
                 return dt;
             }
             finally
@@ -643,17 +580,14 @@ namespace eleave_m
         {
             try
             {
-                //cmd.Connection = db.disconnect();
                 cmd.Parameters.Clear();
                 cmd.CommandText = "sp_filldepartment";
                 cmd.CommandType = CommandType.StoredProcedure;
-                //cmd.Connection = db.connect();
                 SqlDataAdapter da = new SqlDataAdapter();
                 DataTable dt = new DataTable();
                 cmd.Connection = db.connect();
                 da.SelectCommand = cmd;
                 da.Fill(dt);
-                //db.disconnect();
                 return dt;
             }
             finally
@@ -662,20 +596,19 @@ namespace eleave_m
             }
         }
 
-        public int add_user(string name, string user_name, string email, string gender, DateTime doj, int dep, int grade, int desi, int region)
+        public int add_user(string name, string user_name, string email, string gender, DateTime doj, DateTime dob, int dep, int grade, int desi, int region)
         {
             try
             {
-                //cmd.Connection = db.disconnect();
                 cmd.Parameters.Clear();
                 cmd.CommandText = "sp_add_user";
                 cmd.CommandType = CommandType.StoredProcedure;
-                //cmd.Connection = db.connect();
                 cmd.Parameters.AddWithValue("@name", name);
                 cmd.Parameters.AddWithValue("@user_name", user_name);
                 cmd.Parameters.AddWithValue("@email", email);
                 cmd.Parameters.AddWithValue("@gender", gender);
                 cmd.Parameters.AddWithValue("@doj", doj);
+                cmd.Parameters.AddWithValue("@dob", dob);
                 cmd.Parameters.AddWithValue("@dep", dep);
                 cmd.Parameters.AddWithValue("@grade", grade);
                 cmd.Parameters.AddWithValue("@desi", desi);
@@ -689,7 +622,6 @@ namespace eleave_m
                 cmd.Connection = db.connect();
                 cmd.ExecuteNonQuery();
                 int res = int.Parse(cmd.Parameters["@flag"].Value.ToString());
-                //cmd.Dispose();
                 return res;
             }
             finally
@@ -702,18 +634,15 @@ namespace eleave_m
         {
             try
             {
-                //cmd.Connection = db.disconnect();
                 cmd.Parameters.Clear();
                 cmd.CommandText = "sp_fetchdesignation";
                 cmd.CommandType = CommandType.StoredProcedure;
-                //cmd.Connection = db.connect();
                 cmd.Parameters.AddWithValue("@id", id);
                 SqlDataAdapter da = new SqlDataAdapter();
                 DataTable dt = new DataTable();
                 cmd.Connection = db.connect();
                 da.SelectCommand = cmd;
                 da.Fill(dt);
-                //db.disconnect();
                 return dt;
             }
             finally
@@ -726,18 +655,15 @@ namespace eleave_m
         {
             try
             {
-                //cmd.Connection = db.disconnect();
                 cmd.Parameters.Clear();
                 cmd.CommandText = "sp_fetchgrade";
                 cmd.CommandType = CommandType.StoredProcedure;
-                //cmd.Connection = db.connect();
                 cmd.Parameters.AddWithValue("@id", id);
                 SqlDataAdapter da = new SqlDataAdapter();
                 DataTable dt = new DataTable();
                 cmd.Connection = db.connect();
                 da.SelectCommand = cmd;
                 da.Fill(dt);
-                //db.disconnect();
                 return dt;
             }
             finally
@@ -750,17 +676,14 @@ namespace eleave_m
         {
             try
             {
-                //cmd.Connection = db.disconnect();
                 cmd.Parameters.Clear();
                 cmd.CommandText = "sp_fillregion";
                 cmd.CommandType = CommandType.StoredProcedure;
-                //cmd.Connection = db.connect();
                 SqlDataAdapter da = new SqlDataAdapter();
                 DataTable dt = new DataTable();
                 cmd.Connection = db.connect();
                 da.SelectCommand = cmd;
                 da.Fill(dt);
-                //db.disconnect();
                 return dt;
             }
             finally
@@ -773,17 +696,14 @@ namespace eleave_m
         {
             try
             {
-                //cmd.Connection = db.disconnect();
                 cmd.Parameters.Clear();
                 cmd.CommandText = "sp_fetchdisdates";
                 cmd.CommandType = CommandType.StoredProcedure;
-                //cmd.Connection = db.connect();
                 SqlDataAdapter da = new SqlDataAdapter();
                 DataTable dt = new DataTable();
                 cmd.Connection = db.connect();
                 da.SelectCommand = cmd;
                 da.Fill(dt);
-                //db.disconnect();
                 return dt;
             }
             finally
@@ -796,17 +716,14 @@ namespace eleave_m
         {
             try
             {
-                //cmd.Connection = db.disconnect();
                 cmd.Parameters.Clear();
                 cmd.CommandText = "sp_fetchall_users";
                 cmd.CommandType = CommandType.StoredProcedure;
-                //cmd.Connection = db.connect();
                 SqlDataAdapter da = new SqlDataAdapter();
                 DataTable dt = new DataTable();
                 cmd.Connection = db.connect();
                 da.SelectCommand = cmd;
                 da.Fill(dt);
-                //db.disconnect();
                 return dt;
             }
             finally
@@ -819,11 +736,9 @@ namespace eleave_m
         {
             try
             {
-                //cmd.Connection = db.disconnect();
                 cmd.Parameters.Clear();
                 cmd.CommandText = "sp_deleteuser";
                 cmd.CommandType = CommandType.StoredProcedure;
-                // cmd.Connection = db.connect();
                 cmd.Parameters.AddWithValue("@id", id);
                 SqlParameter outparam = new SqlParameter();
                 outparam.ParameterName = "@flag";
@@ -834,7 +749,6 @@ namespace eleave_m
                 cmd.Connection = db.connect();
                 cmd.ExecuteNonQuery();
                 int res = int.Parse(cmd.Parameters["@flag"].Value.ToString());
-                //cmd.Dispose();
                 return res;
             }
             finally
@@ -847,17 +761,14 @@ namespace eleave_m
         {
             try
             {
-                //cmd.Connection = db.disconnect();
                 cmd.Parameters.Clear();
                 cmd.CommandText = "sp_fillleavesfr";
                 cmd.CommandType = CommandType.StoredProcedure;
-                //cmd.Connection = db.connect();
                 SqlDataAdapter da = new SqlDataAdapter();
                 DataTable dt = new DataTable();
                 cmd.Connection = db.connect();
                 da.SelectCommand = cmd;
                 da.Fill(dt);
-                //db.disconnect();
                 return dt;
             }
             finally
@@ -870,17 +781,14 @@ namespace eleave_m
         {
             try
             {
-                //cmd.Connection = db.disconnect();
                 cmd.Parameters.Clear();
                 cmd.CommandText = "sp_userleaves_all";
                 cmd.CommandType = CommandType.StoredProcedure;
-                //cmd.Connection = db.connect();
                 SqlDataAdapter da = new SqlDataAdapter();
                 DataTable dt = new DataTable();
                 cmd.Connection = db.connect();
                 da.SelectCommand = cmd;
                 da.Fill(dt);
-                //db.disconnect();
                 return dt;
             }
             finally
@@ -893,11 +801,9 @@ namespace eleave_m
         {
             try
             {
-                //cmd.Connection = db.disconnect();
                 cmd.Parameters.Clear();
                 cmd.CommandText = "sp_accept_leave_hr";
                 cmd.CommandType = CommandType.StoredProcedure;
-                //cmd.Connection = db.connect();
                 cmd.Parameters.AddWithValue("@lid", lid);
                 SqlParameter outparam = new SqlParameter();
                 outparam.ParameterName = "@flag";
@@ -908,7 +814,6 @@ namespace eleave_m
                 cmd.Connection = db.connect();
                 cmd.ExecuteNonQuery();
                 int res = int.Parse(cmd.Parameters["@flag"].Value.ToString());
-                //cmd.Dispose();
                 return res;
             }
             finally
@@ -921,11 +826,9 @@ namespace eleave_m
         {
             try
             {
-                //cmd.Connection = db.disconnect();
                 cmd.Parameters.Clear();
                 cmd.CommandText = "sp_reject_leave_hr";
                 cmd.CommandType = CommandType.StoredProcedure;
-                //cmd.Connection = db.connect();
                 cmd.Parameters.AddWithValue("@lid", lid);
                 cmd.Parameters.AddWithValue("@userid", userid);
                 cmd.Parameters.AddWithValue("@reason", reason);
@@ -938,7 +841,6 @@ namespace eleave_m
                 cmd.Connection = db.connect();
                 cmd.ExecuteNonQuery();
                 int res = int.Parse(cmd.Parameters["@flag"].Value.ToString());
-                //cmd.Dispose();
                 return res;
             }
             finally
@@ -951,11 +853,9 @@ namespace eleave_m
         {
             try
             {
-                //cmd.Connection = db.disconnect();
                 cmd.Parameters.Clear();
                 cmd.CommandText = "sp_fetchalerts";
                 cmd.CommandType = CommandType.StoredProcedure;
-                //cmd.Connection = db.connect();
                 SqlParameter outparam = new SqlParameter();
                 outparam.ParameterName = "@flag";
                 outparam.Direction = ParameterDirection.InputOutput;
@@ -965,7 +865,6 @@ namespace eleave_m
                 cmd.Connection = db.connect();
                 cmd.ExecuteNonQuery();
                 int res = int.Parse(cmd.Parameters["@flag"].Value.ToString());
-                //cmd.Dispose();
                 return res;
             }
             finally
@@ -978,11 +877,9 @@ namespace eleave_m
         {
             try
             {
-                //cmd.Connection = db.disconnect();
                 cmd.Parameters.Clear();
                 cmd.CommandText = "sp_fetchalerts_cancel";
                 cmd.CommandType = CommandType.StoredProcedure;
-                //cmd.Connection = db.connect();
                 SqlParameter outparam = new SqlParameter();
                 outparam.ParameterName = "@flag";
                 outparam.Direction = ParameterDirection.InputOutput;
@@ -992,7 +889,6 @@ namespace eleave_m
                 cmd.Connection = db.connect();
                 cmd.ExecuteNonQuery();
                 int res = int.Parse(cmd.Parameters["@flag"].Value.ToString());
-                //cmd.Dispose();
                 return res;
             }
             finally
@@ -1005,11 +901,9 @@ namespace eleave_m
         {
             try
             {
-                //cmd.Connection = db.disconnect();
                 cmd.Parameters.Clear();
                 cmd.CommandText = "sp_update_pwd_hr";
                 cmd.CommandType = CommandType.StoredProcedure;
-                //cmd.Connection = db.connect();
                 cmd.Parameters.AddWithValue("@uid", uid);
                 cmd.Parameters.AddWithValue("@oldp", oldp);
                 cmd.Parameters.AddWithValue("@newp", newp);
@@ -1022,7 +916,6 @@ namespace eleave_m
                 cmd.Connection = db.connect();
                 cmd.ExecuteNonQuery();
                 int res = int.Parse(cmd.Parameters["@flag"].Value.ToString());
-                //cmd.Dispose();
                 return res;
             }
             finally
@@ -1035,18 +928,15 @@ namespace eleave_m
         {
             try
             {
-                //cmd.Connection = db.disconnect();
                 cmd.Parameters.Clear();
                 cmd.CommandText = "sp_fill_details_user";
                 cmd.CommandType = CommandType.StoredProcedure;
-                //cmd.Connection = db.connect();
                 cmd.Parameters.AddWithValue("@uid", uid);
                 SqlDataAdapter da = new SqlDataAdapter();
                 DataTable dt = new DataTable();
                 cmd.Connection = db.connect();
                 da.SelectCommand = cmd;
                 da.Fill(dt);
-                //db.disconnect();
                 return dt;
             }
             finally
@@ -1059,11 +949,9 @@ namespace eleave_m
         {
             try
             {
-                //cmd.Connection = db.disconnect();
                 cmd.Parameters.Clear();
                 cmd.CommandText = "sp_updateProfile_hr";
                 cmd.CommandType = CommandType.StoredProcedure;
-                //cmd.Connection = db.connect();
                 cmd.Parameters.AddWithValue("@uid", uid);
                 cmd.Parameters.AddWithValue("@add1", add1);
                 cmd.Parameters.AddWithValue("@add2", add2);
@@ -1077,7 +965,6 @@ namespace eleave_m
                 cmd.Connection = db.connect();
                 cmd.ExecuteNonQuery();
                 int res = int.Parse(cmd.Parameters["@flag"].Value.ToString());
-                //cmd.Dispose();
                 return res;
             }
             finally
@@ -1090,11 +977,9 @@ namespace eleave_m
         {
             try
             {
-                //cmd.Connection = db.disconnect();
                 cmd.Parameters.Clear();
                 cmd.CommandText = "sp_oldpchk";
                 cmd.CommandType = CommandType.StoredProcedure;
-                //cmd.Connection = db.connect();
                 cmd.Parameters.AddWithValue("@uid", uid);
                 cmd.Parameters.AddWithValue("@password", password);
                 SqlParameter outparam = new SqlParameter();
@@ -1106,7 +991,6 @@ namespace eleave_m
                 cmd.Connection = db.connect();
                 cmd.ExecuteNonQuery();
                 int res = int.Parse(cmd.Parameters["@flag"].Value.ToString());
-                //cmd.Dispose();
                 return res;
             }
             finally
@@ -1119,17 +1003,14 @@ namespace eleave_m
         {
             try
             {
-                //cmd.Connection = db.disconnect();
                 cmd.Parameters.Clear();
                 cmd.CommandText = "sp_fill_leaves_app";
                 cmd.CommandType = CommandType.StoredProcedure;
-                //cmd.Connection = db.connect();
                 SqlDataAdapter da = new SqlDataAdapter();
                 DataTable dt = new DataTable();
                 cmd.Connection = db.connect();
                 da.SelectCommand = cmd;
                 da.Fill(dt);
-                //db.disconnect();
                 return dt;
             }
             finally
@@ -1142,11 +1023,9 @@ namespace eleave_m
         {
             try
             {
-                //cmd.Connection = db.disconnect();
                 cmd.Parameters.Clear();
                 cmd.CommandText = "sp_approve_leave";
                 cmd.CommandType = CommandType.StoredProcedure;
-                //cmd.Connection = db.connect();
                 cmd.Parameters.AddWithValue("@lid", lid);
                 cmd.Parameters.AddWithValue("@userid", userid);
                 SqlParameter outparam = new SqlParameter();
@@ -1158,7 +1037,6 @@ namespace eleave_m
                 cmd.Connection = db.connect();
                 cmd.ExecuteNonQuery();
                 int res = int.Parse(cmd.Parameters["@flag"].Value.ToString());
-                //cmd.Dispose();
                 return res;
             }
             finally
@@ -1171,11 +1049,9 @@ namespace eleave_m
         {
             try
             {
-                //cmd.Connection = db.disconnect();
                 cmd.Parameters.Clear();
                 cmd.CommandText = "sp_reject_leave_md";
                 cmd.CommandType = CommandType.StoredProcedure;
-                //cmd.Connection = db.connect();
                 cmd.Parameters.AddWithValue("@lid", lid);
                 cmd.Parameters.AddWithValue("@userid", userid);
                 cmd.Parameters.AddWithValue("@reason", reason);
@@ -1188,7 +1064,6 @@ namespace eleave_m
                 cmd.Connection = db.connect();
                 cmd.ExecuteNonQuery();
                 int res = int.Parse(cmd.Parameters["@flag"].Value.ToString());
-                //cmd.Dispose();
                 return res;
             }
             finally
@@ -1201,17 +1076,14 @@ namespace eleave_m
         {
             try
             {
-                //cmd.Connection = db.disconnect();
                 cmd.Parameters.Clear();
                 cmd.CommandText = "sp_userleaves_all_highcharts";
                 cmd.CommandType = CommandType.StoredProcedure;
-                //cmd.Connection = db.connect();
                 SqlDataAdapter da = new SqlDataAdapter();
                 DataTable dt = new DataTable();
                 cmd.Connection = db.connect();
                 da.SelectCommand = cmd;
                 da.Fill(dt);
-                //db.disconnect();
                 return dt;
             }
             finally
@@ -1224,11 +1096,9 @@ namespace eleave_m
         {
             try
             {
-                //cmd.Connection = db.disconnect();
                 cmd.Parameters.Clear();
                 cmd.CommandText = "sp_fetchalerts_md";
                 cmd.CommandType = CommandType.StoredProcedure;
-                //cmd.Connection = db.connect();
                 SqlParameter outparam = new SqlParameter();
                 outparam.ParameterName = "@flag";
                 outparam.Direction = ParameterDirection.InputOutput;
@@ -1238,7 +1108,6 @@ namespace eleave_m
                 cmd.Connection = db.connect();
                 cmd.ExecuteNonQuery();
                 int res = int.Parse(cmd.Parameters["@flag"].Value.ToString());
-                //cmd.Dispose();
                 return res;
             }
             finally
@@ -1250,11 +1119,9 @@ namespace eleave_m
         {
             try
             {
-                //cmd.Connection = db.disconnect();
                 cmd.Parameters.Clear();
                 cmd.CommandText = "sp_fetchalerts_user";
                 cmd.CommandType = CommandType.StoredProcedure;
-                //cmd.Connection = db.connect();
                 cmd.Parameters.AddWithValue("@userid", userid);
                 SqlParameter outparam = new SqlParameter();
                 outparam.ParameterName = "@flag";
@@ -1265,7 +1132,6 @@ namespace eleave_m
                 cmd.Connection = db.connect();
                 cmd.ExecuteNonQuery();
                 int res = int.Parse(cmd.Parameters["@flag"].Value.ToString());
-                //cmd.Dispose();
                 return res;
             }
             finally
@@ -1278,17 +1144,14 @@ namespace eleave_m
         {
             try
             {
-                //cmd.Connection = db.disconnect();
                 cmd.Parameters.Clear();
                 cmd.CommandText = "sp_fillcancapprl";
                 cmd.CommandType = CommandType.StoredProcedure;
-                //cmd.Connection = db.connect();
                 SqlDataAdapter da = new SqlDataAdapter();
                 DataTable dt = new DataTable();
                 da.SelectCommand = cmd;
                 cmd.Connection = db.connect();
                 da.Fill(dt);
-                //db.disconnect();
                 return dt;
             }
             finally
@@ -1301,11 +1164,9 @@ namespace eleave_m
         {
             try
             {
-                //cmd.Connection = db.disconnect();
                 cmd.Parameters.Clear();
                 cmd.CommandText = "sp_reject_can_appr";
                 cmd.CommandType = CommandType.StoredProcedure;
-                //cmd.Connection = db.connect();
                 cmd.Parameters.AddWithValue("@lid", lid);
                 SqlParameter outparam = new SqlParameter();
                 outparam.ParameterName = "@flag";
@@ -1316,7 +1177,6 @@ namespace eleave_m
                 cmd.Connection = db.connect();
                 cmd.ExecuteNonQuery();
                 int res = int.Parse(cmd.Parameters["@flag"].Value.ToString());
-                //cmd.Dispose();
                 return res;
             }
             finally
@@ -1329,11 +1189,9 @@ namespace eleave_m
         {
             try
             {
-                //cmd.Connection = db.disconnect();
                 cmd.Parameters.Clear();
                 cmd.CommandText = "sp_cancel_all_approved";
                 cmd.CommandType = CommandType.StoredProcedure;
-                //cmd.Connection = db.connect();
                 cmd.Parameters.AddWithValue("@lid", lid);
                 SqlParameter outparam = new SqlParameter();
                 outparam.ParameterName = "@flag";
@@ -1344,7 +1202,6 @@ namespace eleave_m
                 cmd.Connection = db.connect();
                 cmd.ExecuteNonQuery();
                 int res = int.Parse(cmd.Parameters["@flag"].Value.ToString());
-                //cmd.Dispose();
                 return res;
             }
             finally
@@ -1357,11 +1214,9 @@ namespace eleave_m
         {
             try
             {
-                //cmd.Connection = db.disconnect();
                 cmd.Parameters.Clear();
                 cmd.CommandText = "sp_cancel_av_approved";
                 cmd.CommandType = CommandType.StoredProcedure;
-                //cmd.Connection = db.connect();
                 cmd.Parameters.AddWithValue("@lid", lid);
                 cmd.Parameters.AddWithValue("@dates", dates);
                 cmd.Parameters.AddWithValue("@rdays", rdays);
@@ -1374,7 +1229,6 @@ namespace eleave_m
                 cmd.Connection = db.connect();
                 cmd.ExecuteNonQuery();
                 int res = int.Parse(cmd.Parameters["@flag"].Value.ToString());
-                //cmd.Dispose();
                 return res;
             }
             finally
@@ -1387,11 +1241,9 @@ namespace eleave_m
         {
             try
             {
-                //cmd.Connection = db.disconnect();
                 cmd.Parameters.Clear();
                 cmd.CommandText = "sp_fetchalerts_md2";
                 cmd.CommandType = CommandType.StoredProcedure;
-                //cmd.Connection = db.connect();
                 SqlParameter outparam = new SqlParameter();
                 outparam.ParameterName = "@flag";
                 outparam.Direction = ParameterDirection.InputOutput;
@@ -1401,7 +1253,6 @@ namespace eleave_m
                 cmd.Connection = db.connect();
                 cmd.ExecuteNonQuery();
                 int res = int.Parse(cmd.Parameters["@flag"].Value.ToString());
-                //cmd.Dispose();
                 return res;
             }
             finally
@@ -1414,16 +1265,13 @@ namespace eleave_m
         {
             try
             {
-                //cmd.Connection = db.disconnect();
                 cmd.Parameters.Clear();
                 cmd.CommandText = "sp_change_stat";
                 cmd.CommandType = CommandType.StoredProcedure;
-                //cmd.Connection = db.connect();
                 cmd.Parameters.AddWithValue("@userid", userid);
                 SqlParameter outparam = new SqlParameter();
                 cmd.Connection = db.connect();
                 cmd.ExecuteNonQuery();
-                //cmd.Dispose();
             }
             finally
             {
@@ -1434,18 +1282,15 @@ namespace eleave_m
         {
             try
             {
-                //cmd.Connection = db.disconnect();
                 cmd.Parameters.Clear();
                 cmd.CommandText = "sp_fill_details_user_edit";
                 cmd.CommandType = CommandType.StoredProcedure;
-                //cmd.Connection = db.connect();
                 cmd.Parameters.AddWithValue("@uid", uid);
                 SqlDataAdapter da = new SqlDataAdapter();
                 DataTable dt = new DataTable();
                 cmd.Connection = db.connect();
                 da.SelectCommand = cmd;
                 da.Fill(dt);
-                //db.disconnect();
                 return dt;
             }
             finally
@@ -1458,11 +1303,9 @@ namespace eleave_m
         {
             try
             {
-               // cmd.Connection = db.disconnect();
                 cmd.Parameters.Clear();
                 cmd.CommandText = "sp_update_user";
                 cmd.CommandType = CommandType.StoredProcedure;
-                //cmd.Connection = db.connect();
                 cmd.Parameters.AddWithValue("@id", id);
                 cmd.Parameters.AddWithValue("@name", name);
                 cmd.Parameters.AddWithValue("@user_name", user_name);
@@ -1482,7 +1325,6 @@ namespace eleave_m
                 cmd.Connection = db.connect();
                 cmd.ExecuteNonQuery();
                 int res = int.Parse(cmd.Parameters["@flag"].Value.ToString());
-                //cmd.Dispose();
                 return res;
             }
             finally
@@ -1495,17 +1337,14 @@ namespace eleave_m
         {
             try
             {
-                //cmd.Connection = db.disconnect();
                 cmd.Parameters.Clear();
                 cmd.CommandText = "sp_fillcflist";
                 cmd.CommandType = CommandType.StoredProcedure;
-                //cmd.Connection = db.connect();
                 SqlDataAdapter da = new SqlDataAdapter();
                 DataTable dt = new DataTable();
                 cmd.Connection = db.connect();
                 da.SelectCommand = cmd;
                 da.Fill(dt);
-                //db.disconnect();
                 return dt;
             }
             finally
@@ -1518,11 +1357,9 @@ namespace eleave_m
         {
             try
             {
-                //cmd.Connection = db.disconnect();
                 cmd.Parameters.Clear();
                 cmd.CommandText = "sp_checkcf";
                 cmd.CommandType = CommandType.StoredProcedure;
-                //cmd.Connection = db.connect();
                 SqlParameter outparam = new SqlParameter();
                 outparam.ParameterName = "@flag";
                 outparam.Direction = ParameterDirection.InputOutput;
@@ -1532,7 +1369,6 @@ namespace eleave_m
                 cmd.Connection = db.connect();
                 cmd.ExecuteNonQuery();
                 int res = int.Parse(cmd.Parameters["@flag"].Value.ToString());
-                //cmd.Dispose();
                 return res;
             }
             finally
@@ -1545,11 +1381,9 @@ namespace eleave_m
         {
             try
             {
-                //cmd.Connection = db.disconnect();
                 cmd.Parameters.Clear();
                 cmd.CommandText = "sp_carryforward";
                 cmd.CommandType = CommandType.StoredProcedure;
-                //cmd.Connection = db.connect();
                 SqlParameter outparam = new SqlParameter();
                 outparam.ParameterName = "@flag";
                 outparam.Direction = ParameterDirection.InputOutput;
@@ -1559,7 +1393,6 @@ namespace eleave_m
                 cmd.Connection = db.connect();
                 cmd.ExecuteNonQuery();
                 int res = int.Parse(cmd.Parameters["@flag"].Value.ToString());
-                //cmd.Dispose();
                 return res;
             }
             finally
@@ -1572,17 +1405,14 @@ namespace eleave_m
         {
             try
             {
-                //cmd.Connection = db.disconnect();
                 cmd.Parameters.Clear();
                 cmd.CommandText = "sp_userleaves_all_taken";
                 cmd.CommandType = CommandType.StoredProcedure;
-                //cmd.Connection = db.connect();
                 SqlDataAdapter da = new SqlDataAdapter();
                 DataTable dt = new DataTable();
                 cmd.Connection = db.connect();
                 da.SelectCommand = cmd;
                 da.Fill(dt);
-                //db.disconnect();
                 return dt;
             }
             finally
@@ -1595,17 +1425,14 @@ namespace eleave_m
         {
             try
             {
-                //cmd.Connection = db.disconnect();
                 cmd.Parameters.Clear();
                 cmd.CommandText = "sp_userleaves_balance";
                 cmd.CommandType = CommandType.StoredProcedure;
-                //cmd.Connection = db.connect();
                 SqlDataAdapter da = new SqlDataAdapter();
                 DataTable dt = new DataTable();
                 cmd.Connection = db.connect();
                 da.SelectCommand = cmd;
                 da.Fill(dt);
-                //db.disconnect();
                 return dt;
             }
             finally
@@ -1618,17 +1445,14 @@ namespace eleave_m
         {
             try
             {
-                //cmd.Connection = db.disconnect();
                 cmd.Parameters.Clear();
                 cmd.CommandText = "sp_leaves_log";
                 cmd.CommandType = CommandType.StoredProcedure;
-                //cmd.Connection = db.connect();
                 SqlDataAdapter da = new SqlDataAdapter();
                 DataTable dt = new DataTable();
                 cmd.Connection = db.connect();
                 da.SelectCommand = cmd;
                 da.Fill(dt);
-                //db.disconnect();
                 return dt;
             }
             finally
@@ -1641,18 +1465,15 @@ namespace eleave_m
         {
             try
             {
-                //cmd.Connection = db.disconnect();
                 cmd.Parameters.Clear();
                 cmd.CommandText = "sp_fetch_mail_details_hr";
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("@role", role);
-                //cmd.Connection = db.connect();
                 SqlDataAdapter da = new SqlDataAdapter();
                 DataTable dt = new DataTable();
                 cmd.Connection = db.connect();
                 da.SelectCommand = cmd;
                 da.Fill(dt);
-                //db.disconnect();
                 return dt;
             }
             finally
@@ -1665,17 +1486,14 @@ namespace eleave_m
         {
             try
             {
-                //cmd.Connection = db.disconnect();
                 cmd.Parameters.Clear();
                 cmd.CommandText = "sp_fetch_mail_details_cancel";
                 cmd.CommandType = CommandType.StoredProcedure;
-                //cmd.Connection = db.connect();
                 SqlDataAdapter da = new SqlDataAdapter();
                 DataTable dt = new DataTable();
                 cmd.Connection = db.connect();
                 da.SelectCommand = cmd;
                 da.Fill(dt);
-                //db.disconnect();
                 return dt;
             }
             finally
@@ -1688,18 +1506,15 @@ namespace eleave_m
         {
             try
             {
-                //cmd.Connection = db.disconnect();
                 cmd.Parameters.Clear();
                 cmd.CommandText = "sp_fetch_mail_details_hr_apply";
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("@role", role);
-                //cmd.Connection = db.connect();
                 SqlDataAdapter da = new SqlDataAdapter();
                 DataTable dt = new DataTable();
                 cmd.Connection = db.connect();
                 da.SelectCommand = cmd;
                 da.Fill(dt);
-                //db.disconnect();
                 return dt;
             }
             finally
@@ -1711,11 +1526,9 @@ namespace eleave_m
         {
             try
             {
-                //cmd.Connection = db.disconnect();
                 cmd.Parameters.Clear();
                 cmd.CommandText = "sp_checkusername";
                 cmd.CommandType = CommandType.StoredProcedure;
-                //cmd.Connection = db.connect();
                 cmd.Parameters.AddWithValue("@username", username);
                 SqlParameter outparam = new SqlParameter();
                 outparam.ParameterName = "@flag";
@@ -1726,7 +1539,6 @@ namespace eleave_m
                 cmd.Connection = db.connect();
                 cmd.ExecuteNonQuery();
                 int res = int.Parse(cmd.Parameters["@flag"].Value.ToString());
-                //cmd.Dispose();
                 return res;
             }
             finally
@@ -1739,11 +1551,9 @@ namespace eleave_m
         {
             try
             {
-                //cmd.Connection = db.disconnect();
                 cmd.Parameters.Clear();
                 cmd.CommandText = "sp_checkemail";
                 cmd.CommandType = CommandType.StoredProcedure;
-                //cmd.Connection = db.connect();
                 cmd.Parameters.AddWithValue("@email", email);
                 SqlParameter outparam = new SqlParameter();
                 outparam.ParameterName = "@flag";
@@ -1754,7 +1564,6 @@ namespace eleave_m
                 cmd.Connection = db.connect();
                 cmd.ExecuteNonQuery();
                 int res = int.Parse(cmd.Parameters["@flag"].Value.ToString());
-                //cmd.Dispose();
                 return res;
             }
             finally
@@ -1766,11 +1575,9 @@ namespace eleave_m
         {
             try
             {
-                //cmd.Connection = db.disconnect();
                 cmd.Parameters.Clear();
                 cmd.CommandText = "sp_checkusername_edit";
                 cmd.CommandType = CommandType.StoredProcedure;
-                //cmd.Connection = db.connect();
                 cmd.Parameters.AddWithValue("@username", username);
                 cmd.Parameters.AddWithValue("@id", id);
                 SqlParameter outparam = new SqlParameter();
@@ -1782,7 +1589,6 @@ namespace eleave_m
                 cmd.Connection = db.connect();
                 cmd.ExecuteNonQuery();
                 int res = int.Parse(cmd.Parameters["@flag"].Value.ToString());
-                //cmd.Dispose();
                 return res;
             }
             finally
@@ -1795,11 +1601,9 @@ namespace eleave_m
         {
             try
             {
-                //cmd.Connection = db.disconnect();
                 cmd.Parameters.Clear();
                 cmd.CommandText = "sp_checkemail_edit";
                 cmd.CommandType = CommandType.StoredProcedure;
-                //cmd.Connection = db.connect();
                 cmd.Parameters.AddWithValue("@email", email);
                 cmd.Parameters.AddWithValue("@id", id);
                 SqlParameter outparam = new SqlParameter();
@@ -1811,7 +1615,6 @@ namespace eleave_m
                 cmd.Connection = db.connect();
                 cmd.ExecuteNonQuery();
                 int res = int.Parse(cmd.Parameters["@flag"].Value.ToString());
-                //cmd.Dispose();
                 return res;
             }
             finally
@@ -1824,18 +1627,15 @@ namespace eleave_m
         {
             try
             {
-                //cmd.Connection = db.disconnect();
                 cmd.Parameters.Clear();
                 cmd.CommandText = "sp_fill_ldetails";
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("@lid", lid);
-                //cmd.Connection = db.connect();
                 SqlDataAdapter da = new SqlDataAdapter();
                 DataTable dt = new DataTable();
                 cmd.Connection = db.connect();
                 da.SelectCommand = cmd;
                 da.Fill(dt);
-                //db.disconnect();
                 return dt;
             }
             finally
@@ -1848,11 +1648,9 @@ namespace eleave_m
         {
             try
             {
-                //cmd.Connection = db.disconnect();
                 cmd.Parameters.Clear();
                 cmd.CommandText = "sp_fetch_details_edit";
                 cmd.CommandType = CommandType.StoredProcedure;
-                //cmd.Connection = db.connect();
                 cmd.Parameters.AddWithValue("@id", id);
                 SqlParameter outparam = new SqlParameter();
                 outparam.ParameterName = "@flag";
@@ -1864,7 +1662,6 @@ namespace eleave_m
                 cmd.Connection = db.connect();
                 cmd.ExecuteNonQuery();
                 string res = cmd.Parameters["@flag"].Value.ToString();
-                //cmd.Dispose();
                 return res;
             }
             finally
@@ -1877,11 +1674,9 @@ namespace eleave_m
         {
             try
             {
-                //cmd.Connection = db.disconnect();
                 cmd.Parameters.Clear();
                 cmd.CommandText = "sp_check_in_out";
                 cmd.CommandType = CommandType.StoredProcedure;
-                //cmd.Connection = db.connect();
                 cmd.Parameters.AddWithValue("@userid", userid);
                 cmd.Parameters.AddWithValue("@ltype", ltype);
                 cmd.Parameters.AddWithValue("@rdays", rdays);
@@ -1894,7 +1689,6 @@ namespace eleave_m
                 cmd.Connection = db.connect();
                 cmd.ExecuteNonQuery();
                 int res = int.Parse(cmd.Parameters["@flag"].Value.ToString());
-                //cmd.Dispose();
                 return res;
             }
             finally
@@ -1907,11 +1701,9 @@ namespace eleave_m
         {
             try
             {
-                //cmd.Connection = db.disconnect();
                 cmd.Parameters.Clear();
                 cmd.CommandText = "sp_clear_holidays";
                 cmd.CommandType = CommandType.StoredProcedure;
-                //cmd.Connection = db.connect();
                 SqlParameter outparam = new SqlParameter();
                 outparam.ParameterName = "@flag";
                 outparam.Direction = ParameterDirection.InputOutput;
@@ -1921,7 +1713,6 @@ namespace eleave_m
                 cmd.Connection = db.connect();
                 cmd.ExecuteNonQuery();
                 int res = int.Parse(cmd.Parameters["@flag"].Value.ToString());
-                //cmd.Dispose();
                 return res;
             }
             finally
@@ -1934,11 +1725,9 @@ namespace eleave_m
         {
             try
             {
-                //cmd.Connection = db.disconnect();
                 cmd.Parameters.Clear();
                 cmd.CommandText = "sp_clear_holidays_hs";
                 cmd.CommandType = CommandType.StoredProcedure;
-                //cmd.Connection = db.connect();
                 SqlParameter outparam = new SqlParameter();
                 outparam.ParameterName = "@flag";
                 outparam.Direction = ParameterDirection.InputOutput;
@@ -1948,7 +1737,6 @@ namespace eleave_m
                 cmd.Connection = db.connect();
                 cmd.ExecuteNonQuery();
                 int res = int.Parse(cmd.Parameters["@flag"].Value.ToString());
-                //cmd.Dispose();
                 return res;
             }
             finally
@@ -1961,17 +1749,14 @@ namespace eleave_m
         {
             try
             {
-                //cmd.Connection = db.disconnect();
                 cmd.Parameters.Clear();
                 cmd.CommandText = "sp_fill_leves_appr_all";
                 cmd.CommandType = CommandType.StoredProcedure;
-                //cmd.Connection = db.connect();
                 SqlDataAdapter da = new SqlDataAdapter();
                 DataTable dt = new DataTable();
                 cmd.Connection = db.connect();
                 da.SelectCommand = cmd;
                 da.Fill(dt);
-                //db.disconnect();
                 return dt;
             }
             finally

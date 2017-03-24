@@ -37,6 +37,7 @@ namespace eleave_view.hr
                     filldep();
                     fillregion();
                     txtdoj.Attributes.Add("readonly", "readonly");
+                    txtdob.Attributes.Add("readonly", "readonly");
                     txtcategory.Attributes.Add("readonly", "readonly");
 
                 }
@@ -108,44 +109,6 @@ namespace eleave_view.hr
             ddlregion.Items.Insert(0, new ListItem("-----SELECT-----", ""));
         }
 
-        //protected void btnreq_hr_Click(object sender, EventArgs e)
-        //{
-        //    //if (txtname.Text != "" && txtuname.Text != "" && ddlgender.SelectedIndex != 0 && txtdoj.Text != "" && ddldep.SelectedIndex != 0 && Request.Form[ddldesi.UniqueID] != null && Request.Form[ddlgrade.UniqueID] != null && ddlregion.SelectedIndex != 0)
-        //    //{
-        //        bus.name = txtname.Text.Trim();
-        //        bus.user_name = txtuname.Text.Trim();
-        //        bus.gender = ddlgender.SelectedItem.ToString().Trim();
-        //        bus.doj = DateTime.Parse(txtdoj.Text.Trim());
-        //        bus.dep = int.Parse(ddldep.SelectedValue.ToString());
-        //        //string d = ddldesi.SelectedValue.ToString();
-        //        bus.desi = int.Parse(Request.Form[ddldesi.UniqueID]);
-        //        //string g =  Request.Form[ddlgrade.UniqueID];
-        //        bus.grade = int.Parse(Request.Form[ddlgrade.UniqueID]);
-        //        bus.region = int.Parse(ddlregion.SelectedValue.ToString());
-        //        int r = bus.add_user();
-        //        if (r == 1)
-        //        {
-        //            clearfeilds();
-        //            ScriptManager.RegisterStartupScript(this, GetType(), "displayalertmessage", "success();", true);
-        //        }
-        //        else if (r == 2)
-        //        {
-        //            clearfeilds();
-        //            ScriptManager.RegisterStartupScript(this, GetType(), "displayalertmessage", "error_dupli();", true);
-        //        }
-        //        else
-        //        {
-        //            clearfeilds();
-        //            ScriptManager.RegisterStartupScript(this, GetType(), "displayalertmessage", "error();", true);
-        //        }
-        //    //}
-        //    //else
-        //    //{
-        //    //    clearfeilds();
-        //    //    ScriptManager.RegisterStartupScript(this, GetType(), "displayalertmessage", "error1();", true);
-        //    //}
-        //}
-
         protected void clearfeilds()
         {
             txtname.Text = "";
@@ -159,23 +122,6 @@ namespace eleave_view.hr
             ddlregion.SelectedIndex = 0;
         }
 
-        //protected void ddldep_SelectedIndexChanged(object sender, EventArgs e)
-        //{
-        //    bus.lid = int.Parse(ddldep.SelectedValue.ToString());
-        //    DataTable des = bus.fetchdesignation();
-        //    ddldesi.DataSource = des;
-        //    ddldesi.DataBind();
-        //    ddldesi.Items.Insert(0, new ListItem("-----SELECT-----", ""));
-        //}
-
-        //protected void ddldesi_SelectedIndexChanged(object sender, EventArgs e)
-        //{
-        //    bus.lid = int.Parse(ddldesi.SelectedValue.ToString());
-        //    DataTable gd = bus.fetchgrade();
-        //    ddlgrade.DataSource = gd;
-        //    ddlgrade.DataBind();
-        //    txtcategory.Text = gd.Rows[0][2].ToString();
-        //}
         [WebMethod]
         public static List<Desi> filldesi(int dep)
         {
@@ -213,7 +159,7 @@ namespace eleave_view.hr
 
         protected void btnuseradd_Click(object sender, EventArgs e)
         {
-            if (txtname.Text != "" && txtuname.Text != "" && txtemail.Text != "" && ddlgender.SelectedIndex != 0 && txtdoj.Text != "" && ddldep.SelectedIndex != 0 && Request.Form[ddldesi.UniqueID] != null && Request.Form[ddlgrade.UniqueID] != null && ddlregion.SelectedIndex != 0)
+            if (txtname.Text != "" && txtuname.Text != "" && txtemail.Text != "" && ddlgender.SelectedIndex != 0 && txtdoj.Text != "" && txtdob.Text != "" && ddldep.SelectedIndex != 0 && Request.Form[ddldesi.UniqueID] != null && Request.Form[ddlgrade.UniqueID] != null && ddlregion.SelectedIndex != 0)
             {
                 if (txtemail.Text.Trim().Length <= 30)
                 {
@@ -231,10 +177,9 @@ namespace eleave_view.hr
                                 bus.email = txtemail.Text.Trim();
                                 bus.gender = ddlgender.SelectedItem.ToString().Trim();
                                 bus.doj = DateTime.Parse(txtdoj.Text.Trim());
+                                bus.dob = DateTime.Parse(txtdob.Text.Trim());
                                 bus.dep = int.Parse(ddldep.SelectedValue.ToString());
-                                //string d = ddldesi.SelectedValue.ToString();
                                 bus.desi = int.Parse(Request.Form[ddldesi.UniqueID]);
-                                //string g =  Request.Form[ddlgrade.UniqueID];
                                 bus.grade = int.Parse(Request.Form[ddlgrade.UniqueID]);
                                 bus.region = int.Parse(ddlregion.SelectedValue.ToString());
                                 int r = bus.add_user();

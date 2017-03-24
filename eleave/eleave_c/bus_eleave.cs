@@ -31,6 +31,7 @@ namespace eleave_c
         public string gender { get; set; }
 
         public DateTime doj { get; set; }
+        public DateTime dob { get; set; }
         public int dep { get; set; }
         public int grade { get; set; }
         public int desi { get; set; }
@@ -171,7 +172,7 @@ namespace eleave_c
         }
         public int add_user()
         {
-            return data.add_user(name,user_name,email,gender,doj,dep,grade,desi,region);
+            return data.add_user(name,user_name,email,gender,doj,dob,dep,grade,desi,region);
         }
         public DataTable fetchdesignation()
         {

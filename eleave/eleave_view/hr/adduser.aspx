@@ -166,7 +166,7 @@
                             </div>
                             <div class="form-group">
                                 <label class="control-label">
-                                    Date Birth <span class="symbol required"></span>
+                                    Date of Birth <span class="symbol required"></span>
                                 </label>
                                 <asp:TextBox ID="txtdob" runat="server" CssClass="chosen-disabled form-control" BackColor="White" ClientIDMode="Static"></asp:TextBox>
                             </div>

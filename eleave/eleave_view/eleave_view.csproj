@@ -96,6 +96,7 @@
     <Content Include="assets\images\darkgrey.png" />
     <Content Include="assets\images\double_loader.GIF" />
     <Content Include="assets\images\favicon.ico" />
+    <Content Include="assets\images\favicon_old.ico" />
     <Content Include="assets\images\green.png" />
     <Content Include="assets\images\HS_Logo_N.jpg" />
     <Content Include="assets\images\leaves.jpg" />
