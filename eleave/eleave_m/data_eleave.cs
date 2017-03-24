@@ -1299,7 +1299,7 @@ namespace eleave_m
             }
         }
 
-        public int update_user(int id, string name, string user_name, string email, string gender, DateTime doj, int dep, int grade, int desi, int region)
+        public int update_user(int id, string name, string user_name, string email, string gender, DateTime doj, int dep, int grade, int desi, int region, DateTime dob)
         {
             try
             {
@@ -1316,6 +1316,7 @@ namespace eleave_m
                 cmd.Parameters.AddWithValue("@grade", grade);
                 cmd.Parameters.AddWithValue("@desi", desi);
                 cmd.Parameters.AddWithValue("@region", region);
+                cmd.Parameters.AddWithValue("@dob", dob);
                 SqlParameter outparam = new SqlParameter();
                 outparam.ParameterName = "@flag";
                 outparam.Direction = ParameterDirection.InputOutput;

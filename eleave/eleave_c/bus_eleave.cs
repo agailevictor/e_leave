@@ -313,7 +313,7 @@ namespace eleave_c
         }
         public int update_user()
         {
-            return data.update_user(id,name, user_name, email,gender, doj, dep, grade, desi, region);
+            return data.update_user(id,name, user_name, email,gender, doj, dep, grade, desi, region, dob);
         }
 
         public DataTable fillcflist() 
