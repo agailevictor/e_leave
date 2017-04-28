@@ -166,6 +166,12 @@
                             </div>
                             <div class="form-group">
                                 <label class="control-label">
+                                    Date of Birth <span class="symbol required"></span>
+                                </label>
+                                <asp:TextBox ID="txtdob" runat="server" CssClass="chosen-disabled form-control" BackColor="White" ClientIDMode="Static"></asp:TextBox>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label">
                                     Department <span class="symbol required"></span>
                                 </label>
                                 <asp:DropDownList ID="ddldep" runat="server" CssClass="form-control" ClientIDMode="Static" DataTextField="dep_name" DataValueField="dep_id" onchange="filldesi()"></asp:DropDownList>

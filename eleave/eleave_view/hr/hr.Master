@@ -413,6 +413,7 @@
             inputlimit();
             hidefupload();
             doj();
+            dob();
             updateAlerts();
             updateAlerts1();
             updateAlerts2();
@@ -811,6 +812,7 @@
                     $('#txtdoj').datepicker({
                         format: "dd-mm-yyyy",
                         keyboardNavigation: false,
+                        autoclose: true,
                         daysOfWeekDisabled: "0,6", // to disable weekends 0 - sunday, 6 - saturday
                         startDate: "today", // to disable previous days
                         endDate: edate, // to disable future year dates
@@ -825,6 +827,20 @@
             });
         }
     </script>
+
+    <%--To initiate date of birth datepicker for user add --%>
+    <script type="text/javascript">
+        function dob() {         
+                    $('#txtdob').datepicker({
+                        format: "dd-mm-yyyy",
+                        keyboardNavigation: false,
+                        autoclose: true,
+                        todayHighlight: true, // to highlight today
+                        orientation: "bottom auto"
+                    });
+        }
+    </script>
+
     <script type="text/javascript">
         function updateAlerts() {
             $.ajax({

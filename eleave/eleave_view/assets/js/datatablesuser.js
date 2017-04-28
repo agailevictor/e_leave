@@ -22,7 +22,7 @@
                 [5, 10, 15, 20, "All"] // change per page values here
             ],
             // set the initial value
-            "iDisplayLength": 5,
+            "iDisplayLength": 10,
         });
         $('#grd_leaves_wrapper .dataTables_filter input').addClass("form-control input-sm").attr("placeholder", "Search");
         // modify table search input
@@ -47,7 +47,7 @@
                 [5, 10, 15, 20, "All"] // change per page values here
             ],
             // set the initial value
-            "iDisplayLength": 5,
+            "iDisplayLength": 10,
         });
         $('#grd_cancel_wrapper .dataTables_filter input').addClass("form-control input-sm").attr("placeholder", "Search");
         // modify table search input

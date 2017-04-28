@@ -51,6 +51,10 @@
                     <ItemTemplate>
                         <asp:HiddenField ID="uid" runat="server" Value='<%# Eval("uid") %>' />
                     </ItemTemplate>
+
+<HeaderStyle CssClass="hidden"></HeaderStyle>
+
+<ItemStyle CssClass="hidden"></ItemStyle>
                 </asp:TemplateField>
                 <asp:TemplateField HeaderText="No.">
                     <ItemTemplate>
@@ -62,6 +66,7 @@
                 <asp:BoundField DataField="email" HeaderText="Email" />
                 <asp:BoundField DataField="gender" HeaderText="Gender" />
                 <asp:BoundField DataField="doj" HeaderText="Date Of Join" />
+                <asp:BoundField DataField="dob" HeaderText="Date Of Birth" />
                 <asp:BoundField DataField="dep" HeaderText="Department" />
                 <asp:BoundField DataField="designation" HeaderText="Designation" />
                 <asp:BoundField DataField="grade" HeaderText="Grade" />

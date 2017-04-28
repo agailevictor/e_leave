@@ -28,7 +28,7 @@
     <meta content="" name="author" />
     <!-- end: META -->
     <!-- start: MAIN CSS -->
-    <link rel="shortcut icon" href="../assets/images/favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="../assets/images/favicon.ico" type="image/x-icon" />
     <link href="../assets/plugins/swal/sweetalert.css" rel="stylesheet" type="text/css" />
     <script src="../assets/plugins/swal/sweetalert.min.js" type="text/javascript"></script>
     <link href="../assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen" />
@@ -876,7 +876,7 @@
     </script>
     <script type="text/javascript">
         function in_or_out() {
-            var userid, typ, per, ds, sd, ed, dv1, dv2, pert, region,reg;
+            var userid, typ, per, ds, sd, ed, dv1, dv2, pert, region, reg;
             userid = '<%= Session["user_id"] %>';
             region = '<%= Session["region"] %>';
             typ = $('#ddlltype option:selected').val();
@@ -962,7 +962,7 @@
                     $.ajax({
                         type: "POST",
                         contentType: "application/json",
-                        data: '{"userid":"' + userid + '","typ":"' + typ + '","per":"' + per + '","sd":"' + sd + '","ed":"' + ed + '","region":"'+region+'"}',
+                        data: '{"userid":"' + userid + '","typ":"' + typ + '","per":"' + per + '","sd":"' + sd + '","ed":"' + ed + '","region":"' + region + '"}',
                         url: "leaveapply.aspx/in_out_maternity_days",
                         dataType: "json",
                         success: function (data) {
@@ -1072,36 +1072,29 @@
             $('#txtdate').val('');
             $('#txtsdate').val('');
             $('#txtedate').val('');
-            
+
         }
     </script>
     <script type="text/javascript">
-        function HandleBackFunctionality()
-        {
-            if(window.event)
-            {
-                if(window.event.clientX < 40 && window.event.clientY < 0)
-                {
+        function HandleBackFunctionality() {
+            if (window.event) {
+                if (window.event.clientX < 40 && window.event.clientY < 0) {
                     alert("Browser back button is clicked…");
                 }
-                else
-                {
+                else {
                     alert("Browser refresh button is clicked…");
                 }
             }
-            else
-            {
-                if(event.currentTarget.performance.navigation.type == 1)
-                {
+            else {
+                if (event.currentTarget.performance.navigation.type == 1) {
                     alert("Browser refresh button is clicked firefox…");
                 }
-                if(event.currentTarget.performance.navigation.type == 2)
-                {
+                if (event.currentTarget.performance.navigation.type == 2) {
                     alert("Browser back button is clicked firefox…");
                 }
             }
         }
-</script>
+    </script>
 </body>
 <!-- end: BODY -->
 </html>

@@ -103,6 +103,7 @@ namespace eleave_view.hr
                 filldesignation(int.Parse(dt.Rows[0][5].ToString()));
                 fillgrade(int.Parse(dt.Rows[0][6].ToString()));
                 ddlregion.Items.FindByValue(dt.Rows[0][8].ToString()).Selected = true;
+                txtdob.Text = dt.Rows[0][10].ToString();
             }
             else
             {
@@ -155,7 +156,7 @@ namespace eleave_view.hr
 
         protected void btnupuser_Click(object sender, EventArgs e)
         {
-            if (txtname.Text != "" && txtuname.Text != "" && txtemail.Text != "" && ddlgender.SelectedIndex != 0 && txtdoje.Text != "" && ddldep.SelectedIndex != 0 && Request.Form[ddldesi.UniqueID] != null && Request.Form[ddlgrade.UniqueID] != null && ddlregion.SelectedIndex != 0)
+            if (txtname.Text != "" && txtuname.Text != "" && txtemail.Text != "" && ddlgender.SelectedIndex != 0 && txtdoje.Text != "" && ddldep.SelectedIndex != 0 && Request.Form[ddldesi.UniqueID] != null && Request.Form[ddlgrade.UniqueID] != null && ddlregion.SelectedIndex != 0 && txtdob.Text != "")
             {
                 if (txtemail.Text.Trim().Length <= 30)
                 {
@@ -180,6 +181,7 @@ namespace eleave_view.hr
                                 //string g =  Request.Form[ddlgrade.UniqueID];
                                 bus.grade = int.Parse(Request.Form[ddlgrade.UniqueID]);
                                 bus.region = int.Parse(ddlregion.SelectedValue.ToString());
+                                bus.dob = DateTime.Parse(txtdob.Text.Trim());
                                 int r = bus.update_user();
                                 if (r == 1)
                                 {
@@ -244,6 +246,7 @@ namespace eleave_view.hr
             ddldesi.SelectedIndex = 0;
             ddlregion.SelectedIndex = 0;
             Session["edit_id"] = "";
+            txtdob.Text = "";
         }
     }
 }
