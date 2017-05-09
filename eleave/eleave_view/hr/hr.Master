@@ -1575,10 +1575,12 @@
             if (typ != "" && per != "") {
                 if (typ == 1 || typ == 2 || typ == 3 || typ == 7 || typ == 8) {
                     dv1 = $('#txtdate_hr').val();
-                    dv2 = (dv1.match(/,/g) || []).length + 1;
-                    ds = $('#txtdate_hr').val();
-                    pert = $('#ddlper_hr option:selected').text();
-                    $('#lblreq').html(dv2 + ' ' + pert);
+                    if (dv1 != "") {
+                        dv2 = (dv1.match(/,/g) || []).length + 1;
+                        ds = $('#txtdate_hr').val();
+                        pert = $('#ddlper_hr option:selected').text();
+                        $('#lblreq').html(dv2 + ' ' + pert);
+                    }
                     //alert(typ);
                     //alert(per);
                     //alert(dates);

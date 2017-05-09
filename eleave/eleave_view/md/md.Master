@@ -567,7 +567,7 @@
             });
 
         }
-        setInterval(highcharts, 10000);
+        setInterval(highcharts, 60000);
     </script>
 
     <script type="text/javascript">
