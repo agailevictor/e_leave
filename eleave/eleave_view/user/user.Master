@@ -261,7 +261,7 @@
     <!-- start: FOOTER -->
     <div class="footer clearfix">
         <div class="footer-inner">
-            2015 &copy; <i class="clip-IE"></i>-Leave by <a href="http://summersoft.in/" target="_blank">summersoft pvt ltd.
+            2015 &copy; <i class="clip-IE"></i>-Leave by <a href="http://summersoft.in/" target="_blank">summersoft pvt ltd.</a>
         </div>
         <div class="footer-items">
             <span class="go-top"><i class="clip-chevron-up"></i></span>
@@ -581,7 +581,8 @@
                 $('#dates').show();
                 $("#txtdate").datepicker('remove');
                 $("#ddlper option[value='2']").removeAttr('disabled');
-                startdate = "-7d";
+                var yearm = new Date().getFullYear() + '';
+                startdate = "01-01-" + yearm;
                 enddate = "-1d";
                 datepick();
 
@@ -592,7 +593,8 @@
                 $('#dates').show();
                 $("#txtdate").datepicker('remove');
                 $("#ddlper option[value='2']").removeAttr('disabled');
-                startdate = "-100d";
+                var yearh = new Date().getFullYear() + '';
+                startdate = "01-01-" + yearh;
                 enddate = "-1d";
                 datepick();
 
