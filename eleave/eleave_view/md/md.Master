@@ -572,10 +572,12 @@
 
     <script type="text/javascript">
         function calendar() {
+            var data = {};
+            var rid = '<%= Session["region"] %>';
             $.ajax({
                 type: "POST",
                 contentType: "application/json",
-                data: "{}",
+                data: '{"rid":"' + rid + '"}',
                 url: "dash.aspx/GetEvents",
                 dataType: "json",
                 success: function (data) {
