@@ -156,12 +156,12 @@
                                     &nbsp;Update Profile
                                 </a>
                             </li>
-                            <li>
+<%--                            <li>
                                 <a href="chg_pass_hr.aspx">
                                     <i class="clip-key "></i>
                                     &nbsp;Change Password
                                 </a>
-                            </li>
+                            </li>--%>
                             <li>
                                 <a href="../Logout.aspx">
                                     <i class="clip-exit"></i>

@@ -60,7 +60,7 @@ var Login = function () {
                 },
                 password: {
                     minlength: 6,
-                    maxlength : 10,
+                    maxlength : 20,
                     required: true
                 }
             },

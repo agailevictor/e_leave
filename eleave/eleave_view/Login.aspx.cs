@@ -4,17 +4,20 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Configuration;
 using System.Data;
+using System.Web.Configuration;
 using eleave_c;
 using System.Text;
 using System.Security.Cryptography;
+using System.DirectoryServices;
 
 namespace eleave_view
 {
     public partial class Login : System.Web.UI.Page
     {
         bus_eleave bus = new bus_eleave();
-        string hashed;
+        string hashed, domainName, adPath, userName, pswd, strError;
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -27,24 +30,49 @@ namespace eleave_view
         {
             if (username.Text != "" && password.Text != "")
             {
-                hashed = MD5Hash(password.Text.Trim());
-                if (hashed != "")
-                {
-                    bus.user_name = username.Text;
-                    bus.password = hashed;
-                    int res = bus.check_login();
-                    if (res == 1)
-                    {
-                        inval.Visible = false;
-                        set_sessions();
+                //hashed = MD5Hash(password.Text.Trim());
+                //if (hashed != "")
+                //{
+                //    bus.user_name = username.Text;
+                //    bus.password = hashed;
+                //    int res = bus.check_login();
+                //    if (res == 1)
+                //    {
+                //        inval.Visible = false;
+                //        set_sessions();
 
-                    }
-                    else
-                    {
-                        username.Text = "";
-                        password.Text = "";
-                        inval.Visible = true;
-                    }
+                //    }
+                //    else
+                //    {
+                //        username.Text = "";
+                //        password.Text = "";
+                //        inval.Visible = true;
+                //    }
+                //}
+                //else
+                //{
+                //    username.Text = "";
+                //    password.Text = "";
+                //    inval.Visible = true;
+                //}
+
+                /* LDAP Authentication : START */
+
+                domainName = string.Empty;
+                adPath = string.Empty;
+                userName = username.Text.Trim();
+                pswd = password.Text.Trim();
+                strError = string.Empty;
+
+                domainName = WebConfigurationManager.AppSettings["DirectoryPath"];
+                adPath = WebConfigurationManager.AppSettings["DirectoryDomain"];
+
+                bool a = AuthenticateUser(domainName, userName, pswd);
+
+                if (a == true)
+                {
+                    inval.Visible = false;
+                    set_sessions();
                 }
                 else
                 {
@@ -52,6 +80,8 @@ namespace eleave_view
                     password.Text = "";
                     inval.Visible = true;
                 }
+
+                /* LDAP Authentication : END */
             }
             else
             {
@@ -115,5 +145,23 @@ namespace eleave_view
 
             return strBuilder.ToString();
         }
+
+      public bool AuthenticateUser(string path, string user, string pass)
+      {
+          DirectoryEntry de = new DirectoryEntry(path, user, pass, AuthenticationTypes.Secure);
+          try
+          {
+              //run a search using those credentials.  
+              //If it returns anything, then you're authenticated
+              DirectorySearcher ds = new DirectorySearcher(de);
+              ds.FindOne();
+              return true;
+          }
+          catch
+          {
+              //otherwise, it will crash out so return false
+              return false;
+          }
+      }
     }
 }
