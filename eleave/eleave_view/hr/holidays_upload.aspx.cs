@@ -245,10 +245,35 @@ namespace eleave_view.hr
                     }
 
                 }
+
+                addSatSun();
             }
             else
             {
                 ScriptManager.RegisterStartupScript(this, GetType(), "displayalertmessage", "errornoval();", true);
+            }
+        }
+
+        protected void addSatSun()
+        {
+            int year = int.Parse(DateTime.Now.Year.ToString());
+            DateTime Date = new DateTime(year, 1, 1);
+            while (Date.Year == year)
+            {
+                if (Date.DayOfWeek == DayOfWeek.Saturday)
+                {
+                    bus.event_name = "Saturday";
+                    bus.event_date = Date;
+                    bus.event_color = "Red";
+                }
+                else if (Date.DayOfWeek == DayOfWeek.Sunday)
+                {
+                    bus.event_name = "Sunday";
+                    bus.event_date = Date;
+                    bus.event_color = "Red";
+                }
+                int r = bus.upload_holidays();
+                Date = Date.AddDays(1);
             }
         }
     }
