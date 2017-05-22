@@ -59,7 +59,7 @@ namespace eleave_view.hr
 
         protected void btnreq_hr_Click(object sender, EventArgs e)
         {
-            if (ddlreg.SelectedIndex !=0  && txtholidays_hr.Text != "")
+            if (ddlreg.SelectedIndex != 0 && txtholidays_hr.Text != "")
             {
                 if (ddlreg.SelectedItem.Text == "Cochin")
                 {
@@ -143,6 +143,7 @@ namespace eleave_view.hr
 
                                 }
                             }
+                            addSatSun_C();
                             txtholidays_hr.Text = "";
                             ScriptManager.RegisterStartupScript(this, GetType(), "displayalertmessage", "success();", true);
                         }
@@ -234,6 +235,7 @@ namespace eleave_view.hr
 
                                 }
                             }
+                            addSatSun_M();
                             txtholidays_hr.Text = "";
                             ScriptManager.RegisterStartupScript(this, GetType(), "displayalertmessage", "success();", true);
                         }
@@ -245,8 +247,6 @@ namespace eleave_view.hr
                     }
 
                 }
-
-                addSatSun();
             }
             else
             {
@@ -254,7 +254,30 @@ namespace eleave_view.hr
             }
         }
 
-        protected void addSatSun()
+        protected void addSatSun_M()
+        {
+            int year = int.Parse(DateTime.Now.Year.ToString());
+            DateTime Date = new DateTime(year, 1, 1);
+            while (Date.Year == year)
+            {
+                if (Date.DayOfWeek == DayOfWeek.Saturday)
+                {
+                    bus.event_name = "Saturday";
+                    bus.event_date = Date;
+                    bus.event_color = "Red";
+                }
+                else if (Date.DayOfWeek == DayOfWeek.Sunday)
+                {
+                    bus.event_name = "Sunday";
+                    bus.event_date = Date;
+                    bus.event_color = "Red";
+                }
+                int r = bus.upload_holidays_malaysia();
+                Date = Date.AddDays(1);
+            }
+        }
+
+        protected void addSatSun_C()
         {
             int year = int.Parse(DateTime.Now.Year.ToString());
             DateTime Date = new DateTime(year, 1, 1);
