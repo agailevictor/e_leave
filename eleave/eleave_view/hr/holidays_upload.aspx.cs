@@ -100,16 +100,16 @@ namespace eleave_view.hr
                                 }
 
                             }
-                            if (a.Rows[i][2].ToString().Trim() == "")
-                            {
-                                CHK_NULL = 1;
-                                break;
-                            }
-                            else
-                            {
-                                bus.event_color = a.Rows[i][2].ToString();
+                            //if (a.Rows[i][2].ToString().Trim() == "")
+                            //{
+                            //    CHK_NULL = 1;
+                            //    break;
+                            //}
+                            //else
+                            //{
+                            //    bus.event_color = a.Rows[i][2].ToString();
 
-                            }
+                            //}
 
 
                         }
@@ -192,16 +192,16 @@ namespace eleave_view.hr
                                 }
 
                             }
-                            if (a.Rows[i][2].ToString().Trim() == "")
-                            {
-                                CHK_NULL = 1;
-                                break;
-                            }
-                            else
-                            {
-                                bus.event_color = a.Rows[i][2].ToString();
+                            //if (a.Rows[i][2].ToString().Trim() == "")
+                            //{
+                            //    CHK_NULL = 1;
+                            //    break;
+                            //}
+                            //else
+                            //{
+                            //    bus.event_color = a.Rows[i][2].ToString();
 
-                            }
+                            //}
 
 
                         }
