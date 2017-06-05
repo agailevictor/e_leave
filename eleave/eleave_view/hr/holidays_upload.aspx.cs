@@ -125,7 +125,7 @@ namespace eleave_view.hr
                                 bus.event_name = a.Rows[i][0].ToString();
                                 bus.event_date = DateTime.Parse(a.Rows[i][1].ToString());
                                 //bus.event_date = DateTime.ParseExact(a.Rows[i][1].ToString().Trim(), "yyyyMMdd", System.Globalization.CultureInfo.InvariantCulture);
-                                bus.event_color = a.Rows[i][2].ToString();
+                                bus.event_color = "#ff3232";
                                 int r = bus.upload_holidays();
                                 if (r == 1)
                                 {
@@ -217,7 +217,7 @@ namespace eleave_view.hr
                                 bus.event_name = a.Rows[i][0].ToString();
                                 bus.event_date = DateTime.Parse(a.Rows[i][1].ToString());
                                 //bus.event_date = DateTime.ParseExact(a.Rows[i][1].ToString().Trim(), "yyyyMMdd", System.Globalization.CultureInfo.InvariantCulture);
-                                bus.event_color = a.Rows[i][2].ToString();
+                                bus.event_color = "#ff3232";
                                 int r = bus.upload_holidays_malaysia();
                                 if (r == 1)
                                 {
@@ -264,13 +264,13 @@ namespace eleave_view.hr
                 {
                     bus.event_name = "Saturday";
                     bus.event_date = Date;
-                    bus.event_color = "Red";
+                    bus.event_color = "#35aa47";
                 }
                 else if (Date.DayOfWeek == DayOfWeek.Sunday)
                 {
                     bus.event_name = "Sunday";
                     bus.event_date = Date;
-                    bus.event_color = "Red";
+                    bus.event_color = "#35aa47";
                 }
                 int r = bus.upload_holidays_malaysia();
                 Date = Date.AddDays(1);
@@ -287,13 +287,13 @@ namespace eleave_view.hr
                 {
                     bus.event_name = "Saturday";
                     bus.event_date = Date;
-                    bus.event_color = "Red";
+                    bus.event_color = "#35aa47";
                 }
                 else if (Date.DayOfWeek == DayOfWeek.Sunday)
                 {
                     bus.event_name = "Sunday";
                     bus.event_date = Date;
-                    bus.event_color = "Red";
+                    bus.event_color = "#35aa47";
                 }
                 int r = bus.upload_holidays();
                 Date = Date.AddDays(1);
