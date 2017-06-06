@@ -306,7 +306,7 @@ namespace eleave_view.hr
                     }
                 }
 
-                else if (int.Parse(ddlltype_hr.SelectedValue.ToString()) == 5 || int.Parse(ddlltype_hr.SelectedValue.ToString()) == 6) // Unpaid or Compassionate
+                else if (int.Parse(ddlltype_hr.SelectedValue.ToString()) == 5 || int.Parse(ddlltype_hr.SelectedValue.ToString()) == 6 || int.Parse(ddlltype_hr.SelectedValue.ToString()) == 9) // Unpaid or Compassionate or Replcement
                 {
                     if (txtdate_hr.Text != "" && ddlper_hr.SelectedIndex != 0 && txtreason_hr.Text != "" && ddljobc_hr.SelectedValue.ToString() != "" && txtphone_hr.Text != "")
                     {
