@@ -435,7 +435,7 @@ namespace eleave_view.user
                         ScriptManager.RegisterStartupScript(this, GetType(), "displayalertmessage", "error1();", true);
                     }
                 }
-                else if (int.Parse(ddlltype.SelectedValue.ToString()) == 5 || int.Parse(ddlltype.SelectedValue.ToString()) == 6) // Unpaid or Compassionate
+                else if (int.Parse(ddlltype.SelectedValue.ToString()) == 5 || int.Parse(ddlltype.SelectedValue.ToString()) == 6 || int.Parse(ddlltype.SelectedValue.ToString()) == 9) // Unpaid or Compassionate or replacement
                 {
                     if (txtdate.Text != "" && ddlper.SelectedIndex != 0 && txtreason.Text != "" && ddljobc.SelectedValue.ToString() != "" && txtphone.Text != "")
                     {
